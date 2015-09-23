@@ -1,0 +1,14 @@
+#!/bin/bash
+
+HOME="/s/SUL/Harvester"
+LOG="$HOME/log"
+
+# yesterday...
+illiad_date=`transdate -d-1 | cut -c5-`
+
+cd $HOME/classes
+java -cp .:../lib/commons-io-2.4.jar:../lib/ojdbc14.jar:../lib/sqljdbc4.jar Pop2ILLiad /s/SUL/Batchlog/userload.keys.$illiad_date > $LOG/illiad.log
+
+
+
+

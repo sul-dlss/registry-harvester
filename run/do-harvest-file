@@ -1,0 +1,30 @@
+#!/bin/bash
+
+usage(){
+    echo "Usage: $0 [ KEYS ] [ DATE (mmdd) ]"
+    exit 1
+}
+
+[[ $# -lt 1 ]] && usage
+
+HOME=/s/SUL/Harvester
+LOG=$HOME/log
+OUT=$HOME/out
+KEYS=$1
+DATE=$2
+
+if [ -z $DATE ]
+then
+    DATE=`date +%Y%m%d`
+fi
+
+$HOME/run/fileLoad.sh $KEYS
+$HOME/run/usertrans $DATE
+
+perl -p -i -e 's/\r//g' $LOG/harvest.log
+
+cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
+
+mv $LOG/harvest.log $LOG/harvest.file.log.$DATE
+mv $OUT/harvest.out $OUT/harvest.file.out.$DATE
+touch $LOG/harvest.log
