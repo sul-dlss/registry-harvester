@@ -1,0 +1,16 @@
+#!/bin/sh
+ 
+case "$1" in
+    start)
+        echo "Starting Library Person Harvester"
+        /home/harvester/run/root_startapp.sh
+         ;;
+    stop)
+          echo "Stopping Library Person Harvester"
+          /home/harvester/run/killapp.sh
+          echo "."
+          ;;
+    *)
+       echo "Usage /home/harvester/init start|stop to start/stop"
+       exit 1
+esac

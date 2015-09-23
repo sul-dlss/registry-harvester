@@ -1,0 +1,36 @@
+#!/bin/bash
+# Modifies the xsl output and calls the expect program to ftp file to symphony
+# use: no parameters 
+#
+# 02022009 ajm created for uni-4
+#
+# 04182012 jkg modified for linux VM, changed to bash script
+# 08062013 jkg modified for new MaIS harvester app.
+
+HOME="/s/SUL/Harvester"
+LOG="$HOME/log"
+DATE=$1
+
+if [ -z $DATE ]
+then
+    DATE_FULL="$(date +%Y%m%d)"
+    DATE_STAMP="$(date +%m%d)"
+else
+    DATE_FULL=$DATE
+    DATE_STAMP=${DATE:4:8}
+fi
+
+SOURCE=/s/SUL/Dataload/Registry
+
+#remove duplicate records and blank lines and sets TODAYSDATE
+cat $HOME/out/harvest.out | gawk '!x[$0]++==1' RS=".REC." | sed "s/TODAYSDATE/$DATE_FULL/" | sed '/^$/d' > $HOME/out/harvest.out2
+
+touch $HOME/out/ftp.end
+
+echo "Copying fixed harvest.out file to \"$SOURCE\"" >> $LOG/harvest.log
+cp   $HOME/out/harvest.out2 $SOURCE/harvest.$DATE_STAMP >> $LOG/harvest.log 2>&1
+
+echo "Copying ftp.out file to \"$SOURCE\"" >> $LOG/harvest.log
+cp   $HOME/out/ftp.end $SOURCE/ >> $LOG/harvest.log 2>&1
+echo "" >> $LOG/harvest.log
+
