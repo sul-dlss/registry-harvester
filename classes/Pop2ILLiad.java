@@ -89,6 +89,11 @@ public class Pop2ILLiad {
                     {
                         NVTGC = "ST2";
                     }
+                    
+                    if (department == null || department.length() < 1)
+                    {
+                        department = "Affiliate";
+                    }
 
                     for (Map.Entry<String, String> entry : profiles.entrySet()) {
                         if (entry.getValue().equals(profile))
