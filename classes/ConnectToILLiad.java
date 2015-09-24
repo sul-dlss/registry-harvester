@@ -11,7 +11,7 @@ public class ConnectToILLiad {
     public static void connect (String sunetid, String NVTGC, Map<String, String> illData) {
 
         String sql = "";
-        String table_name = "UsersALL";
+        String table_name = "";
 
         try {
 
