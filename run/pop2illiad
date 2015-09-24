@@ -2,12 +2,13 @@
 
 HOME="/s/SUL/Harvester"
 LOG="$HOME/log"
-
-# yesterday...
-illiad_date=`transdate -d-1 | cut -c5-`
+DATE=$1
 
 cd $HOME/classes
-java -cp .:../lib/commons-io-2.4.jar:../lib/ojdbc14.jar:../lib/sqljdbc4.jar Pop2ILLiad /s/SUL/Batchlog/userload.keys.$illiad_date > $LOG/illiad.log
+
+echo "Processing /s/SUL/Batchlog/userload.keys.$DATE for ILLiad" > $LOG/illiad.log
+echo ""
+java -cp .:../lib/commons-io-2.4.jar:../lib/ojdbc14.jar:../lib/sqljdbc4.jar Pop2ILLiad /s/SUL/Batchlog/userload.keys.$DATE > $LOG/illiad.log  2>&1
 
 
 
