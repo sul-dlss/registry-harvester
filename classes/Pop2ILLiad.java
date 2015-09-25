@@ -31,13 +31,8 @@ public class Pop2ILLiad {
 
             Map <String, String> illData = new LinkedHashMap <String, String>();
 
-            StringBuilder transactSqlST2 = new StringBuilder();
-            StringBuilder transactSqlS7Z = new StringBuilder();
-            StringBuilder transactSqlRCJ = new StringBuilder();
-
-            transactSqlST2.append(GetTransactSQL.transactBegin());
-            transactSqlS7Z.append(GetTransactSQL.transactBegin());
-            transactSqlRCJ.append(GetTransactSQL.transactBegin());
+            StringBuilder transactSql = new StringBuilder();
+            transactSql.append(GetTransactSQL.transactBegin());
 
             String userkey;
             String result = "";
@@ -77,7 +72,7 @@ public class Pop2ILLiad {
                     user = userFields[0];
 
                     fullName = userFields[1].replace("'", "''");
-                    
+
                     String [] splitname = fullName.split(",");
                     last = splitname[0];
                     first = splitname[1];
@@ -113,7 +108,7 @@ public class Pop2ILLiad {
                           status = entry.getKey();
                         }
                     }
-                    
+
                     if (status.length() == 0)
                     {
                       status = "Affiliate";
@@ -174,31 +169,9 @@ public class Pop2ILLiad {
                   illData.put("UserInfo5", "NULL"); //
                 }
 
-                if (NVTGC.equals("ST2"))
-                {
-                  transactSqlST2.append(GetTransactSQL.transactSQL(illData, user));
-                }
-                else if (NVTGC.equals("S7Z"))
-                {
-                  transactSqlS7Z.append(GetTransactSQL.transactSQL(illData, user));
-                }
-                else if (NVTGC.equals("RCJ"))
-                {
-                  transactSqlRCJ.append(GetTransactSQL.transactSQL(illData, user));
-                }
+                transactSql.append(GetTransactSQL.transactEnd());
+                ConnectToILLiad.connect(NVTGC, transactSql.toString());
             }
-
-            transactSqlST2.append(GetTransactSQL.transactEnd());
-            transactSqlS7Z.append(GetTransactSQL.transactEnd());
-            transactSqlRCJ.append(GetTransactSQL.transactEnd());
-
-            System.err.println(transactSqlST2.toString());
-            System.err.println(transactSqlS7Z.toString());
-            System.err.println(transactSqlRCJ.toString());
-
-            ConnectToILLiad.connect("ST2", transactSqlST2.toString());
-            ConnectToILLiad.connect("S7Z", transactSqlS7Z.toString());
-            ConnectToILLiad.connect("RCJ", transactSqlRCJ.toString());
         }
         catch (Exception e)
         {
