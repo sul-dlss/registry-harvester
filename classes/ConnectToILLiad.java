@@ -10,14 +10,13 @@ public class ConnectToILLiad {
 
         try {
 
-            String is_prod = System.getenv("IS_PRODUCTION");
-            String host = "";
-            if (is_prod == null || !is_prod.equals("yes")) {
-                host = "-test";
-            }
-            String url = "jdbc:sqlserver://sul-illiad"+host+".stanford.edu:1433";
-            String user = NVTGC;
-            String pass = NVTGC + "Password";
+            Properties props = PropGet.getProps("../conf/server.conf");
+            String user = props.getProperty("USER");
+            String pass = props.getProperty("PASS");
+            String server = props.getProperty("SERVER");
+            String domain_port = props.getProperty("DOMAIN_PORT");
+
+            String url = server + "." + domain_port;
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection connection = DriverManager.getConnection(url + ";user=" + user + ";password=" + pass);
@@ -28,7 +27,7 @@ public class ConnectToILLiad {
             connection.close();
         }
         catch (Exception e) {
-          
+
             System.err.println(e.getMessage());
             System.err.println(NVTGC + "\n-----------");
         }
