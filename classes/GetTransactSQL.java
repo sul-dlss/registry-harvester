@@ -3,13 +3,20 @@ import java.util.LinkedHashMap;
 
 public class GetTransactSQL {
 
+  public static String transactBegin () {
+    return "\n\rBEGIN TRAN\n\r";
+  }
+
+  public static String transactEnd () {
+    return "COMMIT TRAN\n\r-----------";
+  }
+
   public static String transactSQL (Map<String, String> illData, String sunetid) throws Exception {
 
     String sql = "";
     String sqlv = "";
     String table_name = "";
 
-    sql = "\n\rBEGIN TRAN\n\r";
     sql += " IF EXISTS (select * from ILLData.dbo." + table_name + " where UserName = '" + sunetid + "')\n\r";
     sql += " BEGIN\n\r";
     sql += "  UPDATE ILLData.dbo." + table_name + "\n\r";
@@ -60,7 +67,7 @@ public class GetTransactSQL {
     sqlv += ")\n\r";
     sql += sqlv;
     sql += "  END\n\r";
-    sql += "COMMIT TRAN\n\r-----------";
+
     System.err.println(sqlv + "\n-----------");
 
     return sql;

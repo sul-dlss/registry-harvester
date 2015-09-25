@@ -15,9 +15,9 @@ public class ConnectToILLiad {
             if (is_prod == null || !is_prod.equals("yes")) {
                 host = "-test";
             }
-            String url = "";
-            String user = "";
-            String pass = "";
+            String url = "jdbc:sqlserver://sul-illiad"+host+".stanford.edu:1433";
+            String user = NVTGC;
+            String pass = NVTGC + "Password";
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection connection = DriverManager.getConnection(url + ";user=" + user + ";password=" + pass);

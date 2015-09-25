@@ -35,6 +35,10 @@ public class Pop2ILLiad {
             StringBuilder transactSqlS7Z = new StringBuilder();
             StringBuilder transactSqlRCJ = new StringBuilder();
 
+            transactSqlST2.append(GetTransactSQL.transactBegin());
+            transactSqlS7Z.append(GetTransactSQL.transactBegin());
+            transactSqlRCJ.append(GetTransactSQL.transactBegin());
+
             String userkey;
             String result = "";
 
@@ -64,7 +68,7 @@ public class Pop2ILLiad {
                 String nvtgc = ""; //7 Y.9032.
 
                 String NVTGC = "";
-                String STATUS = "";
+                String status = "";
 
                 try {
 
@@ -103,12 +107,13 @@ public class Pop2ILLiad {
                     for (Map.Entry<String, String> entry : profiles.entrySet()) {
                         if (entry.getValue().equals(profile))
                         {
-                          STATUS = entry.getKey();
+                          status = entry.getKey();
                         }
                     }
-                    if (STATUS.length() == 0)
+                    
+                    if (status.length() == 0)
                     {
-                      STATUS = "Affiliate";
+                      status = "Affiliate";
                     }
                 }
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
@@ -121,7 +126,7 @@ public class Pop2ILLiad {
                   illData.put("LastName", "'" + last + "'"); //40 *
                   illData.put("FirstName", "'" + first + "'"); //40 *
                   illData.put("SSN", "'" + barcode + "'"); //20
-                  illData.put("Status", "'" + STATUS + "'"); //15
+                  illData.put("Status", "'" + status + "'"); //15`
                   illData.put("EMailAddress", "'" + email + "'"); //50 *
                   illData.put("Phone", "'" + phone + "'"); //15 *
                   illData.put("MobilePhone", "'NULL'"); //15
@@ -180,7 +185,14 @@ public class Pop2ILLiad {
                 }
             }
 
+            transactSqlST2.append(GetTransactSQL.transactEnd());
+            transactSqlS7Z.append(GetTransactSQL.transactEnd());
+            transactSqlRCJ.append(GetTransactSQL.transactEnd());
+
             System.err.println(transactSqlST2.toString());
+            System.err.println(transactSqlS7Z.toString());
+            System.err.println(transactSqlRCJ.toString());
+
             ConnectToILLiad.connect("ST2", transactSqlST2.toString());
             ConnectToILLiad.connect("S7Z", transactSqlS7Z.toString());
             ConnectToILLiad.connect("RCJ", transactSqlRCJ.toString());
