@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import java.util.Properties;
+
 public class ConnectToILLiad {
 
     public static void connect (String NVTGC, String transactSQL) {
