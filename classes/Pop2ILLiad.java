@@ -11,7 +11,6 @@ import java.util.Date;
 
 import java.lang.Runtime;
 import java.lang.Process;
-import java.lang.StringBuilder;
 
 import java.text.SimpleDateFormat;
 import org.apache.commons.io.IOUtils;
@@ -30,9 +29,6 @@ public class Pop2ILLiad {
         try {
 
             Map <String, String> illData = new LinkedHashMap <String, String>();
-
-            StringBuilder transactSql = new StringBuilder();
-            transactSql.append(GetTransactSQL.transactBegin());
 
             String userkey;
             String result = "";
@@ -169,8 +165,7 @@ public class Pop2ILLiad {
                   illData.put("UserInfo5", "NULL"); //
                 }
 
-                transactSql.append(GetTransactSQL.transactSql(illData, user));
-                ConnectToILLiad.connect(NVTGC, transactSql.toString());
+                ConnectToILLiad.connect(NVTGC, GetTransactSQL.transactSql(illData, user);
             }
         }
         catch (Exception e)
