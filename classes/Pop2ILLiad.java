@@ -11,6 +11,7 @@ import java.util.Date;
 
 import java.lang.Runtime;
 import java.lang.Process;
+import java.lang.StringBuilder;
 
 import java.text.SimpleDateFormat;
 import org.apache.commons.io.IOUtils;
@@ -18,7 +19,6 @@ import org.apache.commons.io.IOUtils;
 public class Pop2ILLiad {
 
     public static Map <String, String> profiles = new LinkedHashMap <String, String>();
-
     public static void main (String [] args) throws Exception {
 
         Process proc;
@@ -31,9 +31,14 @@ public class Pop2ILLiad {
 
             Map <String, String> illData = new LinkedHashMap <String, String>();
 
-            BufferedReader br = new BufferedReader(new FileReader(new File(args[0])));
-            String result = "";
+            StringBuilder transactSqlST2 = new StringBuilder();
+            StringBuilder transactSqlS7Z = new StringBuilder();
+            StringBuilder transactSqlRCJ = new StringBuilder();
+
             String userkey;
+            String result = "";
+
+            BufferedReader br = new BufferedReader(new FileReader(new File(args[0])));
 
             while ((userkey = br.readLine()) != null) {
 
@@ -89,7 +94,7 @@ public class Pop2ILLiad {
                     {
                         NVTGC = "ST2";
                     }
-                    
+
                     if (department == null || department.length() < 1)
                     {
                         department = "Affiliate";
@@ -157,8 +162,24 @@ public class Pop2ILLiad {
                   illData.put("UserInfo5", "NULL"); //
                 }
 
-                ConnectToILLiad.connect(user, NVTGC, illData);
+                if (NVTGC.equals("ST2"))
+                {
+                  transactSqlST2.append(GetTransactSQL.transactSQL(illData, user));
+                }
+                else if (NVTGC.equals("S7Z"))
+                {
+                  transactSqlS7Z.append(GetTransactSQL.transactSQL(illData, user));
+                }
+                else if (NVTGC.equals("RCJ"))
+                {
+                  transactSqlRCJ.append(GetTransactSQL.transactSQL(illData, user));
+                }
             }
+
+            System.out.println(transactSqlST2.toString());
+            //ConnectToILLiad.connect("ST2", transactSqlST2.toString());
+            //ConnectToILLiad.connect("S7Z", transactSqlS7Z.toString());
+            //ConnectToILLiad.connect("RCJ", transactSqlRCJ.toString());
         }
         catch (Exception e)
         {
