@@ -31,7 +31,7 @@ public class ConnectToILLiad {
         catch (Exception e) {
 
             System.err.println(e.getMessage());
-            System.err.println(NVTGC + "\n-----------");
+            System.err.println(NVTGC + " ERROR\n-----------");
         }
     }
 }
