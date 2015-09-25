@@ -13,8 +13,8 @@ public class ConnectToILLiad {
         try {
 
             Properties props = PropGet.getProps("../conf/server.conf");
-            String user = props.getProperty("USER");
-            String pass = props.getProperty("PASS");
+            String user = NVTGC + props.getProperty("USER");
+            String pass = NVTGC + props.getProperty("PASS");
             String server = props.getProperty("SERVER");
             String domain_port = props.getProperty("DOMAIN_PORT");
 
@@ -31,7 +31,7 @@ public class ConnectToILLiad {
         catch (Exception e) {
 
             System.err.println(e.getMessage());
-            System.err.println(NVTGC + "\n-----------");
+            System.err.println(NVTGC + " ERROR\n-----------");
         }
     }
 }
