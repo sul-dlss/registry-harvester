@@ -536,7 +536,7 @@ public class UserTrans {
             illData.put("UserInfo4", "NULL"); //
             illData.put("UserInfo5", "NULL"); //
 
-            ConnectToILLiad.connect(NVTGC, GetTransactSQL.transactSql(NVTGC, sunetid));
+            ConnectToILLiad.connect(NVTGC, GetTransactSQL.transactSql(illData, sunetid));
           }
         }
       }
