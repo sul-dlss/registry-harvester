@@ -165,7 +165,7 @@ public class Pop2ILLiad {
                   illData.put("UserInfo5", "NULL"); //
                 }
 
-                ConnectToILLiad.connect(NVTGC, GetTransactSQL.transactSql(illData, user);
+                ConnectToILLiad.connect(NVTGC, GetTransactSQL.transactSql(illData, user));
             }
         }
         catch (Exception e)
