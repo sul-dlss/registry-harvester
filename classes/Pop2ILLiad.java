@@ -69,12 +69,15 @@ public class Pop2ILLiad {
 
                 String NVTGC = "";
                 String status = "";
+                String fullName = "";
 
                 try {
 
                     String [] userFields = result.toString().split("\\|");
                     user = userFields[0];
 
+                    fullName = userFields[1];
+                    fullName.replace("'", "''");
                     String [] splitname = userFields[1].split(",");
                     last = splitname[0].trim();
                     first = splitname[1].trim();
