@@ -35,6 +35,10 @@ public class Pop2ILLiad {
             StringBuilder transactSqlS7Z = new StringBuilder();
             StringBuilder transactSqlRCJ = new StringBuilder();
 
+            transactSqlST2.append(GetTransactSQL.transactBegin());
+            transactSqlS7Z.append(GetTransactSQL.transactBegin());
+            transactSqlRCJ.append(GetTransactSQL.transactBegin());
+
             String userkey;
             String result = "";
 
@@ -180,7 +184,14 @@ public class Pop2ILLiad {
                 }
             }
 
+            transactSqlST2.append(GetTransactSQL.transactEnd());
+            transactSqlS7Z.append(GetTransactSQL.transactEnd());
+            transactSqlRCJ.append(GetTransactSQL.transactEnd());
+
             System.err.println(transactSqlST2.toString());
+            System.err.println(transactSqlS7Z.toString());
+            System.err.println(transactSqlRCJ.toString());
+
             ConnectToILLiad.connect("ST2", transactSqlST2.toString());
             ConnectToILLiad.connect("S7Z", transactSqlS7Z.toString());
             ConnectToILLiad.connect("RCJ", transactSqlRCJ.toString());
