@@ -11,8 +11,6 @@ import java.util.Iterator;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
-import java.lang.StringBuilder;
-
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Attribute;
@@ -69,10 +67,6 @@ public class UserTrans {
       Element person  = document.getRootElement();
       List people = person.getChildren("Person");
       Iterator <Element> peopleIterator = people.iterator();
-
-      StringBuilder transactSqlST2 = new StringBuilder();
-      StringBuilder transactSqlS7Z = new StringBuilder();
-      StringBuilder transactSqlRCJ = new StringBuilder();
 
       while (peopleIterator.hasNext()) {
         person = (Element) peopleIterator.next();
@@ -542,25 +536,10 @@ public class UserTrans {
             illData.put("UserInfo4", "NULL"); //
             illData.put("UserInfo5", "NULL"); //
 
-            if (NVTGC.equals("ST2"))
-            {
-              transactSqlST2.append(GetTransactSQL.transactSQL(illData, sunetid));
-            }
-            else if (NVTGC.equals("S7Z"))
-            {
-              transactSqlS7Z.append(GetTransactSQL.transactSQL(illData, sunetid));
-            }
-            else if (NVTGC.equals("RCJ"))
-            {
-              transactSqlRCJ.append(GetTransactSQL.transactSQL(illData, sunetid));
-            }
+            ConnectToILLiad.connect(NVTGC, GetTransactSQL.transactSql(NVTGC, sunetid));
           }
         }
       }
-      System.out.println(transactSqlST2.toString());
-      //ConnectToILLiad.connect("ST2", transactSqlST2.toString());
-      //ConnectToILLiad.connect("S7Z", transactSqlS7Z.toString());
-      //ConnectToILLiad.connect("RCJ", transactSqlRCJ.toString());
     }
     catch (ArrayIndexOutOfBoundsException a) {
       System.err.println("Usage: UserTrans [ xmlFile ]");
