@@ -18,7 +18,7 @@ perl -p -i -e 's/\r//g' $LOG/harvest.log
 cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
 
 # yesterday...
-illiad_date=`transdate -d-1 | cut -c5-`
+illiad_date=`/s/sirsi/Unicorn/Bin/transdate -d-1 | cut -c5-`
 $HOME/run/pop2illiad $illiad_date
 
 mv $LOG/harvest.log $LOG/harvest.log.$DATE
