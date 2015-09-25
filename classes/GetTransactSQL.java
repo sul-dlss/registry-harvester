@@ -10,7 +10,7 @@ public class GetTransactSQL {
     Properties props = PropGet.getProps("../conf/server.conf");
     String table_name = props.getProperty("TABLE_NAME");
 
-    String sql = "\n\rBEGIN TRAN\n\r;
+    String sql = "\n\rBEGIN TRAN\n\r";
     String sqlv = "";
 
     sql += " IF EXISTS (select * from ILLData.dbo." + table_name + " where UserName = '" + sunetid + "')\n\r";
