@@ -106,6 +106,10 @@ public class Pop2ILLiad {
                           STATUS = entry.getKey();
                         }
                     }
+                    if (STATUS.length() == 0)
+                    {
+                      STATUS = "Affiliate";
+                    }
                 }
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
                 {}
@@ -176,7 +180,7 @@ public class Pop2ILLiad {
                 }
             }
 
-            System.out.println(transactSqlST2.toString());
+            System.err.println(transactSqlST2.toString());
             ConnectToILLiad.connect("ST2", transactSqlST2.toString());
             ConnectToILLiad.connect("S7Z", transactSqlS7Z.toString());
             ConnectToILLiad.connect("RCJ", transactSqlRCJ.toString());
