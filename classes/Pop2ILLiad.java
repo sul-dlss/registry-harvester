@@ -177,9 +177,9 @@ public class Pop2ILLiad {
             }
 
             System.out.println(transactSqlST2.toString());
-            //ConnectToILLiad.connect("ST2", transactSqlST2.toString());
-            //ConnectToILLiad.connect("S7Z", transactSqlS7Z.toString());
-            //ConnectToILLiad.connect("RCJ", transactSqlRCJ.toString());
+            ConnectToILLiad.connect("ST2", transactSqlST2.toString());
+            ConnectToILLiad.connect("S7Z", transactSqlS7Z.toString());
+            ConnectToILLiad.connect("RCJ", transactSqlRCJ.toString());
         }
         catch (Exception e)
         {
