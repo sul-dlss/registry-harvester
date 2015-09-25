@@ -9,7 +9,7 @@ public class GetTransactSQL {
     String sqlv = "";
     String table_name = "";
 
-    sql = "BEGIN TRAN\n\r";
+    sql = "\n\rBEGIN TRAN\n\r";
     sql += " IF EXISTS (select * from ILLData.dbo." + table_name + " where UserName = '" + sunetid + "')\n\r";
     sql += " BEGIN\n\r";
     sql += "  UPDATE ILLData.dbo." + table_name + "\n\r";
@@ -60,8 +60,7 @@ public class GetTransactSQL {
     sqlv += ")\n\r";
     sql += sqlv;
     sql += "  END\n\r";
-    sql += "COMMIT TRAN";
-
+    sql += "COMMIT TRAN\n\r-----------";
     System.err.println(sqlv + "\n-----------");
 
     return sql;
