@@ -5,17 +5,9 @@ import java.util.Properties;
 
 public class GetTransactSQL {
 
-  public static String transactBegin () {
-    return "\n\rBEGIN TRAN\n\r";
-  }
+  public static String transactSql (Map<String, String> illData, String sunetid) throws Exception {
 
-  public static String transactEnd () {
-    return "COMMIT TRAN\n\r-----------";
-  }
-
-  public static String transactSQL (Map<String, String> illData, String sunetid) throws Exception {
-
-    String sql = "";
+    String sql = ""\n\rBEGIN TRAN\n\r"";
     String sqlv = "";
 
     Properties props = PropGet.getProps("../conf/server.conf");
@@ -71,6 +63,7 @@ public class GetTransactSQL {
     sqlv += ")\n\r";
     sql += sqlv;
     sql += "  END\n\r";
+    sql += "COMMIT TRAN\n\r-----------";
 
     System.err.println(sqlv + "\n-----------");
 

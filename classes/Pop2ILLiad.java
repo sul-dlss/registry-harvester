@@ -169,7 +169,7 @@ public class Pop2ILLiad {
                   illData.put("UserInfo5", "NULL"); //
                 }
 
-                transactSql.append(GetTransactSQL.transactEnd());
+                transactSql.append(GetTransactSQL.transactSql(illData, user));
                 ConnectToILLiad.connect(NVTGC, transactSql.toString());
             }
         }
