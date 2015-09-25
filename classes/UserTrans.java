@@ -544,15 +544,15 @@ public class UserTrans {
 
             if (NVTGC.equals("ST2"))
             {
-              transactSqlST2.append(GetTransactSQL.transactSQL(illData, user));
+              transactSqlST2.append(GetTransactSQL.transactSQL(illData, sunetid));
             }
             else if (NVTGC.equals("S7Z"))
             {
-              transactSqlS7Z.append(GetTransactSQL.transactSQL(illData, user));
+              transactSqlS7Z.append(GetTransactSQL.transactSQL(illData, sunetid));
             }
             else if (NVTGC.equals("RCJ"))
             {
-              transactSqlRCJ.append(GetTransactSQL.transactSQL(illData, user));
+              transactSqlRCJ.append(GetTransactSQL.transactSQL(illData, sunetid));
             }
           }
         }
