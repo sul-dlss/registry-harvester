@@ -76,11 +76,11 @@ public class Pop2ILLiad {
                     String [] userFields = result.toString().split("\\|");
                     user = userFields[0];
 
-                    fullName = userFields[1];
-                    fullName.replace("'", "''");
-                    String [] splitname = userFields[1].split(",");
-                    last = splitname[0].trim();
-                    first = splitname[1].trim();
+                    fullName = userFields[1].replace("'", "''");
+                    
+                    String [] splitname = fullName.split(",");
+                    last = splitname[0];
+                    first = splitname[1];
 
                     barcode = userFields[2];
                     profile = userFields[3];
