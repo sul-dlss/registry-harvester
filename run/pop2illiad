@@ -10,6 +10,5 @@ echo "Processing /s/SUL/Batchlog/userload.keys.$DATE for ILLiad" > $LOG/illiad.l
 echo ""
 java -cp .:../lib/commons-io-2.4.jar:../lib/ojdbc14.jar:../lib/sqljdbc4.jar Pop2ILLiad /s/SUL/Batchlog/userload.keys.$DATE > $LOG/illiad.log  2>&1
 
-
-
+cat $LOG/illiad.log | mailx -s 'ILLiad User Export Log' sul-unicorn-devs@lists.stanford.edu
 
