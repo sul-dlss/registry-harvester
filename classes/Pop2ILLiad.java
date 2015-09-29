@@ -88,7 +88,6 @@ public class Pop2ILLiad {
                 output.close();
 
                 result = IOUtils.toString(p2.getInputStream(), "UTF-8");
-                System.out.println(result);
 
                 String sunetid = ""; //0 x
                 String last = ""; //1 D
@@ -207,9 +206,7 @@ public class Pop2ILLiad {
                     illData.put("UserInfo4", "NULL"); //
                     illData.put("UserInfo5", "NULL"); //
 
-                    System.out.println(illData.size());
                     String sql = GetTransactSQL.transactSql(illData, sunetid);
-                    System.out.println("Sql:\n" + sql);
 
                     if (NVTGC.equals("ST2")){
                         ConnectToILLiad.connect(sql, st2Conn);
