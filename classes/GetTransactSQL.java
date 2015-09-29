@@ -5,12 +5,20 @@ import java.util.Properties;
 
 public class GetTransactSQL {
 
+  public static String transactBegin(){
+    return "\n\rBEGIN TRAN\n\r";
+  }
+
+  public static String transactCommit(){
+    return "COMMIT TRAN\n\r-----------";
+  }
+
   public static String transactSql (Map<String, String> illData, String sunetid) throws Exception {
 
     Properties props = PropGet.getProps("../conf/server.conf");
     String table_name = props.getProperty("TABLE_NAME");
 
-    String sql = "\n\rBEGIN TRAN\n\r";
+    String sql = "";
     String sqlv = "";
 
     sql += " IF EXISTS (select * from ILLData.dbo." + table_name + " where UserName = '" + sunetid + "')\n\r";
@@ -63,7 +71,6 @@ public class GetTransactSQL {
     sqlv += ")\n\r";
     sql += sqlv;
     sql += "  END\n\r";
-    sql += "COMMIT TRAN\n\r-----------";
 
     System.err.println(sqlv + "\n-----------");
 

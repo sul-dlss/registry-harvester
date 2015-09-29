@@ -48,6 +48,7 @@ public class Pop2ILLiad {
             st2.setPortNumber(1433);
             st2.setDatabaseName("ILLData");
             Connection st2Conn = st2.getConnection();
+            ConnectToILLiad.connect(GetTransactSQL.transactBegin(), st2Conn);
 
             SQLServerDataSource s7z = new SQLServerDataSource();
             s7z.setUser("S7Z" + user);
@@ -56,6 +57,7 @@ public class Pop2ILLiad {
             s7z.setPortNumber(1433);
             s7z.setDatabaseName("ILLData");
             Connection s7zConn = s7z.getConnection();
+            ConnectToILLiad.connect(GetTransactSQL.transactBegin(), s7zConn);
 
             SQLServerDataSource rcj = new SQLServerDataSource();
             rcj.setUser("RCJ" + user);
@@ -64,6 +66,7 @@ public class Pop2ILLiad {
             rcj.setPortNumber(1433);
             rcj.setDatabaseName("ILLData");
             Connection rcjConn = rcj.getConnection();
+            ConnectToILLiad.connect(GetTransactSQL.transactBegin(), rcjConn);
 
             Map <String, String> illData = new LinkedHashMap <String, String>();
 
@@ -72,7 +75,7 @@ public class Pop2ILLiad {
 
             BufferedReader br = new BufferedReader(new FileReader(new File(args[0])));
 
-            while ((userkey = br.readLine()) != null) 
+            while ((userkey = br.readLine()) != null)
             {
 
                 Process p1 = Runtime.getRuntime().exec(new String[] { "echo", userkey });
@@ -220,8 +223,13 @@ public class Pop2ILLiad {
                 }
             }
 
+            ConnectToILLiad.connect(GetTransactSQL.transactCommit(), st2Conn);
             st2Conn.close();
+
+            ConnectToILLiad.connect(GetTransactSQL.transactCommit(), s7zConn);
             s7zConn.close();
+
+            ConnectToILLiad.connect(GetTransactSQL.transactCommit(), rcjConn);
             rcjConn.close();
         }
         catch (Exception e)
