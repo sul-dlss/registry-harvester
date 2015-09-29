@@ -7,16 +7,21 @@ import java.util.LinkedHashMap;
 import java.util.Date;
 import java.util.List;
 import java.util.Iterator;
+import java.util.Properties;
 
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+
+import javax.xml.transform.dom.DOMSource;
+
+import java.sql.Connection;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Attribute;
 import org.jdom2.JDOMException;
 
-import javax.xml.transform.dom.DOMSource;
+import com.microsoft.sqlserver.jdbc.*;
 
 public class UserTrans {
 
@@ -64,6 +69,41 @@ public class UserTrans {
     String USER_WEB_AUTH = "";
 
     try {
+
+      Properties props = PropGet.getProps("../conf/server.conf");
+      String user = props.getProperty("USER");
+      String pass = props.getProperty("PASS");
+      String server = props.getProperty("SERVER");
+
+      Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDataSource");
+
+      SQLServerDataSource st2 = new SQLServerDataSource();
+      st2.setUser("ST2" + user);
+      st2.setPassword("ST2" + pass);
+      st2.setServerName(server);
+      st2.setPortNumber(1433);
+      st2.setDatabaseName("ILLData");
+      Connection st2Conn = st2.getConnection();
+      ConnectToILLiad.connect(GetTransactSQL.transactBegin(), st2Conn);
+
+      SQLServerDataSource s7z = new SQLServerDataSource();
+      s7z.setUser("S7Z" + user);
+      s7z.setPassword("S7Z" + pass);
+      s7z.setServerName(server);
+      s7z.setPortNumber(1433);
+      s7z.setDatabaseName("ILLData");
+      Connection s7zConn = s7z.getConnection();
+      ConnectToILLiad.connect(GetTransactSQL.transactBegin(), s7zConn);
+
+      SQLServerDataSource rcj = new SQLServerDataSource();
+      rcj.setUser("RCJ" + user);
+      rcj.setPassword("RCJ" + pass);
+      rcj.setServerName(server);
+      rcj.setPortNumber(1433);
+      rcj.setDatabaseName("ILLData");
+      Connection rcjConn = rcj.getConnection();
+      ConnectToILLiad.connect(GetTransactSQL.transactBegin(), rcjConn);
+
       Element person  = document.getRootElement();
       List people = person.getChildren("Person");
       Iterator <Element> peopleIterator = people.iterator();
@@ -536,9 +576,28 @@ public class UserTrans {
             illData.put("UserInfo4", "NULL"); //
             illData.put("UserInfo5", "NULL"); //
 
-            ConnectToILLiad.connect(NVTGC, GetTransactSQL.transactSql(illData, sunetid));
+            String sql = GetTransactSQL.transactSql(illData, sunetid);
+
+            if (NVTGC.equals("ST2")){
+                ConnectToILLiad.connect(sql, st2Conn);
+            }
+            if (NVTGC.equals("S7Z")){
+                ConnectToILLiad.connect(sql, s7zConn);
+            }
+            if (NVTGC.equals("RCJ")){
+                ConnectToILLiad.connect(sql, rcjConn);
+            }
           }
         }
+
+        ConnectToILLiad.connect(GetTransactSQL.transactCommit(), st2Conn);
+        st2Conn.close();
+
+        ConnectToILLiad.connect(GetTransactSQL.transactCommit(), s7zConn);
+        s7zConn.close();
+
+        ConnectToILLiad.connect(GetTransactSQL.transactCommit(), rcjConn);
+        rcjConn.close();
       }
     }
     catch (ArrayIndexOutOfBoundsException a) {
