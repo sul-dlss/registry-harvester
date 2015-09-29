@@ -1,37 +1,24 @@
-import java.sql.DriverManager;
+//import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import java.util.Properties;
+//import java.util.Properties;
 
 public class ConnectToILLiad {
 
-    public static void connect (String NVTGC, String transactSQL) {
+    public static void connect (String transactSQL, Connection connection) throws SQLException {
 
-        try {
+      try {
 
-            Properties props = PropGet.getProps("../conf/server.conf");
-            String user = NVTGC + props.getProperty("USER");
-            String pass = NVTGC + props.getProperty("PASS");
-            String server = props.getProperty("SERVER");
-            String domain_port = props.getProperty("DOMAIN_PORT");
+        Statement stmt = connection.createStatement();
 
-            String url = server + "." + domain_port;
-
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection connection = DriverManager.getConnection(url + ";user=" + user + ";password=" + pass);
-
-            Statement stmt = connection.createStatement();
-
-            stmt.executeUpdate(transactSQL);
-            connection.close();
-        }
-        catch (Exception e) {
-
-            System.err.println(e.getMessage());
-            System.err.println(NVTGC + " ERROR\n-----------");
-        }
-    }
+        stmt.executeUpdate(transactSQL);
+        connection.close();
+      }
+      catch (SQLException s) {
+        System.err.println(s.getSQLState() + " ERROR\n-----------");
+      }
+  }
 }

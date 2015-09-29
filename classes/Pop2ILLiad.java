@@ -8,16 +8,22 @@ import java.io.InputStreamReader;
 import java.util.Map;
 import java.util.LinkedHashMap;
 import java.util.Date;
+import java.util.Properties;
 
 import java.lang.Runtime;
 import java.lang.Process;
 
+import java.sql.Connection;
+
 import java.text.SimpleDateFormat;
 import org.apache.commons.io.IOUtils;
+
+import com.microsoft.sqlserver.jdbc.*;
 
 public class Pop2ILLiad {
 
     public static Map <String, String> profiles = new LinkedHashMap <String, String>();
+
     public static void main (String [] args) throws Exception {
 
         Process proc;
@@ -27,6 +33,35 @@ public class Pop2ILLiad {
         GetProfiles.profiles(profiles);
 
         try {
+
+            Properties props = PropGet.getProps("../conf/server.conf");
+            String user = props.getProperty("USER");
+            String pass = props.getProperty("PASS");
+            String server = props.getProperty("SERVER");
+
+            SQLServerDataSource st2 = new SQLServerDataSource();
+            st2.setUser("ST2" + user);
+            st2.setPassword("ST2" + pass);
+            st2.setServerName(server);
+            st2.setPortNumber(1433);
+            st2.setDatabaseName("ILLData");
+            Connection st2Conn = st2.getConnection();
+
+            SQLServerDataSource s7z = new SQLServerDataSource();
+            st2.setUser("S7Z" + user);
+            st2.setPassword("S7Z" + pass);
+            st2.setServerName(server);
+            st2.setPortNumber(1433);
+            st2.setDatabaseName("ILLData");
+            Connection s7zConn = s7z.getConnection();
+
+            SQLServerDataSource rcj = new SQLServerDataSource();
+            st2.setUser("RCJ" + user);
+            st2.setPassword("RCJ" + pass);
+            st2.setServerName(server);
+            st2.setPortNumber(1433);
+            st2.setDatabaseName("ILLData");
+            Connection rcjConn = rcj.getConnection();
 
             Map <String, String> illData = new LinkedHashMap <String, String>();
 
@@ -48,7 +83,7 @@ public class Pop2ILLiad {
 
                 result = IOUtils.toString(p2.getInputStream(), "UTF-8");
 
-                String user = ""; //0 x
+                String sunetid = ""; //0 x
                 String last = ""; //1 D
                 String first = ""; //1 D
                 String barcode = ""; //2 B
@@ -65,7 +100,7 @@ public class Pop2ILLiad {
                 try {
 
                     String [] userFields = result.toString().split("\\|");
-                    user = userFields[0];
+                    sunetid = userFields[0];
 
                     fullName = userFields[1].replace("'", "''");
 
@@ -113,10 +148,10 @@ public class Pop2ILLiad {
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
                 {}
 
-                if (user != null && user.matches("\\w+"))
+                if (sunetid != null && user.matches("\\w+"))
                 {
                   // ILLData.dbo.UsersALL:
-                  illData.put("UserName", "'" + user + "'"); //50 *
+                  illData.put("UserName", "'" + sunetid + "'"); //50 *
                   illData.put("LastName", "'" + last + "'"); //40 *
                   illData.put("FirstName", "'" + first + "'"); //40 *
                   illData.put("SSN", "'" + barcode + "'"); //20
@@ -165,7 +200,15 @@ public class Pop2ILLiad {
                   illData.put("UserInfo5", "NULL"); //
                 }
 
-                ConnectToILLiad.connect(NVTGC, GetTransactSQL.transactSql(illData, user));
+                if (NVTGC.equals("ST2")){
+                    ConnectToILLiad.connect(GetTransactSQL.transactSql(illData, user), st2Conn);
+                }
+                if (NVTGC.equals("S7Z")){
+                    ConnectToILLiad.connect(GetTransactSQL.transactSql(illData, user), s7zConn);
+                }
+                if (NVTGC.equals("RCJ")){
+                    ConnectToILLiad.connect(GetTransactSQL.transactSql(illData, user), rcjConn);
+                }
             }
         }
         catch (Exception e)
