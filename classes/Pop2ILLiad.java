@@ -39,6 +39,8 @@ public class Pop2ILLiad {
             String pass = props.getProperty("PASS");
             String server = props.getProperty("SERVER");
 
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDataSource");
+
             SQLServerDataSource st2 = new SQLServerDataSource();
             st2.setUser("ST2" + user);
             st2.setPassword("ST2" + pass);
@@ -48,19 +50,19 @@ public class Pop2ILLiad {
             Connection st2Conn = st2.getConnection();
 
             SQLServerDataSource s7z = new SQLServerDataSource();
-            st2.setUser("S7Z" + user);
-            st2.setPassword("S7Z" + pass);
-            st2.setServerName(server);
-            st2.setPortNumber(1433);
-            st2.setDatabaseName("ILLData");
+            s7z.setUser("S7Z" + user);
+            s7z.setPassword("S7Z" + pass);
+            s7z.setServerName(server);
+            s7z.setPortNumber(1433);
+            s7z.setDatabaseName("ILLData");
             Connection s7zConn = s7z.getConnection();
 
             SQLServerDataSource rcj = new SQLServerDataSource();
-            st2.setUser("RCJ" + user);
-            st2.setPassword("RCJ" + pass);
-            st2.setServerName(server);
-            st2.setPortNumber(1433);
-            st2.setDatabaseName("ILLData");
+            rcj.setUser("RCJ" + user);
+            rcj.setPassword("RCJ" + pass);
+            rcj.setServerName(server);
+            rcj.setPortNumber(1433);
+            rcj.setDatabaseName("ILLData");
             Connection rcjConn = rcj.getConnection();
 
             Map <String, String> illData = new LinkedHashMap <String, String>();
@@ -70,7 +72,8 @@ public class Pop2ILLiad {
 
             BufferedReader br = new BufferedReader(new FileReader(new File(args[0])));
 
-            while ((userkey = br.readLine()) != null) {
+            while ((userkey = br.readLine()) != null) 
+            {
 
                 Process p1 = Runtime.getRuntime().exec(new String[] { "echo", userkey });
                 InputStream input = p1.getInputStream();
@@ -82,6 +85,7 @@ public class Pop2ILLiad {
                 output.close();
 
                 result = IOUtils.toString(p2.getInputStream(), "UTF-8");
+                System.out.println(result);
 
                 String sunetid = ""; //0 x
                 String last = ""; //1 D
@@ -136,84 +140,93 @@ public class Pop2ILLiad {
                     for (Map.Entry<String, String> entry : profiles.entrySet()) {
                         if (entry.getValue().equals(profile))
                         {
-                          status = entry.getKey();
+                            status = entry.getKey();
                         }
                     }
 
                     if (status.length() == 0)
                     {
-                      status = "Affiliate";
+                        status = "Affiliate";
                     }
                 }
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
                 {}
 
-                if (sunetid != null && user.matches("\\w+"))
+                if (sunetid != null && sunetid.matches("\\w+"))
                 {
-                  // ILLData.dbo.UsersALL:
-                  illData.put("UserName", "'" + sunetid + "'"); //50 *
-                  illData.put("LastName", "'" + last + "'"); //40 *
-                  illData.put("FirstName", "'" + first + "'"); //40 *
-                  illData.put("SSN", "'" + barcode + "'"); //20
-                  illData.put("Status", "'" + status + "'"); //15`
-                  illData.put("EMailAddress", "'" + email + "'"); //50 *
-                  illData.put("Phone", "'" + phone + "'"); //15 *
-                  illData.put("MobilePhone", "'NULL'"); //15
-                  illData.put("Department", "'" + department + "'"); //255
-                  illData.put("NVTGC", "'" + NVTGC + "'"); //20 *
-                  illData.put("Password", "''"); //64
-                  illData.put("NotificationMethod", "'Electronic'"); //8
-                  illData.put("DeliveryMethod", "'Pickup'"); //25
-                  illData.put("LoanDeliveryMethod", "'Hold for Pickup'"); //25
-                  illData.put("LastChangedDate", "'" + sdf_ill.format(today) + "'");
-                  illData.put("AuthorizedUsers", "'SUL'"); //255
-                  illData.put("Cleared", "'Yes'");
-                  illData.put("Web", "'Yes'"); //3
-                  illData.put("Address", "''"); //40
-                  illData.put("Address2", "''"); //40
-                  illData.put("City", "''"); //30
-                  illData.put("State", "''"); //2
-                  illData.put("Zip", "''"); //10
-                  illData.put("Site", "'SUL'"); //40
-                  illData.put("ExpirationDate", "NULL");
-                  illData.put("Number", "NULL"); //
-                  illData.put("UserRequestLimit", "NULL");
-                  illData.put("Organization", "'NULL'"); //
-                  illData.put("Fax", "NULL"); //
-                  illData.put("ShippingAcctNo", "NULL");
-                  illData.put("ArticleBillingCategory", "NULL"); //
-                  illData.put("LoanBillingCategory", "NULL"); //
-                  illData.put("Country", "NULL"); //
-                  illData.put("SAddress", "NULL"); //
-                  illData.put("SAddress2", "NULL"); //
-                  illData.put("SCity", "NULL"); //
-                  illData.put("SState", "NULL"); //
-                  illData.put("SZip", "NULL"); //
-                  illData.put("PasswordHint", "NULL"); //
-                  illData.put("SCountry", "NULL"); //
-                  illData.put("RSSID", "NULL");
-                  illData.put("AuthType", "'ILLiad'");
-                  illData.put("UserInfo1", "NULL"); //
-                  illData.put("UserInfo2", "NULL"); //
-                  illData.put("UserInfo3", "NULL"); //
-                  illData.put("UserInfo4", "NULL"); //
-                  illData.put("UserInfo5", "NULL"); //
-                }
+                    illData.clear();
 
-                if (NVTGC.equals("ST2")){
-                    ConnectToILLiad.connect(GetTransactSQL.transactSql(illData, user), st2Conn);
-                }
-                if (NVTGC.equals("S7Z")){
-                    ConnectToILLiad.connect(GetTransactSQL.transactSql(illData, user), s7zConn);
-                }
-                if (NVTGC.equals("RCJ")){
-                    ConnectToILLiad.connect(GetTransactSQL.transactSql(illData, user), rcjConn);
+                    illData.put("UserName", "'" + sunetid + "'"); //50 *
+                    illData.put("LastName", "'" + last + "'"); //40 *
+                    illData.put("FirstName", "'" + first + "'"); //40 *
+                    illData.put("SSN", "'" + barcode + "'"); //20
+                    illData.put("Status", "'" + status + "'"); //15`
+                    illData.put("EMailAddress", "'" + email + "'"); //50 *
+                    illData.put("Phone", "'" + phone + "'"); //15 *
+                    illData.put("MobilePhone", "'NULL'"); //15
+                    illData.put("Department", "'" + department + "'"); //255
+                    illData.put("NVTGC", "'" + NVTGC + "'"); //20 *
+                    illData.put("Password", "''"); //64
+                    illData.put("NotificationMethod", "'Electronic'"); //8
+                    illData.put("DeliveryMethod", "'Pickup'"); //25
+                    illData.put("LoanDeliveryMethod", "'Hold for Pickup'"); //25
+                    illData.put("LastChangedDate", "'" + sdf_ill.format(today) + "'");
+                    illData.put("AuthorizedUsers", "'SUL'"); //255
+                    illData.put("Cleared", "'Yes'");
+                    illData.put("Web", "'Yes'"); //3
+                    illData.put("Address", "''"); //40
+                    illData.put("Address2", "''"); //40
+                    illData.put("City", "''"); //30
+                    illData.put("State", "''"); //2
+                    illData.put("Zip", "''"); //10
+                    illData.put("Site", "'SUL'"); //40
+                    illData.put("ExpirationDate", "NULL");
+                    illData.put("Number", "NULL"); //
+                    illData.put("UserRequestLimit", "NULL");
+                    illData.put("Organization", "'NULL'"); //
+                    illData.put("Fax", "NULL"); //
+                    illData.put("ShippingAcctNo", "NULL");
+                    illData.put("ArticleBillingCategory", "NULL"); //
+                    illData.put("LoanBillingCategory", "NULL"); //
+                    illData.put("Country", "NULL"); //
+                    illData.put("SAddress", "NULL"); //
+                    illData.put("SAddress2", "NULL"); //
+                    illData.put("SCity", "NULL"); //
+                    illData.put("SState", "NULL"); //
+                    illData.put("SZip", "NULL"); //
+                    illData.put("PasswordHint", "NULL"); //
+                    illData.put("SCountry", "NULL"); //
+                    illData.put("RSSID", "NULL");
+                    illData.put("AuthType", "'ILLiad'");
+                    illData.put("UserInfo1", "NULL"); //
+                    illData.put("UserInfo2", "NULL"); //
+                    illData.put("UserInfo3", "NULL"); //
+                    illData.put("UserInfo4", "NULL"); //
+                    illData.put("UserInfo5", "NULL"); //
+
+                    System.out.println(illData.size());
+                    String sql = GetTransactSQL.transactSql(illData, sunetid);
+                    System.out.println("Sql:\n" + sql);
+
+                    if (NVTGC.equals("ST2")){
+                        ConnectToILLiad.connect(sql, st2Conn);
+                    }
+                    if (NVTGC.equals("S7Z")){
+                        ConnectToILLiad.connect(sql, s7zConn);
+                    }
+                    if (NVTGC.equals("RCJ")){
+                        ConnectToILLiad.connect(sql, rcjConn);
+                    }
                 }
             }
+
+            st2Conn.close();
+            s7zConn.close();
+            rcjConn.close();
         }
         catch (Exception e)
         {
-            System.err.println(e.getMessage());
+            System.err.println("Pop2ILLiad: " + e.getMessage());
         }
     }
 }
