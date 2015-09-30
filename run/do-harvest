@@ -9,7 +9,7 @@ DATE=$1
 
 if [ -z $DATE ]
 then
-    DATE=`date +%Y%m%d`
+    DATE=`date +%Y%m%d%H%M`
 fi
 
 $HOME/run/runonce.sh
@@ -25,7 +25,7 @@ cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.ed
 
 mv $LOG/harvest.log $LOG/harvest.log.$DATE
 mv $OUT/harvest.out $OUT/harvest.out.$DATE
-mv $LOG/illiad.log $LOG/illiad.log.$illiad_date
+mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE
 
 touch $LOG/harvest.log
 touch $LOG/illiad.log
