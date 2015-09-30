@@ -1,11 +1,6 @@
 #!/bin/bash
 # Modifies the xsl output and calls the expect program to ftp file to symphony
 # use: no parameters
-#
-# 02022009 ajm created for uni-4
-#
-# 04182012 jkg modified for linux VM, changed to bash script
-# 08062013 jkg modified for new MaIS harvester app.
 
 HOME="/s/SUL/Harvester"
 LOG="$HOME/log"
@@ -27,7 +22,7 @@ cat $HOME/out/harvest.out | gawk '!x[$0]++==1' RS=".REC." | sed "s/TODAYSDATE/$D
 
 touch $HOME/out/ftp.end
 
-echo "Copying fixed harvest.out file to \"$SOURCE\"" >> $LOG/harvest.log
+echo "Copying fixed harvest.out file to \"$SOURCE/harvest.$DATE_STAMP\"" >> $LOG/harvest.log
 cp $HOME/out/harvest.out2 $SOURCE/harvest.$DATE_STAMP >> $LOG/harvest.log 2>&1
 
 echo "Copying ftp.out file to \"$SOURCE\"" >> $LOG/harvest.log

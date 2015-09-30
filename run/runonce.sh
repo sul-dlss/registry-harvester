@@ -1,10 +1,5 @@
 #!/bin/sh
-# $Id: startapp.sh,v 1.4 2008/07/22 19:43:28 dtayl Exp $
-# 
-# 
-# to do: 
-#
- 
+
 APP_NAME=harvester
 APP_HOME=/s/SUL/Harvester
 JAVA_HOME=/usr
@@ -22,8 +17,8 @@ fi
 dfmt='+%m/%d/%Y %H:%M'
 t_stamp=`date "$dfmt"`
 
-echo "\n\n $t_stamp $APP_NAME $0 harness starts"
-echo "\n\n $t_stamp $APP_NAME $0 harness starts" >> $HARNESS_LOG
+printf "\n\n $t_stamp $APP_NAME $0 harness starts"
+printf "\n\n $t_stamp $APP_NAME $0 harness starts" >> $HARNESS_LOG
 
 
 LD_LIBRARY_PATH=$APP_HOME/lib
@@ -75,6 +70,3 @@ EXIT_CODE=$?
 
 t_stamp=`date "$dfmt"`
 echo "$t_stamp $APP_NAME exit to harness, exit status $EXIT_CODE" >> $HARNESS_LOG
-
-
-
