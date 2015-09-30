@@ -1,6 +1,6 @@
 #!/bin/bash
 # Modifies the xsl output and calls the expect program to ftp file to symphony
-# use: no parameters 
+# use: no parameters
 #
 # 02022009 ajm created for uni-4
 #
@@ -28,9 +28,14 @@ cat $HOME/out/harvest.out | gawk '!x[$0]++==1' RS=".REC." | sed "s/TODAYSDATE/$D
 touch $HOME/out/ftp.end
 
 echo "Copying fixed harvest.out file to \"$SOURCE\"" >> $LOG/harvest.log
-cp   $HOME/out/harvest.out2 $SOURCE/harvest.$DATE_STAMP >> $LOG/harvest.log 2>&1
+if [ -e $SOURCE/harvest.$DATE_STAMP ]
+  then
+  cp   $HOME/out/harvest.out2 $SOURCE/harvest.${DATE_STAMP}_`date +%H%M` >> $LOG/harvest.log 2>&1
+  echo "Warning! Merge files before userload! Duplicate harvest.out file. Adding timestamp to $SOURCE/harvest.out" >> $LOG/harvest.log
+else
+  cp   $HOME/out/harvest.out2 $SOURCE/harvest.$DATE_STAMP >> $LOG/harvest.log 2>&1
+fi
 
 echo "Copying ftp.out file to \"$SOURCE\"" >> $LOG/harvest.log
 cp   $HOME/out/ftp.end $SOURCE/ >> $LOG/harvest.log 2>&1
 echo "" >> $LOG/harvest.log
-

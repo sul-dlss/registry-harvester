@@ -23,9 +23,20 @@ $HOME/run/pop2illiad $illiad_date
 
 cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
 
-mv $LOG/harvest.log $LOG/harvest.log.$DATE
+if [ -e $LOG/harvest.log.$DATE ]
+  then
+  mv $LOG/harvest.log $LOG/harvest.log.`date +%Y%m%d%H%M`
+else
+  mv $LOG/harvest.log $LOG/harvest.log.$DATE
+fi
 mv $OUT/harvest.out $OUT/harvest.out.$DATE
-mv $LOG/illiad.log $LOG/illiad.log.$illiad_date
+
+if [ -e $LOG/illiad.log.$illiad_date ]
+  then
+  mv $LOG/illiad.log $LOG/illiad.log.${illiad_date}_`date +%H%M`
+else
+  mv $LOG/illiad.log $LOG/illiad.log.$illiad_date
+fi
 
 touch $LOG/harvest.log
 touch $LOG/illiad.log
