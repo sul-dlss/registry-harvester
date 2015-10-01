@@ -17,8 +17,8 @@ fi
 dfmt='+%m/%d/%Y %H:%M'
 t_stamp=`date "$dfmt"`
 
-printf "\n\n $t_stamp $APP_NAME $0 harness starts"
-printf "\n\n $t_stamp $APP_NAME $0 harness starts" >> $HARNESS_LOG
+printf "\n$t_stamp $APP_NAME $0 harness starts\n"
+printf "\n\n$t_stamp $APP_NAME $0 harness starts\n" >> $HARNESS_LOG
 
 
 LD_LIBRARY_PATH=$APP_HOME/lib
