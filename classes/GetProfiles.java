@@ -9,8 +9,10 @@ public class GetProfiles {
     profiles.put("Affiliate", "MXAS");
     profiles.put("Student", "HMSU");
     profiles.put("Student", "REU");
+    profiles.put("Student", "REU-SUM");
     profiles.put("Student", "HMSG");
     profiles.put("Graduate Student", "REG");
+    profiles.put("Graduate Student", "REG-SUM");
     profiles.put("Graduate Student", "HMSD");
     profiles.put("Graduate Student", "RED");
     profiles.put("Affiliate", "MXS");
