@@ -11,7 +11,7 @@ then
     DATE_FULL="$(date +%Y%m%d)"
     DATE_STAMP="$(date +%Y%m%d%H%M)"
 else
-    DATE_FULL=$DATE
+    DATE_FULL=`echo $DATE | awk '{print substr($1, 1, 8)}'`
     DATE_STAMP=$DATE
 fi
 
