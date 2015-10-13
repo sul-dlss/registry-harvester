@@ -21,14 +21,30 @@ public class GetTransactSQL {
     String sql = "";
     String sqlv = "";
 
+    sql += " declare @status varchar(20)\n\r";
+    sql += " declare @org varchar(10)\n\r";
     sql += " IF EXISTS (select * from ILLData.dbo." + table_name + " where UserName = '" + sunetid + "')\n\r";
     sql += " BEGIN\n\r";
+    sql += "  SET @status = (select Status from ILLData.dbo." + table_name +" where UserName = '" + sunetid + "')\n\r";
+    sql += "  SET @org = (select Organization from ILLData.dbo." + table_name +" where UserName = '" + sunetid + "')\n\r";
     sql += "  UPDATE ILLData.dbo." + table_name + "\n\r";
     sql += "  SET\n\r";
 
     int cnt = 1;
     for (Map.Entry<String, String> entry : illData.entrySet()) {
-      sql += entry.getKey() + "=" + entry.getValue();
+      String key = entry.getKey();
+      String value = entry.getValue();
+
+      /* Keep the same status and organization as before and update the rest with new values */
+      if (key.equals("Status")) {
+        sql += entry.getKey() + "= @status";
+      }
+      else if (key.equals("Organization")) {
+        sql += entry.getKey() + "= @org";
+      }
+      else {
+        sql += entry.getKey() + "=" + entry.getValue();
+      }
 
       if (cnt < illData.size()) {
         sql += ",";

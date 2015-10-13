@@ -101,6 +101,7 @@ public class Pop2ILLiad {
 
                 String NVTGC = "";
                 String status = "";
+                String organization  = "";
                 String fullName = "";
 
                 try {
@@ -124,14 +125,17 @@ public class Pop2ILLiad {
                     if (nvtgc.indexOf("gsb") > 0)
                     {
                         NVTGC = "S7Z";
+                        organization = "GSB";
                     }
                     else if (nvtgc.indexOf("law") > 0)
                     {
                         NVTGC = "RCJ";
+                        organization = "SLS";
                     }
                     else
                     {
                         NVTGC = "ST2";
+                        organization = "SUL";
                     }
 
                     if (department == null || department.length() < 1)
@@ -185,7 +189,7 @@ public class Pop2ILLiad {
                     illData.put("ExpirationDate", "NULL");
                     illData.put("Number", "NULL"); //
                     illData.put("UserRequestLimit", "NULL");
-                    illData.put("Organization", "'NULL'"); //
+                    illData.put("Organization", "'" + organization + "'"); //
                     illData.put("Fax", "NULL"); //
                     illData.put("ShippingAcctNo", "NULL");
                     illData.put("ArticleBillingCategory", "NULL"); //
