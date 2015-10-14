@@ -5,27 +5,27 @@ public class GetProfiles {
 
   public static Map <String, String> profiles (Map profiles) throws Exception {
 
-    profiles.put("Student", "ARTU");
-    profiles.put("Academic Staff", "CNAC");
-    profiles.put("Faculty", "CNF");
-    profiles.put("Staff", "CNS");
-    profiles.put("Academic Staff", "MXAC");
-    profiles.put("Affiliate", "MXAS");
-    profiles.put("Staff", "MXD");
-    profiles.put("Faculty", "MXF");
-    profiles.put("Staff", "MXS");
-    profiles.put("Fee Borrower", "MXFEE");
-    profiles.put("Doctoral Student", "RED");
-    profiles.put("Graduate Student", "REG");
-    profiles.put("Graduate Student", "REG-SUM");
-    profiles.put("Student", "REU");
-    profiles.put("Student", "REU-SUM");
-    profiles.put("Sponsored", "HMSU");
-    profiles.put("Graduate Student", "HMSG");
-    profiles.put("Visiting Scholar", "HMSD");
-    profiles.put("Staff", "HMSS");
-    profiles.put("Visiting Scholar", "HMSAC");
-    profiles.put("Faculty", "HMSF");
+    profiles.put("ARTU", "Student");
+    profiles.put("CNAC", "Academic Staff");
+    profiles.put("CNF", "Faculty");
+    profiles.put("CNS", "Staff");
+    profiles.put("MXAC", "Academic Staff");
+    profiles.put("MXAS", "Affiliate");
+    profiles.put("MXD", "Staff");
+    profiles.put("MXF", "Faculty");
+    profiles.put("MXS", "Staff");
+    profiles.put("MXFEE", "Fee Borrower");
+    profiles.put("RED", "Doctoral Student");
+    profiles.put("REG", "Graduate Student");
+    profiles.put("REG-SUM", "Graduate Student");
+    profiles.put("REU", "Student");
+    profiles.put("REU-SUM", "Student");
+    profiles.put("HMSU", "Sponsored");
+    profiles.put("HMSG", "Graduate Student");
+    profiles.put("HMSD", "Visiting Scholar");
+    profiles.put("HMSS", "Staff");
+    profiles.put("HMSAC", "Visiting Scholar");
+    profiles.put("HMSF", "Faculty");
 
     return profiles;
   }

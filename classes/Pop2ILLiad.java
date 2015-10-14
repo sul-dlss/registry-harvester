@@ -144,9 +144,10 @@ public class Pop2ILLiad {
                     }
 
                     for (Map.Entry<String, String> entry : profiles.entrySet()) {
-                        if (entry.getValue().equals(profile))
+                        if (entry.getKey().equals(profile))
                         {
-                            status = entry.getKey();
+                            status = entry.getValue();
+                            break;
                         }
                     }
 
@@ -174,8 +175,8 @@ public class Pop2ILLiad {
                     illData.put("NVTGC", "'" + NVTGC + "'"); //20 *
                     illData.put("Password", "''"); //64
                     illData.put("NotificationMethod", "'Electronic'"); //8
-                    illData.put("DeliveryMethod", "'Pickup'"); //25
-                    illData.put("LoanDeliveryMethod", "'Hold for Pickup'"); //25
+                    illData.put("DeliveryMethod", "'Hold for Pickup'"); //25
+                    illData.put("LoanDeliveryMethod", "'NULL'"); //25
                     illData.put("LastChangedDate", "'" + sdf_ill.format(today) + "'");
                     illData.put("AuthorizedUsers", "'SUL'"); //255
                     illData.put("Cleared", "'Yes'");
