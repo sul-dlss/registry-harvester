@@ -138,11 +138,6 @@ public class Pop2ILLiad {
                         organization = "SUL";
                     }
 
-                    if (department == null || department.length() < 1)
-                    {
-                        department = "Affiliate";
-                    }
-
                     for (Map.Entry<String, String> entry : profiles.entrySet()) {
                         if (entry.getKey().equals(profile))
                         {
