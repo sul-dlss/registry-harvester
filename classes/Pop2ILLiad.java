@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.LinkedHashMap;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Iterator;
 
 import java.lang.Runtime;
 import java.lang.Process;
@@ -22,15 +23,14 @@ import com.microsoft.sqlserver.jdbc.*;
 
 public class Pop2ILLiad {
 
-    public static Map <String, String> profiles = new LinkedHashMap <String, String>();
-
     public static void main (String [] args) throws Exception {
 
         Process proc;
         Date today = new Date();
         SimpleDateFormat sdf_ill = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
 
-        GetProfiles.profiles(profiles);
+        //GetProfiles.profiles(profiles);
+        Map profiles = GetProfiles.profiles();
 
         try {
 
@@ -138,12 +138,14 @@ public class Pop2ILLiad {
                         organization = "SUL";
                     }
 
-                    for (Map.Entry<String, String> entry : profiles.entrySet()) {
-                        if (entry.getKey().equals(profile))
-                        {
-                            status = entry.getValue();
-                            break;
-                        }
+                    @SuppressWarnings("unchecked")
+                    Iterator<Map.Entry<String, String>> it = profiles.entrySet().iterator();
+                    while (it.hasNext()) {
+                      Map.Entry<String, String> p = (Map.Entry<String, String>)it.next();
+                      if (p.getKey().equals(profile)) {
+                        status = p.getValue();
+                        break;
+                      }
                     }
 
                     if (status.length() == 0)

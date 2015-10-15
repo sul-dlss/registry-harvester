@@ -3,7 +3,9 @@ import java.util.LinkedHashMap;
 
 public class GetProfiles {
 
-  public static Map <String, String> profiles (Map profiles) throws Exception {
+  public static Map <String, String> profiles () throws Exception {
+
+    Map <String, String> profiles = new LinkedHashMap <String, String>();
 
     profiles.put("ARTU", "Student");
     profiles.put("CNAC", "Academic Staff");
