@@ -19,6 +19,7 @@ perl -p -i -e 's/\r//g' $LOG/harvest.log
 
 # yesterday...
 illiad_date=`/s/sirsi/Unicorn/Bin/transdate -d-1`
+echo "Updating/Inserting keys from /s/SUL/Batchlog/userload.keys.$illiad_date into ILLiad" >> $LOG/harvest.log
 $HOME/run/pop2illiad $illiad_date
 
 cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
