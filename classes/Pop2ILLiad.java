@@ -119,7 +119,7 @@ public class Pop2ILLiad {
                     profile = userFields[3];
                     email = userFields[4];
                     phone = userFields[5];
-                    department = userFields[6];
+                    department = userFields[6].replace("'","''");
                     nvtgc = userFields[7];
 
                     if (nvtgc.indexOf("gsb") > 0)
