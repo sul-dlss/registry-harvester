@@ -21,15 +21,11 @@ public class GetTransactSQL {
     String sql = "";
     String sqlv = "";
 
-    sql += " declare @ignore1 varchar(50)";
-    sql += " declare @ignore2 varchar(50)";
-    sql += " declare @ignore3 varchar(50)";
+    sql += " declare @dept varchar(50)";
 
     sql += " IF EXISTS (select * from ILLData.dbo." + table_name + " where UserName = '" + sunetid + "')\n\r";
     sql += " BEGIN\n\r";
-
-    //sql += "  SET @ignore = (select " + ignore_field + " from ILLData.dbo.UsersALL where UserName = '" + sunetid + "')\n\r";
-
+    sql += "  SET @dept = (select Department from ILLData.dbo.UsersALL where UserName = '" + sunetid + "')\n\r";
     sql += "  UPDATE ILLData.dbo." + table_name + "\n\r";
     sql += "  SET\n\r";
 
@@ -39,12 +35,12 @@ public class GetTransactSQL {
       String value = entry.getValue();
 
       /* Keep the same ignore_fields as previously loaded and update the rest with new values */
-      //if (key.equals(ignore_field)) {
-      //  sql += key + "= @ignore";
-      //}
-      //else {
+      if (key.equals("Department")) {
+        sql += key + "= @dept";
+      }
+      else {
         sql += key + "=" + value;
-      //}
+      }
 
       if (cnt < illData.size()) {
         sql += ",";
