@@ -17,18 +17,45 @@ public class GetTransactSQL {
 
     Properties props = PropGet.getProps("../conf/server.conf");
     String table_name = props.getProperty("TABLE_NAME");
+    String ignore_field_1 = props.getProperty("IGNORE_FIELD1");
+    String ignore_field_2 = props.getProperty("IGNORE_FIELD2");
+    String ignore_field_3 = props.getProperty("IGNORE_FIELD3");
 
     String sql = "";
     String sqlv = "";
 
+    sql += " declare @ignore1 varchar(50)";
+    sql += " declare @ignore2 varchar(50)";
+    sql += " declare @ignore3 varchar(50)";
+
     sql += " IF EXISTS (select * from ILLData.dbo." + table_name + " where UserName = '" + sunetid + "')\n\r";
     sql += " BEGIN\n\r";
+
+    sql += "  SET @ignore1 = (select " + ignore_field_1 + " from ILLData.dbo.UsersALL where UserName = '" + sunetid + "')\n\r";
+    sql += "  SET @ignore2 = (select " + ignore_field_2 + " from ILLData.dbo.UsersALL where UserName = '" + sunetid + "')\n\r";
+    sql += "  SET @ignore3 = (select " + ignore_field_3 + " from ILLData.dbo.UsersALL where UserName = '" + sunetid + "')\n\r";
+
     sql += "  UPDATE ILLData.dbo." + table_name + "\n\r";
     sql += "  SET\n\r";
 
     int cnt = 1;
     for (Map.Entry<String, String> entry : illData.entrySet()) {
-      sql += entry.getKey() + "=" + entry.getValue();
+      String key = entry.getKey();
+      String value = entry.getValue().replace("'", "''");
+
+      /* Keep the same ignore_fields as previously loaded and update the rest with new values */
+      if (key.equals(ignore_field_1)) {
+        sql += key + "= @ignore1";
+      }
+      else if (key.equals(ignore_field_2)) {
+        sql += key + "= @ignore2";
+      }
+      else if (key.equals(ignore_field_3)) {
+        sql += key + "= @ignore3";
+      }
+      else {
+        sql += key + "=" + value;
+      }
 
       if (cnt < illData.size()) {
         sql += ",";
