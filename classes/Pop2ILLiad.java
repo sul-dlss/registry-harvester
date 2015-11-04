@@ -125,18 +125,18 @@ public class Pop2ILLiad {
 
                     if (nvtgc.indexOf("gsb") > 0)
                     {
-                        NVTGC = "S7Z";
-                        organization = "GSB";
+                      NVTGC = "S7Z";
+                      organization = "GSB";
                     }
                     else if (nvtgc.indexOf("law") > 0)
                     {
-                        NVTGC = "RCJ";
-                        organization = "SLS";
+                      NVTGC = "RCJ";
+                      organization = "SLS";
                     }
                     else
                     {
-                        NVTGC = "ST2";
-                        organization = "SUL";
+                      NVTGC = "ST2";
+                      organization = "SUL";
                     }
 
                     if (expiration.equals("0"))
@@ -156,7 +156,7 @@ public class Pop2ILLiad {
 
                     if (status.length() == 0)
                     {
-                        status = "Affiliate";
+                      status = "Affiliate";
                     }
                 }
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
@@ -190,7 +190,7 @@ public class Pop2ILLiad {
                     illData.put("State", "''"); //2
                     illData.put("Zip", "''"); //10
                     illData.put("Site", "'SUL'"); //40
-                    illData.put("ExpirationDate", "'" + expiration + "'");
+                    illData.put("ExpirationDate", "'" + sdf_ill.format(expiration) + "'");
                     illData.put("Number", "NULL"); //
                     illData.put("UserRequestLimit", "NULL");
                     illData.put("Organization", "'" + organization + "'"); //
