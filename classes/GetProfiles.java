@@ -7,26 +7,26 @@ public class GetProfiles {
 
     Map <String, String> profiles = new LinkedHashMap <String, String>();
 
-    profiles.put("ARTU", "Student");
+    profiles.put("ARTU", "Undergraduate");
     profiles.put("CNAC", "Academic Staff");
     profiles.put("CNF", "Faculty");
     profiles.put("CNS", "Staff");
     profiles.put("MXAC", "Academic Staff");
     profiles.put("MXAS", "Affiliate");
-    profiles.put("MXD", "Staff");
+    profiles.put("MXD", "Post Doctoral");
     profiles.put("MXF", "Faculty");
     profiles.put("MXS", "Staff");
     profiles.put("MXFEE", "Fee Borrower");
-    profiles.put("RED", "Doctoral Student");
-    profiles.put("REG", "Graduate Student");
-    profiles.put("REG-SUM", "Graduate Student");
-    profiles.put("REU", "Student");
-    profiles.put("REU-SUM", "Student");
+    profiles.put("RED", "Post Doctoral");
+    profiles.put("REG", "Graduate");
+    profiles.put("REG-SUM", "Graduate");
+    profiles.put("REU", "Undergraduate");
+    profiles.put("REU-SUM", "Undergraduate");
     profiles.put("HMSU", "Sponsored");
-    profiles.put("HMSG", "Graduate Student");
-    profiles.put("HMSD", "Visiting Scholar");
+    profiles.put("HMSG", "Graduate");
+    profiles.put("HMSD", "Visiting Schol");
     profiles.put("HMSS", "Staff");
-    profiles.put("HMSAC", "Visiting Scholar");
+    profiles.put("HMSAC", "Visiting Schol");
     profiles.put("HMSF", "Faculty");
 
     return profiles;

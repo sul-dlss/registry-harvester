@@ -81,7 +81,7 @@ public class Pop2ILLiad {
                 Process p1 = Runtime.getRuntime().exec(new String[] { "echo", userkey });
                 InputStream input = p1.getInputStream();
 
-                Process p2 = Runtime.getRuntime().exec(new String[] { "seluser", "-iU", "-oxDBpX.9007.X.9036.X.9032.Y.9032.X.9002." });
+                Process p2 = Runtime.getRuntime().exec(new String[] { "seluser", "-iU", "-oxDBpX.9007.X.9036.X.9032.Y.9032.X.9002.e" });
                 OutputStream output = p2.getOutputStream();
 
                 IOUtils.copy(input, output);
@@ -98,6 +98,7 @@ public class Pop2ILLiad {
                 String phone = ""; //5 X.9036.
                 String department = ""; //6 X.9032.
                 String nvtgc = ""; //7 Y.9032.
+                String expiration = ""; //8 e
 
                 String NVTGC = "";
                 String status = "";
@@ -105,7 +106,6 @@ public class Pop2ILLiad {
                 String fullName = "";
 
                 try {
-
                     String [] userFields = result.toString().split("\\|");
                     sunetid = userFields[0];
 
@@ -121,6 +121,7 @@ public class Pop2ILLiad {
                     phone = userFields[5];
                     department = userFields[6].replace("'","''");
                     nvtgc = userFields[7];
+                    expiration = userFields[8];
 
                     if (nvtgc.indexOf("gsb") > 0)
                     {
@@ -136,6 +137,11 @@ public class Pop2ILLiad {
                     {
                         NVTGC = "ST2";
                         organization = "SUL";
+                    }
+
+                    if (expiration.equals("0"))
+                    {
+                      expiration = "NULL";
                     }
 
                     @SuppressWarnings("unchecked")
@@ -164,7 +170,7 @@ public class Pop2ILLiad {
                     illData.put("LastName", "'" + last + "'"); //40 *
                     illData.put("FirstName", "'" + first + "'"); //40 *
                     illData.put("SSN", "'" + barcode + "'"); //20
-                    illData.put("Status", "'" + status + "'"); //15`
+                    illData.put("Status", "'" + status + "'"); //15
                     illData.put("EMailAddress", "'" + email + "'"); //50 *
                     illData.put("Phone", "'" + phone + "'"); //15 *
                     illData.put("MobilePhone", "'NULL'"); //15
@@ -184,7 +190,7 @@ public class Pop2ILLiad {
                     illData.put("State", "''"); //2
                     illData.put("Zip", "''"); //10
                     illData.put("Site", "'SUL'"); //40
-                    illData.put("ExpirationDate", "NULL");
+                    illData.put("ExpirationDate", "'" + expiration + "'");
                     illData.put("Number", "NULL"); //
                     illData.put("UserRequestLimit", "NULL");
                     illData.put("Organization", "'" + organization + "'"); //
