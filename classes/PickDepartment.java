@@ -82,6 +82,7 @@ public class PickDepartment {
     departments.put("TC","Department of Geological Sciences");
 		departments.put("PQPX","German Studies");
 		departments.put("JJFI","Library Collections and Services");
+    departments.put("J","Library Collections and Services");
 		departments.put("PGSH","History");
 		departments.put("QQBI","History and Philosophy of Science");
     departments.put("QQ","History and Philosophy of Science");

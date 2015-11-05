@@ -169,8 +169,6 @@ public class Pop2ILLiad {
                     Iterator<Map.Entry<String, String>> depts = departments.entrySet().iterator();
                     while (depts.hasNext()) {
                       Map.Entry<String, String> d = (Map.Entry<String, String>)depts.next();
-
-                      //Pattern matching here
                       if (d.getKey().equals(department)) {
                         DEPT = d.getValue();
                         break;
@@ -183,10 +181,10 @@ public class Pop2ILLiad {
                         DEPT = d.getValue();
                         break;
                       }
-                      else {
-                        System.err.println("No matching department to pick");
-                        DEPT = "Affiliate";
-                      }
+                    }
+                    if (DEPT.length == 0) {
+                      System.err.println("No matching department to pick");
+                      DEPT = "Affiliate";
                     }
                 }
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
