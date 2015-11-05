@@ -31,6 +31,7 @@ public class Pop2ILLiad {
 
         //GetProfiles.profiles(profiles);
         Map profiles = GetProfiles.profiles();
+        Map departments = PickDepartment.dept();
 
         try {
 
@@ -101,6 +102,7 @@ public class Pop2ILLiad {
                 String expiration = ""; //8 e
 
                 String NVTGC = "";
+                String DEPT = "";
                 String status = "";
                 String organization  = "";
                 String fullName = "";
@@ -119,7 +121,8 @@ public class Pop2ILLiad {
                     profile = userFields[3];
                     email = userFields[4];
                     phone = userFields[5];
-                    department = userFields[6].replace("'","''");
+                    //department = userFields[6].replace("'","''");
+                    department = userFields[6];
                     nvtgc = userFields[7];
                     expiration = userFields[8];
 
@@ -144,10 +147,12 @@ public class Pop2ILLiad {
                       expiration = "NULL";
                     }
 
+                    //Get the patron Status based on the GetProfiles map
+                    //
                     @SuppressWarnings("unchecked")
-                    Iterator<Map.Entry<String, String>> it = profiles.entrySet().iterator();
-                    while (it.hasNext()) {
-                      Map.Entry<String, String> p = (Map.Entry<String, String>)it.next();
+                    Iterator<Map.Entry<String, String>> stats = profiles.entrySet().iterator();
+                    while (stats.hasNext()) {
+                      Map.Entry<String, String> p = (Map.Entry<String, String>)stats.next();
                       if (p.getKey().equals(profile)) {
                         status = p.getValue();
                         break;
@@ -157,6 +162,27 @@ public class Pop2ILLiad {
                     if (status.length() == 0)
                     {
                       status = "Affiliate";
+                    }
+
+                    //Get the department from the @adminid and PickDepartment
+                    @SuppressWarnings("unchecked")
+                    Iterator<Map.Entry<String, String>> depts = departments.entrySet().iterator();
+                    while (depts.hasNext()) {
+                      Map.Entry<String, String> d = (Map.Entry<String, String>)depts.next();
+
+                      //Pattern matching here
+                      if (d.getKey().equals(department)) {
+                        DEPT = d.getValue();
+                        break;
+                      }
+                      else if (d.getKey().equals(department.substring(0,2))){
+                        DEPT = d.getValue();
+                        break;
+                      }
+                      else if (d.getKey().equals(department.substring(0,1))) {
+                        DEPT = d.getValue();
+                        break;
+                      }
                     }
                 }
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
@@ -174,7 +200,7 @@ public class Pop2ILLiad {
                     illData.put("EMailAddress", "'" + email + "'"); //50 *
                     illData.put("Phone", "'" + phone + "'"); //15 *
                     illData.put("MobilePhone", "'NULL'"); //15
-                    illData.put("Department", "'" + department + "'"); //255
+                    illData.put("Department", "'" + DEPT + "'"); //255
                     illData.put("NVTGC", "'" + NVTGC + "'"); //20 *
                     illData.put("Password", "''"); //64
                     illData.put("NotificationMethod", "'Electronic'"); //8
