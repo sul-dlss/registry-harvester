@@ -183,6 +183,10 @@ public class Pop2ILLiad {
                         DEPT = d.getValue();
                         break;
                       }
+                      else {
+                        System.err.println("No matching department to pick");
+                        DEPT = "Affiliate";
+                      }
                     }
                 }
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
