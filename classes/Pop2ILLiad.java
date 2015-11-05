@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Iterator;
+import java.util.Scanner;
 
 import java.lang.Runtime;
 import java.lang.Process;
@@ -27,9 +28,10 @@ public class Pop2ILLiad {
 
         Process proc;
         Date today = new Date();
+        Date expiry = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         SimpleDateFormat sdf_ill = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
 
-        //GetProfiles.profiles(profiles);
         Map profiles = GetProfiles.profiles();
         Map departments = PickDepartment.dept();
 
@@ -75,20 +77,22 @@ public class Pop2ILLiad {
             String result = "";
 
             BufferedReader br = new BufferedReader(new FileReader(new File(args[0])));
-
+            Scanner sc = new Scanner(new File("../etc/dept_codes"));
+    
             while ((userkey = br.readLine()) != null)
             {
 
                 Process p1 = Runtime.getRuntime().exec(new String[] { "echo", userkey });
                 InputStream input = p1.getInputStream();
 
-                Process p2 = Runtime.getRuntime().exec(new String[] { "seluser", "-iU", "-oxDBpX.9007.X.9036.X.9032.Y.9032.X.9002.e" });
+                Process p2 = Runtime.getRuntime().exec(new String[] { "seluser", "-iU", "-oxDBpX.9007.X.9036.X.9032.Y.9032.e" });
                 OutputStream output = p2.getOutputStream();
 
                 IOUtils.copy(input, output);
                 output.close();
 
                 result = IOUtils.toString(p2.getInputStream(), "UTF-8");
+                System.out.println(result);
 
                 String sunetid = ""; //0 x
                 String last = ""; //1 D
@@ -144,8 +148,9 @@ public class Pop2ILLiad {
 
                     if (expiration.equals("0"))
                     {
-                      expiration = "NULL";
+                      expiration = "99990101";
                     }
+                    expiry = sdf.parse(expiration);
 
                     //Get the patron Status based on the GetProfiles map
                     //
@@ -182,9 +187,14 @@ public class Pop2ILLiad {
                         break;
                       }
                     }
-                    if (DEPT.length == 0) {
-                      System.err.println("No matching department to pick");
-                      DEPT = "Affiliate";
+                    if (DEPT.length() == 0) {
+                        while (sc.hasNextLine()) {
+                            String str = sc.findInLine(department);
+                            if (str != null) {
+                                DEPT = str.split("|")[1];
+                            }
+                            sc.nextLine();
+                        }
                     }
                 }
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
@@ -218,7 +228,7 @@ public class Pop2ILLiad {
                     illData.put("State", "''"); //2
                     illData.put("Zip", "''"); //10
                     illData.put("Site", "'SUL'"); //40
-                    illData.put("ExpirationDate", "'" + sdf_ill.format(expiration) + "'");
+                    illData.put("ExpirationDate", "'" + sdf_ill.format(expiry) + "'");
                     illData.put("Number", "NULL"); //
                     illData.put("UserRequestLimit", "NULL");
                     illData.put("Organization", "'" + organization + "'"); //
@@ -256,6 +266,8 @@ public class Pop2ILLiad {
                 }
             }
 
+            sc.close();
+
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), st2Conn);
             st2Conn.close();
 
@@ -268,6 +280,7 @@ public class Pop2ILLiad {
         catch (Exception e)
         {
             System.err.println("Pop2ILLiad: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
