@@ -339,7 +339,7 @@
 		<!-- DEPT - puts (e.g.) organization:gsp privgroup in the USER_ADDR2/DEPT field-->
 		<!--****************-->
 		<xsl:variable name="DEPT1">
-			<xsl:apply-templates select="affiliation/department/organization/@adminid"/>
+			<xsl:apply-templates select="affiliation/department" />
 		</xsl:variable>
 
 		<xsl:variable name="DEPT2">
@@ -401,21 +401,21 @@
 			<xsl:text>&#10;</xsl:text>
 		</xsl:choose>
 	</xsl:template>
-
-	<xsl:template match="affiliation/department/organization">
-		<xsl:choose>
-			<xsl:when test="organization/@adminid and @affnum = '1'">
-				<xsl:value-of select="organization/@adminid"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:if test="organization/@acadid and @affnum = '1'">
-					<xsl:text>:</xsl:text>
-					<xsl:value-of select="organization/@acadid"/>
-				</xsl:if>
-			</xsl:otherwise>
-			<xsl:text>&#10;</xsl:text>
-		</xsl:choose>
-	</xsl:template>
+        
+    <xsl:template match="affiliation/department">
+        <xsl:choose>
+            <xsl:when test="organization/@adminid and @affnum = '1'">
+                <xsl:value-of select="organization/@adminid"/>
+            </xsl:when>
+        <xsl:otherwise>
+            <xsl:if test="organization/@acadid and @affnum = '1'">
+                <xsl:text>:</xsl:text>
+                <xsl:value-of select="organization/@acadid"/>
+            </xsl:if>
+        </xsl:otherwise>
+            <xsl:text>&#10;</xsl:text>
+        </xsl:choose>
+    </xsl:template>
 	<!--**********************************************************-->
 	<!-- Address - Outputs the first and second line of the address element, city, state, and postal code-->
 	<!--**********************************************************-->

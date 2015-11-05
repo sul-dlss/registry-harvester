@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import java.lang.Runtime;
 import java.lang.Process;
@@ -77,7 +78,6 @@ public class Pop2ILLiad {
             String result = "";
 
             BufferedReader br = new BufferedReader(new FileReader(new File(args[0])));
-            Scanner sc = new Scanner(new File("../etc/dept_codes"));
     
             while ((userkey = br.readLine()) != null)
             {
@@ -125,7 +125,6 @@ public class Pop2ILLiad {
                     profile = userFields[3];
                     email = userFields[4];
                     phone = userFields[5];
-                    //department = userFields[6].replace("'","''");
                     department = userFields[6];
                     nvtgc = userFields[7];
                     expiration = userFields[8];
@@ -170,6 +169,7 @@ public class Pop2ILLiad {
                     }
 
                     //Get the department from the @adminid and PickDepartment
+                    // or default to scanning entire dept-codes list.
                     @SuppressWarnings("unchecked")
                     Iterator<Map.Entry<String, String>> depts = departments.entrySet().iterator();
                     while (depts.hasNext()) {
@@ -187,11 +187,15 @@ public class Pop2ILLiad {
                         break;
                       }
                     }
-                    if (DEPT.length() == 0) {
+                    
+                    if (DEPT.length() < 1) {
+                        Scanner sc = new Scanner(new File("../etc/dept_codes"));
+                        
                         while (sc.hasNextLine()) {
-                            String str = sc.findInLine(department);
+                            String str = sc.findInLine(Pattern.compile(department + ".+"));
                             if (str != null) {
-                                DEPT = str.split("|")[1];
+                                System.out.println(str);
+                                DEPT = str.split("--")[1].replace("'","''");
                             }
                             sc.nextLine();
                         }
@@ -265,8 +269,6 @@ public class Pop2ILLiad {
                     }
                 }
             }
-
-            sc.close();
 
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), st2Conn);
             st2Conn.close();
