@@ -5,16 +5,12 @@ import java.util.Properties;
 
 public class GetTransactSQL {
 
-  public static String transactBegin() {
+  public static String transactBegin(){
     return "\n\rBEGIN TRAN\n\r";
   }
 
-  public static String transactCommit() {
+  public static String transactCommit(){
     return "COMMIT TRAN\n\r-----------";
-  }
-
-  public static String transactDeclare() {
-    return "declare @dept varchar(50)\n\r";
   }
 
   public static String transactSql (Map<String, String> illData, String sunetid) throws Exception {
@@ -26,6 +22,7 @@ public class GetTransactSQL {
     String sqlv = "";
 
     sql += " IF EXISTS (select * from ILLData.dbo." + table_name + " where UserName = '" + sunetid + "')\n\r";
+    sql += " declare @dept varchar(50)";
     sql += " BEGIN\n\r";
     sql += "  SET @dept = (select Department from ILLData.dbo.UsersALL where UserName = '" + sunetid + "')\n\r";
     sql += "  UPDATE ILLData.dbo." + table_name + "\n\r";
@@ -87,8 +84,6 @@ public class GetTransactSQL {
     sql += "  END\n\r";
 
     System.err.println(sqlv + "\n-----------");
-
-    System.out.println(sql);
     return sql;
   }
 }
