@@ -6,9 +6,9 @@ import java.util.Properties;
 public class GetTransactSQL {
 
   public static String transactBegin(){
-    return "\n\rBEGIN TRAN\n\r";
+    return "BEGIN TRAN\n\r";
   }
-
+  
   public static String transactCommit(){
     return "COMMIT TRAN\n\r-----------";
   }
@@ -21,10 +21,10 @@ public class GetTransactSQL {
     String sql = "";
     String sqlv = "";
 
+    sql += " declare @dept_" + sunetid + " varchar(50)\n\r";
     sql += " IF EXISTS (select * from ILLData.dbo." + table_name + " where UserName = '" + sunetid + "')\n\r";
-    sql += " declare @dept varchar(50)";
     sql += " BEGIN\n\r";
-    sql += "  SET @dept = (select Department from ILLData.dbo.UsersALL where UserName = '" + sunetid + "')\n\r";
+    sql += "  SET @dept_" + sunetid + " = (select Department from ILLData.dbo.UsersALL where UserName = '" + sunetid + "')\n\r";
     sql += "  UPDATE ILLData.dbo." + table_name + "\n\r";
     sql += "  SET\n\r";
 
@@ -35,7 +35,8 @@ public class GetTransactSQL {
 
       /* Keep the same ignore_fields as previously loaded and update the rest with new values */
       if (key.equals("Department")) {
-        sql += key + "= @dept";
+        
+        sql += key + "= @dept_" + sunetid;
       }
       else {
         sql += key + "=" + value;
@@ -83,7 +84,7 @@ public class GetTransactSQL {
     sql += sqlv;
     sql += "  END\n\r";
 
-    System.err.println(sqlv + "\n-----------");
+    //System.err.println(sqlv + "\n-----------");
     return sql;
   }
 }

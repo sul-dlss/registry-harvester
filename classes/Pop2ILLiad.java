@@ -256,15 +256,12 @@ public class Pop2ILLiad {
 
                     if (NVTGC.equals("ST2")){
                       sqlST2 += GetTransactSQL.transactSql(illData, sunetid) + "\n\r";
-                      //ConnectToILLiad.connect(sql, st2Conn);
                     }
                     if (NVTGC.equals("S7Z")){
                       sqlS7Z += GetTransactSQL.transactSql(illData, sunetid) + "\n\r";
-                      //ConnectToILLiad.connect(sql, s7zConn);
                     }
                     if (NVTGC.equals("RCJ")){
                       sqlRCJ += GetTransactSQL.transactSql(illData, sunetid) + "\n\r";
-                      //ConnectToILLiad.connect(sql, rcjConn);
                     }
                 }
             }
