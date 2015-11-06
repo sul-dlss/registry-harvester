@@ -78,7 +78,7 @@ public class Pop2ILLiad {
             String result = "";
 
             BufferedReader br = new BufferedReader(new FileReader(new File(args[0])));
-    
+
             while ((userkey = br.readLine()) != null)
             {
 
@@ -92,7 +92,6 @@ public class Pop2ILLiad {
                 output.close();
 
                 result = IOUtils.toString(p2.getInputStream(), "UTF-8");
-                System.out.println(result);
 
                 String sunetid = ""; //0 x
                 String last = ""; //1 D
@@ -187,14 +186,13 @@ public class Pop2ILLiad {
                         break;
                       }
                     }
-                    
+
                     if (DEPT.length() < 1) {
                         Scanner sc = new Scanner(new File("../etc/dept_codes"));
-                        
+
                         while (sc.hasNextLine()) {
                             String str = sc.findInLine(Pattern.compile(department + ".+"));
                             if (str != null) {
-                                System.out.println(str);
                                 DEPT = str.split("--")[1].replace("'","''");
                             }
                             sc.nextLine();
@@ -282,7 +280,6 @@ public class Pop2ILLiad {
         catch (Exception e)
         {
             System.err.println("Pop2ILLiad: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 }
