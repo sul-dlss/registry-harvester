@@ -275,6 +275,7 @@ public class Pop2ILLiad {
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), st2Conn);
             st2Conn.close();
 
+            Connection s7zConn = st2.getConnection();
             ConnectToILLiad.connect(GetTransactSQL.transactBegin(), s7zConn);
             ConnectToILLiad.connect(sqlS7Z, s7zConn);
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), s7zConn);
