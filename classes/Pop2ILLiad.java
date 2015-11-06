@@ -256,32 +256,31 @@ public class Pop2ILLiad {
 
                     if (NVTGC.equals("ST2")){
                       sqlST2 += GetTransactSQL.transactSql(illData, sunetid) + "\n\r";
+                      //ConnectToILLiad.connect(sql, st2Conn);
                     }
                     if (NVTGC.equals("S7Z")){
                       sqlS7Z += GetTransactSQL.transactSql(illData, sunetid) + "\n\r";
+                      //ConnectToILLiad.connect(sql, s7zConn);
                     }
                     if (NVTGC.equals("RCJ")){
                       sqlRCJ += GetTransactSQL.transactSql(illData, sunetid) + "\n\r";
+                      //ConnectToILLiad.connect(sql, rcjConn);
                     }
                 }
             }
 
             Connection st2Conn = st2.getConnection();
-            ConnectToILLiad.connect(GetTransactSQL.transactDeclare(), st2Conn);
             ConnectToILLiad.connect(GetTransactSQL.transactBegin(), st2Conn);
             ConnectToILLiad.connect(sqlST2, st2Conn);
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), st2Conn);
             st2Conn.close();
 
-            Connection s7zConn = s7z.getConnection();
-            ConnectToILLiad.connect(GetTransactSQL.transactDeclare(), s7zConn);
             ConnectToILLiad.connect(GetTransactSQL.transactBegin(), s7zConn);
             ConnectToILLiad.connect(sqlS7Z, s7zConn);
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), s7zConn);
             s7zConn.close();
 
             Connection rcjConn = rcj.getConnection();
-            ConnectToILLiad.connect(GetTransactSQL.transactDeclare(), rcjConn);
             ConnectToILLiad.connect(GetTransactSQL.transactBegin(), rcjConn);
             ConnectToILLiad.connect(sqlRCJ, rcjConn);
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), rcjConn);
