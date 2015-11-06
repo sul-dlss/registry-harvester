@@ -6,10 +6,10 @@ import java.sql.Statement;
 public class ConnectToILLiad {
 
     public static void connect (String transactSQL, Connection connection) throws SQLException {
-        try 
+        try
         {
             Statement stmt = connection.createStatement();
-            System.out.println(transactSQL);
+            //System.out.println(transactSQL);
             stmt.executeUpdate(transactSQL);
         }
         catch (SQLException s) {

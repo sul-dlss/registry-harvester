@@ -8,7 +8,7 @@ public class GetTransactSQL {
   public static String transactBegin(){
     return "BEGIN TRAN\n\r";
   }
-  
+
   public static String transactCommit(){
     return "COMMIT TRAN\n\r-----------";
   }
@@ -35,7 +35,7 @@ public class GetTransactSQL {
 
       /* Keep the same ignore_fields as previously loaded and update the rest with new values */
       if (key.equals("Department")) {
-        
+
         sql += key + "= @dept_" + sunetid;
       }
       else {
@@ -84,7 +84,7 @@ public class GetTransactSQL {
     sql += sqlv;
     sql += "  END\n\r";
 
-    //System.err.println(sqlv + "\n-----------");
+    System.err.println(sqlv + "\n-----------");
     return sql;
   }
 }
