@@ -86,6 +86,7 @@ public class GetTransactSQL {
 
     System.err.println(sqlv + "\n-----------");
 
+    System.out.println(sql);
     return sql;
   }
 }
