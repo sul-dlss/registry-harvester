@@ -51,8 +51,6 @@ public class Pop2ILLiad {
             st2.setServerName(server);
             st2.setPortNumber(1433);
             st2.setDatabaseName("ILLData");
-            Connection st2Conn = st2.getConnection();
-            ConnectToILLiad.connect(GetTransactSQL.transactBegin(), st2Conn);
 
             SQLServerDataSource s7z = new SQLServerDataSource();
             s7z.setUser("S7Z" + user);
@@ -60,8 +58,6 @@ public class Pop2ILLiad {
             s7z.setServerName(server);
             s7z.setPortNumber(1433);
             s7z.setDatabaseName("ILLData");
-            Connection s7zConn = s7z.getConnection();
-            ConnectToILLiad.connect(GetTransactSQL.transactBegin(), s7zConn);
 
             SQLServerDataSource rcj = new SQLServerDataSource();
             rcj.setUser("RCJ" + user);
@@ -69,8 +65,6 @@ public class Pop2ILLiad {
             rcj.setServerName(server);
             rcj.setPortNumber(1433);
             rcj.setDatabaseName("ILLData");
-            Connection rcjConn = rcj.getConnection();
-            ConnectToILLiad.connect(GetTransactSQL.transactBegin(), rcjConn);
 
             Map <String, String> illData = new LinkedHashMap <String, String>();
 
@@ -79,6 +73,12 @@ public class Pop2ILLiad {
 
             BufferedReader br = new BufferedReader(new FileReader(new File(args[0])));
 
+            String sqlST2 = "";
+            String sqlS7Z = "";
+            String sqlRCJ = "";
+
+            //For each userkey in the userload.keys file
+            //
             while ((userkey = br.readLine()) != null)
             {
 
@@ -254,26 +254,33 @@ public class Pop2ILLiad {
                     illData.put("UserInfo4", "NULL"); //
                     illData.put("UserInfo5", "NULL"); //
 
-                    String sql = GetTransactSQL.transactSql(illData, sunetid);
-
                     if (NVTGC.equals("ST2")){
-                        ConnectToILLiad.connect(sql, st2Conn);
+                      sqlST2 += GetTransactSQL.transactSql(illData, sunetid) + "\n\r";
                     }
                     if (NVTGC.equals("S7Z")){
-                        ConnectToILLiad.connect(sql, s7zConn);
+                      sqlS7Z += GetTransactSQL.transactSql(illData, sunetid) + "\n\r";
                     }
                     if (NVTGC.equals("RCJ")){
-                        ConnectToILLiad.connect(sql, rcjConn);
+                      sqlRCJ += GetTransactSQL.transactSql(illData, sunetid) + "\n\r";
                     }
                 }
             }
 
+            Connection st2Conn = st2.getConnection();
+            ConnectToILLiad.connect(GetTransactSQL.transactBegin(), st2Conn);
+            ConnectToILLiad.connect(sqlST2, st2Conn);
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), st2Conn);
             st2Conn.close();
 
+            Connection s7zConn = s7z.getConnection();
+            ConnectToILLiad.connect(GetTransactSQL.transactBegin(), s7zConn);
+            ConnectToILLiad.connect(sqlS7Z, s7zConn);
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), s7zConn);
             s7zConn.close();
 
+            Connection rcjConn = rcj.getConnection();
+            ConnectToILLiad.connect(GetTransactSQL.transactBegin(), rcjConn);
+            ConnectToILLiad.connect(sqlRCJ, rcjConn);
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), rcjConn);
             rcjConn.close();
         }
