@@ -9,7 +9,7 @@ DATE=$1
 
 if [ -z $DATE ]
 then
-    DATE=`date +%Y%m%d%H%M`
+  DATE=`date +%Y%m%d%H%M`
 fi
 
 $HOME/run/runonce.sh
