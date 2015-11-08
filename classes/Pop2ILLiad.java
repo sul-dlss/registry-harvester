@@ -173,17 +173,20 @@ public class Pop2ILLiad {
                     Iterator<Map.Entry<String, String>> depts = departments.entrySet().iterator();
                     while (depts.hasNext()) {
                       Map.Entry<String, String> d = (Map.Entry<String, String>)depts.next();
-                      if (d.getKey().equals(department)) {
-                        DEPT = d.getValue();
-                        break;
-                      }
-                      else if (d.getKey().equals(department.substring(0,2))){
-                        DEPT = d.getValue();
-                        break;
-                      }
-                      else if (d.getKey().equals(department.substring(0,1))) {
-                        DEPT = d.getValue();
-                        break;
+                      String key = d.getKey();
+                      if (key != null && key.length() > 0) {
+                        if (key.equals(department)) {
+                          DEPT = d.getValue();
+                          break;
+                        }
+                        else if (key.equals(department.substring(0,2))){
+                          DEPT = d.getValue();
+                          break;
+                        }
+                        else if (key.equals(department.substring(0,1))) {
+                          DEPT = d.getValue();
+                          break;
+                        }
                       }
                     }
 
