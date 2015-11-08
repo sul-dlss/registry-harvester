@@ -174,7 +174,7 @@ public class Pop2ILLiad {
                     while (depts.hasNext()) {
                       Map.Entry<String, String> d = (Map.Entry<String, String>)depts.next();
                       String key = d.getKey();
-                      if (key != null && key.length() > 0) {
+                      if (department.length() > 0) {
                         if (key.equals(department)) {
                           DEPT = d.getValue();
                           break;
