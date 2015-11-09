@@ -17,6 +17,7 @@ public class GetTransactSQL {
 
     Properties props = PropGet.getProps("../conf/server.conf");
     String table_name = props.getProperty("TABLE_NAME");
+    String do_not_update_field = props.getProperty("NO_UPDATE");
 
     String sql = "";
     String sqlv = "";
@@ -34,7 +35,7 @@ public class GetTransactSQL {
       String value = entry.getValue();
 
       /* Keep the same ignore_fields as previously loaded and update the rest with new values */
-      if (key.equals("Department")) {
+      if (key.indexOf(do_not_update_field) > 0) {
 
         sql += key + "= @dept_" + sunetid;
       }
