@@ -191,7 +191,7 @@ public class Pop2ILLiad {
                     }
 
                     if (DEPT.length() < 1) {
-                        Scanner sc = new Scanner(new File("../lib/dept_codes"));
+                        Scanner sc = new Scanner(new File("../include/dept_codes"));
 
                         while (sc.hasNextLine()) {
                             String str = sc.findInLine(Pattern.compile(department + ".+"));
