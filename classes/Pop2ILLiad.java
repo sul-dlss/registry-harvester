@@ -27,7 +27,6 @@ public class Pop2ILLiad {
 
     public static void main (String [] args) throws Exception {
 
-        Process proc;
         Date today = new Date();
         Date expiry = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
