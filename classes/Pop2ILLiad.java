@@ -35,8 +35,8 @@ public class Pop2ILLiad {
         Map profiles = GetProfiles.profiles();
         Map departments = PickDepartment.dept();
 
-        try {
-
+        try
+        {
             Properties props = PropGet.getProps("../conf/server.conf");
             String user = props.getProperty("USER");
             String pass = props.getProperty("PASS");
@@ -78,9 +78,7 @@ public class Pop2ILLiad {
 
             //For each userkey in the userload.keys file
             //
-            while ((userkey = br.readLine()) != null)
-            {
-
+            while ((userkey = br.readLine()) != null) {
                 Process p1 = Runtime.getRuntime().exec(new String[] { "echo", userkey });
                 InputStream input = p1.getInputStream();
 
@@ -109,7 +107,8 @@ public class Pop2ILLiad {
                 String organization  = "";
                 String fullName = "";
 
-                try {
+                try
+                {
                     String [] userFields = result.toString().split("\\|");
                     sunetid = userFields[0];
 
@@ -127,24 +126,24 @@ public class Pop2ILLiad {
                     nvtgc = userFields[7];
                     expiration = userFields[8];
 
-                    if (nvtgc.indexOf("gsb") > 0)
-                    {
+                    if (nvtgc.indexOf("gsb") > 0) {
                       NVTGC = "S7Z";
                       organization = "GSB";
                     }
-                    else if (nvtgc.indexOf("law") > 0)
-                    {
+                    else if (nvtgc.indexOf("law") > 0) {
                       NVTGC = "RCJ";
                       organization = "SLS";
                     }
-                    else
-                    {
+                    else if (nvtgc.indexOf("medicine") > 0) {
+                      NVTGC = "ST2";
+                      organization = "MED";
+                    }
+                    else {
                       NVTGC = "ST2";
                       organization = "SUL";
                     }
 
-                    if (expiration.equals("0"))
-                    {
+                    if (expiration.equals("0")) {
                       expiration = "99990101";
                     }
                     expiry = sdf.parse(expiration);
@@ -161,8 +160,7 @@ public class Pop2ILLiad {
                       }
                     }
 
-                    if (status.length() == 0)
-                    {
+                    if (status.length() == 0) {
                       status = "Affiliate";
                     }
 
@@ -178,7 +176,7 @@ public class Pop2ILLiad {
                           DEPT = d.getValue();
                           break;
                         }
-                        else if (key.equals(department.substring(0,2))){
+                        else if (key.equals(department.substring(0,2))) {
                           DEPT = d.getValue();
                           break;
                         }
@@ -204,8 +202,7 @@ public class Pop2ILLiad {
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
                 {}
 
-                if (sunetid != null && sunetid.matches("\\w+"))
-                {
+                if (sunetid != null && sunetid.matches("\\w+")) {
                     illData.clear();
 
                     illData.put("UserName", "'" + sunetid + "'"); //50 *
@@ -286,8 +283,7 @@ public class Pop2ILLiad {
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), rcjConn);
             rcjConn.close();
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             System.err.println("Pop2ILLiad: " + e.getMessage());
         }
     }
