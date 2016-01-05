@@ -35,7 +35,7 @@ public class GetTransactSQL {
       String value = entry.getValue();
 
       /* Keep the same ignore_fields as previously loaded and update the rest with new values */
-      if (key.indexOf(do_not_update_field) > 0) {
+      if (key.equals(do_not_update_field)) {
         sql +=  key + "= @dept_" + sunetid;
       }
       else {
