@@ -36,11 +36,7 @@ public class GetTransactSQL {
 
       /* Keep the same ignore_fields as previously loaded and update the rest with new values */
       if (key.indexOf(do_not_update_field) > 0) {
-
-        sql += "IF (nullif(@dept_" + sunetid + ", '') is not null)\n\r";
-        sql +=  key + "= @dept_" + sunetid + "\n\r";
-        sql += "ELSE\n\r";
-        sql +=  key + "=" + value;
+        sql +=  key + "= @dept_" + sunetid;
       }
       else {
         sql += key + "=" + value;
