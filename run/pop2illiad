@@ -15,13 +15,15 @@ if [ $(grep -c "^[0-9]\+" $KEY_FILE) -gt 10000 ]
 then
   cd $KEY_DIR
   split -a 1 -l 5000 -d $KEY_FILE "userload.keys.$DATE."
+
+  cd $HOME/classes
+
+  for FILE in `find $KEY_FILE.*`
+  do
+    java -cp .:../lib/commons-io-2.4.jar:../lib/sqljdbc4.jar Pop2ILLiad $FILE >> $LOG/illiad.log  2>&1
+  done
+else
+  java -cp .:../lib/commons-io-2.4.jar:../lib/sqljdbc4.jar Pop2ILLiad $KEY_FILE > $LOG/illiad.log  2>&1
 fi
-
-cd $HOME/classes
-
-for FILE in `find $KEY_DIR/userload.keys.$DATE*`
-do
-  java -cp .:../lib/commons-io-2.4.jar:../lib/sqljdbc4.jar Pop2ILLiad $FILE >> $LOG/illiad.log  2>&1
-done
 
 cat $LOG/illiad.log | mailx -s 'ILLiad User Export Log' sul-unicorn-devs@lists.stanford.edu
