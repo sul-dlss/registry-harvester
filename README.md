@@ -1,16 +1,16 @@
 # registry-harvester
 Registry harvester that transforms registry people documents into a flat file format for loading into Symphony. This instance has beeen modified from the delivered MAiS project to further transform end export user records to ILLiad to support the Scan and Deliver service via SearchWorks.
 
-Checkout the project into /s/SUL on the Symphony server:
+#### Checkout the project into /s/SUL on the Symphony server:
 
 git clone https://github.com/sul-dlss/registry-harvester.git Harvester
 
-### Compile the java classes
+#### Compile the java classes
 cd classes
 
 javac -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar:../lib/jdom-2.0.5.jar *.java
 
-### Copy /etc and /conf files from shared_configs
+#### Copy /etc and /conf files from shared_configs
 
 https://github.com/sul-dlss/shared_configs
 
