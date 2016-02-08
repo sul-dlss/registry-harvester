@@ -18,14 +18,24 @@ then
   do
     echo "Processing $FILE for ILLiad" > $LOG/illiad.log
     echo "" >> $LOG/illiad.log
-    java -cp .:../lib/commons-io-2.4.jar:../lib/sqljdbc4.jar Pop2ILLiad $FILE >> $LOG/illiad.log  2>&1
+    cat $FILE | sort | uniq > ${FILE}_uniq
+    java -cp .:../lib/commons-io-2.4.jar:../lib/sqljdbc4.jar Pop2ILLiad ${FILE}_uniq >> $LOG/illiad.log  2>&1
   done
 else
   cd $HOME/classes
   
   echo "Processing $KEY_FILE for ILLiad" > $LOG/illiad.log
   echo "" >> $LOG/illiad.log
-  java -cp .:../lib/commons-io-2.4.jar:../lib/sqljdbc4.jar Pop2ILLiad $KEY_FILE > $LOG/illiad.log  2>&1
+  cat $KEY_FILE | sort | uniq > ${KEY_FILE}_uniq
+  java -cp .:../lib/commons-io-2.4.jar:../lib/sqljdbc4.jar Pop2ILLiad ${KEY_FILE}_uniq >> $LOG/illiad.log  2>&1
+fi
+
+if [ -z $(grep "Error" $LOG/illiad.log) ]
+then
+    VALUES=`grep "VALUES" $LOG/illiad.log | wc -l`
+    echo "" >> $LOG/illiad.log
+    echo "$VALUES rows inserted into ILLiad Users Table" >> $LOG/illiad.log
 fi
 
 cat $LOG/illiad.log | mailx -s 'ILLiad User Export Log' sul-unicorn-devs@lists.stanford.edu
+rm $KEY_DIR/userload.keys.*_uniq
