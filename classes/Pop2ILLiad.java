@@ -126,15 +126,15 @@ public class Pop2ILLiad {
                     nvtgc = userFields[7];
                     expiration = userFields[8];
 
-                    if (nvtgc.indexOf("gsb") > 0) {
+                    if (nvtgc.indexOf("gsb") > 0 || department.indexOf("School of Business") > 0) {
                       NVTGC = "S7Z";
                       organization = "GSB";
                     }
-                    else if (nvtgc.indexOf("law") > 0) {
+                    else if (nvtgc.indexOf("law") > 0 || department.indexOf("Law School") > 0) {
                       NVTGC = "RCJ";
                       organization = "SLS";
                     }
-                    else if (nvtgc.indexOf("medicine") > 0) {
+                    else if (nvtgc.indexOf("medicine") > 0 || department.indexOf("School of Medicine") > 0) {
                       NVTGC = "ST2";
                       organization = "MED";
                     }
