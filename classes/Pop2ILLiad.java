@@ -72,6 +72,8 @@ public class Pop2ILLiad {
 
             BufferedReader br = new BufferedReader(new FileReader(new File(args[0])));
 
+            String inputType = args[1];
+
             String sqlST2 = "";
             String sqlS7Z = "";
             String sqlRCJ = "";
@@ -79,10 +81,17 @@ public class Pop2ILLiad {
             //For each userkey in the userload.keys file
             //
             while ((userkey = br.readLine()) != null) {
+                String selFlag = "U";
+
+                if (inputType != null){
+                  if (inputType.indexOf("sunet") > -1){
+                    selFlag = "x";
+                  }
+                }
                 Process p1 = Runtime.getRuntime().exec(new String[] { "echo", userkey });
                 InputStream input = p1.getInputStream();
 
-                Process p2 = Runtime.getRuntime().exec(new String[] { "seluser", "-iU", "-oxDBpX.9007.X.9036.X.9032.Y.9032.e" });
+                Process p2 = Runtime.getRuntime().exec(new String[] { "seluser", "-i" + selFlag, "-oxDBpX.9007.X.9036.X.9032.Y.9032.e" });
                 OutputStream output = p2.getOutputStream();
 
                 IOUtils.copy(input, output);
