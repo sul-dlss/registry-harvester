@@ -8,8 +8,6 @@ git clone https://github.com/sul-dlss/registry-harvester.git Harvester
 #### Compile the java classes
 ```
 cd classes
-```
-```
 javac -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar:../lib/jdom-2.0.5.jar *.java
 ```
 #### Copy /etc and /conf files from shared_configs
@@ -25,9 +23,17 @@ The harvester.properties file contains the registry connection information. It i
 #### Rerun the registry harvest using a file of keys or IDs
 
 Using a file of University IDs or Registry IDs you can re-harvest the registry documents for those people and they will automatically be populated later in ILLiad and Symphony.
-```
 
+If you need to re-run a batch of registry IDs from a previously run harvest, you can extract the registry IDs using awk:
 ```
+cd /s/SUL/Harvester/log
+grep "e.person" harvest.log | awk '{print $9}' | awk -F':' '{print $2}' > regid_file
+```
+Then use the file as the first argument of the do-harvest-file script:
+```
+/s/SUL/Harvester/run/do-harvest-file /path/to/regid_file YYYYMMDDHHmm(optional [default is now]) 
+```
+Or use the same script with a file of University IDs.
 
 #### Manually populate the ILLiad Users Table
 
