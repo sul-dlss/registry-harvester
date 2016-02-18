@@ -78,16 +78,18 @@ public class Pop2ILLiad {
             String sqlS7Z = "";
             String sqlRCJ = "";
 
+            String selFlag = "U";
+
+            if (inputType != null){
+                if (inputType.indexOf("sunet") > -1){
+                    selFlag = "x";
+                }
+            }
+
             //For each userkey in the userload.keys file
             //
             while ((userkey = br.readLine()) != null) {
-                String selFlag = "U";
 
-                if (inputType != null){
-                  if (inputType.indexOf("sunet") > -1){
-                    selFlag = "x";
-                  }
-                }
                 Process p1 = Runtime.getRuntime().exec(new String[] { "echo", userkey });
                 InputStream input = p1.getInputStream();
 
