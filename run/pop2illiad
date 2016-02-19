@@ -19,15 +19,15 @@ then
     echo "Processing $FILE for ILLiad" > $LOG/illiad.log
     echo "" >> $LOG/illiad.log
     cat $FILE | sort | uniq > ${FILE}_uniq
-    java -cp .:../lib/commons-io-2.4.jar:../lib/sqljdbc4.jar Pop2ILLiad ${FILE}_uniq >> $LOG/illiad.log  2>&1
+    java -cp .:../lib/commons-io-2.4.jar:../lib/sqljdbc4.jar Pop2ILLiad ${FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
   done
 else
   cd $HOME/classes
-  
+
   echo "Processing $KEY_FILE for ILLiad" > $LOG/illiad.log
   echo "" >> $LOG/illiad.log
   cat $KEY_FILE | sort | uniq > ${KEY_FILE}_uniq
-  java -cp .:../lib/commons-io-2.4.jar:../lib/sqljdbc4.jar Pop2ILLiad ${KEY_FILE}_uniq >> $LOG/illiad.log  2>&1
+  java -cp .:../lib/commons-io-2.4.jar:../lib/sqljdbc4.jar Pop2ILLiad ${KEY_FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
 fi
 
 if [ -z $(grep "Error" $LOG/illiad.log) ]
