@@ -80,10 +80,8 @@ public class Pop2ILLiad {
 
             String selFlag = "U";
 
-            if (inputType != null){
-                if (inputType.indexOf("sunet") > -1){
-                    selFlag = "x";
-                }
+            if (inputType != null && inputType.indexOf("sunet") > -1) {
+                selFlag = "x";
             }
 
             //For each userkey in the userload.keys file
