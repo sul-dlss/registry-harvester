@@ -128,8 +128,14 @@ public class Pop2ILLiad {
 
                     String [] splitname = fullName.split(",");
                     last = splitname[0].trim();
-                    first = splitname[1].trim()
-                    firstIndex = first.indexOf(" ");
+                    first = splitname[1].trim();
+                    
+                    if (first.indexOf(" ") > 0){
+                        firstIndex = first.indexOf(" ");
+                    }
+                    else {
+                        firstIndex = first.length();
+                    }
                     firstName = first.substring(0, firstIndex);
 
                     barcode = userFields[2];
