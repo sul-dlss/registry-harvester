@@ -115,6 +115,9 @@ public class Pop2ILLiad {
                 String status = "";
                 String organization  = "";
                 String fullName = "";
+                String firstName = "";
+
+                int firstIndex = 0;
 
                 try
                 {
@@ -126,6 +129,14 @@ public class Pop2ILLiad {
                     String [] splitname = fullName.split(",");
                     last = splitname[0].trim();
                     first = splitname[1].trim();
+                    
+                    if (first.indexOf(" ") > 0){
+                        firstIndex = first.indexOf(" ");
+                    }
+                    else {
+                        firstIndex = first.length();
+                    }
+                    firstName = first.substring(0, firstIndex);
 
                     barcode = userFields[2];
                     profile = userFields[3];
@@ -217,7 +228,7 @@ public class Pop2ILLiad {
 
                     illData.put("UserName", "'" + sunetid + "'"); //50 *
                     illData.put("LastName", "'" + last + "'"); //40 *
-                    illData.put("FirstName", "'" + first + "'"); //40 *
+                    illData.put("FirstName", "'" + firstName + "'"); //40 *
                     illData.put("SSN", "'" + barcode + "'"); //20
                     illData.put("Status", "'" + status + "'"); //15
                     illData.put("EMailAddress", "'" + email + "'"); //50 *
