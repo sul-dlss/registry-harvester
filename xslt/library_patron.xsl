@@ -208,14 +208,7 @@
 		<!-- LOCATION: department code  -->
 		<!--****************-->
 		<xsl:variable name="USER_DEPARTMENT">
-			<xsl:choose>
-				<xsl:when test="affiliation/department/organization/@acadid">
-					<xsl:value-of select="affiliation/department/organization/@acadid"/>
-				</xsl:when>
-				<xsl:when test="affiliation/department/@code">
-					<xsl:value-of select="affiliation/department/@code"/>
-				</xsl:when>
-			</xsl:choose>
+			<xsl:apply-templates select="affiliation/department" />
 		</xsl:variable>
 		<!--****************-->
 		<!-- Profile/privg -->
@@ -401,7 +394,7 @@
 			<xsl:text>&#10;</xsl:text>
 		</xsl:choose>
 	</xsl:template>
-        
+
     <xsl:template match="affiliation/department">
         <xsl:choose>
             <xsl:when test="organization/@adminid and @affnum = '1'">
