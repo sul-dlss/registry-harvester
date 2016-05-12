@@ -83,9 +83,9 @@ public class GetTransactSQL {
     sqlv += ")\n\r";
     sql += sqlv;
     sql += "  END\n\r";
-
-    sql += "BEGIN\n\r UPDATE ILLData.dbo.UsersALL SET Password = '' where Password is NULL\n\r";
-    sql += "  END\n\r";
+    
+    // sql += "BEGIN\n\r UPDATE ILLData.dbo.UsersALL SET Password = '' where Password is NULL\n\r";
+    // sql += "  END\n\r";
 
     System.err.println(sqlv + "\n-----------");
     return sql;
