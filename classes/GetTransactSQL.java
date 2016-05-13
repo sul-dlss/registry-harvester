@@ -1,7 +1,7 @@
 import java.util.Map;
 import java.util.LinkedHashMap;
-
 import java.util.Properties;
+import java.util.ArrayList;
 
 public class GetTransactSQL {
 
@@ -83,10 +83,28 @@ public class GetTransactSQL {
     sqlv += ")\n\r";
     sql += sqlv;
     sql += "  END\n\r";
-    
-    // sql += "BEGIN\n\r UPDATE ILLData.dbo.UsersALL SET Password = '' where Password is NULL\n\r";
-    // sql += "  END\n\r";
 
+    String [] activityType = {
+      "ClearedUser",
+      "PasswordReset",
+      "RequestCancelled",
+      "RequestElectronicDelivery",
+      "RequestOther",
+      "RequestOverdue",
+      "RequestPickup",
+      "RequestShipped"
+    };
+
+    for (int i = 0; i < activityType.length; i++){
+      sql += "IF NOT EXISTS (select * from ILLData.dbo.UserNotifications where UserName = '" + sunetid + "' and ActivityType = '" + activityType[i] + "')\n\r";
+      sql += " BEGIN\n\r";
+      sql += "  insert into ILLData.dbo.UserNotifications\n\r";
+      sql += "  (Username, ActivityType, NotificationType)\n\r";
+      sql += "  values\n\r";
+      sql += "  ('" + sunetid + "','" + activityType[i] + "','Email')\n\r";
+      sql += " END\n\r";
+    }
+    
     System.err.println(sqlv + "\n-----------");
     return sql;
   }
