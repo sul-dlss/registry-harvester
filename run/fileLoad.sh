@@ -38,9 +38,9 @@ done
 # well as the name of its property file be specified as a command-line argument
 # -Dlog4j.configuration=<property file>
 #
-CLASSPATH="/home/harvester/WebLogic_lib/wlfullclient-10.3.5.jar":${CLASSPATH}:$APP_HOME/conf
+CLASSPATH="/home/harvester/WebLogic_lib/wlthint3client-12.2.1.jar":${CLASSPATH}:$APP_HOME/conf
 
-$JAVA_HOME/bin/java -Djava.protocol.handler.pkgs=com.sun.net.ssl.internal.www.protocol -Dssl.SocketFactory.provider=com.sun.net.ssl.internal.SSLSocketFactoryImpl -DUseSunHttpHandler=true -Dweblogic.wsee.client.ssl.usejdk=true -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=harvester.properties -cp $CLASSPATH edu.stanford.harvester.Harvester $APP_HOME/conf/harvester.properties $APP_HOME/conf/processor.properties $LOAD_FILE
+$JAVA_HOME/bin/java -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=harvester.properties -cp $CLASSPATH edu.stanford.harvester.Harvester $APP_HOME/conf/harvester.properties $APP_HOME/conf/processor.properties $LOAD_FILE
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -gt 0 ] ; then
