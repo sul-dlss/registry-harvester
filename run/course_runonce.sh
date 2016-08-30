@@ -68,7 +68,7 @@ CLASSPATH="/s/SUL/Harvester/WebLogic_lib/wlthint3client-12.2.1.jar":${CLASSPATH}
 # echo $$ > $PIDFILE
 # echo "$t_stamp $APP_NAME harness pid $$" >> $HARNESS_LOG
 
-$JAVA_HOME/bin/java -Dweblogic.StdoutSeverityLevel=16 -Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=harvester.properties -cp $CLASSPATH edu.stanford.harvester.Harvester $APP_HOME/conf/harvester.properties $APP_HOME/conf/processor.properties >> $HARNESS_LOG 2>&1
+$JAVA_HOME/bin/java -Dweblogic.StdoutSeverityLevel=16 -Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=course_harvester.properties -cp $CLASSPATH edu.stanford.harvester.Harvester $APP_HOME/conf/course_harvester.properties $APP_HOME/conf/course_processor.properties >> $HARNESS_LOG 2>&1
 EXIT_CODE=$?
 
 t_stamp=`date "$dfmt"`
