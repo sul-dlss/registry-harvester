@@ -67,14 +67,21 @@ public class CourseTrans {
               if (element.getName().equals("instructor")) {
                 Element person = element.getChild("person");
 
-                String instructorSunet = person.getAttribute("sunetid").getValue();
-                String instructorId = person.getAttribute("univid").getValue();
+                String instructorSunet = person.getAttributeValue("sunetid");
+                String instructorId = person.getAttributeValue("univid");
                 String instructorName = person.getText();
 
                 Element instructor = new Element("instructor");
-                instructor.setAttribute("sunetid", instructorSunet);
-                instructor.setAttribute("sucardnumber", instructorId);
-                instructor.setText(instructorName);
+
+                if (instructorSunet != null){
+                  instructor.setAttribute("sunetid", instructorSunet);
+                }
+                if (instructorId != null) {
+                  instructor.setAttribute("sucardnumber", instructorId);
+                }
+                if (instructorName != null) {
+                  instructor.setText(instructorName);
+                }
 
                 instructors.addContent(instructor);
               }
@@ -91,7 +98,6 @@ public class CourseTrans {
       response.addContent(course);
     }
 
-    // response.setAttribute("lang", "en", Namespace.XML_NAMESPACE);
     DocType dtype = new DocType(response.getName());
     Document doc = new Document(response, dtype);
     XMLOutputter out = new XMLOutputter(Format.getPrettyFormat());
@@ -152,16 +158,16 @@ public class CourseTrans {
       String termStr;
       switch(Integer.parseInt(quarter)) {
         case 2: termStr = "Autumn";
-          year = year - 1;
-          break;
+        year = year - 1;
+        break;
         case 4: termStr = "Winter";
-          break;
+        break;
         case 6: termStr = "Spring";
-          break;
+        break;
         case 8: termStr = "Summer";
-          break;
+        break;
         default: termStr = "";
-          break;
+        break;
       }
 
       result = termStr + " " + century + String.valueOf(year);
