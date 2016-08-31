@@ -10,8 +10,8 @@ public class BuildCourseXML {
 
   public static void main (String [] args) throws Exception {
     SAXBuilder builder = new SAXBuilder();
-    Element el = new Element("response");
-    Document doc = new Document(el);
+    Element element = new Element("response");
+    Document doc = new Document(element);
 
     String declaration = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
     + "<!DOCTYPE CourseClass SYSTEM \"http://registry.stanford.edu/xml/courseclass/1.0/CourseClass.dtd\">"
