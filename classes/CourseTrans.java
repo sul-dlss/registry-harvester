@@ -19,14 +19,14 @@ public class CourseTrans {
   public static void courseDoc (org.jdom2.Document docin) throws Exception {
 
     Element regData = docin.getRootElement();
-    List courseClasses = regData.getChildren("CourseClass");
-    Iterator <Element> regDataIterator = courseClasses.iterator();
     Element response = new Element("response");
 
+    List courseClasses = regData.getChildren("CourseClass");
+    Iterator <Element> regDataIterator = courseClasses.iterator();
     while(regDataIterator.hasNext()) {
       Element courseClass = (Element) regDataIterator.next();
-      String courseTitle = courseClass.getAttribute("title").getValue();
-      String courseTerm = courseClass.getAttribute("term").getValue();
+      String courseTitle = courseClass.getAttributeValue("title");
+      String courseTerm = courseClass.getAttributeValue("term");
 
       Element course = new Element("courseclass");
       course.setAttribute("term", BuildTermString(courseTerm));
@@ -34,7 +34,6 @@ public class CourseTrans {
 
       List classes = courseClass.getChildren("class");
       Iterator <Element> classIterator = classes.iterator();
-
       while(classIterator.hasNext()){
         Element _class = (Element) classIterator.next();
         String classId = _class.getAttribute("id").getValue();
@@ -45,18 +44,17 @@ public class CourseTrans {
 
         List sections = _class.getChildren("section");
         Iterator <Element> sectionsIterator = sections.iterator();
-
         while(sectionsIterator.hasNext()) {
           Element section = (Element) sectionsIterator.next();
-          String category = section.getChild("component").getAttribute("value").getValue();
-          String sectionId = section.getAttribute("id").getValue();
+          String category = section.getChild("component").getAttributeValue("value");
+          String sectionId = section.getAttributeValue("id");
 
           Element newSection = new Element("section");
           newSection.setAttribute("category", category);
           newSection.setAttribute("id", sectionId);
 
           Element instructors = new Element("instructors");
-
+          // GET EVERYTHING ELSE UNDER section THAT WE NEED for instructors
           IteratorIterable<Content> descendants = section.getDescendants();
           while(descendants.hasNext()) {
             Content descendant = descendants.next();
@@ -66,13 +64,11 @@ public class CourseTrans {
 
               if (element.getName().equals("instructor")) {
                 Element person = element.getChild("person");
-
                 String instructorSunet = person.getAttributeValue("sunetid");
                 String instructorId = person.getAttributeValue("univid");
                 String instructorName = person.getText();
 
                 Element instructor = new Element("instructor");
-
                 if (instructorSunet != null){
                   instructor.setAttribute("sunetid", instructorSunet);
                 }
@@ -105,8 +101,7 @@ public class CourseTrans {
 
     try {
       out.output(doc, System.out);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
 
@@ -127,11 +122,7 @@ public class CourseTrans {
       for (int i = 1; i < parts.length; i++) {
         result += "-" + parts[i];
       }
-    }
-    // catch (java.io.UnsupportedEncodingException e) {
-    //   System.out.println(e.getMessage());
-    // }
-    catch (ArrayIndexOutOfBoundsException e) {
+    } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println(e.getMessage());
     }
 
@@ -143,7 +134,6 @@ public class CourseTrans {
     String century = "";
     String academicYear = "";
     String quarter = "";
-
     int year;
 
     try {
@@ -152,22 +142,22 @@ public class CourseTrans {
       }
 
       academicYear = term.substring(1,3);
+      quarter = term.substring(3,4);
       year = Integer.parseInt(academicYear);
 
-      quarter = term.substring(3,4);
       String termStr;
       switch(Integer.parseInt(quarter)) {
         case 2: termStr = "Autumn";
-        year = year - 1;
-        break;
+          year = year - 1;
+          break;
         case 4: termStr = "Winter";
-        break;
+          break;
         case 6: termStr = "Spring";
-        break;
+          break;
         case 8: termStr = "Summer";
-        break;
+          break;
         default: termStr = "";
-        break;
+          break;
       }
 
       result = termStr + " " + century + String.valueOf(year);
