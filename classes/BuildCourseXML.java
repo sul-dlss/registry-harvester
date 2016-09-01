@@ -2,6 +2,7 @@ import java.io.StringReader;
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
+
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -40,7 +41,6 @@ public class BuildCourseXML {
     }
 
     String xmlBody = declaration + lineNew + "</RegData>";
-    xmlBody = xmlBody.replace(System.getProperty("line.separator"), "");
     doc = builder.build(new StringReader(xmlBody));
     CourseTrans.courseDoc(doc);
   }
