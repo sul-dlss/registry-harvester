@@ -8,15 +8,15 @@ import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
+//import org.jdom2.output.Format;
+//import org.jdom2.output.XMLOutputter;
 import org.jdom2.util.IteratorIterable;
 
 import java.util.Iterator;
 import java.util.List;
 
 public class CourseTrans {
-  public static void courseDoc (org.jdom2.Document docin) throws Exception {
+  public static org.jdom2.Document courseDoc (org.jdom2.Document docin) throws Exception {
 
     Element regData = docin.getRootElement();
     Element response = new Element("response");
@@ -29,7 +29,8 @@ public class CourseTrans {
       String courseTerm = courseClass.getAttributeValue("term");
 
       Element course = new Element("courseclass");
-      course.setAttribute("term", BuildTermString(courseTerm));
+      String termYear = BuildTermString.getLongTerm(courseTerm) + " " + BuildTermString.getYear(courseTerm);
+      course.setAttribute("term", termYear);
       course.setAttribute("title", courseTitle);
 
       List classes = courseClass.getChildren("class");
@@ -39,7 +40,7 @@ public class CourseTrans {
         String classId = _class.getAttribute("id").getValue();
 
         Element newClass = new Element("class");
-        String id = BuildClassId(classId);
+        String id = BuildTermString.classId(classId);
         newClass.setAttribute("id", id);
 
         List sections = _class.getChildren("section");
@@ -96,76 +97,6 @@ public class CourseTrans {
 
     DocType dtype = new DocType(response.getName());
     Document doc = new Document(response, dtype);
-    XMLOutputter out = new XMLOutputter(Format.getPrettyFormat());
-    // XMLOutputter out = new XMLOutputter();
-
-    try {
-      out.output(doc, System.out);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-    return;
-  }
-
-  public static String BuildClassId (String id) {
-    String result = "";
-    String termStr = "";
-    String term = "";
-
-    String [] parts = id.split("-");
-
-    try {
-      termStr = BuildTermString(parts[0]);
-      term = termStr.substring(0,2) + termStr.substring(termStr.lastIndexOf(" ") + 3);
-      result = term;
-      for (int i = 1; i < parts.length; i++) {
-        result += "-" + parts[i];
-      }
-    } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println(e.getMessage());
-    }
-
-    return result;
-  }
-
-  public static String BuildTermString (String term) {
-    String result = "";
-    String century = "";
-    String academicYear = "";
-    String quarter = "";
-    int year;
-
-    try {
-      if(term.substring(0,1).equals("1")) {
-        century = "20";
-      }
-
-      academicYear = term.substring(1,3);
-      quarter = term.substring(3,4);
-      year = Integer.parseInt(academicYear);
-
-      String termStr;
-      switch(Integer.parseInt(quarter)) {
-        case 2: termStr = "Autumn";
-          year = year - 1;
-          break;
-        case 4: termStr = "Winter";
-          break;
-        case 6: termStr = "Spring";
-          break;
-        case 8: termStr = "Summer";
-          break;
-        default: termStr = "";
-          break;
-      }
-
-      result = termStr + " " + century + String.valueOf(year);
-    }
-    catch (java.lang.StringIndexOutOfBoundsException e) {
-      System.out.println(e.getMessage());
-    }
-
-    return result;
+    return doc;
   }
 }
