@@ -10,6 +10,6 @@ do
   FILES="$FILES $F"
 done
 
-echo "java -cp .:../../lib/jdom-1.0.6.jar BuildCourseXML $FILES"
+java -cp .:../../lib/jdom-1.0.6.jar BuildCourseXML $FILES
 
 
