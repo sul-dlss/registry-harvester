@@ -44,6 +44,9 @@ public class BuildCourseXML {
     String[] quarter = {"summer", "spring", "winter", "fall"};
     for(int t = 0; t < quarter.length; t++) {
       File file = new File("../../include/courses/" + quarter[t] + ".reg.xml");
+      if (!file.exists()) {
+         file.createNewFile();
+      }
       BufferedReader reader = new BufferedReader(new FileReader(file));
       String fileLine;
       try {
