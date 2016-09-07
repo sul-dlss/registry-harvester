@@ -215,32 +215,22 @@
 		<!--****************-->
 		<xsl:variable name="USER_PROFILE">
 			<xsl:choose>
-				<xsl:when test="affiliation[position()=1 and (@type='staff:academic' or @type='staff:otherteaching' or @type='staff:emeritus')] and place/location[@code='0010']">HMSAC</xsl:when>
 				<xsl:when test="affiliation[position()=1 and (@type='staff:academic' or @type='staff:otherteaching' or @type='staff:emeritus')]">CNAC</xsl:when>
-				<xsl:when test="affiliation[position()=1 and (@type='staff:casual' or @type='staff:parttime' or @type='staff:temp')] and place/location[@code='0010']">HMSS</xsl:when>
 				<xsl:when test="affiliation[position()=1 and (@type='staff:casual' or @type='staff:parttime' or @type='staff:temporary' or @type='staff:temp')]">KEEP</xsl:when> <!-- uni-34 -->
 				<xsl:when test="affiliation[position()=1 and @type='staff:student']">KEEP</xsl:when>
 				<xsl:when test="affiliation[position()=1 and @type='staff:otherteaching']">CNAC</xsl:when>
 				<!-- <xsl:when test="affiliation[position()=1 and @type='staff:onleave']">RJCT</xsl:when> -->
 				<xsl:when test="affiliation[position()=1 and @type='staff:onleave']">KEEP</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,5)='staff'] and place/location[@code='0010']">HMSS</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,5)='staff']">CNS</xsl:when>
-				<xsl:when test="affiliation[position()=1 and @type='faculty:otherteaching'] and place/location[@code='0010']">HMSF</xsl:when>
 				<xsl:when test="affiliation[position()=1 and @type='faculty:otherteaching']">MXF</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='faculty'] and place/location[@code='0010']">HMSF</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='faculty']">CNF</xsl:when>
 				<xsl:when test="affiliation[position()=1 and @type='student:mla']">REG</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:phd' and place/location[@code='0010']">HMSD</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:phd'">RED</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:postdoc' and place/location[@code='0010']">HMSD</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:postdoc'">RED</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:doctoral' and place/location[@code='0010']">HMSD</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:doctoral'">RED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/affdata='Law JSD'">RED</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/description='Graduate' and place/location[@code='0010']">HMSG</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/description='Graduate' and (affiliation/affdata[@affnum = '1' and @code='GRNM1'] or affiliation/affdata[@affnum = '1' and @code='GRNM3'])">REG-SUM</xsl:when> <!-- uni-34 -->
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and substring(affiliation/description,1,8)='Graduate'">REG</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/description='Undergraduate' and place/location[@code='0010']">HMSU</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/description='Undergraduate' and (affiliation/affdata[@affnum = '1' and @code='UGNM1'] or affiliation/affdata[@affnum = '1' and @code='UGNM2'] or affiliation/affdata[@affnum = '1' and @code='UGNM3'])">REU-SUM</xsl:when> <!-- uni-34 -->
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/description='Undergraduate'">REU</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation/affdata[@code='LIBBO-SUL']">KEEP</xsl:when>
