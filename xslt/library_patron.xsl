@@ -218,8 +218,6 @@
 				<xsl:when test="affiliation[position()=1 and (@type='staff:academic' or @type='staff:otherteaching' or @type='staff:emeritus')]">CNAC</xsl:when>
 				<xsl:when test="affiliation[position()=1 and (@type='staff:casual' or @type='staff:parttime' or @type='staff:temporary' or @type='staff:temp')]">KEEP</xsl:when> <!-- uni-34 -->
 				<xsl:when test="affiliation[position()=1 and @type='staff:student']">KEEP</xsl:when>
-				<xsl:when test="affiliation[position()=1 and @type='staff:otherteaching']">CNAC</xsl:when>
-				<!-- <xsl:when test="affiliation[position()=1 and @type='staff:onleave']">RJCT</xsl:when> -->
 				<xsl:when test="affiliation[position()=1 and @type='staff:onleave']">KEEP</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,5)='staff']">CNS</xsl:when>
 				<xsl:when test="affiliation[position()=1 and @type='faculty:otherteaching']">MXF</xsl:when>
