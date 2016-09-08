@@ -326,6 +326,15 @@
 		<xsl:variable name="DEPT2">
 			<xsl:apply-templates select="privgroup"/>
 		</xsl:variable>
+		
+		<!--****************-->
+		<!-- AFFILIATION - puts primary affiliation in user extended info field AFFIL1-->
+		<!--****************-->
+		<xsl:variable name="AFFIL1">
+			<xsl:if test="affiliation[@affnum = '1']">
+				<xsl:value-of select="./@type"/>
+			</xsl:if>
+		</xsl:variable>
 
 		<!-- ***************************************************************************************************************************************************** -->
 		<!-- Write to file -->
@@ -362,6 +371,11 @@
 		</xsl:if>
 		<xsl:value-of select="concat('.USER_GROUP_ID.',$SPACER,$USER_GROUP_ID)"/><xsl:text>&#10;</xsl:text>
 		<xsl:value-of select="concat('.USER_WEB_AUTH.',$SPACER,$USER_GROUP_ID)"/><xsl:text>&#10;</xsl:text>
+		<xsl:if test="string($AFFIL1)">
+			<xsl:text>.USER_XINFO_BEGIN.</xsl:text><xsl:text>&#10;</xsl:text>
+			<xsl:value-of select="concat('.AFFIL1.', $SPACER, $AFFIL1)"/><xsl:text>&#10;</xsl:text>
+			<xsl:text>.USER_XINFO_END.</xsl:text><xsl:text>&#10;</xsl:text>
+		</xsl:if>
 	</xsl:template>
 	<!-- ***************************************************************************************************************************************************** -->
 	<!-- Templates -->
