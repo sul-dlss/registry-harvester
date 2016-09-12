@@ -332,7 +332,7 @@
 		<!--****************-->
 		<xsl:variable name="AFFIL1">
 			<xsl:if test="affiliation[@affnum = '1']">
-				<xsl:value-of select="./@type"/>
+				<xsl:value-of select="affiliation/@type"/>
 			</xsl:if>
 		</xsl:variable>
 
