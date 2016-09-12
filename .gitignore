@@ -1,8 +1,8 @@
-./certs/*
-./classes/*.class
-./conf/server.conf
-./etc/*
-./log/*
-./out/*
-
 !.gitignore
+
+certs/
+classes/*.class
+conf/server.conf
+etc/
+log/
+out/
