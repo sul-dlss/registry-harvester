@@ -4,6 +4,7 @@ certs/
 classes/*.class
 classes/*/*.class
 conf/server.conf
+include/courses/
 etc/
 log/
 out/
