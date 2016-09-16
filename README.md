@@ -13,6 +13,7 @@ javac -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar:../lib/jdom-2.0.6.jar 
 
 #### Compile the java classes for the course harvester
 ```
+cd classes/course
 javac -cp .:../../lib/sqljdbc4.jar:../../lib/commons-io-2.4.jar:../../lib/jdom-2.0.6.jar *.java
 ```
 

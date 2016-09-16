@@ -63,6 +63,18 @@ public class BuildTermString {
     return result;
   }
 
+  public static String getShortYear (String term){
+    String result = "";
+    String academicYear = term.substring(1,3);
+    int year = Integer.parseInt(academicYear);
+    if (getTerm(term).equals("F")) {
+      year = year - 1;
+    }
+
+    result = String.valueOf(year);
+    return result;
+  }
+
   public static String classId (String id) {
     String result = "";
     // id="1174-MS&amp;E-408A"
@@ -70,7 +82,7 @@ public class BuildTermString {
 
     try {
       result = getTerm(parts[0]);
-      result += getYear(parts[0]);
+      result += getShortYear(parts[0]);
       for (int i = 1; i < parts.length; i++) {
         result += "-" + parts[i];
       }

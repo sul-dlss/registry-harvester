@@ -71,9 +71,7 @@ public class CourseTrans {
                 if (instructorSunet != null){
                   instructor.setAttribute("sunetid", instructorSunet);
                 }
-                if (instructorId != null) {
-                  instructor.setAttribute("sucardnumber", instructorId);
-                }
+
                 if (instructorName != null) {
                   instructor.setText(instructorName);
                 }

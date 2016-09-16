@@ -90,7 +90,6 @@ public class BuildCourseXML {
           String term = root.getAttributeValue("term");
 
           String termStr = BuildTermString.getTerm(term);
-          // String termYear = BuildTermString.getYear(term);
 
           if (termStr.equals("SU")){
             addOrSetContentForTerm(summer, lineNew, id, "summer");
