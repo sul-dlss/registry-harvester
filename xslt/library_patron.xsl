@@ -208,39 +208,27 @@
 		<!-- LOCATION: department code  -->
 		<!--****************-->
 		<xsl:variable name="USER_DEPARTMENT">
-			<xsl:apply-templates select="affiliation/department" />
+			<xsl:apply-templates select="affiliation/department" mode="dept_code" />
 		</xsl:variable>
 		<!--****************-->
 		<!-- Profile/privg -->
 		<!--****************-->
 		<xsl:variable name="USER_PROFILE">
 			<xsl:choose>
-				<xsl:when test="affiliation[position()=1 and (@type='staff:academic' or @type='staff:otherteaching' or @type='staff:emeritus')] and place/location[@code='0010']">HMSAC</xsl:when>
 				<xsl:when test="affiliation[position()=1 and (@type='staff:academic' or @type='staff:otherteaching' or @type='staff:emeritus')]">CNAC</xsl:when>
-				<xsl:when test="affiliation[position()=1 and (@type='staff:casual' or @type='staff:parttime' or @type='staff:temp')] and place/location[@code='0010']">HMSS</xsl:when>
 				<xsl:when test="affiliation[position()=1 and (@type='staff:casual' or @type='staff:parttime' or @type='staff:temporary' or @type='staff:temp')]">KEEP</xsl:when> <!-- uni-34 -->
 				<xsl:when test="affiliation[position()=1 and @type='staff:student']">KEEP</xsl:when>
-				<xsl:when test="affiliation[position()=1 and @type='staff:otherteaching']">CNAC</xsl:when>
-				<!-- <xsl:when test="affiliation[position()=1 and @type='staff:onleave']">RJCT</xsl:when> -->
 				<xsl:when test="affiliation[position()=1 and @type='staff:onleave']">KEEP</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,5)='staff'] and place/location[@code='0010']">HMSS</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,5)='staff']">CNS</xsl:when>
-				<xsl:when test="affiliation[position()=1 and @type='faculty:otherteaching'] and place/location[@code='0010']">HMSF</xsl:when>
 				<xsl:when test="affiliation[position()=1 and @type='faculty:otherteaching']">MXF</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='faculty'] and place/location[@code='0010']">HMSF</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='faculty']">CNF</xsl:when>
 				<xsl:when test="affiliation[position()=1 and @type='student:mla']">REG</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:phd' and place/location[@code='0010']">HMSD</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:phd'">RED</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:postdoc' and place/location[@code='0010']">HMSD</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:postdoc'">RED</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:doctoral' and place/location[@code='0010']">HMSD</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:doctoral'">RED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/affdata='Law JSD'">RED</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/description='Graduate' and place/location[@code='0010']">HMSG</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/description='Graduate' and (affiliation/affdata[@affnum = '1' and @code='GRNM1'] or affiliation/affdata[@affnum = '1' and @code='GRNM3'])">REG-SUM</xsl:when> <!-- uni-34 -->
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and substring(affiliation/description,1,8)='Graduate'">REG</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/description='Undergraduate' and place/location[@code='0010']">HMSU</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/description='Undergraduate' and (affiliation/affdata[@affnum = '1' and @code='UGNM1'] or affiliation/affdata[@affnum = '1' and @code='UGNM2'] or affiliation/affdata[@affnum = '1' and @code='UGNM3'])">REU-SUM</xsl:when> <!-- uni-34 -->
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/description='Undergraduate'">REU</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation/affdata[@code='LIBBO-SUL']">KEEP</xsl:when>
@@ -332,11 +320,20 @@
 		<!-- DEPT - puts (e.g.) organization:gsp privgroup in the USER_ADDR2/DEPT field-->
 		<!--****************-->
 		<xsl:variable name="DEPT1">
-			<xsl:apply-templates select="affiliation/department" />
+			<xsl:apply-templates select="affiliation/department" mode="dept_name" />
 		</xsl:variable>
 
 		<xsl:variable name="DEPT2">
 			<xsl:apply-templates select="privgroup"/>
+		</xsl:variable>
+		
+		<!--****************-->
+		<!-- AFFILIATION - puts primary affiliation in user extended info field AFFIL1-->
+		<!--****************-->
+		<xsl:variable name="AFFIL1">
+			<xsl:if test="affiliation[@affnum = '1']">
+				<xsl:value-of select="affiliation/@type"/>
+			</xsl:if>
 		</xsl:variable>
 
 		<!-- ***************************************************************************************************************************************************** -->
@@ -374,6 +371,11 @@
 		</xsl:if>
 		<xsl:value-of select="concat('.USER_GROUP_ID.',$SPACER,$USER_GROUP_ID)"/><xsl:text>&#10;</xsl:text>
 		<xsl:value-of select="concat('.USER_WEB_AUTH.',$SPACER,$USER_GROUP_ID)"/><xsl:text>&#10;</xsl:text>
+		<xsl:if test="string($AFFIL1)">
+			<xsl:text>.USER_XINFO_BEGIN.</xsl:text><xsl:text>&#10;</xsl:text>
+			<xsl:value-of select="concat('.AFFIL1.', $SPACER, $AFFIL1)"/><xsl:text>&#10;</xsl:text>
+			<xsl:text>.USER_XINFO_END.</xsl:text><xsl:text>&#10;</xsl:text>
+		</xsl:if>
 	</xsl:template>
 	<!-- ***************************************************************************************************************************************************** -->
 	<!-- Templates -->
@@ -395,7 +397,7 @@
 		</xsl:choose>
 	</xsl:template>
 
-    <xsl:template match="affiliation/department">
+    <xsl:template match="affiliation/department" mode="dept_code">
         <xsl:choose>
             <xsl:when test="organization/@adminid and @affnum = '1'">
                 <xsl:value-of select="organization/@adminid"/>
@@ -409,6 +411,20 @@
             <xsl:text>&#10;</xsl:text>
         </xsl:choose>
     </xsl:template>
+	
+	<xsl:template match="affiliation/department" mode="dept_name">
+		<xsl:choose>
+			<xsl:when test="organization/@adminid and @affnum = '1'">
+				<xsl:value-of select="organization"/>
+			</xsl:when>
+			<xsl:when test="organization/@acadid and @affnum = '1'">
+				<xsl:value-of select="organization"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text></xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
 	<!--**********************************************************-->
 	<!-- Address - Outputs the first and second line of the address element, city, state, and postal code-->
 	<!--**********************************************************-->
