@@ -148,9 +148,18 @@ public class BuildCourseXML {
       //XMLOutputter out = new XMLOutputter(Format.getPrettyFormat());
       XMLOutputter out = new XMLOutputter();
 
-      out.output(courseDoc, new FileWriter("../../include/courses/courseXML_"
-      + term.substring(0,2).toUpperCase()
-      + term.substring(term.length() - 2) + ".xml"));
+      String outFileName = "../../include/courses/courseXML_";
+      if (term.indexOf("Fall") == 0) {
+        outFileName += "F" + term.substring(term.length() - 2) + ".xml";
+      }
+      else if (term.indexOf("Winter") == 0) {
+        outFileName += "W" + term.substring(term.length() - 2) + ".xml";
+      }
+      else {
+        outFileName += term.substring(0,2) + term.substring(term.length() - 2) + ".xml";
+      }
+
+      out.output(courseDoc, new FileWriter(outFileName));
 
     } catch (Exception e) { e.printStackTrace(); }
   }

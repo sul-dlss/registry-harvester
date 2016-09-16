@@ -8,8 +8,6 @@ import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
-//import org.jdom2.output.Format;
-//import org.jdom2.output.XMLOutputter;
 import org.jdom2.util.IteratorIterable;
 
 import java.util.Iterator;
@@ -21,7 +19,7 @@ public class CourseTrans {
     Element regData = docin.getRootElement();
     Element response = new Element("response");
 
-    List courseClasses = regData.getChildren("CourseClass");
+    List <Element> courseClasses = regData.getChildren("CourseClass");
     Iterator <Element> regDataIterator = courseClasses.iterator();
     while(regDataIterator.hasNext()) {
       Element courseClass = (Element) regDataIterator.next();
@@ -33,7 +31,7 @@ public class CourseTrans {
       course.setAttribute("term", termYear);
       course.setAttribute("title", courseTitle);
 
-      List classes = courseClass.getChildren("class");
+      List <Element> classes = courseClass.getChildren("class");
       Iterator <Element> classIterator = classes.iterator();
       while(classIterator.hasNext()){
         Element _class = (Element) classIterator.next();
@@ -43,7 +41,7 @@ public class CourseTrans {
         String id = BuildTermString.classId(classId);
         newClass.setAttribute("id", id);
 
-        List sections = _class.getChildren("section");
+        List <Element> sections = _class.getChildren("section");
         Iterator <Element> sectionsIterator = sections.iterator();
         while(sectionsIterator.hasNext()) {
           Element section = (Element) sectionsIterator.next();
