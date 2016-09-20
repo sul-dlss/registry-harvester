@@ -27,6 +27,9 @@ public class BuildCourseXML {
 
   public static SAXBuilder builder = new SAXBuilder();
 
+  public static String logFileName = "../../include/courses/updates.log";
+  public static File logFile = new File(logFileName);
+
   public static void main (String [] args) throws Exception {
     Vector<String> summer = new Vector<String>();
     Vector<String> spring = new Vector<String>();
@@ -177,19 +180,26 @@ public class BuildCourseXML {
   }
 
   public static void addOrSetContentForTerm (Vector<String> v, String regData, String id, String term) {
-    String currCourseLn = "";
-    boolean set = false;
-    int i = 0;
-    for (String string : v) {
-      currCourseLn = string;
-      if (currCourseLn.indexOf(" id=\"" + id + "\"") > -1) {
-        v.set(i, regData);
-        set = true;
+    try {
+      BufferedWriter out = new BufferedWriter(new FileWriter(logFile));
+      String currCourseLn = "";
+      boolean set = false;
+      int i = 0;
+      for (String string : v) {
+        currCourseLn = string;
+        if (currCourseLn.indexOf(" id=\"" + id + "\"") > -1) {
+          out.append(id + "\n");
+          v.set(i, regData);
+          set = true;
+        }
+        i++;
       }
-      i++;
-    }
-    if (!set){
-      v.add(regData);
+      if (!set){
+        v.add(regData);
+      }
+      out.close();
+    } catch (IOException e) {
+      System.err.println(e.getMessage());
     }
   }
 }
