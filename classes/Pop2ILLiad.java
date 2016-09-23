@@ -25,6 +25,10 @@ import com.microsoft.sqlserver.jdbc.*;
 
 public class Pop2ILLiad {
 
+    private static final String EMAIL_PATTERN =
+    "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
     public static void main (String [] args) throws Exception {
 
         Date today = new Date();
@@ -129,7 +133,7 @@ public class Pop2ILLiad {
                     String [] splitname = fullName.split(",");
                     last = splitname[0].trim();
                     first = splitname[1].trim();
-                    
+
                     if (first.indexOf(" ") > 0){
                         firstIndex = first.indexOf(" ");
                     }
@@ -223,7 +227,8 @@ public class Pop2ILLiad {
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
                 {}
 
-                if (sunetid != null && sunetid.matches("\\w+")) {
+                if ((sunetid != null && sunetid.matches("\\w+"))
+                && (email != null && email.matches(EMAIL_PATTERN))) {
                     illData.clear();
 
                     illData.put("UserName", "'" + sunetid + "'"); //50 *
