@@ -186,6 +186,9 @@ public class Pop2ILLiad {
                       status = "Affiliate";
                     }
 
+                    if (department.length() > 0) {
+                      department = department.replace("&", "and");
+                    }
                 }
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
                 {}
