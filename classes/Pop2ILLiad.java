@@ -223,6 +223,10 @@ public class Pop2ILLiad {
                             sc.nextLine();
                         }
                     }
+                    
+                    if (DEPT.length() > 0) {
+                      DEPT = DEPT.replace("&", "and");
+                    }
                 }
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
                 {}
