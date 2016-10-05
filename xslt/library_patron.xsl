@@ -281,7 +281,7 @@
 			<xsl:choose>
 				<xsl:when test="affiliation[position()=1 and @type='faculty:nonactive']">EXPIRED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='faculty']">NEVER</xsl:when>
-				<xsl:when test="affiliation[position()=1 and @type='staff:nonactive']">EXPIRED</xsl:when>
+				<xsl:when test="affiliation[position()=1 and @type='staff:nonactive' or @type='staff:retired']">EXPIRED</xsl:when>
 				<!-- uni-29 <xsl:when test="affiliation[position()=1 and @type='staff:temporary']">EXPIRED</xsl:when> -->
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,5)='staff' and @type!='staff:student' and @type!='staff:casual']">NEVER</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation[position()=2 and @type='student:recent']">EXPIRED</xsl:when>
