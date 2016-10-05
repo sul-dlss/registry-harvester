@@ -5,11 +5,18 @@ Registry harvester that transforms registry people documents into a flat file fo
 
 git clone https://github.com/sul-dlss/registry-harvester.git Harvester
 
-#### Compile the java classes
+#### Compile the java classes for the Person harvester
 ```
 cd classes
 javac -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar:../lib/jdom-2.0.6.jar *.java
 ```
+
+#### Compile the java classes for the course harvester
+```
+cd classes/course
+javac -cp .:../../lib/sqljdbc4.jar:../../lib/commons-io-2.4.jar:../../lib/jdom-2.0.6.jar *.java
+```
+
 #### Copy /etc and /conf files from shared_configs
 
 https://github.com/sul-dlss/shared_configs
@@ -31,7 +38,7 @@ grep "e.person" harvest.log | awk '{print $9}' | awk -F':' '{print $2}' > regid_
 ```
 Then use the file as the first argument of the do-harvest-file script:
 ```
-/s/SUL/Harvester/run/do-harvest-file /path/to/regid_file YYYYMMDDHHmm(optional [default is now]) 
+/s/SUL/Harvester/run/do-harvest-file /path/to/regid_file YYYYMMDDHHmm(optional [default is now])
 ```
 Or use the same script with a file of University IDs.
 
@@ -49,4 +56,3 @@ With sunet ids:
 ```
 java -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar Pop2ILLiad /path/to/sunetid/file sunet
 ```
-
