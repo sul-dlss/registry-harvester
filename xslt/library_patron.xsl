@@ -401,14 +401,16 @@
         <xsl:choose>
             <xsl:when test="organization/@adminid and @affnum = '1'">
                 <xsl:value-of select="organization/@adminid"/>
+            	<xsl:text>&#10;</xsl:text>
             </xsl:when>
-        <xsl:otherwise>
-            <xsl:if test="organization/@acadid and @affnum = '1'">
-                <xsl:text>:</xsl:text>
-                <xsl:value-of select="organization/@acadid"/>
-            </xsl:if>
-        </xsl:otherwise>
-            <xsl:text>&#10;</xsl:text>
+        	<xsl:when test="organization/@acadid and @affnum = '1'">
+            	<xsl:value-of select="organization/@acadid"/>
+        		<xsl:text>&#10;</xsl:text>
+        	</xsl:when>
+        	<xsl:otherwise>
+        		<xsl:value-of select="@code"/>
+        		<xsl:text>&#10;</xsl:text>
+        	</xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 	
@@ -416,12 +418,15 @@
 		<xsl:choose>
 			<xsl:when test="organization/@adminid and @affnum = '1'">
 				<xsl:value-of select="organization"/>
+				<xsl:text>&#10;</xsl:text>
 			</xsl:when>
 			<xsl:when test="organization/@acadid and @affnum = '1'">
 				<xsl:value-of select="organization"/>
+				<xsl:text>&#10;</xsl:text>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:text></xsl:text>
+				<xsl:value-of select="."/>
+				<xsl:text>&#10;</xsl:text>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
