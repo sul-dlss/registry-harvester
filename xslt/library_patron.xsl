@@ -208,7 +208,7 @@
 		<!-- LOCATION: department code  -->
 		<!--****************-->
 		<xsl:variable name="USER_DEPARTMENT">
-			<xsl:apply-templates select="affiliation/department" mode="dept_code" />
+			<xsl:apply-templates select="affiliation[@affnum = '1']/department" mode="dept_code" />
 		</xsl:variable>
 		<!--****************-->
 		<!-- Profile/privg -->
@@ -281,7 +281,7 @@
 			<xsl:choose>
 				<xsl:when test="affiliation[position()=1 and @type='faculty:nonactive']">EXPIRED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='faculty']">NEVER</xsl:when>
-				<xsl:when test="affiliation[position()=1 and @type='staff:nonactive' or @type='staff:retired']">EXPIRED</xsl:when>
+				<xsl:when test="affiliation[position()=1 and @type='staff:nonactive'] or affiliation[position()=1 and @type='staff:retired']">EXPIRED</xsl:when>
 				<!-- uni-29 <xsl:when test="affiliation[position()=1 and @type='staff:temporary']">EXPIRED</xsl:when> -->
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,5)='staff' and @type!='staff:student' and @type!='staff:casual']">NEVER</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation[position()=2 and @type='student:recent']">EXPIRED</xsl:when>
@@ -320,7 +320,7 @@
 		<!-- DEPT - puts (e.g.) organization:gsp privgroup in the USER_ADDR2/DEPT field-->
 		<!--****************-->
 		<xsl:variable name="DEPT1">
-			<xsl:apply-templates select="affiliation/department" mode="dept_name" />
+			<xsl:apply-templates select="affiliation[@affnum = '1']/department" mode="dept_name" />
 		</xsl:variable>
 
 		<xsl:variable name="DEPT2">
@@ -397,7 +397,7 @@
 		</xsl:choose>
 	</xsl:template>
 
-    <xsl:template match="affiliation/department" mode="dept_code">
+	<xsl:template match="affiliation[@affnum = '1']/department" mode="dept_code">
         <xsl:choose>
             <xsl:when test="organization/@adminid and @affnum = '1'">
                 <xsl:value-of select="organization/@adminid"/>
@@ -414,7 +414,7 @@
         </xsl:choose>
     </xsl:template>
 	
-	<xsl:template match="affiliation/department" mode="dept_name">
+	<xsl:template match="affiliation[@affnum = '1']/department" mode="dept_name">
 		<xsl:choose>
 			<xsl:when test="organization/@adminid and @affnum = '1'">
 				<xsl:value-of select="organization"/>
