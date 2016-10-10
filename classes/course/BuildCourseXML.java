@@ -27,13 +27,16 @@ public class BuildCourseXML {
 
   public static SAXBuilder builder = new SAXBuilder();
 
+  public static String logFileName = "../../include/courses/updates.log";
+  public static File logFile = new File(logFileName);
+  public static Calendar cal = Calendar.getInstance();   // Gets the current date and time
+
   public static void main (String [] args) throws Exception {
     Vector<String> summer = new Vector<String>();
     Vector<String> spring = new Vector<String>();
     Vector<String> winter = new Vector<String>();
     Vector<String> fall = new Vector<String>();
 
-    Calendar cal = Calendar.getInstance();   // Gets the current date and time
     Date year = cal.getTime();
     cal.add(Calendar.YEAR, -1);
     Date lastYear = cal.getTime();
@@ -65,16 +68,16 @@ public class BuildCourseXML {
       }
     }
 
+    // These are the harvested courses from the registry
     for (int f=0; f < args.length; f++) {
       BufferedReader br = new BufferedReader(new FileReader(new File (args[f])));
       String line = "";
-      int x = 0;
+
       while ((line = br.readLine()) != null) {
         if (line.indexOf("<?xml") == 0) {
           continue;
         }
         else if (line.indexOf("<?xml") > 0) {
-          System.err.println(x);
           int idx = line.indexOf("<?xml");
           String lineNew = line.substring(0, idx);
 
@@ -90,29 +93,33 @@ public class BuildCourseXML {
           String term = root.getAttributeValue("term");
 
           String termStr = BuildTermString.getTerm(term);
+          String termComp = BuildTermString.getShortYear(term);
 
-          if (termStr.equals("SU")){
-            addOrSetContentForTerm(summer, lineNew, id, "summer");
-            saveFile(summer, "summer");
-            transformAndSaveCourseClass(summer);
-          }
-          else if (termStr.equals("SP")){
-            addOrSetContentForTerm(spring, lineNew, id, "spring");
-            saveFile(spring, "spring");
-            transformAndSaveCourseClass(spring);
-          }
-          else if (termStr.equals("W")){
-            addOrSetContentForTerm(winter, lineNew, id, "winter");
-            saveFile(winter, "winter");
-            transformAndSaveCourseClass(winter);
-          }
-          else if (termStr.equals("F")){
-            addOrSetContentForTerm(fall, lineNew, id, "fall");
-            saveFile(fall, "fall");
-            transformAndSaveCourseClass(fall);
+          if ( termComp.equals(yr) ||
+               (termComp.equals(lyr) && termStr.equals("F")) )
+          {
+            if (termStr.equals("SU")){
+              addOrSetContentForTerm(summer, lineNew, id, "summer");
+              saveFile(summer, "summer");
+              transformAndSaveCourseClass(summer);
+            }
+            else if (termStr.equals("SP")){
+              addOrSetContentForTerm(spring, lineNew, id, "spring");
+              saveFile(spring, "spring");
+              transformAndSaveCourseClass(spring);
+            }
+            else if (termStr.equals("W")){
+              addOrSetContentForTerm(winter, lineNew, id, "winter");
+              saveFile(winter, "winter");
+              transformAndSaveCourseClass(winter);
+            }
+            else if (termStr.equals("F")){
+              addOrSetContentForTerm(fall, lineNew, id, "fall");
+              saveFile(fall, "fall");
+              transformAndSaveCourseClass(fall);
+            }
           }
         }
-        x++;
       }
     }
   }
@@ -177,19 +184,27 @@ public class BuildCourseXML {
   }
 
   public static void addOrSetContentForTerm (Vector<String> v, String regData, String id, String term) {
-    String currCourseLn = "";
-    boolean set = false;
-    int i = 0;
-    for (String string : v) {
-      currCourseLn = string;
-      if (currCourseLn.indexOf(" id=\"" + id + "\"") > -1) {
-        v.set(i, regData);
-        set = true;
+    try {
+      BufferedWriter out = new BufferedWriter(new FileWriter(logFile));
+      String currCourseLn = "";
+      boolean set = false;
+      int i = 0;
+      for (String string : v) {
+        currCourseLn = string;
+        if (currCourseLn.indexOf(" id=\"" + id + "\"") > -1) {
+          out.append(cal.toString() + "\t");
+          out.append(id + "\n");
+          v.set(i, regData);
+          set = true;
+        }
+        i++;
       }
-      i++;
-    }
-    if (!set){
-      v.add(regData);
+      if (!set){
+        v.add(regData);
+      }
+      out.close();
+    } catch (IOException e) {
+      System.err.println(e.getMessage());
     }
   }
 }
