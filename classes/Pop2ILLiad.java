@@ -37,7 +37,6 @@ public class Pop2ILLiad {
         SimpleDateFormat sdf_ill = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
 
         Map profiles = GetProfiles.profiles();
-        Map departments = PickDepartment.dept();
 
         try
         {
@@ -115,7 +114,6 @@ public class Pop2ILLiad {
                 String expiration = ""; //8 e
 
                 String NVTGC = "";
-                String DEPT = "";
                 String status = "";
                 String organization  = "";
                 String fullName = "";
@@ -150,15 +148,15 @@ public class Pop2ILLiad {
                     nvtgc = userFields[7];
                     expiration = userFields[8];
 
-                    if (nvtgc.indexOf("gsb") > 0 || department.indexOf("School of Business") > 0) {
+                    if (nvtgc.indexOf("gsb") > 0) {
                       NVTGC = "S7Z";
                       organization = "GSB";
                     }
-                    else if (nvtgc.indexOf("law") > 0 || department.indexOf("Law School") > 0) {
+                    else if (nvtgc.indexOf("law") > 0) {
                       NVTGC = "RCJ";
                       organization = "SLS";
                     }
-                    else if (nvtgc.indexOf("medicine") > 0 || department.indexOf("School of Medicine") > 0) {
+                    else if (nvtgc.indexOf("medicine") > 0) {
                       NVTGC = "ST2";
                       organization = "MED";
                     }
@@ -188,40 +186,8 @@ public class Pop2ILLiad {
                       status = "Affiliate";
                     }
 
-                    //Get the department from the @adminid and PickDepartment
-                    // or default to scanning entire dept-codes list.
-                    @SuppressWarnings("unchecked")
-                    Iterator<Map.Entry<String, String>> depts = departments.entrySet().iterator();
-                    while (depts.hasNext()) {
-                      Map.Entry<String, String> d = (Map.Entry<String, String>)depts.next();
-                      String key = d.getKey();
-                      if (department.length() > 0) {
-                        if (key.equals(department)) {
-                          DEPT = d.getValue();
-                          break;
-                        }
-                        else if (key.equals(department.substring(0,2))) {
-                          DEPT = d.getValue();
-                          break;
-                        }
-                        else if (key.equals(department.substring(0,1))) {
-                          DEPT = d.getValue();
-                          break;
-                        }
-                      }
-                    }
-
-                    if (DEPT.length() < 1) {
-                        Scanner sc = new Scanner(new File("../include/dept_codes"));
-
-                        while (sc.hasNextLine()) {
-                            String str = sc.findInLine(Pattern.compile(department + ".+"));
-
-                            if (str != null) {
-                                DEPT = str.split("--")[1].replace("'","''");
-                            }
-                            sc.nextLine();
-                        }
+                    if (department.length() > 0) {
+                      department = department.replace("&", "and");
                     }
                 }
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
@@ -239,7 +205,7 @@ public class Pop2ILLiad {
                     illData.put("EMailAddress", "'" + email + "'"); //50 *
                     illData.put("Phone", "'" + phone + "'"); //15 *
                     illData.put("MobilePhone", "'NULL'"); //15
-                    illData.put("Department", "'" + DEPT + "'"); //255
+                    illData.put("Department", "'" + department + "'"); //255
                     illData.put("NVTGC", "'" + NVTGC + "'"); //20 *
                     illData.put("Password", "''"); //64
                     illData.put("NotificationMethod", "'Electronic'"); //8
