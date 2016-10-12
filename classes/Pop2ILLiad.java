@@ -188,6 +188,7 @@ public class Pop2ILLiad {
 
                     if (department.length() > 0) {
                       department = department.replace("&", "and");
+                      department = department.replace("'","''");
                     }
                 }
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
