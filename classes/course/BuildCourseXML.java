@@ -30,6 +30,7 @@ public class BuildCourseXML {
   public static String logFileName = "../../include/courses/updates.log";
   public static File logFile = new File(logFileName);
   public static Calendar cal = Calendar.getInstance();   // Gets the current date and time
+  public static Date year = cal.getTime();
 
   public static void main (String [] args) throws Exception {
     Vector<String> summer = new Vector<String>();
@@ -37,7 +38,6 @@ public class BuildCourseXML {
     Vector<String> winter = new Vector<String>();
     Vector<String> fall = new Vector<String>();
 
-    Date year = cal.getTime();
     cal.add(Calendar.YEAR, -1);
     Date lastYear = cal.getTime();
     SimpleDateFormat dfy = new SimpleDateFormat("yy");
@@ -185,14 +185,14 @@ public class BuildCourseXML {
 
   public static void addOrSetContentForTerm (Vector<String> v, String regData, String id, String term) {
     try {
-      BufferedWriter out = new BufferedWriter(new FileWriter(logFile));
+      BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
       String currCourseLn = "";
       boolean set = false;
       int i = 0;
       for (String string : v) {
         currCourseLn = string;
         if (currCourseLn.indexOf(" id=\"" + id + "\"") > -1) {
-          out.append(cal.toString() + "\t");
+          out.append(year.toString() + "\t");
           out.append(id + "\n");
           v.set(i, regData);
           set = true;
