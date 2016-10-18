@@ -70,6 +70,8 @@ public class BuildCourseXML {
     // These are the harvested courses from the registry
     for (int f=0; f < args.length; f++) {
       BufferedReader br = new BufferedReader(new FileReader(new File (args[f])));
+      BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
+      out.append("Now Processing: " + args[f] + "\n");
       String line = "";
 
       while ((line = br.readLine()) != null) {
@@ -120,6 +122,7 @@ public class BuildCourseXML {
           }
         }
       }
+      out.close();
     }
   }
 
