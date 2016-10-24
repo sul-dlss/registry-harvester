@@ -26,10 +26,8 @@ import org.xml.sax.InputSource;
 public class BuildCourseXML {
 
   public static SAXBuilder builder = new SAXBuilder();
-
-  public static String logFileName = "../../include/courses/updates.log";
+  public static String logFileName = "../../out/course_build.log";
   public static File logFile = new File(logFileName);
-  public static Calendar cal = Calendar.getInstance();   // Gets the current date and time
 
   public static void main (String [] args) throws Exception {
     Vector<String> summer = new Vector<String>();
@@ -37,6 +35,7 @@ public class BuildCourseXML {
     Vector<String> winter = new Vector<String>();
     Vector<String> fall = new Vector<String>();
 
+    Calendar cal = Calendar.getInstance();   // Gets the current date and time
     Date year = cal.getTime();
     cal.add(Calendar.YEAR, -1);
     Date lastYear = cal.getTime();
@@ -71,6 +70,8 @@ public class BuildCourseXML {
     // These are the harvested courses from the registry
     for (int f=0; f < args.length; f++) {
       BufferedReader br = new BufferedReader(new FileReader(new File (args[f])));
+      BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
+      out.append("Now Processing: " + args[f] + "\n");
       String line = "";
 
       while ((line = br.readLine()) != null) {
@@ -121,6 +122,7 @@ public class BuildCourseXML {
           }
         }
       }
+      out.close();
     }
   }
 
@@ -144,9 +146,6 @@ public class BuildCourseXML {
       doc.setDocType(dtype);
 
       Document courseDoc = CourseTrans.courseDoc(doc);
-
-      System.err.println(courseDoc.toString());
-
       Element root = courseDoc.getRootElement();
       Element child = root.getChild("courseclass");
       String term = child.getAttributeValue("term");
@@ -184,22 +183,27 @@ public class BuildCourseXML {
   }
 
   public static void addOrSetContentForTerm (Vector<String> v, String regData, String id, String term) {
+    Date time = Calendar.getInstance().getTime();
     try {
-      BufferedWriter out = new BufferedWriter(new FileWriter(logFile));
+      BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
       String currCourseLn = "";
       boolean set = false;
       int i = 0;
       for (String string : v) {
         currCourseLn = string;
         if (currCourseLn.indexOf(" id=\"" + id + "\"") > -1) {
-          out.append(cal.toString() + "\t");
-          out.append(id + "\n");
+          out.append(time.toString() + "\t");
+          out.append(id + "\t");
+          out.append("updated\n");
           v.set(i, regData);
           set = true;
         }
         i++;
       }
       if (!set){
+        out.append(time.toString() + "\t");
+        out.append(id + "\t");
+        out.append("added\n");
         v.add(regData);
       }
       out.close();

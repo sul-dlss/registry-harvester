@@ -5,25 +5,38 @@
 HOME=/s/SUL/Harvester
 LOG=$HOME/log
 OUT=$HOME/out
-DATE=$1
+JVM1=$1
+JVM2=$2
+OUTFile=$3
+DATE=`date +%Y%m%d%H%M`
 
-if [ -z $DATE ]
+if [ -z $JVM1 ]
 then
-  DATE=`date +%Y%m%d%H%M`
+  JVM1="2G"
 fi
 
-for F in `ls $OUT/course_harvest.out*`
-do
-	OUTFile="$OUTFile $F"
-done
-	
+if [ -z $JVM2 ]
+then
+  JVM2="10G"
+fi
+
+if [ "$OUTFile" == "latest" ]
+then
+  OUTFile = `ls $OUT/course_harvest.out* | tail -1`
+elif [ -z $OUTFile ]
+then
+  for F in `ls $OUT/course_harvest.out*`
+  do
+    OUTFile="$OUTFile $F"
+  done
+fi
+
 cd $HOME/classes/course
 
-echo "Running: java -cp .:../../lib/jdom-2.0.6.jar BuildCourseXML $OUTFile"
+echo "Running: java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar BuildCourseXML $OUTFile"
 
-java -cp .:../../lib/jdom-2.0.6.jar BuildCourseXML $OUTFile
+java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar BuildCourseXML $OUTFile
 
 cat $LOG/course-build.log | mailx -s 'Course Build Log' sul-unicorn-devs@lists.stanford.edu
-mv $LOG/course-build.log $LOG/course_build.log.$DATE
-touch $LOG/course-build.log
-
+mv $LOG/course_build.log $LOG/course_build.log.$DATE
+touch $LOG/course_build.log

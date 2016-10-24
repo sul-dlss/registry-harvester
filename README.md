@@ -56,3 +56,16 @@ With sunet ids:
 ```
 java -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar Pop2ILLiad /path/to/sunetid/file sunet
 ```
+#### Run the Course Build
+
+You can crontab the job by setting the appropriate date on the line that looks like this:
+```
+10 10 10 10 * /s/SUL/Harvester/run/course-build 4G 16G > /s/SUL/Harvester/log/course_build.log 2>&1
+```
+Or simply run that command from the command line with an extra `&` at the end. The arguments represent the java heap size, Xms and Xmx respectively. To run an update using one or more new course_harvest.out files, append the file name(s) as a third argument. If there is no third argument the course-build will rerun on all course_harvest.out* files in the /s/SUL/Harvester/out directory, which will take many hours to complete. If you append `latest` as the third argument, it will run the course build on the most recent course_harvest.out file. If you do not supply any arguments, it will run the build on all files with the JVM defaults of -Xms2G -Xmx10G.
+
+#### Check on the status of the course build while it is running
+
+From the Harvester root directory `/s/SUL/Bin/Harvester` do `tail log/course_build.log` which will show you the last few courses processed. `grep "Processing" log/course_build.log` will show you the course_harvest.out files that were processed. To see the actual process information this command is useful: `ps aux --sort -rss | less`
+
+The BuildCourseXML java process will most likely be at the very top. You can also see the courseXML files and the registry term xml saved files being built by listing the `includes/courses/` directory.
