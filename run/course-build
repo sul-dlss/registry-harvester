@@ -22,7 +22,10 @@ fi
 
 if [ "$OUTFile" == "latest" ]
 then
-  OUTFile = `ls $OUT/course_harvest.out* | tail -1`
+  for F in `ls $OUT/course_harvest.out* | tail -1`
+  do
+    OUTFile="$F"
+  done
 elif [ -z $OUTFile ]
 then
   for F in `ls $OUT/course_harvest.out*`
