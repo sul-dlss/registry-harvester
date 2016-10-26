@@ -22,7 +22,10 @@ fi
 
 if [ "$OUTFile" == "latest" ]
 then
-  OUTFile = `ls $OUT/course_harvest.out* | tail -1`
+  for F in `ls $OUT/course_harvest.out* | tail -1`
+  do
+    OUTFile="$F"
+  done
 elif [ -z $OUTFile ]
 then
   for F in `ls $OUT/course_harvest.out*`
@@ -37,6 +40,6 @@ echo "Running: java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar Build
 
 java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar BuildCourseXML $OUTFile
 
-cat $LOG/course-build.log | mailx -s 'Course Build Log' sul-unicorn-devs@lists.stanford.edu
+cat $LOG/course_build.log | mailx -s 'Course Build Log' sul-unicorn-devs@lists.stanford.edu
 mv $LOG/course_build.log $LOG/course_build.log.$DATE
 touch $LOG/course_build.log

@@ -26,10 +26,10 @@ import org.xml.sax.InputSource;
 public class BuildCourseXML {
 
   public static SAXBuilder builder = new SAXBuilder();
-  public static String logFileName = "../../out/course_build.log";
-  public static File logFile = new File(logFileName);
+  public static File logFile = new File("../../log/course_build.log");
 
   public static void main (String [] args) throws Exception {
+
     Vector<String> summer = new Vector<String>();
     Vector<String> spring = new Vector<String>();
     Vector<String> winter = new Vector<String>();
@@ -37,31 +37,47 @@ public class BuildCourseXML {
 
     Calendar cal = Calendar.getInstance();   // Gets the current date and time
     Date year = cal.getTime();
-    cal.add(Calendar.YEAR, -1);
-    Date lastYear = cal.getTime();
+    cal.add(Calendar.YEAR, +1);
+    Date nextYear = cal.getTime();
+
     SimpleDateFormat dfy = new SimpleDateFormat("yy");
     String yr = dfy.format(year);
-    String lyr = dfy.format(lastYear);
+    String nyr = dfy.format(nextYear);
 
     String[] quarter = {"summer", "spring", "winter", "fall"};
+
     for(int t = 0; t < quarter.length; t++) {
       File file = new File("../../include/courses/" + quarter[t] + ".reg.xml");
       if (!file.exists()) {
          file.createNewFile();
       }
+
       BufferedReader reader = new BufferedReader(new FileReader(file));
-      String fileLine;
+      System.err.println("Reading" + file);
+      String fileLine = "";
+
       try {
         while((fileLine = reader.readLine()) != null) {
-          if(quarter[t].equals("summer") && fileLine.indexOf("term=\"1"+yr+"8\"") < 0)
-          summer.add(fileLine);
-          else if(quarter[t].equals("spring") && fileLine.indexOf("term=\"1"+yr+"6\"") < 0)
-          spring.add(fileLine);
-          else if(quarter[t].equals("winter") && fileLine.indexOf("term=\"1"+yr+"4\"") < 0)
-          winter.add(fileLine);
-          else if(quarter[t].equals("fall") && fileLine.indexOf("term=\"1"+lyr+"2\"") < 0)
-          fall.add(fileLine);
+          if(quarter[t].equals("summer") && fileLine.indexOf("term=\"1"+yr+"8\"") > 0) {
+            summer.add(fileLine);
+            System.err.println("summer size:" + summer.size());
+          }
+          if(quarter[t].equals("spring") && fileLine.indexOf("term=\"1"+yr+"6\"") > 0) {
+            spring.add(fileLine);
+            System.err.println("spring size:" + spring.size());
+          }
+          if(quarter[t].equals("winter") && fileLine.indexOf("term=\"1"+yr+"4\"") > 0) {
+            winter.add(fileLine);
+            System.err.println("winter size:" + winter.size());
+          }
+          if(quarter[t].equals("fall") &&
+            (fileLine.indexOf("term=\"1"+yr+"2\"") > 0) || fileLine.indexOf("term=\"1"+nyr+"2\"") > 0) {
+            fall.add(fileLine);
+            System.err.println("fall size:" + fall.size());
+          }
         }
+      } catch (IOException e) {
+        e.printStackTrace();
       } finally {
         reader.close();
       }
@@ -71,7 +87,7 @@ public class BuildCourseXML {
     for (int f=0; f < args.length; f++) {
       BufferedReader br = new BufferedReader(new FileReader(new File (args[f])));
       BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
-      out.append("Now Processing: " + args[f] + "\n");
+      out.write("Processed: " + args[f] + "\n");
       String line = "";
 
       while ((line = br.readLine()) != null) {
@@ -97,24 +113,24 @@ public class BuildCourseXML {
           String termComp = BuildTermString.getShortYear(term);
 
           if ( termComp.equals(yr) ||
-               (termComp.equals(lyr) && termStr.equals("F")) )
+               (termComp.equals(nyr) && termStr.equals("F")) )
           {
             if (termStr.equals("SU")){
               addOrSetContentForTerm(summer, lineNew, id, "summer");
               saveFile(summer, "summer");
               transformAndSaveCourseClass(summer);
             }
-            else if (termStr.equals("SP")){
+            if (termStr.equals("SP")){
               addOrSetContentForTerm(spring, lineNew, id, "spring");
               saveFile(spring, "spring");
               transformAndSaveCourseClass(spring);
             }
-            else if (termStr.equals("W")){
+            if (termStr.equals("W")){
               addOrSetContentForTerm(winter, lineNew, id, "winter");
               saveFile(winter, "winter");
               transformAndSaveCourseClass(winter);
             }
-            else if (termStr.equals("F")){
+            if (termStr.equals("F")){
               addOrSetContentForTerm(fall, lineNew, id, "fall");
               saveFile(fall, "fall");
               transformAndSaveCourseClass(fall);
@@ -150,7 +166,6 @@ public class BuildCourseXML {
       Element child = root.getChild("courseclass");
       String term = child.getAttributeValue("term");
 
-      //XMLOutputter out = new XMLOutputter(Format.getPrettyFormat());
       XMLOutputter out = new XMLOutputter();
 
       String outFileName = "../../include/courses/courseXML_";
@@ -184,28 +199,42 @@ public class BuildCourseXML {
 
   public static void addOrSetContentForTerm (Vector<String> v, String regData, String id, String term) {
     Date time = Calendar.getInstance().getTime();
+    String currCourseLn = "";
+    boolean set = false;
+    int i = 0;
+    for (String string : v) {
+      currCourseLn = string;
+      if (currCourseLn.indexOf(" id=\"" + id + "\"") > -1) {
+        logUpdate(time, id);
+        v.set(i, regData);
+        set = true;
+      }
+      i++;
+    }
+    if (!set){
+      logAddition(time, id);
+      v.add(regData);
+    }
+  }
+
+  public static void logUpdate(Date time, String id) {
     try {
       BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
-      String currCourseLn = "";
-      boolean set = false;
-      int i = 0;
-      for (String string : v) {
-        currCourseLn = string;
-        if (currCourseLn.indexOf(" id=\"" + id + "\"") > -1) {
-          out.append(time.toString() + "\t");
-          out.append(id + "\t");
-          out.append("updated\n");
-          v.set(i, regData);
-          set = true;
-        }
-        i++;
-      }
-      if (!set){
-        out.append(time.toString() + "\t");
-        out.append(id + "\t");
-        out.append("added\n");
-        v.add(regData);
-      }
+      out.write(time.toString() + "\t");
+      out.write(id + "\t");
+      out.write("updated\n");
+      out.close();
+    } catch (IOException e) {
+      System.err.println(e.getMessage());
+    }
+  }
+
+  public static void logAddition(Date time, String id) {
+    try {
+      BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
+      out.write(time.toString() + "\t");
+      out.write(id + "\t");
+      out.write("added\n");
       out.close();
     } catch (IOException e) {
       System.err.println(e.getMessage());

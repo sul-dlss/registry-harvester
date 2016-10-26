@@ -66,17 +66,17 @@ public class CourseTrans {
                 String instructorSunet = person.getAttributeValue("sunetid");
                 String instructorId = person.getAttributeValue("univid");
                 String instructorName = person.getText();
-
                 Element instructor = new Element("instructor");
-                if (instructorSunet != null){
+
+                if (instructorSunet != null && instructorSunet.length() > -1){
                   instructor.setAttribute("sunetid", instructorSunet);
-                }
 
-                if (instructorName != null) {
-                  instructor.setText(instructorName);
-                }
+                  if (instructorName != null) {
+                    instructor.setText(instructorName);
+                  }
 
-                instructors.addContent(instructor);
+                  instructors.addContent(instructor);
+                }
               }
             }
           }
