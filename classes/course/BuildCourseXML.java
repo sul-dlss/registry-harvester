@@ -46,21 +46,23 @@ public class BuildCourseXML {
     String[] quarter = {"summer", "spring", "winter", "fall"};
     for(int t = 0; t < quarter.length; t++) {
       File file = new File("../../include/courses/" + quarter[t] + ".reg.xml");
+
       if (!file.exists()) {
          file.createNewFile();
       }
+
       BufferedReader reader = new BufferedReader(new FileReader(file));
       String fileLine;
       try {
         while((fileLine = reader.readLine()) != null) {
-          if(quarter[t].equals("summer") && fileLine.indexOf("term=\"1"+yr+"8\"") < 0)
-          summer.add(fileLine);
-          else if(quarter[t].equals("spring") && fileLine.indexOf("term=\"1"+yr+"6\"") < 0)
-          spring.add(fileLine);
-          else if(quarter[t].equals("winter") && fileLine.indexOf("term=\"1"+yr+"4\"") < 0)
-          winter.add(fileLine);
-          else if(quarter[t].equals("fall") && fileLine.indexOf("term=\"1"+lyr+"2\"") < 0)
-          fall.add(fileLine);
+          if(quarter[t].equals("summer") && fileLine.indexOf("term=\"1"+yr+"8\"") > 0)
+            summer.add(fileLine);
+          else if(quarter[t].equals("spring") && fileLine.indexOf("term=\"1"+yr+"6\"") > 0)
+            spring.add(fileLine);
+          else if(quarter[t].equals("winter") && fileLine.indexOf("term=\"1"+yr+"4\"") > 0)
+            winter.add(fileLine);
+          else if(quarter[t].equals("fall") && fileLine.indexOf("term=\"1"+lyr+"2\"") > 0)
+            fall.add(fileLine);
         }
       } finally {
         reader.close();
@@ -184,28 +186,42 @@ public class BuildCourseXML {
 
   public static void addOrSetContentForTerm (Vector<String> v, String regData, String id, String term) {
     Date time = Calendar.getInstance().getTime();
+    String currCourseLn = "";
+    boolean set = false;
+    int i = 0;
+    for (String string : v) {
+      currCourseLn = string;
+      if (currCourseLn.indexOf(" id=\"" + id + "\"") > -1) {
+        logUpdate(time, id);
+        v.set(i, regData);
+        set = true;
+      }
+      i++;
+    }
+    if (!set){
+      logAddition(time, id);
+      v.add(regData);
+    }
+  }
+
+  public static void logUpdate(Date time, String id) {
     try {
       BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
-      String currCourseLn = "";
-      boolean set = false;
-      int i = 0;
-      for (String string : v) {
-        currCourseLn = string;
-        if (currCourseLn.indexOf(" id=\"" + id + "\"") > -1) {
-          out.append(time.toString() + "\t");
-          out.append(id + "\t");
-          out.append("updated\n");
-          v.set(i, regData);
-          set = true;
-        }
-        i++;
-      }
-      if (!set){
-        out.append(time.toString() + "\t");
-        out.append(id + "\t");
-        out.append("added\n");
-        v.add(regData);
-      }
+      out.append(time.toString() + "\t");
+      out.append(id + "\t");
+      out.append("updated\n");
+      out.close();
+    } catch (IOException e) {
+      System.err.println(e.getMessage());
+    }
+  }
+
+  public static void logAddition(Date time, String id) {
+    try {
+      BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
+      out.append(time.toString() + "\t");
+      out.append(id + "\t");
+      out.append("added\n");
       out.close();
     } catch (IOException e) {
       System.err.println(e.getMessage());
