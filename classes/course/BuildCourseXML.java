@@ -26,7 +26,7 @@ import org.xml.sax.InputSource;
 public class BuildCourseXML {
 
   public static SAXBuilder builder = new SAXBuilder();
-  public static File logFile = new File("../../out/course_build.log");
+  public static File logFile = new File("../../log/course_build.log");
 
   public static void main (String [] args) throws Exception {
     Vector<String> summer = new Vector<String>();
