@@ -72,7 +72,7 @@ public class BuildCourseXML {
     for (int f=0; f < args.length; f++) {
       BufferedReader br = new BufferedReader(new FileReader(new File (args[f])));
       BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
-      out.append("Now Processing: " + args[f] + "\n");
+      out.write("Now Processing: " + args[f] + "\n");
       String line = "";
 
       while ((line = br.readLine()) != null) {
