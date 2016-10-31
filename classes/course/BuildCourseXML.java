@@ -39,13 +39,12 @@ public class BuildCourseXML {
     Date year = cal.getTime();
     cal.add(Calendar.YEAR, +1);
     Date nextYear = cal.getTime();
-    
+
     SimpleDateFormat dfy = new SimpleDateFormat("yy");
     String yr = dfy.format(year);
     String nyr = dfy.format(nextYear);
 
     String[] quarter = {"summer", "spring", "winter", "fall"};
-
 
     for(int t = 0; t < quarter.length; t++) {
       File file = new File("../../include/courses/" + quarter[t] + ".reg.xml");
@@ -56,7 +55,7 @@ public class BuildCourseXML {
       BufferedReader reader = new BufferedReader(new FileReader(file));
       System.err.println("Reading" + file);
       String fileLine = "";
-      
+
       try {
         while((fileLine = reader.readLine()) != null) {
           if(quarter[t].equals("summer") && fileLine.indexOf("term=\"1"+yr+"8\"") > 0) {
@@ -71,7 +70,7 @@ public class BuildCourseXML {
             winter.add(fileLine);
             System.err.println("winter size:" + winter.size());
           }
-          if(quarter[t].equals("fall") && 
+          if(quarter[t].equals("fall") &&
             (fileLine.indexOf("term=\"1"+yr+"2\"") > 0) || fileLine.indexOf("term=\"1"+nyr+"2\"") > 0) {
             fall.add(fileLine);
             System.err.println("fall size:" + fall.size());
@@ -167,7 +166,6 @@ public class BuildCourseXML {
       Element child = root.getChild("courseclass");
       String term = child.getAttributeValue("term");
 
-      //XMLOutputter out = new XMLOutputter(Format.getPrettyFormat());
       XMLOutputter out = new XMLOutputter();
 
       String outFileName = "../../include/courses/courseXML_";
