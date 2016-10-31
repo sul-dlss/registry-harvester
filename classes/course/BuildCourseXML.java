@@ -37,11 +37,12 @@ public class BuildCourseXML {
 
     Calendar cal = Calendar.getInstance();   // Gets the current date and time
     Date year = cal.getTime();
-    cal.add(Calendar.YEAR, -1);
-    Date lastYear = cal.getTime();
+    cal.add(Calendar.YEAR, +1);
+    Date nextYear = cal.getTime();
+    
     SimpleDateFormat dfy = new SimpleDateFormat("yy");
     String yr = dfy.format(year);
-    String lyr = dfy.format(lastYear);
+    String nyr = dfy.format(nextYear);
 
     String[] quarter = {"summer", "spring", "winter", "fall"};
 
@@ -54,7 +55,8 @@ public class BuildCourseXML {
 
       BufferedReader reader = new BufferedReader(new FileReader(file));
       System.err.println("Reading" + file);
-      String fileLine;
+      String fileLine = "";
+      
       try {
         while((fileLine = reader.readLine()) != null) {
           if(quarter[t].equals("summer") && fileLine.indexOf("term=\"1"+yr+"8\"") > 0) {
@@ -69,11 +71,14 @@ public class BuildCourseXML {
             winter.add(fileLine);
             System.err.println("winter size:" + winter.size());
           }
-          if(quarter[t].equals("fall") && fileLine.indexOf("term=\"1"+yr+"2\"") > 0) {
+          if(quarter[t].equals("fall") && 
+            (fileLine.indexOf("term=\"1"+yr+"2\"") > 0) || fileLine.indexOf("term=\"1"+nyr+"2\"") > 0) {
             fall.add(fileLine);
             System.err.println("fall size:" + fall.size());
           }
         }
+      } catch (IOException e) {
+        e.printStackTrace();
       } finally {
         reader.close();
       }
@@ -109,7 +114,7 @@ public class BuildCourseXML {
           String termComp = BuildTermString.getShortYear(term);
 
           if ( termComp.equals(yr) ||
-               (termComp.equals(lyr) && termStr.equals("F")) )
+               (termComp.equals(nyr) && termStr.equals("F")) )
           {
             if (termStr.equals("SU")){
               addOrSetContentForTerm(summer, lineNew, id, "summer");
