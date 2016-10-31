@@ -29,6 +29,7 @@ public class BuildCourseXML {
   public static File logFile = new File("../../log/course_build.log");
 
   public static void main (String [] args) throws Exception {
+
     Vector<String> summer = new Vector<String>();
     Vector<String> spring = new Vector<String>();
     Vector<String> winter = new Vector<String>();
@@ -54,14 +55,19 @@ public class BuildCourseXML {
       String fileLine;
       try {
         while((fileLine = reader.readLine()) != null) {
-          if(quarter[t].equals("summer") && fileLine.indexOf("term=\"1"+yr+"8\"") > 0)
+          if(quarter[t].equals("summer") && fileLine.indexOf("term=\"1"+yr+"8\"") > 0) {
             summer.add(fileLine);
-          else if(quarter[t].equals("spring") && fileLine.indexOf("term=\"1"+yr+"6\"") > 0)
+          }
+          if(quarter[t].equals("spring") && fileLine.indexOf("term=\"1"+yr+"6\"") > 0) {
             spring.add(fileLine);
-          else if(quarter[t].equals("winter") && fileLine.indexOf("term=\"1"+yr+"4\"") > 0)
+          }
+          if(quarter[t].equals("winter") && fileLine.indexOf("term=\"1"+yr+"4\"") > 0) {
             winter.add(fileLine);
-          else if(quarter[t].equals("fall") && fileLine.indexOf("term=\"1"+lyr+"2\"") > 0)
+          }
+          if(quarter[t].equals("fall") &&
+            (fileLine.indexOf("term=\"1"+yr+"2\"") || fileLine.indexOf("term=\"1"+lyr+"2\"")) > 0) {
             fall.add(fileLine);
+          }
         }
       } finally {
         reader.close();
@@ -105,17 +111,17 @@ public class BuildCourseXML {
               saveFile(summer, "summer");
               transformAndSaveCourseClass(summer);
             }
-            else if (termStr.equals("SP")){
+            if (termStr.equals("SP")){
               addOrSetContentForTerm(spring, lineNew, id, "spring");
               saveFile(spring, "spring");
               transformAndSaveCourseClass(spring);
             }
-            else if (termStr.equals("W")){
+            if (termStr.equals("W")){
               addOrSetContentForTerm(winter, lineNew, id, "winter");
               saveFile(winter, "winter");
               transformAndSaveCourseClass(winter);
             }
-            else if (termStr.equals("F")){
+            if (termStr.equals("F")){
               addOrSetContentForTerm(fall, lineNew, id, "fall");
               saveFile(fall, "fall");
               transformAndSaveCourseClass(fall);
@@ -206,9 +212,9 @@ public class BuildCourseXML {
   public static void logUpdate(Date time, String id) {
     try {
       BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
-      out.append(time.toString() + "\t");
-      out.append(id + "\t");
-      out.append("updated\n");
+      out.write(time.toString() + "\t");
+      out.write(id + "\t");
+      out.write("updated\n");
       out.close();
     } catch (IOException e) {
       System.err.println(e.getMessage());
@@ -218,9 +224,9 @@ public class BuildCourseXML {
   public static void logAddition(Date time, String id) {
     try {
       BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
-      out.append(time.toString() + "\t");
-      out.append(id + "\t");
-      out.append("added\n");
+      out.write(time.toString() + "\t");
+      out.write(id + "\t");
+      out.write("added\n");
       out.close();
     } catch (IOException e) {
       System.err.println(e.getMessage());
