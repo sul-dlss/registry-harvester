@@ -65,7 +65,7 @@ public class BuildCourseXML {
             winter.add(fileLine);
           }
           if(quarter[t].equals("fall") &&
-            (fileLine.indexOf("term=\"1"+yr+"2\"") || fileLine.indexOf("term=\"1"+lyr+"2\"")) > 0) {
+            (fileLine.indexOf("term=\"1"+yr+"2\"") || fileLine.indexOf("term=\"1"+lyr+"2\""))) > 0) {
             fall.add(fileLine);
           }
         }
