@@ -44,29 +44,34 @@ public class BuildCourseXML {
     String lyr = dfy.format(lastYear);
 
     String[] quarter = {"summer", "spring", "winter", "fall"};
+
+
     for(int t = 0; t < quarter.length; t++) {
       File file = new File("../../include/courses/" + quarter[t] + ".reg.xml");
-
       if (!file.exists()) {
          file.createNewFile();
       }
 
       BufferedReader reader = new BufferedReader(new FileReader(file));
+      System.err.println("Reading" + file);
       String fileLine;
       try {
         while((fileLine = reader.readLine()) != null) {
           if(quarter[t].equals("summer") && fileLine.indexOf("term=\"1"+yr+"8\"") > 0) {
             summer.add(fileLine);
+            System.err.println("summer size:" + summer.size());
           }
           if(quarter[t].equals("spring") && fileLine.indexOf("term=\"1"+yr+"6\"") > 0) {
             spring.add(fileLine);
+            System.err.println("spring size:" + spring.size());
           }
           if(quarter[t].equals("winter") && fileLine.indexOf("term=\"1"+yr+"4\"") > 0) {
             winter.add(fileLine);
+            System.err.println("winter size:" + winter.size());
           }
-          if(quarter[t].equals("fall") &&
-            (fileLine.indexOf("term=\"1"+yr+"2\"") > 0 || fileLine.indexOf("term=\"1"+lyr+"2\"") > 0)) {
+          if(quarter[t].equals("fall") && fileLine.indexOf("term=\"1"+yr+"2\"") > 0) {
             fall.add(fileLine);
+            System.err.println("fall size:" + fall.size());
           }
         }
       } finally {
@@ -78,7 +83,7 @@ public class BuildCourseXML {
     for (int f=0; f < args.length; f++) {
       BufferedReader br = new BufferedReader(new FileReader(new File (args[f])));
       BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
-      out.write("Now Processing: " + args[f] + "\n");
+      out.write("Processed: " + args[f] + "\n");
       String line = "";
 
       while ((line = br.readLine()) != null) {
