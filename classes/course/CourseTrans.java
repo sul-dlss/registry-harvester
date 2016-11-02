@@ -64,7 +64,6 @@ public class CourseTrans {
               if (element.getName().equals("instructor")) {
                 Element person = element.getChild("person");
                 String instructorSunet = person.getAttributeValue("sunetid");
-                String instructorId = person.getAttributeValue("univid");
                 String instructorName = person.getText();
                 Element instructor = new Element("instructor");
 
