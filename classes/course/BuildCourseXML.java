@@ -228,7 +228,7 @@ public class BuildCourseXML {
       System.err.println(e.getMessage());
     }
   }
-
+  
   public static void logAddition(Date time, String id) {
     try {
       BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));

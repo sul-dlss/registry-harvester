@@ -58,7 +58,9 @@ public class BuildTermString {
     if (getTerm(term).equals("F")) {
       year = year - 1;
     }
-
+    if (getTerm(term).equals("W")) {
+      year = year + 1;
+    }
     result = century + String.valueOf(year);
     return result;
   }
@@ -70,7 +72,9 @@ public class BuildTermString {
     if (getTerm(term).equals("F")) {
       year = year - 1;
     }
-
+    if (getTerm(term).equals("W")) {
+      year = year + 1;
+    }
     result = String.valueOf(year);
     return result;
   }
