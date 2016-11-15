@@ -114,7 +114,8 @@ public class BuildCourseXML {
           String termComp = BuildTermString.getShortYear(term);
 
           if ( termComp.equals(yr) ||
-               (termComp.equals(nyr) && termStr.equals("F")) )
+               (termComp.equals(nyr) && termStr.equals("F")) ||
+               (termComp.equals(nyr) && termStr.equals("W")) )
           {
             if (termStr.equals("SU")){
               addOrSetContentForTerm(summer, lineNew, id, "summer");
