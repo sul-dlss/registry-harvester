@@ -66,7 +66,8 @@ public class BuildCourseXML {
             spring.add(fileLine);
             System.err.println("spring size:" + spring.size());
           }
-          if(quarter[t].equals("winter") && fileLine.indexOf("term=\"1"+yr+"4\"") > 0) {
+          if(quarter[t].equals("winter") &&
+            (fileLine.indexOf("term=\"1"+yr+"4\"") > 0) || fileLine.indexOf("term=\"1"+nyr+"4\"") > 0) {
             winter.add(fileLine);
             System.err.println("winter size:" + winter.size());
           }
@@ -228,7 +229,7 @@ public class BuildCourseXML {
       System.err.println(e.getMessage());
     }
   }
-  
+
   public static void logAddition(Date time, String id) {
     try {
       BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
