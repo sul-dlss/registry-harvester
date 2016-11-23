@@ -3,6 +3,7 @@
 . /s/SUL/Config/sirsi.env
 
 HOME=/s/SUL/Harvester
+DATA=/s/SUL/Dataload/CourseReserves
 LOG=$HOME/log
 OUT=$HOME/out
 JVM1=$1
@@ -35,6 +36,7 @@ then
 fi
 
 cp $HOME/include/courses/*.xml $HOME/include/courses/LastRun/
+cp $DATA/*.xml $DATA/LastRun/
 
 cd $HOME/classes/course
 
@@ -43,7 +45,7 @@ echo "Running: java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar Build
 java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar BuildCourseXML $OUTFile
 
 echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
-cp $HOME/include/courses/courseXML_*.xml /s/SUL/Dataload/CourseReserves/
+cp $HOME/include/courses/courseXML_*.xml $DATA/CourseReserves/
 
 echo "" >> $LOG/course_build.log
 echo "New files generated:" >> $LOG/course_build.log
