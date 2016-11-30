@@ -1,3 +1,4 @@
+import shared.PropGet;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,6 +11,7 @@ import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Properties;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
@@ -44,7 +46,8 @@ public class BuildCourseXML {
     String yr = dfy.format(year);
     String nyr = dfy.format(nextYear);
 
-    String[] quarter = {"summer", "spring", "winter", "fall"};
+    Properties props = PropGet.getProps("../../conf/terms.conf");
+    String [] quarter = props.getProperty("TERMS").split(",");
 
     for(int t = 0; t < quarter.length; t++) {
       File file = new File("../../include/courses/" + quarter[t] + ".reg.xml");
