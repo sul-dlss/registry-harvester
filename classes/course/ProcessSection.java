@@ -1,3 +1,5 @@
+package course;
+
 import org.jdom2.Content;
 import org.jdom2.Content.CType;
 import org.jdom2.Attribute;
@@ -16,6 +18,7 @@ public class ProcessSection {
     Iterator <Element> meetingIterator = meeting.iterator();
 
     while(meetingIterator.hasNext()) {
+      Vector<String> sunetList = new Vector<String>();
       Element instructor = new Element("instructor");
       Element singleMeeting = (Element) meetingIterator.next();
 
@@ -30,7 +33,6 @@ public class ProcessSection {
 
             String instructorSunet = person.getAttributeValue("sunetid");
             String instructorName = person.getText();
-            Vector<String> sunetList = new Vector<String>();
 
             if (instructorSunet != null && instructorSunet.length() > -1) {
               instructor.setAttribute("sunetid", instructorSunet);

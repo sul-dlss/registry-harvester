@@ -1,3 +1,5 @@
+package person;
+
 import shared.PropGet;
 
 import java.util.Map;

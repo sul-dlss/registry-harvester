@@ -1,3 +1,5 @@
+package course;
+
 import shared.PropGet;
 
 import java.io.BufferedReader;
@@ -10,6 +12,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -49,6 +52,7 @@ public class BuildCourseXML {
 
     Properties props = PropGet.getProps("../conf/terms.conf");
     String [] quarter = props.getProperty("TERMS").split(",");
+		System.err.println("Processing terms: " + Arrays.toString(quarter));
 
     for(int t = 0; t < quarter.length; t++) {
       File file = new File("../include/courses/" + quarter[t] + ".reg.xml");
