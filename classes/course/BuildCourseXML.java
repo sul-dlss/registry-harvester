@@ -1,4 +1,5 @@
 import shared.PropGet;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -46,7 +47,7 @@ public class BuildCourseXML {
     String yr = dfy.format(year);
     String nyr = dfy.format(nextYear);
 
-    Properties props = PropGet.getProps("../../conf/terms.conf");
+    Properties props = shared.PropGet.getProps("../../conf/terms.conf");
     String [] quarter = props.getProperty("TERMS").split(",");
 
     for(int t = 0; t < quarter.length; t++) {
