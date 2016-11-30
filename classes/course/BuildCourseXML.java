@@ -125,22 +125,22 @@ public class BuildCourseXML {
                (termComp.equals(nyr) && termStr.equals("F")) ||
                (termComp.equals(nyr) && termStr.equals("W")) )
           {
-            if (termStr.equals("SU")){
+            if (Arrays.asList(quarter).contains("summer") && termStr.equals("SU")){
               addOrSetContentForTerm(summer, lineNew, id, "summer");
               saveFile(summer, "summer");
               transformAndSaveCourseClass(summer);
             }
-            if (termStr.equals("SP")){
+            if (Arrays.asList(quarter).contains("spring") && termStr.equals("SP")){
               addOrSetContentForTerm(spring, lineNew, id, "spring");
               saveFile(spring, "spring");
               transformAndSaveCourseClass(spring);
             }
-            if (termStr.equals("W")){
+            if (Arrays.asList(quarter).contains("winter") && termStr.equals("W")){
               addOrSetContentForTerm(winter, lineNew, id, "winter");
               saveFile(winter, "winter");
               transformAndSaveCourseClass(winter);
             }
-            if (termStr.equals("F")){
+            if (Arrays.asList(quarter).contains("fall") && termStr.equals("F")){
               addOrSetContentForTerm(fall, lineNew, id, "fall");
               saveFile(fall, "fall");
               transformAndSaveCourseClass(fall);
