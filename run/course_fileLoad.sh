@@ -1,4 +1,4 @@
-/#!/bin/sh
+#!/bin/sh
 
 APP_HOME=/s/SUL/Harvester
 JAVA_HOME=/usr
@@ -12,11 +12,12 @@ export LD_LIBRARY_PATH
 # looping to build classpath. skipping anything named old.*.jar
 #
 #
-echo "$t_stamp harness building classpath" >> $HARNESS_LOG
+# echo "building classpath"
 for file in `ls $APP_HOME/jar/` ; do
  case "$file" in
-  old.*.jar) echo skipping $file >>$HARNESS_LOG;;
-  *.jar|*.zip) echo ADDING $file >> $HARNESS_LOG
+  old.*.jar) # echo skipping $file
+  ;;
+  *.jar|*.zip) # echo ADDING $file
         if [ "$CLASSPATH" != "" ]; then
            CLASSPATH=${CLASSPATH}:$APP_HOME/jar/$file
         else
@@ -31,7 +32,6 @@ done
 # well as the name of its property file be specified as a command-line argument
 # -Dlog4j.configuration=<property file>
 #
-echo "ADDING wlthint3client-12.2.1.jar" >> $HARNESS_LOG
 CLASSPATH="/s/SUL/Harvester/WebLogic_lib/wlthint3client-12.2.1.jar":${CLASSPATH}:$APP_HOME/conf
 
 $JAVA_HOME/bin/java -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=course_harvester.properties -cp $CLASSPATH edu.stanford.harvester.Harvester $APP_HOME/conf/course_harvester.properties $APP_HOME/conf/course_processor.properties $LOAD_FILE
