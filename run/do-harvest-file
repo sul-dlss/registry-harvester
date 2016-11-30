@@ -33,7 +33,7 @@ touch $LOG/harvest.log
 touch $LOG/illiad.log
 
 usage(){
-    echo "Usage: $0 [ KEYS ] [ DATE (mmdd) ]"
+    echo "Usage: $0 [ File of KEYS ] [ DATE (to append to log and out file when finished) ]"
     exit 1
 }
 
