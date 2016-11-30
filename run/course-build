@@ -36,11 +36,11 @@ fi
 
 cp $HOME/include/courses/*.xml $HOME/include/courses/LastRun/
 
-cd $HOME/classes/course
+cd $HOME/classes
 
-echo "Running: java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar:../shared/PropGet.class BuildCourseXML $OUTFile"
+echo "Running: java -Xms${JVM1} -Xmx${JVM2} -cp .:../lib/jdom-2.0.6.jar:shared/PropGet.class course/BuildCourseXML $OUTFile"
 
-java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar:../shared/PropGet.class BuildCourseXML $OUTFile
+java -Xms${JVM1} -Xmx${JVM2} -cp .:../lib/jdom-2.0.6.jar:shared/PropGet.class course/BuildCourseXML $OUTFile
 
 echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
 cp $HOME/include/courses/courseXML_*.xml /s/SUL/Dataload/CourseReserves/
