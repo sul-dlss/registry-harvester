@@ -17,7 +17,7 @@ public class GetTransactSQL {
 
   public static String transactSql (Map<String, String> illData, String sunetid) throws Exception {
 
-    Properties props = shared.PropGet.getProps("../../conf/server.conf");
+    Properties props = PropGet.getProps("../conf/server.conf");
     String table_name = props.getProperty("TABLE_NAME");
     String do_not_update_field = props.getProperty("NO_UPDATE");
 

@@ -42,7 +42,7 @@ public class Pop2ILLiad {
 
         try
         {
-            Properties props = shared.PropGet.getProps("../../conf/server.conf");
+            Properties props = PropGet.getProps("../conf/server.conf");
             String user = props.getProperty("USER");
             String pass = props.getProperty("PASS");
             String server = props.getProperty("SERVER");

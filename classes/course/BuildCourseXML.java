@@ -29,7 +29,7 @@ import org.xml.sax.InputSource;
 public class BuildCourseXML {
 
   public static SAXBuilder builder = new SAXBuilder();
-  public static File logFile = new File("../../log/course_build.log");
+  public static File logFile = new File("../log/course_build.log");
 
   public static void main (String [] args) throws Exception {
 
@@ -47,11 +47,11 @@ public class BuildCourseXML {
     String yr = dfy.format(year);
     String nyr = dfy.format(nextYear);
 
-    Properties props = shared.PropGet.getProps("../../conf/terms.conf");
+    Properties props = PropGet.getProps("../conf/terms.conf");
     String [] quarter = props.getProperty("TERMS").split(",");
 
     for(int t = 0; t < quarter.length; t++) {
-      File file = new File("../../include/courses/" + quarter[t] + ".reg.xml");
+      File file = new File("../include/courses/" + quarter[t] + ".reg.xml");
       if (!file.exists()) {
          file.createNewFile();
       }
@@ -174,7 +174,7 @@ public class BuildCourseXML {
 
       XMLOutputter out = new XMLOutputter();
 
-      String outFileName = "../../include/courses/courseXML_";
+      String outFileName = "../include/courses/courseXML_";
       if (term.indexOf("Fall") == 0) {
         outFileName += "F" + term.substring(term.length() - 2) + ".xml";
       }
@@ -196,7 +196,7 @@ public class BuildCourseXML {
       sb.append(string + "\n");
     }
     try{
-      File file = new File("../../include/courses/" + quarter + ".reg.xml");
+      File file = new File("../include/courses/" + quarter + ".reg.xml");
       BufferedWriter out = new BufferedWriter(new FileWriter(file));
       out.write(sb.toString());
       out.close();

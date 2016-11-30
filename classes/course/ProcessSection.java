@@ -6,6 +6,7 @@ import org.jdom2.util.IteratorIterable;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 
 public class ProcessSection {
   public static Element instructors(Element section) throws Exception {
@@ -26,11 +27,14 @@ public class ProcessSection {
           Element element = (Element) descendant;
           if (element.getName().equals("instructor")) {
             Element person = element.getChild("person");
+
             String instructorSunet = person.getAttributeValue("sunetid");
             String instructorName = person.getText();
+            Vector<String> sunetList = new Vector<String>();
 
             if (instructorSunet != null && instructorSunet.length() > -1) {
               instructor.setAttribute("sunetid", instructorSunet);
+              sunetList.add(instructorSunet);
               if (instructorName != null) {
                 instructor.setText(instructorName);
               }
@@ -39,23 +43,8 @@ public class ProcessSection {
         }
       }
 
-      List <Element> currentInstructors = instructors.getChildren("instructor");
-      Iterator <Element> instructorIterator = currentInstructors.iterator();
-
-      if (currentInstructors.size() == 0) {
+      if (!sunetList.contains(instructor.getAttributeValue("sunetid"))) {
         instructors.addContent(instructor);
-      }
-      else {
-        while(instructorIterator.hasNext()) {
-          Element currentInstructor = (Element) instructorIterator.next();
-          String currentInstructorSunet = currentInstructor.getAttributeValue("sunetid");
-          String currentInstructorName = currentInstructor.getText();
-
-          if (!instructor.getAttributeValue("sunetid").equals(currentInstructorSunet)
-              || !instructor.getText().equals(currentInstructorName)) {
-            instructors.addContent(instructor);
-          }
-        }
       }
     }
 
