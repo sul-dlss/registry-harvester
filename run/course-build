@@ -38,9 +38,9 @@ cp $HOME/include/courses/*.xml $HOME/include/courses/LastRun/
 
 cd $HOME/classes/course
 
-echo "Running: java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar BuildCourseXML $OUTFile"
+echo "Running: java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar:../shared/PropGet.class BuildCourseXML $OUTFile"
 
-java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar BuildCourseXML $OUTFile
+java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar:../shared/PropGet.class BuildCourseXML $OUTFile
 
 echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
 cp $HOME/include/courses/courseXML_*.xml /s/SUL/Dataload/CourseReserves/
@@ -57,4 +57,3 @@ cat $LOG/course_build.log | mailx -s 'Course Build Log' sul-unicorn-devs@lists.s
 
 mv $LOG/course_build.log $LOG/course_build.log.$DATE
 touch $LOG/course_build.log
-

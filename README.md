@@ -50,11 +50,11 @@ cd classes
 ```
 With user keys:
 ```
-java -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar Pop2ILLiad /path/to/userkey/file
+java -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar:../shared/PropGet.class Pop2ILLiad /path/to/userkey/file
 ```
 With sunet ids:
 ```
-java -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar Pop2ILLiad /path/to/sunetid/file sunet
+java -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar:../shared/PropGet.class Pop2ILLiad /path/to/sunetid/file sunet
 ```
 #### Run the Course Build
 
