@@ -38,8 +38,7 @@ def terms
     {:term => "Winter 2016", :quarter => "Winter", :end_date => Date.new(2016, 3, 18)},
     {:term => "Spring 2016", :quarter => "Spring", :end_date => Date.new(2016, 6, 8)},
     {:term => "Summer 2016", :quarter => "Summer", :end_date => Date.new(2016, 8, 13)},
-    {:term => "Fall 2016",   :quarter => "Fall",   :end_date => Date.new(2016, 12, 1)},
-    #{:term => "Fall 2016",   :quarter => "Fall",   :end_date => Date.new(2016, 12, 16)},
+    {:term => "Fall 2016",   :quarter => "Fall",   :end_date => Date.new(2016, 12, 16)},
 
     {:term => "Winter 2017", :quarter => "Winter", :end_date => Date.new(2017, 3, 24)},
     {:term => "Spring 2017", :quarter => "Spring", :end_date => Date.new(2017, 6, 14)},
@@ -77,4 +76,3 @@ Dir.glob('/s/SUL/Harvester/out/course_harvest.out.*') do |filename|
     FileUtils.mv(filename, "#{dir}/")
   end
 end
-
