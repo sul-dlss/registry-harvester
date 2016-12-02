@@ -107,7 +107,7 @@ TERMS=summer,spring,winter,fall
 # TERMS=winter,fall
 ```
 
-<span style="color:red; font-weight:bold;">Important</span>: check the `conf.terms.conf` file during each intersession to make sure you are building courseXML files for the terms that are needed by the Course Reserves App (the current term and the next upcoming term).
+<b>Important</b>: check the `conf.terms.conf` file during each intersession to make sure you are building courseXML files for the terms that are needed by the Course Reserves App (the current term and the next upcoming term).
 
 #### Check on the status of the course build while it is running
 
