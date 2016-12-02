@@ -10,6 +10,8 @@ JVM2=$2
 OUTFile=$3
 DATE=`date +%Y%m%d%H%M`
 
+/usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/remove_old_course_harvests.rb >> $LOG/course_build.log
+
 if [ -z $JVM1 ]
 then
   JVM1="2G"
@@ -22,13 +24,13 @@ fi
 
 if [ "$OUTFile" == "latest" ]
 then
-  for F in `ls $OUT/course_harvest.out* | tail -1`
+  for F in `ls $OUT/course_harvest.out.* | tail -1`
   do
     OUTFile="$F"
   done
 elif [ -z $OUTFile ]
 then
-  for F in `ls $OUT/course_harvest.out*`
+  for F in `ls $OUT/course_harvest.out.*`
   do
     OUTFile="$OUTFile $F"
   done
