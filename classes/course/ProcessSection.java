@@ -8,7 +8,7 @@ import org.jdom2.util.IteratorIterable;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class ProcessSection {
   public static Element instructors(Element section) throws Exception {
@@ -17,14 +17,15 @@ public class ProcessSection {
     List <Element> meeting = section.getChildren("meeting");
     Iterator <Element> meetingIterator = meeting.iterator();
 
-    while(meetingIterator.hasNext()) {
-      Vector<String> sunetList = new Vector<String>();
-      Element instructor = new Element("instructor");
+		ArrayList <String> sunetList = new ArrayList <String>();
+    Element instructor = new Element("instructor");
+    
+		while(meetingIterator.hasNext()) {
       Element singleMeeting = (Element) meetingIterator.next();
-
-      IteratorIterable<Content> descendants = singleMeeting.getDescendants();
-      while(descendants.hasNext()) {
-        Content descendant = descendants.next();
+			IteratorIterable<Content> descendants = singleMeeting.getDescendants();
+				
+			while(descendants.hasNext()) {
+				Content descendant = descendants.next();
 
         if (descendant.getCType().equals(CType.Element)) {
           Element element = (Element) descendant;
@@ -35,21 +36,24 @@ public class ProcessSection {
             String instructorName = person.getText();
 
             if (instructorSunet != null && instructorSunet.length() > -1) {
-              instructor.setAttribute("sunetid", instructorSunet);
-              sunetList.add(instructorSunet);
-              if (instructorName != null) {
-                instructor.setText(instructorName);
+							
+							if (!sunetList.contains(instructorSunet + "\u001d" + instructorName)) {
+								sunetList.add(instructorSunet + "\u001d" + instructorName);
               }
             }
           }
         }
       }
-
-      if (!sunetList.contains(instructor.getAttributeValue("sunetid"))) {
-        instructors.addContent(instructor);
-      }
+			
+			for (int s = 0; s < sunetList.size(); s++) {
+				String [] details = sunetList.get(s).split("\u001d");
+				instructor.setAttribute("sunetid", details[0]);
+				instructor.setText(details[1]);
+			}	
+     
     }
-
+		
+		instructors.addContent(instructor);
     return instructors;
   }
 }
