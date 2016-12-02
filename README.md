@@ -27,6 +27,12 @@ The server.conf file contains connection info for the ILLiad user export. It is 
 
 The harvester.properties file contains the registry connection information. It is important that you have the right harvester.properties file in place so that UAT (User Acceptance Testing) data does not get harvested on production Symphony, and that production registry data does not get harvested in test. If the latter happens you will have to grep | awk out the regids from the harvest.log file and run them against the run/do-harvest-file script.
 
+#### Create a LastRun directory
+If it is not already there:
+```
+mkdir include/courses/LastRun
+```
+
 #### Rerun the registry harvest using a file of keys or IDs
 
 Using a file of University IDs or Registry IDs you can re-harvest the registry documents for those people and they will automatically be populated later in ILLiad and Symphony.
