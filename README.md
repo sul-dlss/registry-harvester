@@ -8,13 +8,13 @@ git clone https://github.com/sul-dlss/registry-harvester.git Harvester
 #### Compile the java classes for the Person harvester
 ```
 cd classes
-javac -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar:../lib/jdom-2.0.6.jar *.java
+javac -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar:../lib/jdom-2.0.6.jar:shared/PropGet.class person/*.java
 ```
 
 #### Compile the java classes for the course harvester
 ```
-cd classes/course
-javac -cp .:../../lib/sqljdbc4.jar:../../lib/commons-io-2.4.jar:../../lib/jdom-2.0.6.jar *.java
+cd classes/
+javac -cp .:../lib/commons-io-2.4.jar:../lib/jdom-2.0.6.jar:shared/PropGet.class course/*.java
 ```
 
 #### Copy /etc and /conf files from shared_configs
@@ -26,6 +26,12 @@ The shared_configs branches are: registry-harvester-test and registry-harvester-
 The server.conf file contains connection info for the ILLiad user export. It is important to make sure that you have the right server.conf file in place so that test data does not get exported to production ILLiad and vice versa.
 
 The harvester.properties file contains the registry connection information. It is important that you have the right harvester.properties file in place so that UAT (User Acceptance Testing) data does not get harvested on production Symphony, and that production registry data does not get harvested in test. If the latter happens you will have to grep | awk out the regids from the harvest.log file and run them against the run/do-harvest-file script.
+
+#### Create a LastRun directory
+If it is not already there:
+```
+mkdir include/courses/LastRun
+```
 
 #### Rerun the registry harvest using a file of keys or IDs
 
@@ -50,11 +56,11 @@ cd classes
 ```
 With user keys:
 ```
-java -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar Pop2ILLiad /path/to/userkey/file
+java -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar:../shared/PropGet.class person/Pop2ILLiad /path/to/userkey/file
 ```
 With sunet ids:
 ```
-java -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar Pop2ILLiad /path/to/sunetid/file sunet
+java -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar:../shared/PropGet.class person/Pop2ILLiad /path/to/sunetid/file sunet
 ```
 #### Run the Course Build
 
@@ -63,6 +69,13 @@ You can crontab the job by setting the appropriate date on the line that looks l
 10 10 10 10 * /s/SUL/Harvester/run/course-build 4G 16G > /s/SUL/Harvester/log/course_build.log 2>&1
 ```
 Or simply run that command from the command line with an extra `&` at the end. The arguments represent the java heap size, Xms and Xmx respectively. To run an update using one or more new course_harvest.out files, append the file name(s) as a third argument. If there is no third argument the course-build will rerun on all course_harvest.out* files in the /s/SUL/Harvester/out directory, which will take many hours to complete. If you append `latest` as the third argument, it will run the course build on the most recent course_harvest.out file. If you do not supply any arguments, it will run the build on all files with the JVM defaults of -Xms2G -Xmx10G.
+
+You can run the course build for one or more particular terms (fall, winter, spring, summer) by uncommenting or creating a line in the conf/terms.conf file, e.g.:
+```
+TERMS=summer,spring,winter,fall
+# TERMS=summer,spring
+# TERMS=winter,fall
+```
 
 #### Check on the status of the course build while it is running
 

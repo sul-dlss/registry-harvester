@@ -1,3 +1,7 @@
+package person;
+
+import shared.PropGet;
+
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;

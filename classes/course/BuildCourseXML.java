@@ -1,3 +1,7 @@
+package course;
+
+import shared.PropGet;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,8 +12,10 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Properties;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
@@ -26,7 +32,7 @@ import org.xml.sax.InputSource;
 public class BuildCourseXML {
 
   public static SAXBuilder builder = new SAXBuilder();
-  public static File logFile = new File("../../log/course_build.log");
+  public static File logFile = new File("../log/course_build.log");
 
   public static void main (String [] args) throws Exception {
 
@@ -44,10 +50,12 @@ public class BuildCourseXML {
     String yr = dfy.format(year);
     String nyr = dfy.format(nextYear);
 
-    String[] quarter = {"summer", "spring", "winter", "fall"};
+    Properties props = PropGet.getProps("../conf/terms.conf");
+    String [] quarter = props.getProperty("TERMS").split(",");
+		System.err.println("Processing terms: " + Arrays.toString(quarter));
 
     for(int t = 0; t < quarter.length; t++) {
-      File file = new File("../../include/courses/" + quarter[t] + ".reg.xml");
+      File file = new File("../include/courses/" + quarter[t] + ".reg.xml");
       if (!file.exists()) {
          file.createNewFile();
       }
@@ -117,22 +125,22 @@ public class BuildCourseXML {
                (termComp.equals(nyr) && termStr.equals("F")) ||
                (termComp.equals(nyr) && termStr.equals("W")) )
           {
-            if (termStr.equals("SU")){
+            if (Arrays.asList(quarter).contains("summer") && termStr.equals("SU")){
               addOrSetContentForTerm(summer, lineNew, id, "summer");
               saveFile(summer, "summer");
               transformAndSaveCourseClass(summer);
             }
-            if (termStr.equals("SP")){
+            if (Arrays.asList(quarter).contains("spring") && termStr.equals("SP")){
               addOrSetContentForTerm(spring, lineNew, id, "spring");
               saveFile(spring, "spring");
               transformAndSaveCourseClass(spring);
             }
-            if (termStr.equals("W")){
+            if (Arrays.asList(quarter).contains("winter") && termStr.equals("W")){
               addOrSetContentForTerm(winter, lineNew, id, "winter");
               saveFile(winter, "winter");
               transformAndSaveCourseClass(winter);
             }
-            if (termStr.equals("F")){
+            if (Arrays.asList(quarter).contains("fall") && termStr.equals("F")){
               addOrSetContentForTerm(fall, lineNew, id, "fall");
               saveFile(fall, "fall");
               transformAndSaveCourseClass(fall);
@@ -170,7 +178,7 @@ public class BuildCourseXML {
 
       XMLOutputter out = new XMLOutputter();
 
-      String outFileName = "../../include/courses/courseXML_";
+      String outFileName = "../include/courses/courseXML_";
       if (term.indexOf("Fall") == 0) {
         outFileName += "F" + term.substring(term.length() - 2) + ".xml";
       }
@@ -192,7 +200,7 @@ public class BuildCourseXML {
       sb.append(string + "\n");
     }
     try{
-      File file = new File("../../include/courses/" + quarter + ".reg.xml");
+      File file = new File("../include/courses/" + quarter + ".reg.xml");
       BufferedWriter out = new BufferedWriter(new FileWriter(file));
       out.write(sb.toString());
       out.close();

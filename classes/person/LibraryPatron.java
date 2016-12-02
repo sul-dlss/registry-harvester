@@ -14,20 +14,20 @@ import java.io.StringReader;
 public class LibraryPatron {
     public static void main(String[] args) throws IOException, URISyntaxException, TransformerException, ArrayIndexOutOfBoundsException
     {
-        try 
+        try
         {
             String line = "";
             String lineNew = "";
-            
+
             TransformerFactory factory = TransformerFactory.newInstance();
             Source xslt = new StreamSource(new File(args[1]));
             Transformer transformer = factory.newTransformer(xslt);
-            
+
             BufferedReader br = new BufferedReader(new FileReader(new File(args[0])));
-            
+
             String declaration = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
                 + "<!DOCTYPE Person SYSTEM \"http://registry.stanford.edu/xml/person/1.2/Person.dtd\">";
-                
+
             while ((line = br.readLine()) != null)
             {
                 if (line.indexOf("<?xml") == 0)
@@ -38,7 +38,7 @@ public class LibraryPatron {
                 {
                     int idx = line.indexOf("<!--datastore");
                     lineNew = line.substring(0, idx);
-            
+
                     Source text = new StreamSource(new StringReader(lineNew));
                     transformer.transform(text, new StreamResult(System.out));
                 }

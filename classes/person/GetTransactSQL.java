@@ -1,3 +1,7 @@
+package person;
+
+import shared.PropGet;
+
 import java.util.Map;
 import java.util.LinkedHashMap;
 import java.util.Properties;
@@ -104,7 +108,7 @@ public class GetTransactSQL {
       sql += "  ('" + sunetid + "','" + activityType[i] + "','Email')\n\r";
       sql += " END\n\r";
     }
-    
+
     System.err.println(sqlv + "\n-----------");
     return sql;
   }

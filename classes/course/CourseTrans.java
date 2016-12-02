@@ -1,3 +1,5 @@
+package course;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -8,7 +10,6 @@ import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
-import org.jdom2.util.IteratorIterable;
 
 import java.util.Iterator;
 import java.util.List;
@@ -43,6 +44,7 @@ public class CourseTrans {
 
         List <Element> sections = _class.getChildren("section");
         Iterator <Element> sectionsIterator = sections.iterator();
+
         while(sectionsIterator.hasNext()) {
           Element section = (Element) sectionsIterator.next();
           String category = section.getChild("component").getAttributeValue("value");
@@ -52,33 +54,7 @@ public class CourseTrans {
           newSection.setAttribute("category", category);
           newSection.setAttribute("id", sectionId);
 
-          Element instructors = new Element("instructors");
-          // GET EVERYTHING ELSE UNDER section THAT WE NEED for instructors
-          IteratorIterable<Content> descendants = section.getDescendants();
-          while(descendants.hasNext()) {
-            Content descendant = descendants.next();
-
-            if (descendant.getCType().equals(CType.Element)) {
-              Element element = (Element) descendant;
-
-              if (element.getName().equals("instructor")) {
-                Element person = element.getChild("person");
-                String instructorSunet = person.getAttributeValue("sunetid");
-                String instructorName = person.getText();
-                Element instructor = new Element("instructor");
-
-                if (instructorSunet != null && instructorSunet.length() > -1){
-                  instructor.setAttribute("sunetid", instructorSunet);
-
-                  if (instructorName != null) {
-                    instructor.setText(instructorName);
-                  }
-
-                  instructors.addContent(instructor);
-                }
-              }
-            }
-          }
+          Element instructors = ProcessSection.instructors(section);
 
           newSection.addContent(instructors);
           newClass.addContent(newSection);

@@ -10,6 +10,8 @@ JVM2=$2
 OUTFile=$3
 DATE=`date +%Y%m%d%H%M`
 
+/usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/remove_old_course_harvests.rb >> $LOG/course_build.log
+
 if [ -z $JVM1 ]
 then
   JVM1="2G"
@@ -22,13 +24,13 @@ fi
 
 if [ "$OUTFile" == "latest" ]
 then
-  for F in `ls $OUT/course_harvest.out* | tail -1`
+  for F in `ls $OUT/course_harvest.out.* | tail -1`
   do
     OUTFile="$F"
   done
 elif [ -z $OUTFile ]
 then
-  for F in `ls $OUT/course_harvest.out*`
+  for F in `ls $OUT/course_harvest.out.*`
   do
     OUTFile="$OUTFile $F"
   done
@@ -36,11 +38,11 @@ fi
 
 cp $HOME/include/courses/*.xml $HOME/include/courses/LastRun/
 
-cd $HOME/classes/course
+cd $HOME/classes
 
-echo "Running: java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar BuildCourseXML $OUTFile"
+echo "Running: java -Xms${JVM1} -Xmx${JVM2} -cp .:../lib/jdom-2.0.6.jar:shared/PropGet.class course/BuildCourseXML $OUTFile"
 
-java -Xms${JVM1} -Xmx${JVM2} -cp .:../../lib/jdom-2.0.6.jar BuildCourseXML $OUTFile
+java -Xms${JVM1} -Xmx${JVM2} -cp .:../lib/jdom-2.0.6.jar:shared/PropGet.class course/BuildCourseXML $OUTFile
 
 echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
 cp $HOME/include/courses/courseXML_*.xml /s/SUL/Dataload/CourseReserves/
@@ -57,4 +59,3 @@ cat $LOG/course_build.log | mailx -s 'Course Build Log' sul-unicorn-devs@lists.s
 
 mv $LOG/course_build.log $LOG/course_build.log.$DATE
 touch $LOG/course_build.log
-

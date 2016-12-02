@@ -1,3 +1,5 @@
+package course;
+
 public class BuildTermString {
   public static String getTerm (String term) {
     String result = "";
