@@ -69,6 +69,10 @@ Or use the same script with a file of University IDs.
 cd /s/SUL/Harvester/log
 grep "1174" course_harvest.log.201612021153 | awk '{print $12}' > courseid_file
 ```
+Then use the file as the first argument of the do-course-harvest-file script:
+```
+/s/SUL/Harvester/run/do-course-harvest-file /path/to/courseid_file
+```
 
 #### Manually populate the ILLiad Users Table
 
