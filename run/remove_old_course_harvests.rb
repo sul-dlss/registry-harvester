@@ -61,7 +61,9 @@ def terms
   ]
 end
 
-puts "Moving old harvested course files, harvested before #{current_term_hash(date)}"
+puts "Moving old harvested course files, harvested before #{
+      Date::MONTHNAMES[current_term_hash(date).month]
+    } #{current_term_hash(date).year}"
 
 Dir.glob('/s/SUL/Harvester/out/course_harvest.out.*') do |filename|
   file = File.new(filename)
@@ -71,7 +73,7 @@ Dir.glob('/s/SUL/Harvester/out/course_harvest.out.*') do |filename|
 	dirname = File.dirname(dir)
   FileUtils.mkdir(dir) unless Dir.exist?(dir)
 
-	if current_term_hash(date) > Date.parse("#{mtime.strftime('%Y-%m-%d')}")
+	if current_term_hash(date).month > Date.parse("#{mtime.strftime('%Y-%m-%d')}").month
     puts "Moving #{filename} into #{dir}"
     FileUtils.mv(filename, "#{dir}/")
   end
