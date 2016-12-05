@@ -19,11 +19,11 @@ public class ProcessSection {
 
 		ArrayList <String> sunetList = new ArrayList <String>();
     Element instructor = new Element("instructor");
-    
+
 		while(meetingIterator.hasNext()) {
       Element singleMeeting = (Element) meetingIterator.next();
 			IteratorIterable<Content> descendants = singleMeeting.getDescendants();
-				
+
 			while(descendants.hasNext()) {
 				Content descendant = descendants.next();
 
@@ -36,7 +36,7 @@ public class ProcessSection {
             String instructorName = person.getText();
 
             if (instructorSunet != null && instructorSunet.length() > -1) {
-							
+
 							if (!sunetList.contains(instructorSunet + "\u001d" + instructorName)) {
 								sunetList.add(instructorSunet + "\u001d" + instructorName);
               }
@@ -44,16 +44,16 @@ public class ProcessSection {
           }
         }
       }
-			
+
 			for (int s = 0; s < sunetList.size(); s++) {
 				String [] details = sunetList.get(s).split("\u001d");
 				instructor.setAttribute("sunetid", details[0]);
 				instructor.setText(details[1]);
-			}	
-     
+			}
+
+      instructors.addContent(instructor);
     }
-		
-		instructors.addContent(instructor);
+
     return instructors;
   }
 }
