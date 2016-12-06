@@ -14,7 +14,7 @@ public class GetProfiles {
     profiles.put("CNF", "Faculty");
     profiles.put("CNS", "Staff");
     profiles.put("MXAC", "Academic Staff");
-    profiles.put("MXAS", "Affiliate");
+    profiles.put("MXAS", "Visiting Scholar");
     profiles.put("MXD", "Post Doctoral");
     profiles.put("MXF", "Faculty");
     profiles.put("MXS", "Staff");
