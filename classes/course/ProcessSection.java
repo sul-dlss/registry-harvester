@@ -44,17 +44,14 @@ public class ProcessSection {
         }
       }
     }
-			
+
 		for (int s = 0; s < sunetList.size(); s++) {
-			System.err.println(sunetList.get(s));
 			String [] details = sunetList.get(s).split("\u001d");
       Element instructor = new Element("instructor");
 			instructor.setAttribute("sunetid", details[0]);
 			instructor.setText(details[1]);
 			instructors.addContent(instructor);
 		}
-		System.err.println("-------");
-			
 
     return instructors;
   }
