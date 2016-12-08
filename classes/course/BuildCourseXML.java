@@ -51,7 +51,7 @@ public class BuildCourseXML {
     String nyr = dfy.format(nextYear);
 
     Properties props = PropGet.getProps("../conf/terms.conf");
-    String [] quarter = props.getProperty("TERMS").split(",");
+    String [] quarter = props.getProperty("TERMS").replaceAll("\\s+","").split(",");
 		System.err.println("Processing terms: " + Arrays.toString(quarter));
 
     for(int t = 0; t < quarter.length; t++) {
