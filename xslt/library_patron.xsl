@@ -326,7 +326,7 @@
 		<xsl:variable name="DEPT2">
 			<xsl:apply-templates select="privgroup"/>
 		</xsl:variable>
-		
+
 		<!--****************-->
 		<!-- AFFILIATION - puts primary affiliation in user extended info field AFFIL1-->
 		<!--****************-->
@@ -382,18 +382,13 @@
 	<!-- ***************************************************************************************************************************************************** -->
 	<xsl:template match="privgroup">
 		<xsl:choose>
-			<xsl:when test="text()='organization:medicine'">
-				<xsl:value-of select="." />
-			</xsl:when>
-			<xsl:when test="text()='organization:law'">
-				<xsl:value-of select="." />
-			</xsl:when>
+			<xsl:when test="text()='organization:medicine'"><xsl:value-of select="." /></xsl:when>
+			<xsl:when test="text()='organization:law'"><xsl:value-of select="." /></xsl:when>
+			<xsl:when test="text()='organization:gsb'"><xsl:value-of select="." /></xsl:when>
+			<xsl:when test="text()='gsb_acl:mba2016'">organization:gsb</xsl:when>
 			<xsl:otherwise>
-				<xsl:if test="text()='organization:gsb'">
-					<xsl:value-of select="." />
-				</xsl:if>
+				<xsl:if test="position() = last()"><xsl:text></xsl:text></xsl:if>
 			</xsl:otherwise>
-			<xsl:text>&#10;</xsl:text>
 		</xsl:choose>
 	</xsl:template>
 
@@ -410,7 +405,7 @@
         	</xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-	
+
 	<xsl:template match="affiliation[@affnum = '1']/department" mode="dept_name">
 		<xsl:choose>
 			<xsl:when test="organization/@adminid and @affnum = '1'">
