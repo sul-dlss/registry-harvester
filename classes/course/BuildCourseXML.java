@@ -70,7 +70,8 @@ public class BuildCourseXML {
             summer.add(fileLine);
             System.err.println("summer size:" + summer.size());
           }
-          if(quarter[t].equals("spring") && fileLine.indexOf("term=\"1"+yr+"6\"") > 0) {
+          if(quarter[t].equals("spring") &&
+            (fileLine.indexOf("term=\"1"+yr+"6\"") > 0) || fileLine.indexOf("term=\"1"+nyr+"6\"") > 0) {
             spring.add(fileLine);
             System.err.println("spring size:" + spring.size());
           }
@@ -121,10 +122,7 @@ public class BuildCourseXML {
           String termStr = BuildTermString.getTerm(term);
           String termComp = BuildTermString.getShortYear(term);
 
-          if ( termComp.equals(yr) ||
-               (termComp.equals(nyr) && termStr.equals("F")) ||
-               (termComp.equals(nyr) && termStr.equals("W")) )
-          {
+          if (termComp.equals(yr) || termComp.equals(nyr)) {
             if (Arrays.asList(quarter).contains("summer") && termStr.equals("SU")){
               addOrSetContentForTerm(summer, lineNew, id, "summer");
               saveFile(summer, "summer");
