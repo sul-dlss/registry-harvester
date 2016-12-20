@@ -199,9 +199,9 @@ public class Pop2ILLiad {
                 {}
 
                 if ((sunetid != null && sunetid.matches("\\w+"))
-                && (email != null && email.matches(EMAIL_PATTERN))) {
+                && (email != null && email.matches(EMAIL_PATTERN))
+                && expiry.after(today)) {
                     illData.clear();
-
                     illData.put("UserName", "'" + sunetid + "'"); //50 *
                     illData.put("LastName", "'" + last + "'"); //40 *
                     illData.put("FirstName", "'" + firstName + "'"); //40 *
