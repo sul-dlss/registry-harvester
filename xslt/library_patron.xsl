@@ -234,7 +234,7 @@
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation/affdata[@code='LIBBO-SUL']">KEEP</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation/affdata[@code='LIBBO-GSB']">LIBRJCT</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation/affdata[@code='LIBBO-LANE']">LIBRJCT</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation/affdata[@code='LIBBO-LAW']">MXFEE</xsl:when>
+				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation/affdata[@code='LIBBO-LAW']">MXFEE-LAW</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation/affdata[@code='LIBBO']">KEEP</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation/affdata[@code='AF']">MXS</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation/affdata[@code='BF']">MXF</xsl:when>
