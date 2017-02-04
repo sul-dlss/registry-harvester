@@ -10,6 +10,9 @@ JVM1=$1
 JVM2=$2
 OUTFile=$3
 DATE=`date +%Y%m%d%H%M`
+YEAR=`date +%y`
+NEXTYR=`date +%y -d "+1 year"`
+CENT=`date +%C`
 
 /usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/remove_old_course_harvests.rb >> $LOG/course_build.log
 
@@ -46,7 +49,18 @@ echo "Running: java -Xms${JVM1} -Xmx${JVM2} -cp .:../lib/jdom-2.0.6.jar:shared/P
 
 java -Xms${JVM1} -Xmx${JVM2} -cp .:../lib/jdom-2.0.6.jar:shared/PropGet.class course/BuildCourseXML $OUTFile
 
-echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
+for T in 'W' 'Sp' 'Su' 'F'
+do
+  if [ -e $HOME/include/courses/courseXML_${T}${YEAR}.xml ]; then
+    if grep -q "term=\"\\w\+\\s\{1\}${CENT}${NEXTYR}" $HOME/include/courses/courseXML_${T}${YEAR}.xml; then
+      echo "There are ${CENT}${NEXTYR} courses in courseXML_${T}${YEAR}.xml" >> $LOG/course_build.log
+      echo "copied courseXML_${T}${YEAR}.xml to courseXML_${T}${NEXTYR}.xml" >> $LOG/course_build.log
+      cp $HOME/include/courses/courseXML_${T}${YEAR}.xml $HOME/include/courses/courseXML_${T}${NEXTYR}.xml
+    fi
+  fi
+done
+
+echo "Copied all courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
 cp $HOME/include/courses/courseXML_*.xml $DATA/
 
 echo "" >> $LOG/course_build.log
