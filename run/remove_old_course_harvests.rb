@@ -9,7 +9,7 @@ end
 
 def current_term_hash(date)
   terms.each_with_index do |term, ix|
-    return term[:end_date] if term[:end_date] >= date and terms[ix-1][:end_date] < date
+    return terms[ix-1][:end_date] if term[:end_date] >= date and terms[ix-1][:end_date] < date
   end
 end
 
