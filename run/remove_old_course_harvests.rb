@@ -68,12 +68,13 @@ puts "Moving old harvested course files, harvested before #{
 Dir.glob('/s/SUL/Harvester/out/course_harvest.out.*') do |filename|
   file = File.new(filename)
 	mtime = file.mtime
+  mdate = mtime.strftime('%Y-%m-%d')
 
 	dir = '/s/SUL/Harvester/out/OldCourses'
 	dirname = File.dirname(dir)
   FileUtils.mkdir(dir) unless Dir.exist?(dir)
 
-	if current_term_hash(date).month > Date.parse("#{mtime.strftime('%Y-%m-%d')}").month
+	if current_term_hash(date) > Date.parse(mdate)
     puts "Moving #{filename} into #{dir}"
     FileUtils.mv(filename, "#{dir}/")
   end
