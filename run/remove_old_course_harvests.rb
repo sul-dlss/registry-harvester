@@ -7,9 +7,27 @@ def date
   Date::today
 end
 
-def current_term_hash(date)
+def previous_term_hash(date)
   terms.each_with_index do |term, ix|
     return terms[ix-1][:end_date] if term[:end_date] >= date and terms[ix-1][:end_date] < date
+  end
+end
+
+def current_term_hash(date)
+  terms.each_with_index do |term, ix|
+    return term[:end_date] if term[:end_date] >= date and terms[ix-1][:end_date] < date
+  end
+end
+
+def next_quarter(date)
+  terms.each_with_index do |term, ix|
+    return terms[ix+1][:quarter] if term[:end_date] == date
+  end
+end
+
+def second_next_quarter(date)
+  terms.each_with_index do |term, ix|
+    return terms[ix+2][:quarter] if term[:end_date] == date
   end
 end
 
@@ -61,9 +79,9 @@ def terms
   ]
 end
 
-puts "Moving old harvested course files, harvested before #{
-      Date::MONTHNAMES[current_term_hash(date).month]
-    } #{current_term_hash(date).year}"
+puts "\nMoving old harvested course files, harvested before #{
+      Date::MONTHNAMES[previous_term_hash(date).month]
+    } #{previous_term_hash(date).year}"
 
 Dir.glob('/s/SUL/Harvester/out/course_harvest.out.*') do |filename|
   file = File.new(filename)
@@ -74,8 +92,18 @@ Dir.glob('/s/SUL/Harvester/out/course_harvest.out.*') do |filename|
 	dirname = File.dirname(dir)
   FileUtils.mkdir(dir) unless Dir.exist?(dir)
 
-	if current_term_hash(date) > Date.parse(mdate)
+	if previous_term_hash(date) > Date.parse(mdate)
     puts "Moving #{filename} into #{dir}"
     FileUtils.mv(filename, "#{dir}/")
+  end
+end
+
+if current_term_hash(date) <= date
+  puts "\nUpdating terms.conf with current terms"
+  nextq = next_quarter(current_term_hash(date)).downcase
+  next2q = second_next_quarter(current_term_hash(date)).downcase
+  File.open('/s/SUL/Harvester/conf/terms.conf', 'w') do |terms_file|
+    puts "TERMS=#{nextq},#{next2q}"
+    terms_file.syswrite("TERMS=#{nextq},#{next2q}\n")
   end
 end
