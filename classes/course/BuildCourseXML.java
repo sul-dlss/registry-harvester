@@ -34,62 +34,90 @@ public class BuildCourseXML {
   public static SAXBuilder builder = new SAXBuilder();
   public static File logFile = new File("../log/course_build.log");
 
+  public static SimpleDateFormat dfy = new SimpleDateFormat("yy");
+  public static String yr = new String();
+  public static String nyr = new String();
+
   public static void main (String [] args) throws Exception {
 
-    Vector<String> summer = new Vector<String>();
-    Vector<String> spring = new Vector<String>();
-    Vector<String> winter = new Vector<String>();
-    Vector<String> fall = new Vector<String>();
+    Vector<String> summerY = new Vector<String>();
+    Vector<String> summerN = new Vector<String>();
+    Vector<String> springY = new Vector<String>();
+    Vector<String> springN = new Vector<String>();
+    Vector<String> winterY = new Vector<String>();
+    Vector<String> winterN = new Vector<String>();
+    Vector<String> fallY = new Vector<String>();
+    Vector<String> fallN = new Vector<String>();
 
     Calendar cal = Calendar.getInstance();   // Gets the current date and time
     Date year = cal.getTime();
     cal.add(Calendar.YEAR, +1);
     Date nextYear = cal.getTime();
-
-    SimpleDateFormat dfy = new SimpleDateFormat("yy");
-    String yr = dfy.format(year);
-    String nyr = dfy.format(nextYear);
+    yr = dfy.format(year);
+    nyr = dfy.format(nextYear);
 
     Properties props = PropGet.getProps("../conf/terms.conf");
     String [] quarter = props.getProperty("TERMS").replaceAll("\\s+","").split(",");
 		System.err.println("Processing terms: " + Arrays.toString(quarter));
 
     for(int t = 0; t < quarter.length; t++) {
-      File file = new File("../include/courses/" + quarter[t] + ".reg.xml");
-      if (!file.exists()) {
-         file.createNewFile();
+      File fileY = new File("../include/courses/" + quarter[t] + "Y.reg.xml");
+      File fileN = new File("../include/courses/" + quarter[t] + "N.reg.xml");
+
+      if (!fileY.exists()) {
+         fileY.createNewFile();
+      }
+      if (!fileN.exists()) {
+         fileN.createNewFile();
       }
 
-      BufferedReader reader = new BufferedReader(new FileReader(file));
-      System.err.println("Reading" + file);
+      BufferedReader readerY = new BufferedReader(new FileReader(fileY));
+      BufferedReader readerN = new BufferedReader(new FileReader(fileN));
+      System.err.println("Reading file(s): " + fileY + " " + fileN);
       String fileLine = "";
 
       try {
-        while((fileLine = reader.readLine()) != null) {
+        while((fileLine = readerY.readLine()) != null) {
           if(quarter[t].equals("summer") && fileLine.indexOf("term=\"1"+yr+"8\"") > 0) {
-            summer.add(fileLine);
-            System.err.println("summer size:" + summer.size());
+            summerY.add(fileLine);
+            System.err.println("summer "+yr+" size:" + summerY.size());
           }
-          if(quarter[t].equals("spring") &&
-            (fileLine.indexOf("term=\"1"+yr+"6\"") > 0) || fileLine.indexOf("term=\"1"+nyr+"6\"") > 0) {
-            spring.add(fileLine);
-            System.err.println("spring size:" + spring.size());
+          if(quarter[t].equals("spring") && fileLine.indexOf("term=\"1"+yr+"6\"") > 0) {
+            springY.add(fileLine);
+            System.err.println("spring "+yr+" size:" + springY.size());
           }
-          if(quarter[t].equals("winter") &&
-            (fileLine.indexOf("term=\"1"+yr+"4\"") > 0) || fileLine.indexOf("term=\"1"+nyr+"4\"") > 0) {
-            winter.add(fileLine);
-            System.err.println("winter size:" + winter.size());
+          if(quarter[t].equals("winter") && fileLine.indexOf("term=\"1"+yr+"4\"") > 0) {
+            winterY.add(fileLine);
+            System.err.println("winter "+yr+" size:" + winterY.size());
           }
-          if(quarter[t].equals("fall") &&
-            (fileLine.indexOf("term=\"1"+yr+"2\"") > 0) || fileLine.indexOf("term=\"1"+nyr+"2\"") > 0) {
-            fall.add(fileLine);
-            System.err.println("fall size:" + fall.size());
+          if(quarter[t].equals("fall") && fileLine.indexOf("term=\"1"+yr+"2\"") > 0) {
+            fallY.add(fileLine);
+            System.err.println("fall "+yr+" size:" + fallY.size());
+          }
+        }
+        while((fileLine = readerN.readLine()) != null) {
+          if(quarter[t].equals("summer") && fileLine.indexOf("term=\"1"+nyr+"8\"") > 0) {
+            summerN.add(fileLine);
+            System.err.println("summer "+nyr+" size:" + summerN.size());
+          }
+          if(quarter[t].equals("spring") && fileLine.indexOf("term=\"1"+nyr+"6\"") > 0) {
+            springN.add(fileLine);
+            System.err.println("spring "+nyr+" size:" + springN.size());
+          }
+          if(quarter[t].equals("winter") && fileLine.indexOf("term=\"1"+nyr+"4\"") > 0) {
+            winterN.add(fileLine);
+            System.err.println("winter "+nyr+" size:" + winterN.size());
+          }
+          if(quarter[t].equals("fall") && fileLine.indexOf("term=\"1"+nyr+"2\"") > 0) {
+            fallN.add(fileLine);
+            System.err.println("fall "+nyr+" size:" + fallN.size());
           }
         }
       } catch (IOException e) {
         e.printStackTrace();
       } finally {
-        reader.close();
+        readerY.close();
+        readerN.close();
       }
     }
 
@@ -120,29 +148,59 @@ public class BuildCourseXML {
           String term = root.getAttributeValue("term");
 
           String termStr = BuildTermString.getTerm(term);
-          String termComp = BuildTermString.getShortYear(term);
+          String shortYear = BuildTermString.getShortYear(term);
+          String longYear = BuildTermString.getYear(term);
 
-          if (termComp.equals(yr) || termComp.equals(nyr)) {
-            if (Arrays.asList(quarter).contains("summer") && termStr.equals("SU")){
-              addOrSetContentForTerm(summer, lineNew, id, "summer");
-              saveFile(summer, "summer");
-              transformAndSaveCourseClass(summer);
-            }
-            if (Arrays.asList(quarter).contains("spring") && termStr.equals("SP")){
-              addOrSetContentForTerm(spring, lineNew, id, "spring");
-              saveFile(spring, "spring");
-              transformAndSaveCourseClass(spring);
-            }
-            if (Arrays.asList(quarter).contains("winter") && termStr.equals("W")){
-              addOrSetContentForTerm(winter, lineNew, id, "winter");
-              saveFile(winter, "winter");
-              transformAndSaveCourseClass(winter);
-            }
-            if (Arrays.asList(quarter).contains("fall") && termStr.equals("F")){
-              addOrSetContentForTerm(fall, lineNew, id, "fall");
-              saveFile(fall, "fall");
-              transformAndSaveCourseClass(fall);
-            }
+          if (Arrays.asList(quarter).contains("summer")
+              && termStr.equals("SU") && shortYear.equals(yr)) {
+            addOrSetContentForTerm(summerY, lineNew, id);
+            saveFile(summerY, "summerY");
+            transformAndSaveCourseClass(summerY, "Su" + longYear);
+          }
+          if (Arrays.asList(quarter).contains("summer")
+              && termStr.equals("SU") && shortYear.equals(nyr)) {
+            addOrSetContentForTerm(summerN, lineNew, id);
+            saveFile(summerN, "summerN");
+            transformAndSaveCourseClass(summerN, "Su" + longYear);
+          }
+
+          if (Arrays.asList(quarter).contains("spring")
+              && termStr.equals("SP") && shortYear.equals(yr)) {
+            addOrSetContentForTerm(springY, lineNew, id);
+            saveFile(springY, "springY");
+            transformAndSaveCourseClass(springY, "Sp" + longYear);
+          }
+          if (Arrays.asList(quarter).contains("spring")
+              && termStr.equals("SP") && shortYear.equals(nyr)) {
+            addOrSetContentForTerm(springN, lineNew, id);
+            saveFile(springN, "springN");
+            transformAndSaveCourseClass(springN, "Sp" + longYear);
+          }
+
+          if (Arrays.asList(quarter).contains("winter")
+              && termStr.equals("W") && shortYear.equals(yr)) {
+            addOrSetContentForTerm(winterY, lineNew, id);
+            saveFile(winterY, "winterY");
+            transformAndSaveCourseClass(winterY, "W" + longYear);
+          }
+          if (Arrays.asList(quarter).contains("winter")
+              && termStr.equals("W") && shortYear.equals(nyr)) {
+            addOrSetContentForTerm(winterN, lineNew, id);
+            saveFile(winterN, "winterN");
+            transformAndSaveCourseClass(winterN, "W" + longYear);
+          }
+
+          if (Arrays.asList(quarter).contains("fall")
+              && termStr.equals("F") && shortYear.equals(yr)) {
+            addOrSetContentForTerm(fallY, lineNew, id);
+            saveFile(fallY, "fallY");
+            transformAndSaveCourseClass(fallY, "F" + longYear);
+          }
+          if (Arrays.asList(quarter).contains("fall")
+              && termStr.equals("F") && shortYear.equals(nyr)) {
+            addOrSetContentForTerm(fallN, lineNew, id);
+            saveFile(fallN, "fallN");
+            transformAndSaveCourseClass(fallN, "F" + longYear);
           }
         }
       }
@@ -150,7 +208,7 @@ public class BuildCourseXML {
     }
   }
 
-  public static void transformAndSaveCourseClass (Vector<String> v) {
+  public static void transformAndSaveCourseClass (Vector<String> v, String term) {
     StringBuilder sb = new StringBuilder();
 
     sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
@@ -170,42 +228,30 @@ public class BuildCourseXML {
       doc.setDocType(dtype);
 
       Document courseDoc = CourseTrans.courseDoc(doc);
-      Element root = courseDoc.getRootElement();
-      Element child = root.getChild("courseclass");
-      String term = child.getAttributeValue("term");
 
       XMLOutputter out = new XMLOutputter();
 
-      String outFileName = "../include/courses/courseXML_";
-      if (term.indexOf("Fall") == 0) {
-        outFileName += "F" + term.substring(term.length() - 2) + ".xml";
-      }
-      else if (term.indexOf("Winter") == 0) {
-        outFileName += "W" + term.substring(term.length() - 2) + ".xml";
-      }
-      else {
-        outFileName += term.substring(0,2) + term.substring(term.length() - 2) + ".xml";
-      }
+      String outFileName = "../include/courses/courseXML_" + term + ".xml";
 
       out.output(courseDoc, new FileWriter(outFileName));
 
     } catch (Exception e) { e.printStackTrace(); }
   }
 
-  public static void saveFile (Vector<String> v, String quarter) {
+  public static void saveFile (Vector<String> v, String term) {
     StringBuilder sb = new StringBuilder();
     for (String string : v) {
       sb.append(string + "\n");
     }
     try{
-      File file = new File("../include/courses/" + quarter + ".reg.xml");
+      File file = new File("../include/courses/" + term + ".reg.xml");
       BufferedWriter out = new BufferedWriter(new FileWriter(file));
       out.write(sb.toString());
       out.close();
     } catch (IOException e) { }
   }
 
-  public static void addOrSetContentForTerm (Vector<String> v, String regData, String id, String term) {
+  public static void addOrSetContentForTerm (Vector<String> v, String regData, String id) {
     Date time = Calendar.getInstance().getTime();
     String currCourseLn = "";
     boolean set = false;
