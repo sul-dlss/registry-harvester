@@ -149,58 +149,57 @@ public class BuildCourseXML {
 
           String termStr = BuildTermString.getTerm(term);
           String shortYear = BuildTermString.getShortYear(term);
-          String longYear = BuildTermString.getYear(term);
 
           if (Arrays.asList(quarter).contains("summer")
               && termStr.equals("SU") && shortYear.equals(yr)) {
             addOrSetContentForTerm(summerY, lineNew, id);
             saveFile(summerY, "summerY");
-            transformAndSaveCourseClass(summerY, "Su" + longYear);
+            transformAndSaveCourseClass(summerY, "Su" + shortYear);
           }
           if (Arrays.asList(quarter).contains("summer")
               && termStr.equals("SU") && shortYear.equals(nyr)) {
             addOrSetContentForTerm(summerN, lineNew, id);
             saveFile(summerN, "summerN");
-            transformAndSaveCourseClass(summerN, "Su" + longYear);
+            transformAndSaveCourseClass(summerN, "Su" + shortYear);
           }
 
           if (Arrays.asList(quarter).contains("spring")
               && termStr.equals("SP") && shortYear.equals(yr)) {
             addOrSetContentForTerm(springY, lineNew, id);
             saveFile(springY, "springY");
-            transformAndSaveCourseClass(springY, "Sp" + longYear);
+            transformAndSaveCourseClass(springY, "Sp" + shortYear);
           }
           if (Arrays.asList(quarter).contains("spring")
               && termStr.equals("SP") && shortYear.equals(nyr)) {
             addOrSetContentForTerm(springN, lineNew, id);
             saveFile(springN, "springN");
-            transformAndSaveCourseClass(springN, "Sp" + longYear);
+            transformAndSaveCourseClass(springN, "Sp" + shortYear);
           }
 
           if (Arrays.asList(quarter).contains("winter")
               && termStr.equals("W") && shortYear.equals(yr)) {
             addOrSetContentForTerm(winterY, lineNew, id);
             saveFile(winterY, "winterY");
-            transformAndSaveCourseClass(winterY, "W" + longYear);
+            transformAndSaveCourseClass(winterY, "W" + shortYear);
           }
           if (Arrays.asList(quarter).contains("winter")
               && termStr.equals("W") && shortYear.equals(nyr)) {
             addOrSetContentForTerm(winterN, lineNew, id);
             saveFile(winterN, "winterN");
-            transformAndSaveCourseClass(winterN, "W" + longYear);
+            transformAndSaveCourseClass(winterN, "W" + shortYear);
           }
 
           if (Arrays.asList(quarter).contains("fall")
               && termStr.equals("F") && shortYear.equals(yr)) {
             addOrSetContentForTerm(fallY, lineNew, id);
             saveFile(fallY, "fallY");
-            transformAndSaveCourseClass(fallY, "F" + longYear);
+            transformAndSaveCourseClass(fallY, "F" + shortYear);
           }
           if (Arrays.asList(quarter).contains("fall")
               && termStr.equals("F") && shortYear.equals(nyr)) {
             addOrSetContentForTerm(fallN, lineNew, id);
             saveFile(fallN, "fallN");
-            transformAndSaveCourseClass(fallN, "F" + longYear);
+            transformAndSaveCourseClass(fallN, "F" + shortYear);
           }
         }
       }
