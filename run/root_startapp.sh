@@ -1,6 +1,6 @@
 #!/bin/sh
 
-APP_HOME=/s/SUL/Harvester
+APP_HOME=/s/SUL/Harvester/current
 
 cd $APP_HOME
 

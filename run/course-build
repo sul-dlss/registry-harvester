@@ -2,7 +2,7 @@
 
 . /s/SUL/Config/sirsi.env
 
-HOME=/s/SUL/Harvester
+HOME=/s/SUL/Harvester/current
 DATA=/s/SUL/Dataload/CourseReserves
 LOG=$HOME/log
 OUT=$HOME/out
@@ -12,6 +12,11 @@ OUTFile=$3
 DATE=`date +%Y%m%d%H%M`
 
 /usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/remove_old_course_harvests.rb >> $LOG/course_build.log
+/usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/update_terms_conf.rb >> $LOG/course_build.log
+
+if [[ -z $COURSE_TERMS ]]; then
+    export COURSE_TERMS=`cat $HOME/Course/src/main/resources/terms.conf`
+fi
 
 if [ -z $JVM1 ]
 then
@@ -37,25 +42,32 @@ then
   done
 fi
 
-cp $HOME/include/courses/*.xml $HOME/include/courses/LastRun/
-cp $DATA/*.xml $DATA/LastRun/
+if [[  -n `ls $HOME/course_files/*.xml` ]]; then
+    cp $HOME/course_files/*.xml $HOME/course_files/LastRun
+fi
 
-cd $HOME/classes
+mkdir $DATA/LastRun$DATE
 
-echo "Running: java -Xms${JVM1} -Xmx${JVM2} -cp .:../lib/jdom-2.0.6.jar:shared/PropGet.class course/BuildCourseXML $OUTFile"
+if [[  -f $DATA/*.xml ]]; then
+    cp -p $DATA/*.xml $DATA/LastRun$DATE/
+fi
 
-java -Xms${JVM1} -Xmx${JVM2} -cp .:../lib/jdom-2.0.6.jar:shared/PropGet.class course/BuildCourseXML $OUTFile
+cd $HOME
+
+echo "Running: java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar $OUTFile"
+
+java -jar -Xms${JVM1} -Xmx${JVM2} lib/Course-jar-with-dependencies.jar $OUTFile
 
 echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
-cp $HOME/include/courses/courseXML_*.xml $DATA/
+cp $HOME/course_files/courseXML_*.xml $DATA/
 
 echo "" >> $LOG/course_build.log
 echo "New files generated:" >> $LOG/course_build.log
-ls -lS $HOME/include/courses/*.xml >> $LOG/course_build.log
+ls -lS $HOME/course_files/*.xml >> $LOG/course_build.log
 
 echo "" >> $LOG/course_build.log
 echo "Last Run:" >> $LOG/course_build.log
-ls -lS $HOME/include/courses/LastRun/*.xml >> $LOG/course_build.log
+ls -lS $HOME/course_files/LastRun/*.xml >> $LOG/course_build.log
 
 cat $LOG/course_build.log | mailx -s 'Course Build Log' sul-unicorn-devs@lists.stanford.edu
 

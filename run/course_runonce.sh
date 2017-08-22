@@ -1,12 +1,13 @@
 #!/bin/sh
 
 APP_NAME=harvester
-APP_HOME=/s/SUL/Harvester
+APP_HOME=/s/SUL/Harvester/current
+CONF_HOME=$APP_HOME/Course/src/main/resources
 JAVA_HOME=/usr
 
 cd $APP_HOME/run
 
-HARNESS_LOG=$APP_HOME/log/harness.log
+HARNESS_LOG=$APP_HOME/log/course_harness.log
 
 if [ ! -f $HARNESS_LOG ]
 then
@@ -47,7 +48,7 @@ done
 # -Dlog4j.configuration=<property file>
 #
 echo "ADDING wlthint3client-12.2.1.jar" >> $HARNESS_LOG
-CLASSPATH="/s/SUL/Harvester/WebLogic_lib/wlthint3client-12.2.1.jar":${CLASSPATH}:$APP_HOME/conf
+CLASSPATH="$APP_HOME/WebLogic_lib/wlthint3client-12.2.1.jar":${CLASSPATH}:$CONF_HOME
 
 # This block will allow the harvester to run continuously as a service
 #
@@ -68,7 +69,7 @@ CLASSPATH="/s/SUL/Harvester/WebLogic_lib/wlthint3client-12.2.1.jar":${CLASSPATH}
 # echo $$ > $PIDFILE
 # echo "$t_stamp $APP_NAME harness pid $$" >> $HARNESS_LOG
 
-$JAVA_HOME/bin/java -Dweblogic.StdoutSeverityLevel=16 -Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=course_harvester.properties -Dhttps.protocols=TLSv1.2 -cp $CLASSPATH edu.stanford.harvester.Harvester $APP_HOME/conf/course_harvester.properties $APP_HOME/conf/course_processor.properties >> $HARNESS_LOG 2>&1
+$JAVA_HOME/bin/java -Dweblogic.StdoutSeverityLevel=16 -Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=course_harvester.properties -Dhttps.protocols=TLSv1.2 -cp $CLASSPATH edu.stanford.harvester.Harvester $CONF_HOME/course_harvester.properties $CONF_HOME/course_processor.properties >> $HARNESS_LOG 2>&1
 EXIT_CODE=$?
 
 t_stamp=`date "$dfmt"`

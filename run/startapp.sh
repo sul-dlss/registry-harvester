@@ -6,7 +6,8 @@
 #
  
 APP_NAME=harvester
-APP_HOME=/s/SUL/Harvester
+APP_HOME=/s/SUL/Harvester/current
+CONF_HOME=$APP_HOME/Person/src/main/resources
 JAVA_HOME=/usr
 
 cd $APP_HOME/run
@@ -51,7 +52,7 @@ done
 # well as the name of its property file be specified as a command-line argument
 # -Dlog4j.configuration=<property file>
 #
-CLASSPATH="/home/harvester/WebLogic_lib/wlthint3client-12.2.1.jar":${CLASSPATH}:$APP_HOME/conf
+CLASSPATH="$APP_HOME/WebLogic_lib/wlthint3client-12.2.1.jar":${CLASSPATH}:$CONF_HOME
 
 #sleeptime=7200
 sleeptime=86400
@@ -78,7 +79,7 @@ echo "$t_stamp $APP_NAME harness pid $$" >> $HARNESS_LOG
 while [ true ] ; do 
   echo "$t_stamp $APP_NAME starting inside harness loop" >> $HARNESS_LOG
 
-  $JAVA_HOME/bin/java -Dweblogic.StdoutSeverityLevel=16 -Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=harvester.properties -cp $CLASSPATH edu.stanford.harvester.Harvester $APP_HOME/conf/harvester.properties $APP_HOME/conf/processor.properties >> $HARNESS_LOG 2>&1
+  $JAVA_HOME/bin/java -Dweblogic.StdoutSeverityLevel=16 -Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=harvester.properties -cp $CLASSPATH edu.stanford.harvester.Harvester $CONF_HOME/harvester.properties $CONF_HOME/processor.properties >> $HARNESS_LOG 2>&1
   EXIT_CODE=$?
 
   t_stamp=`date "$dfmt"`
