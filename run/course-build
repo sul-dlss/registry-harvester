@@ -12,6 +12,7 @@ OUTFile=$3
 DATE=`date +%Y%m%d%H%M`
 
 /usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/remove_old_course_harvests.rb >> $LOG/course_build.log
+/usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/update_terms_conf.rb >> $LOG/course_build.log
 
 if [ -z $JVM1 ]
 then
