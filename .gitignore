@@ -8,3 +8,4 @@ include/courses/
 etc/
 log/
 out/
+.idea
