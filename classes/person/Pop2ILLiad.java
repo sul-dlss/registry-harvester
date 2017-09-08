@@ -198,10 +198,14 @@ public class Pop2ILLiad {
                 catch (java.lang.ArrayIndexOutOfBoundsException a)
                 {}
 
-								if (!expiry.after(today)) { 
-										System.out.println("SKIPPING: " + sunetid 
-											+ " [expiry is not after today:" + sdf_ill.format(today) 
-											+ ", expiry:" + sdf_ill.format(expiry) + "]"); 
+								if (email == null || !email.matches(EMAIL_PATTERN)) {
+										System.out.println("SKIPPING: " + sunetid + " [no email address in registry]");
+								}
+
+                if (!expiry.after(today)) {
+										System.out.println("SKIPPING: " + sunetid
+											+ " [expiry is not after today:" + sdf_ill.format(today)
+											+ ", expiry:" + sdf_ill.format(expiry) + "]");
 								}
 
                 if ((sunetid != null && sunetid.matches("\\w+"))
