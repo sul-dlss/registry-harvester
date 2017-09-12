@@ -39,7 +39,8 @@ then
 fi
 
 cp $HOME/include/courses/*.xml $HOME/include/courses/LastRun/
-cp $DATA/*.xml $DATA/LastRun/
+mkdir $DATA/LastRun$DATE
+cp -p $DATA/*.xml $DATA/LastRun$DATE/
 
 cd $HOME/classes
 
