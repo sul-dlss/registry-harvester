@@ -2,6 +2,8 @@ package course;
 
 public class BuildTermString {
   public static String getTerm (String term) {
+    // term will be 1, 2-year digit, 2|4|6|8
+    // i.e. the term for Fall 2017 is 1182
     String result = "";
 
     try {

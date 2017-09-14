@@ -37,6 +37,8 @@ public class BuildCourseXML {
   public static SimpleDateFormat dfy = new SimpleDateFormat("yy");
   public static String yr = new String();
   public static String nyr = new String();
+  public static String fall_yr = new String();
+  public static String fall_nyr = new String();
 
   public static void main (String [] args) throws Exception {
 
@@ -55,6 +57,10 @@ public class BuildCourseXML {
     Date nextYear = cal.getTime();
     yr = dfy.format(year);
     nyr = dfy.format(nextYear);
+    fall_yr = dfy.format(nextYear); // fall academic year is next calendar year
+    cal.add(Calendar.YEAR, +2);
+    Date nextNextYear = cal.getTime();
+    fall_nyr = dfy.format(nextNextYear); // fall next academic year is 2nd next calendar year
 
     Properties props = PropGet.getProps("../conf/terms.conf");
     String [] quarter = props.getProperty("TERMS").replaceAll("\\s+","").split(",");
@@ -76,6 +82,7 @@ public class BuildCourseXML {
       System.err.println("Reading file(s): " + fileY + " " + fileN);
       String fileLine = "";
 
+      // reads previously generated XML files and indexes courses by course ID
       try {
         while((fileLine = readerY.readLine()) != null) {
           if(quarter[t].equals("summer") && fileLine.indexOf("term=\"1"+yr+"8\"") > 0) {
@@ -90,8 +97,9 @@ public class BuildCourseXML {
             winterY.add(fileLine);
             System.err.println("winter "+yr+" size:" + winterY.size());
           }
-          if(quarter[t].equals("fall") && fileLine.indexOf("term=\"1"+yr+"2\"") > 0) {
+          if(quarter[t].equals("fall") && fileLine.indexOf("term=\"1"+fall_yr+"2\"") > 0) {
             fallY.add(fileLine);
+            // fallY will index courses by academic year (next calendar year)
             System.err.println("fall "+yr+" size:" + fallY.size());
           }
         }
@@ -108,8 +116,9 @@ public class BuildCourseXML {
             winterN.add(fileLine);
             System.err.println("winter "+nyr+" size:" + winterN.size());
           }
-          if(quarter[t].equals("fall") && fileLine.indexOf("term=\"1"+nyr+"2\"") > 0) {
+          if(quarter[t].equals("fall") && fileLine.indexOf("term=\"1"+fall_nyr+"2\"") > 0) {
             fallN.add(fileLine);
+            //fallN will index courses by next academic year (2nd next calendar year)
             System.err.println("fall "+nyr+" size:" + fallN.size());
           }
         }
@@ -190,12 +199,14 @@ public class BuildCourseXML {
           }
 
           if (Arrays.asList(quarter).contains("fall")
+          // fall current academic year courses get written to fallY file
               && termStr.equals("F") && shortYear.equals(yr)) {
             addOrSetContentForTerm(fallY, lineNew, id);
             saveFile(fallY, "fallY");
             transformAndSaveCourseClass(fallY, "F" + shortYear);
           }
           if (Arrays.asList(quarter).contains("fall")
+          // fall next academic year get written to fallN file (typically blank)
               && termStr.equals("F") && shortYear.equals(nyr)) {
             addOrSetContentForTerm(fallN, lineNew, id);
             saveFile(fallN, "fallN");
