@@ -138,12 +138,10 @@ public class BuildCourseXML {
       String line = "";
 
       while ((line = br.readLine()) != null) {
-        if (line.indexOf("<?xml") == 0) {
-          continue;
-        }
-        else if (line.indexOf("<?xml") > 0) {
-          int idx = line.indexOf("<?xml");
+        if (line.indexOf("</CourseClass>") > 0) {
+          int idx = line.indexOf("</CourseClass>");
           String lineNew = line.substring(0, idx);
+          lineNew = lineNew.concat("</CourseClass>");
 
           DocType dtype = new DocType("CourseClass");
           dtype.setPublicID("http://registry.stanford.edu/xml/courseclass/1.0/CourseClass.dtd");
@@ -212,6 +210,8 @@ public class BuildCourseXML {
             saveFile(fallN, "fallN");
             transformAndSaveCourseClass(fallN, "F" + shortYear);
           }
+        } else {
+          continue;
         }
       }
       out.close();
