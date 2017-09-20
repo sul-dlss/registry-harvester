@@ -12,14 +12,15 @@ then
   cd $KEY_DIR
   split -a 1 -l 5000 $KEY_FILE "userload.keys.$DATE."
 
-  cd $HOME/classes
+  cd $HOME/lib
 
   for FILE in `find $KEY_FILE.*`
   do
     echo "Processing $FILE for ILLiad" > $LOG/illiad.log
     echo "" >> $LOG/illiad.log
     cat $FILE | sort | uniq > ${FILE}_uniq
-    java -cp .:../lib/commons-io-2.4.jar:../lib/sqljdbc4.jar:shared/PropGet.class person/Pop2ILLiad ${FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
+
+    java -jar PersonToILLiad-jar-with-dependencies.jar edu.stanford.Pop2ILLiad ${FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
   done
 else
   cd $HOME/classes
@@ -27,7 +28,8 @@ else
   echo "Processing $KEY_FILE for ILLiad" > $LOG/illiad.log
   echo "" >> $LOG/illiad.log
   cat $KEY_FILE $KEY_FILE.3 | sort | uniq > ${KEY_FILE}_uniq
-  java -cp .:../lib/commons-io-2.4.jar:../lib/sqljdbc4.jar:shared/PropGet.class person/Pop2ILLiad ${KEY_FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
+
+  java -jar PersonToILLiad-jar-with-dependencies.jar edu.stanford.Pop2ILLiad ${KEY_FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
 fi
 
 if [ -z $(grep "Error" $LOG/illiad.log) ]

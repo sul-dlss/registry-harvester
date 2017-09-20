@@ -2,20 +2,81 @@
 Registry harvester that transforms registry people documents into a flat file format for loading into Symphony. This instance has beeen modified from the delivered MAiS project to further transform end export user records to ILLiad to support the Scan and Deliver service via SearchWorks.
 
 ## Installation and setup
+
+### One Time Setup
+
+Dependencies
+- Java 8
+- Maven 3
+- Oracle maven artifact access (see below)
+
+The Oracle JDBC maven artifacts require a license, follow the instructions at:
+- http://docs.oracle.com/middleware/1213/core/MAVEN/config_maven_repo.htm
+- https://blogs.oracle.com/dev2dev/entry/oracle_maven_repository_instructions_for
+
+Once the Oracle sign-up/sign-in and license agreement is accepted, add the sign-in
+credentials to maven settings.  Follow maven instructions to encrypt the passwords, see
+- https://maven.apache.org/guides/mini/guide-encryption.html
+  - encrypt a maven master password:
+
+          $ mvn --encrypt-master-password
+          Master password: TYPE_YOUR_PASSWD_HERE
+          {L+bX9REL8CAH/EkcFM4NPLUxjaEZ6nQ79feSk+xDxhE=}
+
+  - add the encrypted maven master password to `~/.m2/settings-security.xml` in a block like:
+
+          <settingsSecurity>
+              <master>{L+bX9REL8CAH/EkcFM4NPLUxjaEZ6nQ79feSk+xDxhE=}</master>
+          </settingsSecurity>
+
+  - encrypt oracle server password:
+
+          $ mvn --encrypt-password
+          Password: TYPE_YOUR_PASSWD_HERE
+          {JhJfPXeAJm0HU9VwsWngQS5qGreK29EQ3fdm/7Q7A7c=}
+
+  - add this encrypted oracle server password to `~/.m2/settings.xml` as a `server` element using this template:
+
+          <settings>
+            <servers>
+              <server>
+                <id>maven.oracle.com</id>
+                <username>your_oracle_username</username>
+                <password>{JhJfPXeAJm0HU9VwsWngQS5qGreK29EQ3fdm/7Q7A7c=}</password>
+                <configuration>
+                  <basicAuthScope>
+                    <host>ANY</host>
+                    <port>ANY</port>
+                    <realm>OAM 11g</realm>
+                  </basicAuthScope>
+                  <httpConfiguration>
+                    <all>
+                      <params>
+                        <property>
+                          <name>http.protocol.allow-circular-redirects</name>
+                          <value>%b,true</value>
+                        </property>
+                      </params>
+                    </all>
+                  </httpConfiguration>
+                </configuration>
+              </server>
+            </servers>
+          </settings>
+
+- For additional information about maven settings, see
+    - https://maven.apache.org/settings.html
+    - https://books.sonatype.com/nexus-book/reference/_adding_credentials_to_your_maven_settings.html
+    
 #### Checkout the project into /s/SUL on the Symphony server:
 
 git clone https://github.com/sul-dlss/registry-harvester.git Harvester
 
-#### Compile the java classes for the Person harvester
-```
-cd classes
-javac -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar:../lib/jdom-2.0.6.jar:shared/PropGet.class person/*.java
-```
+#### Create the CourseBuild and PersonToILLiad JAR files
 
-#### Compile the java classes for the course harvester
+Using Maven:
 ```
-cd classes/
-javac -cp .:../lib/commons-io-2.4.jar:../lib/jdom-2.0.6.jar:shared/PropGet.class course/*.java
+mvn clean install
 ```
 
 #### Copy /etc and /conf files from shared_configs
