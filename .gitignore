@@ -1,11 +1,14 @@
 !.gitignore
 
 certs/
+!certs/.keep
 include/courses/
 etc/*
 !etc/.keep
 log/
+!log/.keep
 out/
+!out/.keep
 **/*.iml
 **/.idea
 .idea/

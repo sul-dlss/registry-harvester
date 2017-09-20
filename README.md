@@ -83,7 +83,8 @@ mvn clean install
 
 https://github.com/sul-dlss/shared_configs
 
-The shared_configs branches are: `registry-harvester-test` and `registry-harvester-prod`.
+The shared_configs branches are: `registry-harvester-test` and `registry-harvester-prod`. You only need to do this
+one time unless you make further configuration changes:
 
 - Log on to the Symphony box and navigate into the `Harvester/shared` directory
 - `git clone` the https://github.com/sul-dlss/shared_configs.git repo
@@ -111,13 +112,13 @@ mkdir include/courses/LastRun
 
 The person registry harvester is normally run via the cron on libappprod1. The `do-harvest` script makes calls to a few other scripts to do log file preparation and to run the process to update the ILLiad database with data that was previously loaded into Symphony.
 ```
-15 21 * * * /s/SUL/Harvester/run/do-harvest  > /s/SUL/Harvester/log/harvest.log 2>&1
+15 21 * * * /s/SUL/Harvester/current/run/do-harvest  > /s/SUL/Harvester/current/log/harvest.log 2>&1
 ```
 
 Similarly, the course harvester is also normally run via cron with a subsequent script to build and copy the courseXML files for the <a href="https://github.com/sul-dlss/course_reserves">Course Reserves App</a>.
 ```
-15 15 * * 1-5 /s/SUL/Harvester/run/do-course-harvest  > /s/SUL/Harvester/log/course-harvest.log 2>&1
-40 7 * * 1-5 /s/SUL/Harvester/run/course-build 3G 12G latest > /s/SUL/Harvester/log/course_build.err 2>&1
+15 15 * * 1-5 /s/SUL/Harvester/current/run/do-course-harvest  > /s/SUL/Harvester/current/log/course-harvest.log 2>&1
+40 7 * * 1-5 /s/SUL/Harvester/current/run/course-build 3G 12G latest > /s/SUL/Harvester/current/log/course_build.err 2>&1
 ```
 
 In some circumstances it may be necessary to run harvests or the course build manually.
@@ -128,46 +129,49 @@ Using a file of University IDs, Registry IDs, or Course IDs you can re-harvest t
 
 <b>Person</b>: If you need to re-run a batch of registry IDs from a previously run harvest, you can extract the registry IDs using awk:
 ```
-cd /s/SUL/Harvester/log
+cd /s/SUL/Harvester/current/log
 grep "e.person" harvest.log | awk '{print $9}' | awk -F':' '{print $2}' > regid_file
 ```
 Then use the file as the first argument of the do-harvest-file script:
 ```
-/s/SUL/Harvester/run/do-harvest-file /path/to/regid_file YYYYMMDDHHmm(optional [default is now])
+/s/SUL/Harvester/current/run/do-harvest-file /path/to/regid_file YYYYMMDDHHmm(optional [default is now])
 ```
 Or use the same script with a file of University IDs.
 
 <b>Course</b>: If you need to re-run a batch of course IDs you can similarly extract the course IDs for a particular term using the term code as 4 digits: 1 (year 2000) 17 (16-17) 2/4/6/8(fall/winter/spring/summer):
 ```
-cd /s/SUL/Harvester/log
+cd /s/SUL/Harvester/current/log
 grep "1174" course_harvest.log.201612021153 | awk '{print $12}' > courseid_file
 ```
 Then use the file as the first argument of the do-course-harvest-file script:
 ```
-/s/SUL/Harvester/run/do-course-harvest-file /path/to/courseid_file
+/s/SUL/Harvester/current/run/do-course-harvest-file /path/to/courseid_file
 ```
 
 #### Manually populate the ILLiad Users Table
 
 With a file of Symphony user keys or a file of sunet ids you can populate the ILLiad Users table with one the following commands:
 ```
-cd classes
+cd /s/SUL/Harvester/current/lib
 ```
 With user keys:
 ```
-java -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar:../shared/PropGet.class person/Pop2ILLiad /path/to/userkey/file
+java -jar Person-jar-with-dependencies.jar edu.stanford.Pop2ILLiad /path/to/userkey/file
 ```
 With sunet ids:
 ```
-java -cp .:../lib/sqljdbc4.jar:../lib/commons-io-2.4.jar:../shared/PropGet.class person/Pop2ILLiad /path/to/sunetid/file sunet
+java -jar Person-jar-with-dependencies.jar edu.stanford.Pop2ILLiad /path/to/sunetid/file sunet
 ```
 #### Run the Course Build
 
 As mentioned above, you can cron the job by setting the appropriate date on the line that looks like this:
 ```
-10 10 10 10 * /s/SUL/Harvester/run/course-build 4G 16G > /s/SUL/Harvester/log/course_build.log 2>&1
+10 10 10 10 * /s/SUL/Harvester/current/run/course-build 4G 16G > /s/SUL/Harvester/current/log/course_build.log 2>&1
 ```
-Or simply run that command from the command line with an extra `&` at the end. The arguments represent the java heap size, Xms and Xmx respectively. To run an update using one or more new course_harvest.out files, append the file name(s) as a third argument. If there is no third argument the course-build will rerun on all course_harvest.out* files in the /s/SUL/Harvester/out directory, which will take many hours to complete. If you append `latest` as the third argument, it will run the course build on the most recent course_harvest.out file. If you do not supply any arguments, it will run the build on all files with the JVM defaults of -Xms2G -Xmx10G.
+Or simply run that command from the command line with an extra `&` at the end. The arguments represent the java heap size, Xms and Xmx respectively. 
+To run an update using one or more new course_harvest.out files, append the file name(s) as a third argument. 
+If there is no third argument the course-build will rerun on all course_harvest.out* files in the /s/SUL/Harvester/current/out directory, 
+which will take many hours to complete. If you append `latest` as the third argument, it will run the course build on the most recent course_harvest.out file. If you do not supply any arguments, it will run the build on all files with the JVM defaults of -Xms2G -Xmx10G.
 
 Prior to executing the course build, the `course-build` script will move all of the old `course_harvest.out` files to the `OldCourses` directory as specified by the codified term schedule in the `run/remove_old_course_harvests.rb` script.
 

@@ -18,7 +18,7 @@ puts "\nMoving old harvested course files, harvested before #{
       Date::MONTHNAMES[previous_term_hash(date).month]
     } #{previous_term_hash(date).year}"
 
-Dir.glob('/s/SUL/Harvester/out/course_harvest.out.*') do |filename|
+Dir.glob('/s/SUL/Harvester/current/out/course_harvest.out.*') do |filename|
   file = File.new(filename)
 	mtime = file.mtime
   mdate = mtime.strftime('%Y-%m-%d')

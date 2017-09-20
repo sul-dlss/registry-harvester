@@ -2,7 +2,7 @@
 
 . /s/SUL/Config/sirsi.env
 
-HOME=/s/SUL/Harvester
+HOME=/s/SUL/Harvester/current
 DATA=/s/SUL/Dataload/CourseReserves
 LOG=$HOME/log
 OUT=$HOME/out
@@ -13,6 +13,8 @@ DATE=`date +%Y%m%d%H%M`
 
 /usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/remove_old_course_harvests.rb >> $LOG/course_build.log
 /usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/update_terms_conf.rb >> $LOG/course_build.log
+
+export COURSE_TERMS=`cat $HOME/include/terms.conf`
 
 if [ -z $JVM1 ]
 then
@@ -44,9 +46,9 @@ cp -p $DATA/*.xml $DATA/LastRun$DATE/
 
 cd $HOME/lib
 
-echo "Running: java -jar -Xms${JVM1} -Xmx${JVM2} CourseBuild-jar-with-dependencies.jar edu.stanford.BuildCourseXML $OUTFile"
+echo "Running: java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar edu.stanford.BuildCourseXML $OUTFile"
 
-java -jar -Xms${JVM1} -Xmx${JVM2} CourseBuild-jar-with-dependencies.jar edu.stanford.BuildCourseXML $OUTFile
+java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar edu.stanford.BuildCourseXML $OUTFile
 
 echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
 cp $HOME/include/courses/courseXML_*.xml $DATA/

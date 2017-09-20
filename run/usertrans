@@ -2,8 +2,8 @@
 # Modifies the xsl output and calls the expect program to ftp file to symphony
 # use: no parameters
 
-HOME="/s/SUL/Harvester"
-LOG="$HOME/log"
+HOME=/s/SUL/Harvester/current
+LOG=$HOME/log
 DATE=$1
 
 if [ -z $DATE ]
