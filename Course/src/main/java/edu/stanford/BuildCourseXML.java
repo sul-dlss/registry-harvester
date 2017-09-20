@@ -47,6 +47,8 @@ public class BuildCourseXML {
 
     String TERMS = System.getenv("COURSE_TERMS");
 
+    if (TERMS == null) TERMS = "fall, spring, winter, summer";
+
     String [] quarter = TERMS.replaceAll("\\s+","").split(",");
     System.err.println("Processing terms: " + Arrays.toString(quarter));
 
