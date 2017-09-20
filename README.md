@@ -79,15 +79,27 @@ Using Maven:
 mvn clean install
 ```
 
-#### Copy /etc and /conf files from shared_configs
+#### Copy the config files from shared_configs
 
 https://github.com/sul-dlss/shared_configs
 
-The shared_configs branches are: registry-harvester-test and registry-harvester-prod.
+The shared_configs branches are: `registry-harvester-test` and `registry-harvester-prod`.
 
-The server.conf file contains connection info for the ILLiad user export. It is important to make sure that you have the right server.conf file in place so that test data does not get exported to production ILLiad and vice versa.
+- Log on to the Symphony box and navigate into the `Harvester/shared` directory
+- `git clone` the https://github.com/sul-dlss/shared_configs.git repo
+- `git fetch`
+- `git checkout registry-harvester-{stage}`
+- `cp -rlf * ../` 
 
-The harvester.properties file contains the registry connection information. It is important that you have the right harvester.properties file in place so that UAT (User Acceptance Testing) data does not get harvested on production Symphony, and that production registry data does not get harvested in test. If the latter happens you will have to grep | awk out the regids from the harvest.log file and run them against the run/do-harvest-file script.
+The server.conf file contains connection info for the ILLiad user export. 
+It is important to make sure that you have the right server.conf file in place so that 
+test data does not get exported to production ILLiad and vice versa.
+
+The harvester.properties file contains the registry connection information. 
+It is important that you have the right harvester.properties file in place so that 
+UAT (User Acceptance Testing) data does not get harvested on production Symphony, and that 
+production registry data does not get harvested in test. If that happens you will have to `grep | awk` 
+out the regids from the harvest.log file and run them against the run/do-harvest-file script.
 
 #### Create a LastRun directory for the course xml files
 If it is not already there:
