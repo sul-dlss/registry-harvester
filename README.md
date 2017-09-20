@@ -161,14 +161,14 @@ Prior to executing the course build, the `course-build` script will move all of 
 
 #### Specifying the course terms to build
 
-You can run the course build for one or more particular terms (fall, winter, spring, summer) in order to speed up processing. Do this by uncommenting or creating a line in the conf/terms.conf file, e.g.:
+You can run the course build for one or more particular terms (fall, winter, spring, summer) in order to speed up processing. Do this by setting the system COURSE_TERMS environment variable:
 ```
-TERMS=summer,spring,winter,fall
-# TERMS=summer,spring
-# TERMS=winter,fall
+$ export COURSE_TERMS=summer,spring,winter,fall
 ```
 
-<b>Important</b>: check the `conf.terms.conf` file during each intersession to make sure you are building courseXML files for the terms that are needed by the Course Reserves App (the current term and the next upcoming term).
+<b>Important</b>: The default set of COURSE_TERMS is specified in the /s/SUL/Config/sirsi.env file. 
+During each intersession it helps to make sure you are building courseXML files for the terms that 
+are needed by the Course Reserves App (the current term and the next upcoming term).
 
 #### Check on the status of the course build while it is running
 

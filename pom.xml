@@ -10,12 +10,13 @@
     <packaging>pom</packaging>
     <name>Registry Harvester for People and Courses</name>
     <modules>
-        <module>PersonToILLiad</module>
-        <module>CourseBuild</module>
+        <module>Person</module>
+        <module>Course</module>
     </modules>
 
     <build>
         <finalName>${project.artifactId}</finalName>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

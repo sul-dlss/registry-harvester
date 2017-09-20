@@ -1,9 +1,9 @@
 !.gitignore
 
 certs/
-conf/server.conf
 include/courses/
-etc/
+etc/*
+!etc/.keep
 log/
 out/
 **/*.iml
