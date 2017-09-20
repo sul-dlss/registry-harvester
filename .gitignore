@@ -7,5 +7,7 @@ etc/
 log/
 out/
 **/*.iml
+**/.idea
 .idea/
 **/target/*
+
