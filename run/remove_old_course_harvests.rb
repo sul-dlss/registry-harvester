@@ -23,7 +23,7 @@ Dir.glob('/s/SUL/Harvester/current/out/course_harvest.out.*') do |filename|
 	mtime = file.mtime
   mdate = mtime.strftime('%Y-%m-%d')
 
-	dir = '/s/SUL/Harvester/out/OldCourses'
+	dir = '/s/SUL/Harvester/current/out/OldCourses'
 	dirname = File.dirname(dir)
   FileUtils.mkdir(dir) unless Dir.exist?(dir)
 
