@@ -56,6 +56,11 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.5.4</version>
                 <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>edu.stanford.BuildCourseXML</mainClass>
+                        </manifest>
+                    </archive>
                     <!--<descriptor>src/assembly/bin.xml</descriptor>-->
                     <descriptor>src/assembly/jar-with-dependencies.xml</descriptor>
                     <outputDirectory>../lib</outputDirectory>

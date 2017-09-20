@@ -19,15 +19,6 @@
         <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
-                <configuration>
-                    <mainClass>main.java.edu.stanford.Pop2ILLiad</mainClass>
-                    <mainClass>main.java.edu.stanford.BuildCourseXML</mainClass>
-                </configuration>
-            </plugin>
-            <plugin>
                 <!-- UNIT TEST RUNNER -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
