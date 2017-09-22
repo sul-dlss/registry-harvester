@@ -7,7 +7,7 @@ JAVA_HOME=/usr
 
 cd $APP_HOME/run
 
-HARNESS_LOG=$APP_HOME/log/harness.log
+HARNESS_LOG=$APP_HOME/log/course_harness.log
 
 if [ ! -f $HARNESS_LOG ]
 then
@@ -48,7 +48,7 @@ done
 # -Dlog4j.configuration=<property file>
 #
 echo "ADDING wlthint3client-12.2.1.jar" >> $HARNESS_LOG
-CLASSPATH="/s/SUL/Harvester/WebLogic_lib/wlthint3client-12.2.1.jar":${CLASSPATH}:$CONF_HOME
+CLASSPATH="$APP_HOME/WebLogic_lib/wlthint3client-12.2.1.jar":${CLASSPATH}:$CONF_HOME
 
 # This block will allow the harvester to run continuously as a service
 #
