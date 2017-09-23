@@ -118,8 +118,8 @@ public class BuildCourseXML {
 
     // These are the harvested courses from the registry
     for (int f=0; f < args.length; f++) {
-      BufferedReader br = new BufferedReader(new FileReader(new File (args[f])));
       System.err.println("Processing " + args[f] + "\n");
+      BufferedReader br = new BufferedReader(new FileReader(new File (args[f])));
       BufferedWriter out = new BufferedWriter(new FileWriter(logFile, true));
       out.write("Processed: " + args[f] + "\n");
       String line = "";
