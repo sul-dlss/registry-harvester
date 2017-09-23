@@ -56,7 +56,7 @@ cd $HOME/lib
 
 echo "Running: java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar edu.stanford.BuildCourseXML $OUTFile"
 
-java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar edu.stanford.BuildCourseXML $OUTFile
+java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar edu.stanford.BuildCourseXML "$OUTFile"
 
 echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
 cp $HOME/include/courses/courseXML_*.xml $DATA/
