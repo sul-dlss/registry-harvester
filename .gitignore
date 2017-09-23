@@ -2,7 +2,7 @@
 
 certs/
 !certs/.keep
-course_files/*
+course_files/
 !course_files/.keep
 etc/*
 !etc/.keep
