@@ -20,7 +20,7 @@ then
     echo "" >> $LOG/illiad.log
     cat $FILE | sort | uniq > ${FILE}_uniq
 
-    java -jar Person-jar-with-dependencies.jar edu.stanford.Pop2ILLiad ${FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
+    java -jar Person-jar-with-dependencies.jar ${FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
   done
 else
   cd $HOME/lib
@@ -29,7 +29,7 @@ else
   echo "" >> $LOG/illiad.log
   cat $KEY_FILE $KEY_FILE.3 | sort | uniq > ${KEY_FILE}_uniq
 
-  java -jar Person-jar-with-dependencies.jar edu.stanford.Pop2ILLiad ${KEY_FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
+  java -jar Person-jar-with-dependencies.jar ${KEY_FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
 fi
 
 if [ -z $(grep "Error" $LOG/illiad.log) ]
