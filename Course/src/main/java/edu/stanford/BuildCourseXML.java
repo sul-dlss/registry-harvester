@@ -56,7 +56,6 @@ public class BuildCourseXML {
       File fileY = new File(System.getProperty("user.dir") + "/course_files/" + quarter[t] + "Y.reg.xml");
       File fileN = new File(System.getProperty("user.dir") + "/course_files/" + quarter[t] + "N.reg.xml");
 
-      System.err.println(fileY.toString() + " exists? " + fileY.exists());
       if (!fileY.exists()) {
          fileY.createNewFile();
       }
@@ -66,7 +65,7 @@ public class BuildCourseXML {
 
       BufferedReader readerY = new BufferedReader(new FileReader(fileY));
       BufferedReader readerN = new BufferedReader(new FileReader(fileN));
-      System.err.println("Reading file(s): " + fileY + " " + fileN);
+      System.err.println("Reading file(s): " + fileY.getName() + ", " + fileN.getName());
       String fileLine = "";
 
       // reads previously generated XML files and indexes courses by course ID
