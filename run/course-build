@@ -15,7 +15,7 @@ DATE=`date +%Y%m%d%H%M`
 /usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/update_terms_conf.rb >> $LOG/course_build.log
 
 if [[ -z $COURSE_TERMS ]]; then
-    export COURSE_TERMS=`cat $HOME/Course/srs/main/resources/terms.conf`
+    export COURSE_TERMS=`cat $HOME/Course/src/main/resources/terms.conf`
 fi
 
 if [ -z $JVM1 ]
