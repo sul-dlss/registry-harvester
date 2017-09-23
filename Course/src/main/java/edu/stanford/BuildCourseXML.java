@@ -53,8 +53,8 @@ public class BuildCourseXML {
     System.err.println("Processing terms: " + Arrays.toString(quarter));
 
     for(int t = 0; t < quarter.length; t++) {
-      File fileY = new File("../include/courses/" + quarter[t] + "Y.reg.xml");
-      File fileN = new File("../include/courses/" + quarter[t] + "N.reg.xml");
+      File fileY = new File("course_files" + quarter[t] + "Y.reg.xml");
+      File fileN = new File("course_files" + quarter[t] + "N.reg.xml");
 
       if (!fileY.exists()) {
          fileY.createNewFile();
@@ -227,7 +227,7 @@ public class BuildCourseXML {
 
       XMLOutputter out = new XMLOutputter();
 
-      String outFileName = "../include/courses/courseXML_" + term + ".xml";
+      String outFileName = "course_files/courseXML_" + term + ".xml";
 
       out.output(courseDoc, new FileWriter(outFileName));
 
@@ -240,7 +240,7 @@ public class BuildCourseXML {
       sb.append(string + "\n");
     }
     try{
-      File file = new File("../include/courses/" + term + ".reg.xml");
+      File file = new File("course_files/" + term + ".reg.xml");
       BufferedWriter out = new BufferedWriter(new FileWriter(file));
       out.write(sb.toString());
       out.close();

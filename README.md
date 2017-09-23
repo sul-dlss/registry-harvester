@@ -105,7 +105,7 @@ out the regids from the harvest.log file and run them against the run/do-harvest
 #### Create a LastRun directory for the course xml files
 If it is not already there:
 ```
-mkdir include/courses/LastRun
+mkdir course_files/LastRun
 ```
 
 ## Using the registry harvester

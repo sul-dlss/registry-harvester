@@ -2,7 +2,7 @@
 
 certs/
 !certs/.keep
-include/courses/
+course_files/
 etc/*
 !etc/.keep
 log/
