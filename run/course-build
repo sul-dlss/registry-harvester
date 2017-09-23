@@ -14,7 +14,9 @@ DATE=`date +%Y%m%d%H%M`
 /usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/remove_old_course_harvests.rb >> $LOG/course_build.log
 /usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/update_terms_conf.rb >> $LOG/course_build.log
 
-export COURSE_TERMS=`cat $HOME/Course/src/main/resources/terms.conf`
+if [[ -z $COURSE_TERMS ]]; then
+    export COURSE_TERMS=`cat $HOME/Course/srs/main/resources/terms.conf`
+fi
 
 if [ -z $JVM1 ]
 then
@@ -28,13 +30,38 @@ fi
 
 if [ "$OUTFile" == "latest" ]
 then
-  for F in `ls $OUT/TERMS.log
+  for F in `ls $OUT/course_harvest.out.* | tail -1`
+  do
+    OUTFile="$F"
+  done
+elif [ -z $OUTFile ]
+then
+  for F in `ls $OUT/course_harvest.out.*`
+  do
+    OUTFile="$OUTFile $F"
+  done
+fi
+
+cp $HOME/course_files/*.xml $HOME/course_files/LastRun/
+mkdir $DATA/LastRun$DATE
+cp -p $DATA/*.xml $DATA/LastRun$DATE/
+
+cd $HOME/lib
+
+echo "Running: java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar edu.stanford.BuildCourseXML $OUTFile"
+
+java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar edu.stanford.BuildCourseXML $OUTFile
+
+echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
+cp $HOME/include/courses/courseXML_*.xml $DATA/
+
+echo "" >> $LOG/course_build.log
 echo "New files generated:" >> $LOG/course_build.log
-ls -lS $HOME/course_files/*.xml >> $LOG/course_build.log
+ls -lS $HOME/include/courses/*.xml >> $LOG/course_build.log
 
 echo "" >> $LOG/course_build.log
 echo "Last Run:" >> $LOG/course_build.log
-ls -lS $HOME/course_files/LastRun/*.xml >> $LOG/course_build.log
+ls -lS $HOME/include/courses/LastRun/*.xml >> $LOG/course_build.log
 
 cat $LOG/course_build.log | mailx -s 'Course Build Log' sul-unicorn-devs@lists.stanford.edu
 
