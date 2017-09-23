@@ -59,15 +59,15 @@ echo "Running: java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.ja
 java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar edu.stanford.BuildCourseXML "$OUTFile"
 
 echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
-cp $HOME/include/courses/courseXML_*.xml $DATA/
+cp $HOME/course_file/courseXML_*.xml $DATA/
 
 echo "" >> $LOG/course_build.log
 echo "New files generated:" >> $LOG/course_build.log
-ls -lS $HOME/include/courses/*.xml >> $LOG/course_build.log
+ls -lS $HOME/course_files/*.xml >> $LOG/course_build.log
 
 echo "" >> $LOG/course_build.log
 echo "Last Run:" >> $LOG/course_build.log
-ls -lS $HOME/include/courses/LastRun/*.xml >> $LOG/course_build.log
+ls -lS $HOME/course_files/LastRun/*.xml >> $LOG/course_build.log
 
 cat $LOG/course_build.log | mailx -s 'Course Build Log' sul-unicorn-devs@lists.stanford.edu
 
