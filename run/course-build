@@ -42,8 +42,8 @@ then
   done
 fi
 
-if [[  -f $HOME/course_files/*.xml ]]; then
-    cp $HOME/course_files/*.xml $HOME/course_files/LastRun/
+if [[  -n `ls $HOME/course_files/*.xml` ]]; then
+    cp $HOME/course_files/*.xml $HOME/course_files/LastRun
 fi
 
 mkdir $DATA/LastRun$DATE
