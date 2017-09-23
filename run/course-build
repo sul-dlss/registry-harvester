@@ -52,11 +52,11 @@ if [[  -f $DATA/*.xml ]]; then
     cp -p $DATA/*.xml $DATA/LastRun$DATE/
 fi
 
-cd $HOME/lib
+cd $HOME
 
 echo "Running: java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar $OUTFile"
 
-java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar $OUTFile
+java -jar -Xms${JVM1} -Xmx${JVM2} lib/Course-jar-with-dependencies.jar $OUTFile
 
 echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
 cp $HOME/course_files/courseXML_*.xml $DATA/

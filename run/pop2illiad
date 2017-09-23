@@ -23,13 +23,13 @@ then
     java -jar Person-jar-with-dependencies.jar ${FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
   done
 else
-  cd $HOME/lib
+  cd $HOME
 
   echo "Processing $KEY_FILE for ILLiad" > $LOG/illiad.log
   echo "" >> $LOG/illiad.log
   cat $KEY_FILE $KEY_FILE.3 | sort | uniq > ${KEY_FILE}_uniq
 
-  java -jar Person-jar-with-dependencies.jar ${KEY_FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
+  java -jar lib/Person-jar-with-dependencies.jar ${KEY_FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
 fi
 
 if [ -z $(grep "Error" $LOG/illiad.log) ]
