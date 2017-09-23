@@ -75,9 +75,13 @@ git clone https://github.com/sul-dlss/registry-harvester.git Harvester
 #### Create the CourseBuild and PersonToILLiad JAR files
 
 Using Maven:
+
+To create the Person and Course JAR files, simpl run:
 ```
 mvn clean install
 ```
+More information about the Maven build lifecycle is here:
+https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
 
 #### Copy the config files from shared_configs
 
@@ -101,6 +105,12 @@ It is important that you have the right harvester.properties file in place so th
 UAT (User Acceptance Testing) data does not get harvested on production Symphony, and that 
 production registry data does not get harvested in test. If that happens you will have to `grep | awk` 
 out the regids from the harvest.log file and run them against the run/do-harvest-file script.
+
+#### Create a LastRun directory for the course xml files
+If it is not already there:
+```
+mkdir include/courses/LastRun
+```
 
 ## Using the registry harvester
 
