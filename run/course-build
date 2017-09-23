@@ -59,7 +59,7 @@ echo "Running: java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.ja
 java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar $OUTFile
 
 echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
-cp $HOME/course_file/courseXML_*.xml $DATA/
+cp $HOME/course_files/courseXML_*.xml $DATA/
 
 echo "" >> $LOG/course_build.log
 echo "New files generated:" >> $LOG/course_build.log

@@ -56,6 +56,7 @@ public class BuildCourseXML {
       File fileY = new File("course_files/" + quarter[t] + "Y.reg.xml");
       File fileN = new File("course_files/" + quarter[t] + "N.reg.xml");
 
+      System.err.println(fileY.toString() + " exists? " + fileY.exists());
       if (!fileY.exists()) {
          fileY.createNewFile();
       }
