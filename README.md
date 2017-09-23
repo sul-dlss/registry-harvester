@@ -102,12 +102,6 @@ UAT (User Acceptance Testing) data does not get harvested on production Symphony
 production registry data does not get harvested in test. If that happens you will have to `grep | awk` 
 out the regids from the harvest.log file and run them against the run/do-harvest-file script.
 
-#### Create a LastRun directory for the course xml files
-If it is not already there:
-```
-mkdir course_files/LastRun
-```
-
 ## Using the registry harvester
 
 The person registry harvester is normally run via the cron on libappprod1. The `do-harvest` script makes calls to a few other scripts to do log file preparation and to run the process to update the ILLiad database with data that was previously loaded into Symphony.

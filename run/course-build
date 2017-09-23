@@ -42,9 +42,15 @@ then
   done
 fi
 
-cp $HOME/course_files/*.xml $HOME/course_files/LastRun/
+if [[  -f $HOME/course_files/*.xml ]]; then
+    cp $HOME/course_files/*.xml $HOME/course_files/LastRun/
+fi
+
 mkdir $DATA/LastRun$DATE
-cp -p $DATA/*.xml $DATA/LastRun$DATE/
+
+if [[  -f $DATA/*.xml ]]; then
+    cp -p $DATA/*.xml $DATA/LastRun$DATE/
+fi
 
 cd $HOME/lib
 
