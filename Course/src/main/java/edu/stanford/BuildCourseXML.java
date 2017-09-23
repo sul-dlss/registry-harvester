@@ -15,7 +15,7 @@ import java.util.*;
 public class BuildCourseXML {
 
   public static SAXBuilder builder = new SAXBuilder();
-  public static File logFile = new File("log/course_build.log");
+  public static File logFile = new File(System.getProperty("user.dir") + "/log/course_build.log");
 
   public static SimpleDateFormat dfy = new SimpleDateFormat("yy");
   public static String yr = new String();
@@ -53,8 +53,8 @@ public class BuildCourseXML {
     System.err.println("Processing terms: " + Arrays.toString(quarter));
 
     for(int t = 0; t < quarter.length; t++) {
-      File fileY = new File("course_files/" + quarter[t] + "Y.reg.xml");
-      File fileN = new File("course_files/" + quarter[t] + "N.reg.xml");
+      File fileY = new File(System.getProperty("user.dir") + "/course_files/" + quarter[t] + "Y.reg.xml");
+      File fileN = new File(System.getProperty("user.dir") + "/course_files/" + quarter[t] + "N.reg.xml");
 
       System.err.println(fileY.toString() + " exists? " + fileY.exists());
       if (!fileY.exists()) {
