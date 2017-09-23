@@ -38,7 +38,7 @@ thisq = this_quarter(current_term_hash(date))
 nextq = next_quarter(current_term_hash(date))
 next2q = second_next_quarter(current_term_hash(date))
 
-File.open('/s/SUL/Harvester/conf/terms.conf', 'w') do |terms_file|
+File.open('/s/SUL/Harvester/current/Course/src/main/resources/terms.conf', 'w') do |terms_file|
   puts "TERMS=#{thisq},#{nextq},#{next2q}"
-  terms_file.syswrite("TERMS=#{thisq},#{nextq},#{next2q}\n")
+  terms_file.syswrite("#{thisq},#{nextq},#{next2q}\n")
 end

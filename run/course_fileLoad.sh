@@ -1,6 +1,7 @@
 #!/bin/sh
 
 APP_HOME=/s/SUL/Harvester
+CONF_HOME=$APP_HOME/Course/src/main/resources
 JAVA_HOME=/usr
 LOAD_FILE=$1
 
@@ -32,9 +33,9 @@ done
 # well as the name of its property file be specified as a command-line argument
 # -Dlog4j.configuration=<property file>
 #
-CLASSPATH="/s/SUL/Harvester/WebLogic_lib/wlthint3client-12.2.1.jar":${CLASSPATH}:$APP_HOME/conf
+CLASSPATH="/s/SUL/Harvester/WebLogic_lib/wlthint3client-12.2.1.jar":${CLASSPATH}:$CONF_HOME
 
-$JAVA_HOME/bin/java -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=course_harvester.properties -Dhttps.protocols=TLSv1.2 -cp $CLASSPATH edu.stanford.harvester.Harvester $APP_HOME/conf/course_harvester.properties $APP_HOME/conf/course_processor.properties $LOAD_FILE
+$JAVA_HOME/bin/java -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=course_harvester.properties -Dhttps.protocols=TLSv1.2 -cp $CLASSPATH edu.stanford.harvester.Harvester $CONF_HOME/course_harvester.properties $CONF_HOME/course_processor.properties $LOAD_FILE
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -gt 0 ] ; then
