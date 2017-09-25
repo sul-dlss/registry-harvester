@@ -76,6 +76,11 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>Person/src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
 
     <dependencies>

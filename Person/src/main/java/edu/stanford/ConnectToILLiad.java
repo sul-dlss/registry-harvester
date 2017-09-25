@@ -10,7 +10,6 @@ public class ConnectToILLiad {
         try
         {
             Statement stmt = connection.createStatement();
-            //System.out.println(transactSQL);
             stmt.executeUpdate(transactSQL);
         }
         catch (SQLException s) {

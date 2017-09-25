@@ -1,5 +1,6 @@
 package edu.stanford;
 
+import java.io.FileInputStream;
 import java.util.Map;
 import java.util.Properties;
 
@@ -15,7 +16,8 @@ public class GetTransactSQL {
 
   public static String transactSql (Map<String, String> illData, String sunetid) throws Exception {
 
-    Properties props = PropGet.getProps("server.conf");
+    Properties props = new Properties();
+    props.load(new FileInputStream("Person/src/main/resources/server.conf"));
     String table_name = props.getProperty("TABLE_NAME");
     String do_not_update_field = props.getProperty("NO_UPDATE");
 

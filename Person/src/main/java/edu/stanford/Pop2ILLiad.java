@@ -25,7 +25,8 @@ public class Pop2ILLiad {
 
         try
         {
-            Properties props = PropGet.getProps("server.conf");
+            Properties props = new Properties();
+            props.load(new FileInputStream("Person/src/main/resources/server.conf"));
             String user = props.getProperty("USER");
             String pass = props.getProperty("PASS");
             String server = props.getProperty("SERVER");
@@ -273,6 +274,7 @@ public class Pop2ILLiad {
         }
         catch (Exception e) {
             System.err.println("Pop2ILLiad: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
