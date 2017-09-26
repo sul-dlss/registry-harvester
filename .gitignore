@@ -1,10 +1,15 @@
 !.gitignore
 
 certs/
-classes/*.class
-classes/*/*.class
-conf/server.conf
-include/courses/
-etc/
+!certs/.keep
+course_files/
+!course_files/.keep
+etc/*
+!etc/.keep
 log/
+!log/.keep
 out/
+!out/.keep
+**/*.iml
+.idea/
+**/target/*
