@@ -38,15 +38,21 @@ public class BuildCourseXMLTable {
     Date nextNextYear = cal.getTime();
     String fall_nyr = dfy.format(nextNextYear); // fall next academic year is 2nd next calendar year
 
-    CourseDBService.openConnection();
-
     // These are the harvested courses from the registry being added to the COURSES table as CLOBs + metadata
     for (String arg : args) {
       BufferedReader br = new BufferedReader(new FileReader(new File(arg)));
       log.info("Processed: " + arg + "\n");
       String line;
 
+      int counter = 0;
+
       while (null != (line = br.readLine())) {
+
+        if (CourseDBService.dbConnection == null) {
+          CourseDBService.openConnection();
+          CourseDBService.dbConnection.setAutoCommit(false);
+        }
+
         if (line.indexOf("</CourseClass>") > 0) {
           int idx = line.indexOf("</CourseClass>");
           String lineNew = line.substring(0, idx);
@@ -70,6 +76,13 @@ public class BuildCourseXMLTable {
           } else {
             CourseDBInsert.insertCourse(id, lineNew);
             log.info(id + " inserted");
+          }
+
+          counter++;
+          if (counter > 100) {
+            CourseDBService.dbConnection.commit();
+            CourseDBService.closeConnection();
+            counter = 0;
           }
         }
       }
