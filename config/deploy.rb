@@ -36,12 +36,21 @@ set :linked_dirs, ['Course/src/main/resources', 'Person/src/main/resources', 'et
 set :keep_releases, 3
 
 namespace :deploy do
-  desc 'Copy JARs'
+  desc 'Deploy project and Copy JARs'
   after :finished, :restart do
     on roles(:app) do
        %w[ Course Person ].each do |f|
           upload! "lib/#{f}-jar-with-dependencies.jar" , "#{release_path}/lib"
        end
     end
+  end
+
+  task :copy_jars do
+    desc 'Copy the JARs only'
+      on roles(:app) do
+         %w[ Course Person ].each do |f|
+            upload! "lib/#{f}-jar-with-dependencies.jar" , "#{release_path}/lib"
+         end
+      end
   end
 end
