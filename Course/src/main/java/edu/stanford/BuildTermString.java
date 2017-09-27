@@ -33,18 +33,18 @@ class BuildTermString {
     String result = "";
 
     String [] parts = term.split(" ");
-    String quarter = parts[0];
+    String quarter = parts[0].toLowerCase();
     String year = parts[1];
 
     try {
       switch(quarter) {
-        case "Fall" : result = "2";
+        case "fall" : result = "2";
           break;
-        case "Winter" : result = "4";
+        case "winter" : result = "4";
           break;
-        case "Spring" : result = "6";
+        case "spring" : result = "6";
           break;
-        case "Summer" : result = "8";
+        case "summer" : result = "8";
           break;
         default: result = "";
           break;
