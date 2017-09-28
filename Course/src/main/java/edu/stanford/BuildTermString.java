@@ -1,6 +1,6 @@
 package edu.stanford;
 
-class BuildTermString {
+class   BuildTermString {
   static String getTerm(String term) {
     // term will be 1, 2-year digit, 2|4|6|8
     // i.e. the term for Fall 2017 is 1182
@@ -50,7 +50,7 @@ class BuildTermString {
           break;
       }
     }
-    catch (java.lang.StringIndexOutOfBoundsException e) {
+    catch (java.lang.ArrayIndexOutOfBoundsException e) {
       System.err.println(e.getMessage());
     }
 
@@ -83,22 +83,39 @@ class BuildTermString {
 
   static String getYear (String term){
     String century = "";
-    if(term.substring(0,1).equals("1")) {
-      century = "20";
+    int year = 0;
+
+    try {
+      if(term.substring(0,1).equals("1")) {
+        century = "20";
+      }
+
+      String academicYear = term.substring(1,3);
+      year = Integer.parseInt(academicYear);
+
+      if (getTerm(term).equals("F")) {
+        year = year - 1;
+      }
+    } catch (StringIndexOutOfBoundsException e) {
+      System.err.println(e.getMessage());
     }
-    String academicYear = term.substring(1,3);
-    int year = Integer.parseInt(academicYear);
-    if (getTerm(term).equals("F")) {
-      year = year - 1;
-    }
+
     return century + String.valueOf(year);
   }
 
   static String getShortYear (String term){
-    String academicYear = term.substring(1,3);
-    int year = Integer.parseInt(academicYear);
-    if (getTerm(term).equals("F")) {
-      year = year - 1;
+    String academicYear;
+    int year = 0;
+
+    try {
+      academicYear = term.substring(1,3);
+      year = Integer.parseInt(academicYear);
+
+      if (getTerm(term).equals("F")) {
+        year = year - 1;
+      }
+    } catch (StringIndexOutOfBoundsException e) {
+      System.err.println(e.getMessage());
     }
     return String.valueOf(year);
   }
@@ -106,15 +123,15 @@ class BuildTermString {
   static String classId (String id) {
     StringBuilder result = new StringBuilder();
     // id="1174-MS&amp;E-408A"
-    String [] parts = id.split("-");
 
     try {
+      String [] parts = id.split("-");
       result = new StringBuilder(getTerm(parts[0]));
       result.append(getShortYear(parts[0]));
       for (int i = 1; i < parts.length; i++) {
         result.append("-").append(parts[i]);
       }
-    } catch (ArrayIndexOutOfBoundsException e) {
+    } catch (NullPointerException e) {
       System.err.println(e.getMessage());
     }
 

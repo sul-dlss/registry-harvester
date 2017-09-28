@@ -13,10 +13,13 @@
         <module>Person</module>
         <module>Course</module>
     </modules>
-
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <build>
         <finalName>${project.artifactId}</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/edu/stanford</testSourceDirectory>
         <plugins>
             <plugin>
                 <!-- UNIT TEST RUNNER -->
