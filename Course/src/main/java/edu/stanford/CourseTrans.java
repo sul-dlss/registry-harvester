@@ -13,6 +13,7 @@ class CourseTrans {
     Element response = new Element("response");
 
     List <Element> courseClasses = regData.getChildren("CourseClass");
+
     for (Element courseClass : courseClasses) {
       String courseTitle = courseClass.getAttributeValue("title");
       String courseTerm = courseClass.getAttributeValue("term");
@@ -21,6 +22,7 @@ class CourseTrans {
       String termYear = BuildTermString.getLongTerm(courseTerm) + " " + BuildTermString.getYear(courseTerm);
       course.setAttribute("term", termYear);
       course.setAttribute("title", courseTitle);
+
 
       List<Element> classes = courseClass.getChildren("class");
       for (Element _class : classes) {
