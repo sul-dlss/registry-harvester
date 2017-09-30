@@ -16,12 +16,12 @@ class CourseDBLookup {
         return queryCourse(sql);
     }
 
-    private static String queryCourse(String sql) {
+    static String queryCourse(String sql) {
         StringBuilder result = new StringBuilder();
 
         try {
             Statement s = CourseDBService.dbConnection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY);
+                        ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()) {
                 result.append(rs.getString(1).trim());

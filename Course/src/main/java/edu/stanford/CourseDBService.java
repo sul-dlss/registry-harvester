@@ -3,7 +3,6 @@ package edu.stanford;
 import oracle.jdbc.pool.OracleDataSource;
 
 import javax.sql.DataSource;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -17,13 +16,29 @@ class CourseDBService {
 
     static Connection dbConnection;
 
+    static void openConnection() throws IOException, SQLException {
+        if (dbConnection == null) {
+            dbConnection = CourseDBService.open();
+        }
+    }
+
+    static void closeConnection() throws SQLException {
+        if (dbConnection != null) {
+            dbConnection.close();
+            dbConnection = null;
+        }
+    }
+
     static Connection open() throws SQLException, IOException {
         return dataSource().getConnection();
     }
 
-    private static DataSource dataSource() throws SQLException, IOException {
+    static DataSource dataSource() throws SQLException, IOException {
 
-        Properties props = PropGet.getProps();
+        String file = CourseDBService.class.getResource("/server.conf").getFile();
+        FileInputStream fileInput = new FileInputStream(file);
+        Properties props = new Properties();
+        props.load(fileInput);
 
         String server = props.getProperty("SERVER");
         String service = props.getProperty("SERVICE");
@@ -37,32 +52,5 @@ class CourseDBService {
         ds.setPassword(userPass);
 
         return ds;
-    }
-
-    static class PropGet {
-
-        static Properties getProps() throws IOException {
-
-            File file = new File("Course/src/main/resources/server.conf");
-            FileInputStream fileInput = new FileInputStream(file);
-            Properties props = new Properties();
-            props.load(fileInput);
-            fileInput.close();
-
-            return props;
-        }
-    }
-
-    static void openConnection() throws IOException, SQLException {
-        if (dbConnection == null) {
-            dbConnection = CourseDBService.open();
-        }
-    }
-
-    static void closeConnection() throws SQLException {
-        if (dbConnection != null) {
-            dbConnection.close();
-            dbConnection = null;
-        }
     }
 }
