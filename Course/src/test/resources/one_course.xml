@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <courseclass term="Spring 2017" title="Employment Discrimination">
+        <class id="SP17-LAW-7019">
+            <section category="Lecture" id="01">
+                <instructors>
+                    <instructor sunetid="rford">Ford, Richard</instructor>
+                </instructors>
+            </section>
+        </class>
+    </courseclass>
+</response>
