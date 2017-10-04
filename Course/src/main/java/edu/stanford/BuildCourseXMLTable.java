@@ -50,28 +50,28 @@ public class BuildCourseXMLTable {
 
         buildCourseTable(line);
 
+      }
 
-        for (String aQuarter : quarter) {
+      for (String aQuarter : quarter) {
 
-          String termCode;
+        String termCode;
 
-          if (aQuarter.equals("Fall")) {
+        if (aQuarter.equals("Fall")) {
 
-            termCode = BuildTermString.getTermCode(aQuarter + " " + getNextYear());
-            saveCourseClass(transformCourseClass(termCode), termCode);
+          termCode = BuildTermString.getTermCode(aQuarter + " " + getNextYear());
+          saveCourseClass(transformCourseClass(termCode), termCode);
 
-            termCode = BuildTermString.getTermCode(aQuarter + " " + getNextNextYear());
-            saveCourseClass(transformCourseClass(termCode), termCode);
+          termCode = BuildTermString.getTermCode(aQuarter + " " + getNextNextYear());
+          saveCourseClass(transformCourseClass(termCode), termCode);
 
-          } else {
+        } else {
 
-            termCode = BuildTermString.getTermCode(aQuarter + " " + getYear());
-            saveCourseClass(transformCourseClass(termCode), termCode);
+          termCode = BuildTermString.getTermCode(aQuarter + " " + getYear());
+          saveCourseClass(transformCourseClass(termCode), termCode);
 
-            termCode = BuildTermString.getTermCode(aQuarter + " " + getNextYear());
-            saveCourseClass(transformCourseClass(termCode), termCode);
+          termCode = BuildTermString.getTermCode(aQuarter + " " + getNextYear());
+          saveCourseClass(transformCourseClass(termCode), termCode);
 
-          }
         }
       }
 
