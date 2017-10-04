@@ -5,6 +5,7 @@ import oracle.jdbc.pool.OracleDataSource;
 import javax.sql.DataSource;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -16,7 +17,7 @@ class CourseDBService {
 
     static Connection dbConnection;
 
-    static void openConnection() throws IOException, SQLException {
+    static void openConnection() throws IOException, SQLException, URISyntaxException {
         if (dbConnection == null) {
             dbConnection = CourseDBService.open();
         }
@@ -29,16 +30,13 @@ class CourseDBService {
         }
     }
 
-    private static Connection open() throws SQLException, IOException {
+    private static Connection open() throws SQLException, IOException, URISyntaxException {
         return dataSource().getConnection();
     }
 
-    private static DataSource dataSource() throws SQLException, IOException {
+    private static DataSource dataSource() throws SQLException, IOException, URISyntaxException {
 
-        String file = CourseDBService.class.getClassLoader().getResource("server.conf").getFile();
-        FileInputStream fileInput = new FileInputStream(file);
-        Properties props = new Properties();
-        props.load(fileInput);
+        Properties props = getProps();
 
         String server = props.getProperty("SERVER");
         String service = props.getProperty("SERVICE");
@@ -52,5 +50,11 @@ class CourseDBService {
         ds.setPassword(userPass);
 
         return ds;
+    }
+
+    private static Properties getProps() throws IOException {
+        Properties props = new Properties();
+        props.load(new FileInputStream("Course/src/main/resources/server.conf"));
+        return props;
     }
 }
