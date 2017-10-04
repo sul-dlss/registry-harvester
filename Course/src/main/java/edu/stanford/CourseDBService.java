@@ -29,13 +29,13 @@ class CourseDBService {
         }
     }
 
-    static Connection open() throws SQLException, IOException {
+    private static Connection open() throws SQLException, IOException {
         return dataSource().getConnection();
     }
 
-    static DataSource dataSource() throws SQLException, IOException {
+    private static DataSource dataSource() throws SQLException, IOException {
 
-        String file = CourseDBService.class.getResource("/server.conf").getFile();
+        String file = CourseDBService.class.getClassLoader().getResource("server.conf").getFile();
         FileInputStream fileInput = new FileInputStream(file);
         Properties props = new Properties();
         props.load(fileInput);
