@@ -131,6 +131,7 @@ public class BuildCourseXMLTable {
 
   static void saveCourseClass(Document courseDoc, String termCode) throws IOException {
     String termName = BuildTermString.getTerm(termCode) + BuildTermString.getShortYear(termCode);
+    log.info("Saving " + termName + " XML File");
     String outFileName = System.getProperty("user.dir") + "/course_files/courseXML_" + termName + ".xml";
 
     XMLOutputter out = new XMLOutputter();
@@ -141,19 +142,32 @@ public class BuildCourseXMLTable {
   @CoverageIgnore
   private static Document transformCourseClass(String termCode) throws Exception {
     InputSource is = new InputSource();
-    is.setCharacterStream(new StringReader(courseXML(termCode)));
+    Document doc = new Document();
+    try {
+      is.setCharacterStream(new StringReader(courseXML(termCode)));
+      doc = CourseTrans.courseDoc(getDocument(is));
+    } catch (Exception e) {
+      log.warn("No input source for document: " + e.getMessage());
+    }
 
-    return CourseTrans.courseDoc(getDocument(is));
+    return doc;
   }
 
   @CoverageIgnore
   private static String courseXML(String termCode) {
 
-    return ("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
-            + "<!DOCTYPE CourseClass SYSTEM \"http://registry.stanford.edu/xml/courseclass/1.0/CourseClass.dtd\">"
-            + "<RegData>") +
-            CourseDBLookup.lookupCourseXML(termCode) +
-            "</RegData>";
+    String regData = null;
+
+    try {
+      String lookup = CourseDBLookup.lookupCourseXML(termCode);
+      regData =  "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
+              + "<!DOCTYPE CourseClass SYSTEM \"http://registry.stanford.edu/xml/courseclass/1.0/CourseClass.dtd\">"
+              + "<RegData>" + lookup + "</RegData>";
+    } catch (NullPointerException e) {
+      log.warn("Lookup course returned " + e.getMessage());
+    }
+
+    return regData;
   }
 
   static Document getDocument(InputSource is) throws JDOMException, IOException {
