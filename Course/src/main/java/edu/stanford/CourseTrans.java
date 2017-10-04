@@ -10,7 +10,6 @@ class CourseTrans {
 
   private static Element newCourse;
   private static Element newClass;
-  private static Element response = new Element("response");
 
   static org.jdom2.Document courseDoc(org.jdom2.Document docin) throws Exception {
 
@@ -18,15 +17,17 @@ class CourseTrans {
 
     List <Element> courseClasses = regData.getChildren("CourseClass");
 
+    Element response = new Element("response");
+
     for (Element courseClass : courseClasses) {
-      processCourseClasses(courseClass);
+      processCourseClasses(response, courseClass);
     }
 
     DocType dtype = new DocType(response.getName());
     return new Document(response, dtype);
   }
 
-  static void processCourseClasses(Element courseClass) throws Exception {
+  static void processCourseClasses(Element response, Element courseClass) throws Exception {
 
     response.addContent(createNewCourse(courseClass));
 

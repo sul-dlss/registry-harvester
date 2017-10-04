@@ -42,8 +42,9 @@ public class CourseTransTest {
 
     @Test
     public void processCourseClasses() throws Exception {
+        Element response = new Element("response");
         Element regData = course_class_doc.getRootElement();
-        CourseTrans.processCourseClasses(regData);
+        CourseTrans.processCourseClasses(response, regData);
     }
 
     @Test
