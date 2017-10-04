@@ -27,7 +27,6 @@ public class Pop2ILLiad {
         {
             Properties props = new Properties();
             props.load(new FileInputStream("Person/src/main/resources/server.conf"));
-
             String user = props.getProperty("USER");
             String pass = props.getProperty("PASS");
             String server = props.getProperty("SERVER");

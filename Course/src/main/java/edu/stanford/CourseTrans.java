@@ -86,5 +86,4 @@ class CourseTrans {
 
     return newSection;
   }
-
 }
