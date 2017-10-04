@@ -11,6 +11,7 @@ import org.jdom2.output.XMLOutputter;
 import org.xml.sax.InputSource;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -23,14 +24,19 @@ public class BuildCourseXMLTable {
 
   private static SAXBuilder builder = new SAXBuilder();
 
-  static Calendar cal = Calendar.getInstance();   // Gets the current date and time
-
   static SimpleDateFormat dfy = new SimpleDateFormat("yy");
 
   private static int counter = 0;
 
   @CoverageIgnore
   public static void main (String [] args) throws Exception {
+
+    String TERMS = System.getenv("COURSE_TERMS");
+    if (TERMS == null) TERMS = "Fall, Spring, Winter, Summer";
+
+    String [] quarter = TERMS.replaceAll("\\s+","").split(",");
+
+    log.info("Processing terms: " + Arrays.toString(quarter));
 
     // These are the harvested courses from the registry being added to the COURSES table as CLOBs + metadata
     for (String arg : args) {
@@ -44,12 +50,6 @@ public class BuildCourseXMLTable {
 
         buildCourseTable(line);
 
-        String TERMS = System.getenv("COURSE_TERMS");
-        if (TERMS == null) TERMS = "Fall, Spring, Winter, Summer";
-
-        String [] quarter = TERMS.replaceAll("\\s+","").split(",");
-
-        System.err.println("Processing terms: " + Arrays.toString(quarter));
 
         for (String aQuarter : quarter) {
 
@@ -80,23 +80,25 @@ public class BuildCourseXMLTable {
   }
 
   @CoverageIgnore
-  private static void buildCourseTable(String line) throws IOException, SQLException, JDOMException {
+  private static void buildCourseTable(String line) throws IOException, SQLException, JDOMException, URISyntaxException {
     if (CourseDBService.dbConnection == null) {
       CourseDBService.openConnection();
       CourseDBService.dbConnection.setAutoCommit(false);
     }
 
-    Element root = getClassCourse(lineNew(line)).getRootElement();
-    String id = root.getAttributeValue("id");
+    if (lineNew(line) != null) {
+      Element root = getClassCourse(lineNew(line)).getRootElement();
+      String id = root.getAttributeValue("id");
 
-    String rowExists = CourseDBLookup.lookupCourse(id);
+      String rowExists = CourseDBLookup.lookupCourse(id);
 
-    if (rowExists.length() > 0) {
-      CourseDBUpdate.updateCourse(id, lineNew(line));
-      log.info(id + " updated");
-    } else {
-      CourseDBInsert.insertCourse(id, lineNew(line));
-      log.info(id + " inserted");
+      if (rowExists.length() > 0) {
+        CourseDBUpdate.updateCourse(id, lineNew(line));
+        log.info(id + " updated");
+      } else {
+        CourseDBInsert.insertCourse(id, lineNew(line));
+        log.info(id + " inserted");
+      }
     }
 
     counter++;
@@ -109,12 +111,15 @@ public class BuildCourseXMLTable {
 
   static String lineNew(String line) throws  StringIndexOutOfBoundsException {
     int idx = line.indexOf("</CourseClass>");
-    String lineNew = line.substring(0, idx);
-    lineNew = lineNew.concat("</CourseClass>");
-    return lineNew;
+    if (idx > -1){
+      String lineNew = line.substring(0, idx);
+      lineNew = lineNew.concat("</CourseClass>");
+      return lineNew;
+    }
+    return null;
   }
 
-  static Document getClassCourse(String lineNew) throws JDOMException, IOException {
+  private static Document getClassCourse(String lineNew) throws JDOMException, IOException {
     DocType dtype = new DocType("CourseClass");
     dtype.setPublicID("http://registry.stanford.edu/xml/courseclass/1.0/CourseClass.dtd");
     InputSource is = new InputSource();
@@ -125,9 +130,8 @@ public class BuildCourseXMLTable {
   }
 
   static void saveCourseClass(Document courseDoc, String termCode) throws IOException {
-    String outFileName = System.getProperty("user.dir") + "/course_files/courseXML_" +
-            BuildTermString.getTerm(termCode) +
-            BuildTermString.getShortYear(termCode) + ".xml";
+    String termName = BuildTermString.getTerm(termCode) + BuildTermString.getShortYear(termCode);
+    String outFileName = System.getProperty("user.dir") + "/course_files/courseXML_" + termName + ".xml";
 
     XMLOutputter out = new XMLOutputter();
 
@@ -160,11 +164,13 @@ public class BuildCourseXMLTable {
   }
 
   static String getYear() {
+    Calendar cal = Calendar.getInstance(); // Gets the current date and time
     Date year = cal.getTime();
     return dfy.format(year);
   }
 
   static String getNextYear() {
+    Calendar cal = Calendar.getInstance();
     cal.add(Calendar.YEAR, +1);
     Date nextYear = cal.getTime();
     return dfy.format(nextYear);
@@ -172,6 +178,7 @@ public class BuildCourseXMLTable {
 
   // fall next academic year is 2nd next calendar year
   static String getNextNextYear() {
+    Calendar cal = Calendar.getInstance();
     cal.add(Calendar.YEAR, +2);
     Date nextNextYear = cal.getTime();
     return dfy.format(nextNextYear);

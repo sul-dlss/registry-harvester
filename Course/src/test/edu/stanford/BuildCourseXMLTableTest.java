@@ -16,7 +16,6 @@ import static org.junit.Assert.*;
 
 public class BuildCourseXMLTableTest {
 
-    private Calendar cal = BuildCourseXMLTable.cal;
     private SimpleDateFormat dfy = BuildCourseXMLTable.dfy;
 
     private Document course_doc;
@@ -53,6 +52,7 @@ public class BuildCourseXMLTableTest {
                 "<!DOCTYPE CourseClass SYSTEM \"http://registry.stanford.edu/xml/courseclass/1.0/CourseClass.dtd\">";
 
         String line = BuildCourseXMLTable.lineNew(registryStr);
+        assertNotNull(line);
         assertTrue(line.contains("<CourseClass"));
         assertTrue(line.contains("</CourseClass>"));
         assertFalse(line.contains("<?xml version=\"1.0\""));
@@ -91,12 +91,14 @@ public class BuildCourseXMLTableTest {
 
     @Test
     public void getYear() throws Exception {
+        Calendar cal = Calendar.getInstance();
         String yr = BuildCourseXMLTable.getYear();
         assertEquals(dfy.format(cal.getTime()), yr);
     }
 
     @Test
     public void getNextYear() throws Exception {
+        Calendar cal = Calendar.getInstance();
         cal.add(Calendar.YEAR, +1);
         String ny = BuildCourseXMLTable.getNextYear();
         assertEquals(dfy.format(cal.getTime()), ny);
@@ -104,6 +106,7 @@ public class BuildCourseXMLTableTest {
 
     @Test
     public void getNextNextYear() throws Exception {
+        Calendar cal = Calendar.getInstance();
         cal.add(Calendar.YEAR, +2);
         String nny = BuildCourseXMLTable.getNextNextYear();
         assertEquals(dfy.format(cal.getTime()), nny);
