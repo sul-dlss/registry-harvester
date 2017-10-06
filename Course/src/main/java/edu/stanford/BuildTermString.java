@@ -34,11 +34,15 @@ class   BuildTermString {
 
     String [] parts = term.split(" ");
     String quarter = parts[0].toLowerCase();
-    String year = parts[1];
+
+    int year = Integer.parseInt(parts[1]);
 
     try {
       switch(quarter) {
-        case "fall" : result = "2";
+        case "fall" :
+          result = "2";
+          //fall academic year is next calendar year
+          year++;
           break;
         case "winter" : result = "4";
           break;
@@ -54,7 +58,7 @@ class   BuildTermString {
       System.err.println(e.getMessage());
     }
 
-    return "1" + year + result;
+    return "1" + String.valueOf(year) + result;
   }
 
   static String getLongTerm (String term) {

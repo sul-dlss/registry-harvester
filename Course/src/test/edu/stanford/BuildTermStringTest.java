@@ -46,7 +46,7 @@ public class BuildTermStringTest {
         assertEquals("199", termString);
 
         termString = BuildTermString.getTermCode("Fall 17");
-        assertEquals("1172", termString);
+        assertEquals("1182", termString);
 
         termString = BuildTermString.getTermCode("Winter 17");
         assertEquals("1174", termString);

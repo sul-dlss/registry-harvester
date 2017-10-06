@@ -31,13 +31,6 @@ public class BuildCourseXMLTable {
   @CoverageIgnore
   public static void main (String [] args) throws Exception {
 
-    String TERMS = System.getenv("COURSE_TERMS");
-    if (TERMS == null) TERMS = "Fall, Spring, Winter, Summer";
-
-    String [] quarter = TERMS.replaceAll("\\s+","").split(",");
-
-    log.info("Processing terms: " + Arrays.toString(quarter));
-
     // These are the harvested courses from the registry being added to the COURSES table as CLOBs + metadata
     for (String arg : args) {
       log.info("Loading data from: " + arg + " into table\n");
@@ -52,31 +45,32 @@ public class BuildCourseXMLTable {
 
       }
 
-      for (String aQuarter : quarter) {
+      String TERMS = System.getenv("COURSE_TERMS");
+      if (TERMS == null) TERMS = "Fall, Spring, Winter, Summer";
 
-        String termCode;
+      String [] quarter = TERMS.replaceAll("\\s+","").split(",");
 
-        if (aQuarter.equals("Fall")) {
-
-          termCode = BuildTermString.getTermCode(aQuarter + " " + getNextYear());
-          saveCourseClass(transformCourseClass(termCode), termCode);
-
-          termCode = BuildTermString.getTermCode(aQuarter + " " + getNextNextYear());
-          saveCourseClass(transformCourseClass(termCode), termCode);
-
-        } else {
-
-          termCode = BuildTermString.getTermCode(aQuarter + " " + getYear());
-          saveCourseClass(transformCourseClass(termCode), termCode);
-
-          termCode = BuildTermString.getTermCode(aQuarter + " " + getNextYear());
-          saveCourseClass(transformCourseClass(termCode), termCode);
-
-        }
-      }
-
-      CourseDBService.closeConnection();
+      processQuarters(quarter);
     }
+  }
+
+  private static void processQuarters(String [] quarter) throws Exception {
+
+    log.info("Processing terms: " + Arrays.toString(quarter));
+
+    for (String aQuarter : quarter) {
+
+      String termCode;
+
+      termCode = BuildTermString.getTermCode(aQuarter + " " + getYear());
+      saveCourseClass(transformCourseClass(termCode), termCode);
+
+      termCode = BuildTermString.getTermCode(aQuarter + " " + getNextYear());
+      saveCourseClass(transformCourseClass(termCode), termCode);
+
+    }
+
+    CourseDBService.closeConnection();
   }
 
   @CoverageIgnore
@@ -188,13 +182,5 @@ public class BuildCourseXMLTable {
     cal.add(Calendar.YEAR, +1);
     Date nextYear = cal.getTime();
     return dfy.format(nextYear);
-  }
-
-  // fall next academic year is 2nd next calendar year
-  static String getNextNextYear() {
-    Calendar cal = Calendar.getInstance();
-    cal.add(Calendar.YEAR, +2);
-    Date nextNextYear = cal.getTime();
-    return dfy.format(nextNextYear);
   }
 }

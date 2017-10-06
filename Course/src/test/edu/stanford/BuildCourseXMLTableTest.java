@@ -41,6 +41,10 @@ public class BuildCourseXMLTableTest {
     }
 
     @Test
+    public void processQuarters() throws Exception {
+    }
+
+    @Test
     public void buildCourseTable() throws Exception {
     }
 
@@ -103,13 +107,4 @@ public class BuildCourseXMLTableTest {
         String ny = BuildCourseXMLTable.getNextYear();
         assertEquals(dfy.format(cal.getTime()), ny);
     }
-
-    @Test
-    public void getNextNextYear() throws Exception {
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.YEAR, +2);
-        String nny = BuildCourseXMLTable.getNextNextYear();
-        assertEquals(dfy.format(cal.getTime()), nny);
-    }
-
 }
