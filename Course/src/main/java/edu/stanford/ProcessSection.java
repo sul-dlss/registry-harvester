@@ -33,7 +33,7 @@ class ProcessSection {
                         String instructorSunet = person.getAttributeValue("sunetid");
                         String instructorName = person.getText();
 
-                        if (instructorSunet != null) {
+                        if ((instructorSunet != null) && !instructorSunet.isEmpty()) {
 
                             if (!sunetList.contains(instructorSunet + "\u001d" + instructorName)) {
                                 sunetList.add(instructorSunet + "\u001d" + instructorName);
