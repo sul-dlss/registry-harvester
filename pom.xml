@@ -13,10 +13,13 @@
         <module>Person</module>
         <module>Course</module>
     </modules>
-
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <build>
         <finalName>${project.artifactId}</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test</testSourceDirectory>
         <plugins>
             <plugin>
                 <!-- UNIT TEST RUNNER -->
@@ -58,6 +61,14 @@
                     <maxmem>256m</maxmem>
                     <!-- aggregated reports for multi-module projects -->
                     <aggregate>true</aggregate>
+                    <instrumentation>
+                        <excludes>
+                            <exclude>edu/stanford/CourseDB*.*</exclude>
+                            <exclude>edu/stanford/Connect*.*</exclude>
+                        </excludes>
+                        <ignoreTrivial>true</ignoreTrivial>
+                        <ignoreMethodAnnotation>edu.stanford.CoverageIgnore</ignoreMethodAnnotation>
+                    </instrumentation>
                 </configuration>
             </plugin>
         </plugins>
@@ -88,5 +99,22 @@
             <artifactId>maven-core</artifactId>
             <version>3.5.0</version>
         </dependency>
+
+        <!--TESTS-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 </project>

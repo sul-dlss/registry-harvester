@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/github/sul-dlss/registry-harvester/badge.svg?branch=master)](https://coveralls.io/github/sul-dlss/registry-harvester?branch=master)
 # registry-harvester
 Registry harvester that transforms registry people documents into a flat file format for loading into Symphony. This instance has beeen modified from the delivered MAiS project to further transform end export user records to ILLiad to support the Scan and Deliver service via SearchWorks.
 
@@ -12,7 +13,6 @@ Dependencies
 
 The Oracle JDBC maven artifacts require a license, follow the instructions at:
 - http://docs.oracle.com/middleware/1213/core/MAVEN/config_maven_repo.htm
-- https://blogs.oracle.com/dev2dev/entry/oracle_maven_repository_instructions_for
 
 Once the Oracle sign-up/sign-in and license agreement is accepted, add the sign-in
 credentials to maven settings.  Follow maven instructions to encrypt the passwords, see
@@ -64,9 +64,7 @@ credentials to maven settings.  Follow maven instructions to encrypt the passwor
             </servers>
           </settings>
 
-- For additional information about maven settings, see
-    - https://maven.apache.org/settings.html
-    - https://books.sonatype.com/nexus-book/reference/_adding_credentials_to_your_maven_settings.html
+See https://maven.apache.org/settings.html for additional information about maven settings.
     
 #### Checkout the project into /s/SUL on the Symphony server:
 
@@ -109,7 +107,7 @@ out the regids from the harvest.log file and run them against the run/do-harvest
 #### Create a LastRun directory for the course xml files
 If it is not already there:
 ```
-mkdir include/courses/LastRun
+mkdir course_files/LastRun
 ```
 
 ## Using the registry harvester
@@ -160,11 +158,11 @@ cd /s/SUL/Harvester/current/lib
 ```
 With user keys:
 ```
-java -jar Person-jar-with-dependencies.jar edu.stanford.Pop2ILLiad /path/to/userkey/file
+java -jar Person-jar-with-dependencies.jar /path/to/userkey/file
 ```
 With sunet ids:
 ```
-java -jar Person-jar-with-dependencies.jar edu.stanford.Pop2ILLiad /path/to/sunetid/file sunet
+java -jar Person-jar-with-dependencies.jar /path/to/sunetid/file sunet
 ```
 #### Run the Course Build
 
@@ -194,4 +192,4 @@ are needed by the Course Reserves App (the current term and the next upcoming te
 
 From the Harvester root directory `/s/SUL/Bin/Harvester` do `tail log/course_build.log` which will show you the last few courses processed. `grep "Processing" log/course_build.log` will show you the course_harvest.out files that were processed. To see the actual process information this command is useful: `ps aux --sort -rss | less`
 
-The BuildCourseXML java process will most likely be at the very top. You can also see the courseXML files and the registry term xml saved files being built by listing the `includes/courses/` directory.
+The BuildCourseXML java process will most likely be at the very top. You can also see the courseXML files and the registry term xml saved files being built by listing the `course_files/` directory.

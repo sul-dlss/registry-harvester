@@ -11,13 +11,13 @@ import java.util.*;
 public class Pop2ILLiad {
 
     private static final String EMAIL_PATTERN =
-    "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+    "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@"
     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
     public static void main (String [] args) throws Exception {
 
         Date today = new Date();
-        Date expiry = new Date();
+        Date expiry;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         SimpleDateFormat sdf_ill = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
 
@@ -54,22 +54,22 @@ public class Pop2ILLiad {
             rcj.setPortNumber(1433);
             rcj.setDatabaseName("ILLData");
 
-            Map <String, String> illData = new LinkedHashMap <String, String>();
+            Map <String, String> illData = new LinkedHashMap<>();
 
             String userkey;
-            String result = "";
+            String result;
 
             BufferedReader br = new BufferedReader(new FileReader(new File(args[0])));
 
             String inputType = args[1];
 
-            String sqlST2 = "";
-            String sqlS7Z = "";
-            String sqlRCJ = "";
+            StringBuilder sqlST2 = new StringBuilder();
+            StringBuilder sqlS7Z = new StringBuilder();
+            StringBuilder sqlRCJ = new StringBuilder();
 
             String selFlag = "U";
 
-            if (inputType != null && inputType.indexOf("sunet") > -1) {
+            if (inputType != null && inputType.contains("sunet")) {
                 selFlag = "x";
             }
 
@@ -88,99 +88,91 @@ public class Pop2ILLiad {
 
                 result = IOUtils.toString(p2.getInputStream(), "UTF-8");
 
-                String sunetid = ""; //0 x
-                String last = ""; //1 D
-                String first = ""; //1 D
-                String barcode = ""; //2 B
-                String profile = ""; //3 p
-                String email = ""; //4 X.9007.
-                String phone = ""; //5 X.9036.
-                String department = ""; //6 X.9032.
-                String nvtgc = ""; //7 Y.9032.
-                String expiration = ""; //8 e
+                String sunetid; //0 x
+                String last; //1 D
+                String first; //1 D
+                String barcode; //2 B
+                String profile; //3 p
+                String email; //4 X.9007.
+                String phone; //5 X.9036.
+                String department; //6 X.9032.
+                String nvtgc; //7 Y.9032.
+                String expiration; //8 e
 
-                String NVTGC = "";
+                String NVTGC;
+                String organization;
+                String fullName;
+                String firstName;
                 String status = "";
-                String organization  = "";
-                String fullName = "";
-                String firstName = "";
 
-                int firstIndex = 0;
+                int firstIndex;
 
-                try
-                {
-                    String [] userFields = result.toString().split("\\|");
-                    sunetid = userFields[0];
+                String [] userFields = result.split("\\|");
+                sunetid = userFields[0];
 
-                    fullName = userFields[1].replace("'", "''");
+                fullName = userFields[1].replace("'", "''");
 
-                    String [] splitname = fullName.split(",");
-                    last = splitname[0].trim();
-                    first = splitname[1].trim();
+                String [] splitname = fullName.split(",");
+                last = splitname[0].trim();
+                first = splitname[1].trim();
 
-                    if (first.indexOf(" ") > 0){
-                        firstIndex = first.indexOf(" ");
-                    }
-                    else {
-                        firstIndex = first.length();
-                    }
-                    firstName = first.substring(0, firstIndex);
+                if (first.indexOf(" ") > 0){
+                    firstIndex = first.indexOf(" ");
+                }
+                else {
+                    firstIndex = first.length();
+                }
+                firstName = first.substring(0, firstIndex);
 
-                    barcode = userFields[2];
-                    profile = userFields[3];
-                    email = userFields[4];
-                    phone = userFields[5];
-                    department = userFields[6];
-                    nvtgc = userFields[7];
-                    expiration = userFields[8];
+                barcode = userFields[2];
+                profile = userFields[3];
+                email = userFields[4];
+                phone = userFields[5];
+                department = userFields[6];
+                nvtgc = userFields[7];
+                expiration = userFields[8];
 
-                    if (nvtgc.indexOf("gsb") > 0) {
-                      NVTGC = "S7Z";
-                      organization = "GSB";
-                    }
-                    else if (nvtgc.indexOf("law") > 0) {
-                      NVTGC = "RCJ";
-                      organization = "SLS";
-                    }
-                    else if (nvtgc.indexOf("medicine") > 0) {
-                      NVTGC = "ST2";
-                      organization = "MED";
-                    }
-                    else {
-                      NVTGC = "ST2";
-                      organization = "SUL";
-                    }
+                if (nvtgc.indexOf("gsb") > 0) {
+                  NVTGC = "S7Z";
+                  organization = "GSB";
+                }
+                else if (nvtgc.indexOf("law") > 0) {
+                  NVTGC = "RCJ";
+                  organization = "SLS";
+                }
+                else if (nvtgc.indexOf("medicine") > 0) {
+                  NVTGC = "ST2";
+                  organization = "MED";
+                }
+                else {
+                  NVTGC = "ST2";
+                  organization = "SUL";
+                }
 
-                    if (expiration.equals("0")) {
-                      expiration = "99990101";
-                    }
-                    expiry = sdf.parse(expiration);
+                if (expiration.equals("0")) {
+                  expiration = "99990101";
+                }
+                expiry = sdf.parse(expiration);
 
-                    //Get the patron Status based on the GetProfiles map
-                    //
-                    @SuppressWarnings("unchecked")
-                    Iterator<Map.Entry<String, String>> stats = profiles.entrySet().iterator();
-                    while (stats.hasNext()) {
-                      Map.Entry<String, String> p = (Map.Entry<String, String>)stats.next();
-                      if (p.getKey().equals(profile)) {
+                //Get the patron Status based on the GetProfiles map
+                //
+                for (Map.Entry<String, String> p : (Iterable<Map.Entry<String, String>>) profiles.entrySet()) {
+                    if (p.getKey().equals(profile)) {
                         status = p.getValue();
                         break;
-                      }
-                    }
-
-                    if (status.length() == 0) {
-                      status = "Affiliate";
-                    }
-
-                    if (department.length() > 0) {
-                      department = department.replace("&", "and");
-                      department = department.replace("'","''");
                     }
                 }
-                catch (ArrayIndexOutOfBoundsException a)
-                {}
 
-								if (email == null || !email.matches(EMAIL_PATTERN)) {
+                if (status.length() == 0) {
+                  status = "Affiliate";
+                }
+
+                if (department.length() > 0) {
+                  department = department.replace("&", "and");
+                  department = department.replace("'","''");
+                }
+
+                if (email == null || !email.matches(EMAIL_PATTERN)) {
 										System.out.println("SKIPPING: " + sunetid + " [no email address in registry]");
 								}
 
@@ -243,32 +235,32 @@ public class Pop2ILLiad {
                     illData.put("UserInfo5", "NULL"); //
 
                     if (NVTGC.equals("ST2")){
-                      sqlST2 += GetTransactSQL.transactSql(illData, sunetid) + "\n\r";
+                      sqlST2.append(GetTransactSQL.transactSql(illData, sunetid)).append("\n\r");
                     }
                     if (NVTGC.equals("S7Z")){
-                      sqlS7Z += GetTransactSQL.transactSql(illData, sunetid) + "\n\r";
+                      sqlS7Z.append(GetTransactSQL.transactSql(illData, sunetid)).append("\n\r");
                     }
                     if (NVTGC.equals("RCJ")){
-                      sqlRCJ += GetTransactSQL.transactSql(illData, sunetid) + "\n\r";
+                      sqlRCJ.append(GetTransactSQL.transactSql(illData, sunetid)).append("\n\r");
                     }
                 }
             }
 
             Connection st2Conn = st2.getConnection();
             ConnectToILLiad.connect(GetTransactSQL.transactBegin(), st2Conn);
-            ConnectToILLiad.connect(sqlST2, st2Conn);
+            ConnectToILLiad.connect(sqlST2.toString(), st2Conn);
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), st2Conn);
             st2Conn.close();
 
             Connection s7zConn = st2.getConnection();
             ConnectToILLiad.connect(GetTransactSQL.transactBegin(), s7zConn);
-            ConnectToILLiad.connect(sqlS7Z, s7zConn);
+            ConnectToILLiad.connect(sqlS7Z.toString(), s7zConn);
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), s7zConn);
             s7zConn.close();
 
             Connection rcjConn = rcj.getConnection();
             ConnectToILLiad.connect(GetTransactSQL.transactBegin(), rcjConn);
-            ConnectToILLiad.connect(sqlRCJ, rcjConn);
+            ConnectToILLiad.connect(sqlRCJ.toString(), rcjConn);
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), rcjConn);
             rcjConn.close();
         }

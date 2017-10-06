@@ -4,32 +4,33 @@ import java.io.FileInputStream;
 import java.util.Map;
 import java.util.Properties;
 
-public class GetTransactSQL {
+class GetTransactSQL {
 
-  public static String transactBegin(){
+  static String transactBegin(){
     return "BEGIN TRAN\n\r";
   }
 
-  public static String transactCommit(){
+  static String transactCommit(){
     return "COMMIT TRAN\n\r-----------";
   }
 
-  public static String transactSql (Map<String, String> illData, String sunetid) throws Exception {
+  static String transactSql(Map<String, String> illData, String sunetid) throws Exception {
 
     Properties props = new Properties();
     props.load(new FileInputStream("Person/src/main/resources/server.conf"));
+
     String table_name = props.getProperty("TABLE_NAME");
     String do_not_update_field = props.getProperty("NO_UPDATE");
 
-    String sql = "";
-    String sqlv = "";
+    StringBuilder sql = new StringBuilder();
+    StringBuilder sqlv = new StringBuilder();
 
-    sql += " declare @dept_" + sunetid + " varchar(50)\n\r";
-    sql += " IF EXISTS (select * from ILLData.dbo." + table_name + " where UserName = '" + sunetid + "')\n\r";
-    sql += " BEGIN\n\r";
-    sql += "  SET @dept_" + sunetid + " = (select Department from ILLData.dbo.UsersALL where UserName = '" + sunetid + "')\n\r";
-    sql += "  UPDATE ILLData.dbo." + table_name + "\n\r";
-    sql += "  SET\n\r";
+    sql.append(" declare @dept_").append(sunetid).append(" varchar(50)\n\r");
+    sql.append(" IF EXISTS (select * from ILLData.dbo.").append(table_name).append(" where UserName = '").append(sunetid).append("')\n\r");
+    sql.append(" BEGIN\n\r");
+    sql.append("  SET @dept_").append(sunetid).append(" = (select Department from ILLData.dbo.UsersALL where UserName = '").append(sunetid).append("')\n\r");
+    sql.append("  UPDATE ILLData.dbo.").append(table_name).append("\n\r");
+    sql.append("  SET\n\r");
 
     int cnt = 1;
     for (Map.Entry<String, String> entry : illData.entrySet()) {
@@ -38,53 +39,53 @@ public class GetTransactSQL {
 
       /* Keep the same ignore_fields as previously loaded and update the rest with new values */
       if (key.equals(do_not_update_field)) {
-        sql +=  key + "= @dept_" + sunetid;
+        sql.append(key).append("= @dept_").append(sunetid);
       }
       else {
-        sql += key + "=" + value;
+        sql.append(key).append("=").append(value);
       }
 
       if (cnt < illData.size()) {
-        sql += ",";
+        sql.append(",");
       }
-      sql += "\n\r";
+      sql.append("\n\r");
       cnt++;
     }
 
-    sql += "   WHERE UserName = '" + sunetid + "'\n\r";
-    sql += "  END\n\r";
-    sql += " ELSE\n\r";
-    sql += " BEGIN\n\r";
-    sql += "  INSERT INTO ILLData.dbo." + table_name + "\n\r";
-    sql += "  (";
+    sql.append("   WHERE UserName = '").append(sunetid).append("'\n\r");
+    sql.append("  END\n\r");
+    sql.append(" ELSE\n\r");
+    sql.append(" BEGIN\n\r");
+    sql.append("  INSERT INTO ILLData.dbo.").append(table_name).append("\n\r");
+    sql.append("  (");
 
     cnt=1;
     for (Map.Entry<String, String> entry : illData.entrySet()) {
-      sql += entry.getKey();
+      sql.append(entry.getKey());
 
       if (cnt < illData.size()) {
-        sql += ", ";
+        sql.append(", ");
       }
       cnt++;
     }
 
-    sql += ")\n\r";
-    sqlv += " VALUES\n\r";
-    sqlv += "(";
+    sql.append(")\n\r");
+    sqlv.append(" VALUES\n\r");
+    sqlv.append("(");
 
     cnt=1;
     for (Map.Entry<String, String> entry : illData.entrySet()) {
-      sqlv += entry.getValue();
+      sqlv.append(entry.getValue());
 
       if (cnt < illData.size()) {
-        sqlv += ",";
+        sqlv.append(",");
       }
       cnt++;
     }
 
-    sqlv += ")\n\r";
-    sql += sqlv;
-    sql += "  END\n\r";
+    sqlv.append(")\n\r");
+    sql.append(sqlv);
+    sql.append("  END\n\r");
 
     String [] activityType = {
       "ClearedUser",
@@ -97,17 +98,17 @@ public class GetTransactSQL {
       "RequestShipped"
     };
 
-    for (int i = 0; i < activityType.length; i++){
-      sql += "IF NOT EXISTS (select * from ILLData.dbo.UserNotifications where UserName = '" + sunetid + "' and ActivityType = '" + activityType[i] + "')\n\r";
-      sql += " BEGIN\n\r";
-      sql += "  insert into ILLData.dbo.UserNotifications\n\r";
-      sql += "  (Username, ActivityType, NotificationType)\n\r";
-      sql += "  values\n\r";
-      sql += "  ('" + sunetid + "','" + activityType[i] + "','Email')\n\r";
-      sql += " END\n\r";
+    for (String anActivityType : activityType) {
+      sql.append("IF NOT EXISTS (select * from ILLData.dbo.UserNotifications where UserName = '").append(sunetid).append("' and ActivityType = '").append(anActivityType).append("')\n\r");
+      sql.append(" BEGIN\n\r");
+      sql.append("  insert into ILLData.dbo.UserNotifications\n\r");
+      sql.append("  (Username, ActivityType, NotificationType)\n\r");
+      sql.append("  values\n\r");
+      sql.append("  ('").append(sunetid).append("','").append(anActivityType).append("','Email')\n\r");
+      sql.append(" END\n\r");
     }
 
     System.err.println(sqlv + "\n-----------");
-    return sql;
+    return sql.toString();
   }
 }

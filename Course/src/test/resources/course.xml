@@ -1,0 +1,2867 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE response>
+<response>
+  <courseclass term="Spring 2017" title="Employment Discrimination">
+    <class id="SP17-LAW-7019">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="rford">Ford, Richard</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Family Law">
+    <class id="SP17-LAW-7021">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="rbanks">Banks, Prof Ralph Richard</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Federal Indian Law">
+    <class id="SP17-LAW-7030">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="ablavsky">Ablavsky, Gregory R</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Land Use Law">
+    <class id="SP17-LAW-2505">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="cath">Engberg, Catherine Carla</instructor>
+          <instructor sunetid="mwa">Anderson, Michelle W</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Criminal Procedure: Adjudication">
+    <class id="SP17-LAW-2001">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="weisberg">Weisberg, Robert</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Evidence">
+    <class id="SP17-LAW-2402">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="sklansky">Sklansky, David A</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Interpersonal Learning &amp; Leadership - Row Staff Class">
+    <class id="SP17-EDUC-192B">
+      <section category="Discussion" id="13">
+        <instructors>
+          <instructor sunetid="kmcole">Cole, Kelly</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="10">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="11">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="12">
+        <instructors>
+          <instructor sunetid="wheelerl">Wheeler, Laura</instructor>
+          <instructor sunetid="leight">Thiedeman, Leigh</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="04">
+        <instructors>
+          <instructor sunetid="satkinso">Atkinson, Spencer</instructor>
+        </instructors>
+      </section>
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="diontrey">Thompson, Diontrey</instructor>
+          <instructor sunetid="jcalvert">Calvert, Jennifer</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="02">
+        <instructors>
+          <instructor sunetid="timkirk">Kirk, Timothy A.</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="03">
+        <instructors>
+          <instructor sunetid="vergelc">Vergel, Cassaundra F. F.</instructor>
+          <instructor sunetid="satkinso">Atkinson, Spencer</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="05">
+        <instructors>
+          <instructor sunetid="timkirk">Kirk, Timothy A.</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="06">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="07">
+        <instructors>
+          <instructor sunetid="ravenj1">Jackson-Stone, Raven</instructor>
+          <instructor sunetid="dmasuda">Masuda, Danielle</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="08">
+        <instructors>
+          <instructor sunetid="dmasuda">Masuda, Danielle</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="09">
+        <instructors>
+          <instructor sunetid="dalv">Alvarez, Danny</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Critical Issues of Human Rights through Literature">
+    <class id="SP17-ILAC-246">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="jorgegj8">Gonzalez Jacome, Jorge</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Decision Analysis Applications">
+    <class id="SP17-MS&amp;E-453">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="burkerob">Robinson, Burke</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="The Genetic Footprint of Latin America and its Impact in a Multicultural Society">
+    <class id="SP17-BIO-331">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="morenoe">Moreno Estrada, Andres</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Preparing for Faculty Careers">
+    <class id="SP17-VPTL-231">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="jboothr">Boothroyd, John C</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Computational Frontiers in Biology">
+    <class id="SP17-HUMBIO-50SI">
+      <section category="Activity" id="01">
+        <instructors>
+          <instructor sunetid="pfisher">Fisher, Paul Graham</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Undergraduate Directed Study">
+    <class id="SP17-MS&amp;E-101A">
+      <section category="IndivStudy" id="27">
+        <instructors>
+          <instructor sunetid="dnishar2">Nishar, Dipchand</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="40">
+        <instructors>
+          <instructor sunetid="awong10">Wong, Andrew K-T</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="07">
+        <instructors>
+          <instructor sunetid="nosh">Contractor, Noshir S</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="33">
+        <instructors/>
+      </section>
+      <section category="IndivStudy" id="04">
+        <instructors>
+          <instructor sunetid="sblank">Blank, Steve</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="01">
+        <instructors/>
+      </section>
+      <section category="IndivStudy" id="02">
+        <instructors>
+          <instructor sunetid="barretod">Barreto, Daniel</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="03">
+        <instructors>
+          <instructor sunetid="ravib">Belani, Ravi Suresh</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="05">
+        <instructors>
+          <instructor sunetid="lborland">Borland, Lisa Marina</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="06">
+        <instructors>
+          <instructor sunetid="bcahan">Cahan, Bruce</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="08">
+        <instructors>
+          <instructor sunetid="tcorey">Corey, Toby</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="09">
+        <instructors>
+          <instructor sunetid="richcox">Cox, Richard L</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="10">
+        <instructors>
+          <instructor sunetid="ola">de La Grandville, Olivier</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="11">
+        <instructors>
+          <instructor sunetid="joellis1">Ellis, James O, Jr</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="12">
+        <instructors>
+          <instructor sunetid="jeffdad">Epstein, Jeff</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="13">
+        <instructors>
+          <instructor sunetid="jfelter">Felter, Joe</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="14">
+        <instructors>
+          <instructor sunetid="jack2">Fuchs, Jack Herman</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="15">
+        <instructors>
+          <instructor sunetid="phaas">Haas, Peter J.</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="16">
+        <instructors>
+          <instructor sunetid="rebex">Hwang, Rebeca</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="17">
+        <instructors>
+          <instructor sunetid="infanger">Infanger, Gerd</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="18">
+        <instructors>
+          <instructor sunetid="kkjain">Jain, Kapil K</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="19">
+        <instructors>
+          <instructor sunetid="blakej">Johnson, Blake</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="20">
+        <instructors>
+          <instructor sunetid="kosnik">Kosnik, Thomas J</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="21">
+        <instructors>
+          <instructor sunetid="arikl">Lifschitz, Arik</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="22">
+        <instructors>
+          <instructor sunetid="tloy">Loy, Trevor</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="23">
+        <instructors>
+          <instructor sunetid="mlyons">Lyons, Michael G</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="24">
+        <instructors>
+          <instructor sunetid="ejma">Ma, Emily</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="26">
+        <instructors>
+          <instructor sunetid="amiura">Miura-Ko, R. Ann</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="28">
+        <instructors>
+          <instructor sunetid="pietzsch">Pietzsch, Jan Benjamin</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="29">
+        <instructors>
+          <instructor sunetid="premr">Ramaswami, Mr Prem</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="30">
+        <instructors>
+          <instructor sunetid="burkerob">Robinson, Burke</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="31">
+        <instructors>
+          <instructor sunetid="hroizen">Roizen, Jo Ann Heidi</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="32">
+        <instructors>
+          <instructor sunetid="savage">Savage, Sam</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="34">
+        <instructors>
+          <instructor sunetid="dscheink">Scheinker, David</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="35">
+        <instructors>
+          <instructor sunetid="rsiino">Siino, Rosanne Marie</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="36">
+        <instructors>
+          <instructor sunetid="lksmith">Smith, Lynda Kate</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="37">
+        <instructors>
+          <instructor sunetid="vstanton">Stanton, Francis</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="38">
+        <instructors>
+          <instructor sunetid="behnam">Tabrizi, Behnam N</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="39">
+        <instructors/>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Undergraduate Directed Study">
+    <class id="SP17-MS&amp;E-101">
+      <section category="IndivStudy" id="01">
+        <instructors/>
+      </section>
+      <section category="IndivStudy" id="02">
+        <instructors>
+          <instructor sunetid="iashlagi">Ashlagi, Itai</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="03">
+        <instructors>
+          <instructor sunetid="bambos">Bambos, Nicholas</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="05">
+        <instructors>
+          <instructor sunetid="jblanche">Blanchet, Jose</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="06">
+        <instructors>
+          <instructor sunetid="tbyers">Byers, Tom</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="07">
+        <instructors>
+          <instructor sunetid="samchiu">Chiu, Samuel S</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="08">
+        <instructors>
+          <instructor sunetid="cee">Eesley, Charles</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="09">
+        <instructors>
+          <instructor sunetid="kme">Eisenhardt, Kathleen M</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="10">
+        <instructors>
+          <instructor sunetid="giesecke">Giesecke, Kay</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="11">
+        <instructors>
+          <instructor sunetid="glynn">Glynn, Peter W</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="12">
+        <instructors>
+          <instructor sunetid="ashishg">Goel, Ashish</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="14">
+        <instructors>
+          <instructor sunetid="scgoel">Goel, Sharad</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="15">
+        <instructors/>
+      </section>
+      <section category="IndivStudy" id="16">
+        <instructors>
+          <instructor sunetid="phinds">Hinds, Pamela J</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="21">
+        <instructors>
+          <instructor sunetid="mcginn">McGinn, Robert</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="22">
+        <instructors>
+          <instructor sunetid="mep">Pate-Cornell, Elisabeth</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="23">
+        <instructors>
+          <instructor sunetid="mpelger">Pelger, Markus</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="25">
+        <instructors>
+          <instructor sunetid="saberi">Saberi, Amin</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="27">
+        <instructors>
+          <instructor sunetid="tseelig">Seelig, Tina L</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="28">
+        <instructors>
+          <instructor sunetid="shachter">Shachter, Ross D</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="30">
+        <instructors>
+          <instructor sunetid="bobsut">Sutton, Robert I</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="31">
+        <instructors>
+          <instructor sunetid="jsweeney">Sweeney, James L</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="32">
+        <instructors>
+          <instructor sunetid="etse">Tse, Edison T S</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="33">
+        <instructors>
+          <instructor sunetid="jugander">Ugander, Johan</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="34">
+        <instructors>
+          <instructor sunetid="mav">Valentine, Melissa</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="35">
+        <instructors>
+          <instructor sunetid="bvr">Van Roy, Benjamin</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="36">
+        <instructors>
+          <instructor sunetid="weyant">Weyant, John P</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="37">
+        <instructors>
+          <instructor sunetid="yyye">Ye, Yinyu</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="20">
+        <instructors>
+          <instructor sunetid="rkatila">Katila, Riitta</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="29">
+        <instructors>
+          <instructor sunetid="sidford">Sidford, Aaron Daniel</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="19">
+        <instructors>
+          <instructor sunetid="rjohari">Johari, Ramesh</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="26">
+        <instructors>
+          <instructor sunetid="saunders">Saunders, Michael A</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="18">
+        <instructors>
+          <instructor sunetid="rhoward">Howard, Ronald A</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Senior Seminar: Spanish Poetry">
+    <class id="SP17-ILAC-278">
+      <section category="Seminar" id="01">
+        <instructors/>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Plant Biology, Evolution, and Ecology">
+    <class id="SP17-BIO-43">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="wkhalfan">Khalfan, Waheeda</instructor>
+          <instructor sunetid="hbfraser">Fraser, Hunter B.</instructor>
+          <instructor sunetid="srl">Long, Sharon</instructor>
+          <instructor sunetid="vitousek">Vitousek, Peter M</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="02">
+        <instructors>
+          <instructor sunetid="allison6">Brown, Allison Marie</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="03">
+        <instructors>
+          <instructor sunetid="cmmong">Mong, Catie Marie</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="04">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="05">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="06">
+        <instructors>
+          <instructor sunetid="allison6">Brown, Allison Marie</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="07">
+        <instructors>
+          <instructor sunetid="cmmong">Mong, Catie Marie</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="08">
+        <instructors>
+          <instructor sunetid="tynan">Challenor, Tynan</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="09">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="10">
+        <instructors>
+          <instructor sunetid="tynan">Challenor, Tynan</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="11">
+        <instructors>
+          <instructor sunetid="dsull">Sullivan, Delaney Kalcey</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="12">
+        <instructors>
+          <instructor sunetid="dsull">Sullivan, Delaney Kalcey</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Patient Health Education in Community Clinics - Practicum">
+    <class id="SP17-MED-143B">
+      <section category="Practicum" id="01">
+        <instructors>
+          <instructor sunetid="caceres">Caceres, Dr. Wendy</instructor>
+          <instructor sunetid="jdeluna">De Luna, Jorge</instructor>
+          <instructor sunetid="larso">Osterberg, Lars</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-MED-243B">
+      <section category="Practicum" id="01">
+        <instructors>
+          <instructor sunetid="caceres">Caceres, Dr. Wendy</instructor>
+          <instructor sunetid="jdeluna">De Luna, Jorge</instructor>
+          <instructor sunetid="larso">Osterberg, Lars</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Introduction to Emergency Medicine ? Focused Approach to the Undifferentiated Patient">
+    <class id="SP17-EMED-300A">
+      <section category="Clerkship" id="01">
+        <instructors/>
+      </section>
+      <section category="Clerkship" id="10">
+        <instructors/>
+      </section>
+      <section category="Clerkship" id="11">
+        <instructors/>
+      </section>
+      <section category="Clerkship" id="12">
+        <instructors/>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Case Studies in Leading Change for Sustainability">
+    <class id="SP17-EARTH-281">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="julia3">Novy-Hildesley, Julia W.</instructor>
+          <instructor sunetid="mjaeger">Jaeger, Marika Olga</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Monsters of the Renaissance">
+    <class id="SP17-FRENCH-163">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="cecile2">Tresfels, Cecile Marie Amelie</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Perspectives in North American Taiko">
+    <class id="SP17-MUSIC-17Q">
+      <section category="IntrSemSo" id="01">
+        <instructors>
+          <instructor sunetid="uyechi">Uyechi, Linda</instructor>
+          <instructor sunetid="sano">Sano, Stephen Makoto</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-ASNAMST-17Q">
+      <section category="IntrSemSo" id="01">
+        <instructors>
+          <instructor sunetid="uyechi">Uyechi, Linda</instructor>
+          <instructor sunetid="sano">Sano, Stephen Makoto</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Contemporary Theories of Religious Experience">
+    <class id="SP17-ANTHRO-153B">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="mvanelk">van Elk, Michiel</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-ANTHRO-253B">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="mvanelk">van Elk, Michiel</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Medical Scholars Research (Away)">
+    <class id="SP17-ORTHO-370W">
+      <section category="IndivStudy" id="01">
+        <instructors/>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Anthropology of Sport and the Body">
+    <class id="SP17-ANTHRO-127C">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="skayne">Kayne, Saree Michele</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Third-Year Yoruba, First Quarter">
+    <class id="SP17-CHINLANG-190A">
+      <section category="ForLang" id="01">
+        <instructors/>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Perspectives in International Development">
+    <class id="SP17-ANTHRO-177C">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="kadennis">Dennis, Katherine</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Bio Solve-It">
+    <class id="SP17-BIO-43A">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="mudgett">Mudgett, Mary Beth</instructor>
+          <instructor sunetid="wkhalfan">Khalfan, Waheeda</instructor>
+          <instructor sunetid="smay14">May, Stephanie Ann</instructor>
+          <instructor sunetid="nh18">Herrera, Nicolas</instructor>
+        </instructors>
+      </section>
+      <section category="Seminar" id="02">
+        <instructors>
+          <instructor sunetid="mudgett">Mudgett, Mary Beth</instructor>
+          <instructor sunetid="wkhalfan">Khalfan, Waheeda</instructor>
+          <instructor sunetid="smay14">May, Stephanie Ann</instructor>
+          <instructor sunetid="nh18">Herrera, Nicolas</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Independent Project in Civil and Environmental Engineering">
+    <class id="SP17-CEE-299S">
+      <section category="IndivStudy" id="01">
+        <instructors/>
+      </section>
+      <section category="IndivStudy" id="02">
+        <instructors>
+          <instructor sunetid="fruchter">Fruchter, Renate</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="03">
+        <instructors>
+          <instructor sunetid="wamitch">Mitch, William</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="04">
+        <instructors>
+          <instructor sunetid="ccriddle">Criddle, Craig</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="05">
+        <instructors>
+          <instructor sunetid="freyberg">Freyberg, David L</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="06">
+        <instructors>
+          <instructor sunetid="borja">Borja, Ronaldo I</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="07">
+        <instructors>
+          <instructor sunetid="hildeman">Hildemann, Lynn M</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Spectrum Scholars Seminar">
+    <class id="SP17-HRP-229">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="sasch">Asch, Steven M.</instructor>
+          <instructor sunetid="rpopat">Popat, Rita Ashok</instructor>
+          <instructor sunetid="goodmans">Goodman, Steven</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Advanced Topics in Linear Algebra">
+    <class id="SP17-CME-335A">
+      <section category="Workshop" id="01">
+        <instructors>
+          <instructor sunetid="hadip">Pouransari, Hadi</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Environmental Change and the Politics of Nature">
+    <class id="SP17-ANTHRO-168D">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="deg82">Gilbert, David Edward</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Understanding Energy -- Field Trips">
+    <class id="SP17-CEE-107F">
+      <section category="Practicum" id="01">
+        <instructors>
+          <instructor sunetid="knerd">Knapp, Karl E</instructor>
+          <instructor sunetid="kstasio">Stasio, Kirsten Leah</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-CEE-207F">
+      <section category="Practicum" id="01">
+        <instructors>
+          <instructor sunetid="knerd">Knapp, Karl E</instructor>
+          <instructor sunetid="kstasio">Stasio, Kirsten Leah</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-EARTHSYS-103F">
+      <section category="Practicum" id="01">
+        <instructors>
+          <instructor sunetid="knerd">Knapp, Karl E</instructor>
+          <instructor sunetid="kstasio">Stasio, Kirsten Leah</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Entrepreneurship in Asia">
+    <class id="SP17-EE-402T">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="rdasher">Dasher, Richard</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-EALC-402T">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="rdasher">Dasher, Richard</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Negotiation">
+    <class id="SP17-CEE-151">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="stanc">Christensen, Stan</instructor>
+          <instructor sunetid="ckisunzu">Kisunzu, Conrad Steffahn</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-CEE-251">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="stanc">Christensen, Stan</instructor>
+          <instructor sunetid="ckisunzu">Kisunzu, Conrad Steffahn</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-EARTH-251">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="stanc">Christensen, Stan</instructor>
+          <instructor sunetid="ckisunzu">Kisunzu, Conrad Steffahn</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Computer Vision: From 3D Reconstruction to Recognition">
+    <class id="SP17-CS-231A">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="ssilvio">Savarese, Silvio</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Computer Systems Architecture">
+    <class id="SP17-EE-282">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="amundada">Mundada, Aditya Ramgopal</instructor>
+          <instructor sunetid="kozyraki">Kozyrakis, Christos</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Directed Research">
+    <class id="SP17-EDUC-490">
+      <section category="IndivStudy" id="01">
+        <instructors/>
+      </section>
+      <section category="IndivStudy" id="03">
+        <instructors>
+          <instructor sunetid="aantonio">Antonio, Anthony lising</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="05">
+        <instructors>
+          <instructor sunetid="arnetha">Ball, Arnetha F.</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="06">
+        <instructors>
+          <instructor sunetid="barronbj">Barron, Brigid</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="09">
+        <instructors>
+          <instructor sunetid="brbrown">Brown, Bryan Anthony, Ph.D.</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="100">
+        <instructors>
+          <instructor sunetid="phkim">Kim, Paul</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="101">
+        <instructors>
+          <instructor sunetid="aukerman">Aukerman, Maren S.</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="102">
+        <instructors>
+          <instructor sunetid="dnplank">Plank, David Nathan</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="103">
+        <instructors>
+          <instructor sunetid="glc">Cohen, Geoffrey Lawrence</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="104">
+        <instructors>
+          <instructor sunetid="dgilbert">Gilbert, Daniel Michael</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="105">
+        <instructors>
+          <instructor sunetid="stipek">Stipek, Deborah</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="106">
+        <instructors>
+          <instructor sunetid="nmardoin">Ardoin, Nicole M</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="107">
+        <instructors>
+          <instructor sunetid="jelenao">Obradovic, Jelena</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="108">
+        <instructors>
+          <instructor sunetid="tdee">Dee, Thomas S</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="109">
+        <instructors>
+          <instructor sunetid="aykelman">Kelman, Ari Y</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="11">
+        <instructors>
+          <instructor sunetid="abryk">Bryk, Tony</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="110">
+        <instructors>
+          <instructor sunetid="cwieman">Wieman, Carl</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="111">
+        <instructors>
+          <instructor sunetid="bcfong">Fong, Bernadine Chuck</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="112">
+        <instructors>
+          <instructor sunetid="rkijima">Kijima, Rie</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="113">
+        <instructors>
+          <instructor sunetid="peterw">Williamson, Peter</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="115">
+        <instructors>
+          <instructor sunetid="bkoski">Koski, William Sheldon</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="117">
+        <instructors>
+          <instructor sunetid="srlevine">Levine, Sarah R.</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="118">
+        <instructors>
+          <instructor sunetid="brucemc">McCandliss, Bruce D</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="119">
+        <instructors>
+          <instructor sunetid="triciam">Bromley, Patricia</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="12">
+        <instructors>
+          <instructor sunetid="calfee">Calfee, Robert C</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="120">
+        <instructors>
+          <instructor sunetid="jmlo">Langer-Osuna, Jennifer M</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="121">
+        <instructors>
+          <instructor sunetid="dbrazer">Brazer, S. David</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="122">
+        <instructors>
+          <instructor sunetid="ramonmtz">Martinez, Ramon Antonio</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="123">
+        <instructors>
+          <instructor sunetid="ajbanks">Banks, Adam</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="124">
+        <instructors>
+          <instructor sunetid="bdomingu">Domingue, Ben</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="125">
+        <instructors>
+          <instructor sunetid="jdrosa">Rosa, Jonathan Daniel</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="126">
+        <instructors>
+          <instructor sunetid="gsolanof">Solano-Flores, Guillermo</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="127">
+        <instructors>
+          <instructor sunetid="jcarlso2">Carlson, Janet</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="13">
+        <instructors>
+          <instructor sunetid="ecallan">Callan, Eamonn K</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="14">
+        <instructors>
+          <instructor sunetid="carnoy">Carnoy, Martin</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="16">
+        <instructors>
+          <instructor sunetid="wdamon">Damon, William</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="17">
+        <instructors>
+          <instructor sunetid="ldh">Darling-Hammond, Linda</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="19">
+        <instructors>
+          <instructor sunetid="eisner">Eisner, Elliot</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="22">
+        <instructors>
+          <instructor sunetid="sgoldman">Goldman, Shelley</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="24">
+        <instructors>
+          <instructor sunetid="pamg">Grossman, Pam</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="25">
+        <instructors>
+          <instructor sunetid="gumport">Gumport, Patricia J</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="26">
+        <instructors>
+          <instructor sunetid="haertel">Haertel, Edward H</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="27">
+        <instructors>
+          <instructor sunetid="hakuta">Hakuta, Kenji</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="31">
+        <instructors>
+          <instructor sunetid="cjuel">Juel, Connie</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="34">
+        <instructors>
+          <instructor sunetid="mwk">Kirst, Michael W</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="35">
+        <instructors>
+          <instructor sunetid="jdk">Krumboltz, John D</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="36">
+        <instructors>
+          <instructor sunetid="dlabaree">Labaree, David F.</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="37">
+        <instructors>
+          <instructor sunetid="lafrom">LaFromboise, Teresa D., PhD</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="39">
+        <instructors>
+          <instructor sunetid="sloeb">Loeb, Susanna</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="40">
+        <instructors>
+          <instructor sunetid="rlotan">Lotan, Rachel</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="41">
+        <instructors>
+          <instructor sunetid="jlythcot">Lythcott, Jean</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="45">
+        <instructors>
+          <instructor sunetid="rpmcd">McDermott, Raymond</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="46">
+        <instructors>
+          <instructor sunetid="dmcfarla">McFarland, Daniel Anthony</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="47">
+        <instructors>
+          <instructor sunetid="milbrey">McLaughlin, Milbrey W</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="49">
+        <instructors>
+          <instructor sunetid="debram">Meyerson, Debra</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="50">
+        <instructors>
+          <instructor sunetid="akimura">Murata, Dr. Aki</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="51">
+        <instructors>
+          <instructor sunetid="nasir">Nasir, Na'ilah S.</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="53">
+        <instructors>
+          <instructor sunetid="olkin">Olkin, Ingram</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="54">
+        <instructors>
+          <instructor sunetid="apadilla">Padilla, Amado M</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="55">
+        <instructors>
+          <instructor sunetid="roypea">Pea, Roy</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="57">
+        <instructors>
+          <instructor sunetid="dcpphd">Phillips, Denis C</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="58">
+        <instructors>
+          <instructor sunetid="dclark">Pope, Denise Clark</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="59">
+        <instructors>
+          <instructor sunetid="aporteus">Porteus, Ann</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="61">
+        <instructors>
+          <instructor sunetid="woodyp">Powell, Walter W.</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="62">
+        <instructors>
+          <instructor sunetid="ramirez">Ramirez, Francisco O</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="63">
+        <instructors>
+          <instructor sunetid="sreardon">reardon, sean f.</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="66">
+        <instructors>
+          <instructor sunetid="rag">Rogosa, David R</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="68">
+        <instructors>
+          <instructor sunetid="danls">Schwartz, Dan</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="69">
+        <instructors>
+          <instructor sunetid="richs">Shavelson, Rich</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="73">
+        <instructors>
+          <instructor sunetid="staklis">Staklis, Sandra Mara</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="75">
+        <instructors>
+          <instructor sunetid="myras">Strober, Myra H</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="76">
+        <instructors>
+          <instructor sunetid="dsuarez">Suarez, David F</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="79">
+        <instructors>
+          <instructor sunetid="gvaldes">Valdes, Guadalupe M</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="80">
+        <instructors>
+          <instructor sunetid="decker">Walker, Decker</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="83">
+        <instructors>
+          <instructor sunetid="wineburg">Wineburg, Sam</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="84">
+        <instructors>
+          <instructor sunetid="cwotipka">Wotipka, Christine Min</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="85">
+        <instructors>
+          <instructor sunetid="aalvarad">Alvarado, Anthony J</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="86">
+        <instructors>
+          <instructor sunetid="hildab">Borko, Hilda</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="87">
+        <instructors>
+          <instructor sunetid="plcarter">Carter, Prudence L.</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="88">
+        <instructors>
+          <instructor sunetid="claudeg">Goldenberg, Claude N.</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="89">
+        <instructors>
+          <instructor sunetid="willinsk">Willinsky, John</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="90">
+        <instructors>
+          <instructor sunetid="graceh1">Hoagland, Grace M.</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="91">
+        <instructors>
+          <instructor sunetid="iralit">Lit, Ira William</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="92">
+        <instructors>
+          <instructor sunetid="stevens4">Stevens, Mitchell L</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="93">
+        <instructors>
+          <instructor sunetid="osbornej">Osborne, Jonathan</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="94">
+        <instructors>
+          <instructor sunetid="tehrlich">Ehrlich, Thomas</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="95">
+        <instructors>
+          <instructor sunetid="paulob">Blikstein, Paulo</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="96">
+        <instructors>
+          <instructor sunetid="jlwolf">Wolf, Jennifer Lynn</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="97">
+        <instructors>
+          <instructor sunetid="ebetting">Bettinger, Eric</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="98">
+        <instructors>
+          <instructor sunetid="mkushner">Kushner, Mark</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="99">
+        <instructors>
+          <instructor sunetid="joboaler">Boaler, Jo</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="130">
+        <instructors>
+          <instructor sunetid="aruiz">Ruiz-Primo, Maria Araceli</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="128">
+        <instructors>
+          <instructor sunetid="cthille">Thille, Candace Marie</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="131">
+        <instructors>
+          <instructor sunetid="anterog">Garcia, Antero Godina</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="129">
+        <instructors>
+          <instructor sunetid="aielman">Loyalka, Prashant Kumar</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Independent Study">
+    <class id="SP17-STATS-299">
+      <section category="IndivStudy" id="01">
+        <instructors/>
+      </section>
+      <section category="IndivStudy" id="02">
+        <instructors/>
+      </section>
+      <section category="IndivStudy" id="03">
+        <instructors>
+          <instructor sunetid="adembo">Dembo, Amir</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="04">
+        <instructors>
+          <instructor sunetid="pwd">Diaconis, Persi</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="05">
+        <instructors>
+          <instructor sunetid="donoho">Donoho, David L</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="06">
+        <instructors>
+          <instructor sunetid="efron">Efron, Bradley</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="07">
+        <instructors>
+          <instructor sunetid="jhf">Friedman, Jerome H</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="08">
+        <instructors>
+          <instructor sunetid="hastie">Hastie, Trevor John</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="09">
+        <instructors>
+          <instructor sunetid="sph">Holmes, Susan P</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="10">
+        <instructors>
+          <instructor sunetid="imj">Johnstone, Iain M</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="11">
+        <instructors>
+          <instructor sunetid="lait">Lai, Tse L</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="12">
+        <instructors>
+          <instructor sunetid="montanar">Montanari, Andrea</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="15">
+        <instructors>
+          <instructor sunetid="owen">Owen, Art B</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="16">
+        <instructors>
+          <instructor sunetid="rag">Rogosa, David R</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="17">
+        <instructors>
+          <instructor sunetid="romano">Romano, Joseph</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="18">
+        <instructors>
+          <instructor sunetid="siegmund">Siegmund, David</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="19">
+        <instructors>
+          <instructor sunetid="switzer">Switzer, Paul</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="20">
+        <instructors>
+          <instructor sunetid="tibs">Tibshirani, Robert</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="21">
+        <instructors>
+          <instructor sunetid="gwalther">Walther, Guenther</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="22">
+        <instructors>
+          <instructor sunetid="whwong">Wong, Wing H</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="24">
+        <instructors>
+          <instructor sunetid="brajarat">Rajaratnam, Bala</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="25">
+        <instructors>
+          <instructor sunetid="jtaylo">Taylor, Jonathan E.</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="27">
+        <instructors>
+          <instructor sunetid="candes">Candes, Emmanuel Jean</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="29">
+        <instructors>
+          <instructor sunetid="khare">Khare, Apoorva</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="30">
+        <instructors>
+          <instructor sunetid="jduchi">Duchi, John Christopher</instructor>
+        </instructors>
+      </section>
+      <section category="IndivStudy" id="31">
+        <instructors>
+          <instructor sunetid="rmukherj">Mukherjee, Rajarshi</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Negotiation">
+    <class id="SP17-LAW-7821">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="jeanineb">Becker, Jeanine M.</instructor>
+        </instructors>
+      </section>
+      <section category="Seminar" id="02">
+        <instructors>
+          <instructor sunetid="lnetsch">Netsch, Linda Kay</instructor>
+          <instructor sunetid="janetkgm">Martinez, Janet</instructor>
+        </instructors>
+      </section>
+      <section category="Seminar" id="03">
+        <instructors>
+          <instructor sunetid="jnotini">Notini, Jessica</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Advanced Legal Research">
+    <class id="SP17-LAW-7809">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="mnmiller">Miller, Marion</instructor>
+          <instructor sunetid="bwilli">Williams, Beth</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Advanced Negotiation: International">
+    <class id="SP17-LAW-7823">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="brenna">Powell, Brenna</instructor>
+          <instructor sunetid="janetkgm">Martinez, Janet</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Mediation">
+    <class id="SP17-LAW-7819">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="jnotini">Notini, Jessica</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Oral Argument Workshop">
+    <class id="SP17-LAW-7826">
+      <section category="Simulation" id="01">
+        <instructors>
+          <instructor sunetid="rfenner">Fenner, Randee J</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Advanced Legal Writing: Global Litigation">
+    <class id="SP17-LAW-7817">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="yawang">Wang, Yanbai Andrea</instructor>
+          <instructor sunetid="eberry">Berry, Emily Elaine</instructor>
+          <instructor sunetid="jmerino">Merino, Jeanne E.</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Policy Practicum:  Managing Gentrification">
+    <class id="SP17-LAW-805Y">
+      <section category="Practicum" id="01">
+        <instructors>
+          <instructor sunetid="rford">Ford, Richard</instructor>
+        </instructors>
+      </section>
+      <section category="Practicum" id="02">
+        <instructors>
+          <instructor sunetid="rford">Ford, Richard</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Policy Practicum: Evaluation of Water Planning and Climate Science in California">
+    <class id="SP17-LAW-805X">
+      <section category="Practicum" id="01">
+        <instructors>
+          <instructor sunetid="leonsz">Szeptycki, Leon F.</instructor>
+        </instructors>
+      </section>
+      <section category="Practicum" id="02">
+        <instructors>
+          <instructor sunetid="leonsz">Szeptycki, Leon F.</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Advanced Legal Writing: Business Transactions">
+    <class id="SP17-LAW-7815">
+      <section category="Seminar" id="02">
+        <instructors>
+          <instructor sunetid="mmb">Bautista, Marilyn Marchello</instructor>
+        </instructors>
+      </section>
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="mmb">Bautista, Marilyn Marchello</instructor>
+        </instructors>
+      </section>
+      <section category="Seminar" id="03">
+        <instructors>
+          <instructor sunetid="jcmeek">Meek, Jason</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Three Strikes Project: Criminal Justice Reform &amp; Individual Representation">
+    <class id="SP17-LAW-2008">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="mromano">Romano, Michael S.</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Policy Practicum:  Rethinking Campus and School Title IX Policies and Procedures">
+    <class id="SP17-LAW-805R">
+      <section category="Practicum" id="01">
+        <instructors>
+          <instructor sunetid="mldauber">Dauber, Michele Landis</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Advanced Negotiation: Public Policy">
+    <class id="SP17-LAW-7824">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="ghlum">Lum, Grande H</instructor>
+        </instructors>
+      </section>
+      <section category="Seminar" id="02">
+        <instructors>
+          <instructor sunetid="ghlum">Lum, Grande H</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Advanced Legal Writing: Technology Transactions">
+    <class id="SP17-LAW-7818">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="leerobin">Lee, Robin J</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Policy Practicum:  Legal and Policy Tools to Prevent Atrocities">
+    <class id="SP17-LAW-805V">
+      <section category="Practicum" id="01">
+        <instructors>
+          <instructor sunetid="bethvs">Van Schaack, Beth</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Problem Solving in Science">
+    <class id="SP17-CHEM-33C">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="brennanm">Brennan, Megan Kathleen</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Ecology and Evolution of Infectious Disease in a Changing World">
+    <class id="SP17-BIO-2N">
+      <section category="IntrSemFr" id="01">
+        <instructors>
+          <instructor sunetid="emordeca">Mordecai, Erin Gilmour</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Business and Public Policy Perspectives on U.S. Inequality">
+    <class id="SP17-MGTECON-327">
+      <section category="CaseStudy" id="01">
+        <instructors>
+          <instructor sunetid="lmendo">Mendonca, Leonard T.</instructor>
+          <instructor sunetid="pauloyer">Oyer, Paul</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="The Literature of Psychosis">
+    <class id="SP17-PSYC-282">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="dpm">Mason, Daniel Philippe</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-HUMBIO-162L">
+      <section category="Discussion" id="02">
+        <instructors>
+          <instructor sunetid="dpm">Mason, Daniel Philippe</instructor>
+        </instructors>
+      </section>
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="dpm">Mason, Daniel Philippe</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-ANTHRO-82P">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="dpm">Mason, Daniel Philippe</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-PSYC-82">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="dpm">Mason, Daniel Philippe</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="02">
+        <instructors/>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Plant Genetics">
+    <class id="SP17-BIO-137">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="walbot">Walbot, Virginia</instructor>
+          <instructor sunetid="moelange">Moe-Lange, Jacob</instructor>
+        </instructors>
+      </section>
+      <section category="LabSection" id="02">
+        <instructors>
+          <instructor sunetid="walbot">Walbot, Virginia</instructor>
+          <instructor sunetid="moelange">Moe-Lange, Jacob</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="The Chemical Principles of Life II">
+    <class id="SP17-CHEM-143">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="jks425">Schwartz Poehlmann, Jennifer</instructor>
+          <instructor sunetid="jdubois">Du Bois, Justin</instructor>
+          <instructor sunetid="khosla">Khosla, Chaitan</instructor>
+        </instructors>
+      </section>
+      <section category="Lecture" id="02">
+        <instructors>
+          <instructor sunetid="jks425">Schwartz Poehlmann, Jennifer</instructor>
+          <instructor sunetid="jdubois">Du Bois, Justin</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="03">
+        <instructors>
+          <instructor sunetid="grayma">Gray, Melissa Anne</instructor>
+          <instructor sunetid="jvisser">Visser, Josh Alan</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="04">
+        <instructors>
+          <instructor sunetid="jvisser">Visser, Josh Alan</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="05">
+        <instructors>
+          <instructor sunetid="arroy">Roy, Anish Raj</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="06">
+        <instructors>
+          <instructor sunetid="paytonw">Weidenbacher, Payton Anders</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="07">
+        <instructors>
+          <instructor sunetid="ybaichem">Bai, Yunhao</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Physical Chemistry Seminar">
+    <class id="SP17-CHEM-279">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="tem26">Markland, Thomas E.</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Neuroplasticity: From Synapses to Behavior">
+    <class id="SP17-BIO-204">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="dingjun">Ding, Jun</instructor>
+          <instructor sunetid="xkchen">Chen, Xiaoke</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Advanced Inorganic Chemistry">
+    <class id="SP17-CHEM-255">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="waymouth">Waymouth, Robert M</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-CHEM-155">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="waymouth">Waymouth, Robert M</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Inorganic Chemistry Seminar">
+    <class id="SP17-CHEM-259">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="solomone">Solomon, Edward I</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Advanced Physical Chemistry">
+    <class id="SP17-CHEM-275">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="cfchamb">Chamberlayne, Christian Forrest</instructor>
+          <instructor sunetid="rnz">Zare, Richard N</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="TA Training in Biology">
+    <class id="SP17-BIO-296">
+      <section category="Workshop" id="01">
+        <instructors>
+          <instructor sunetid="jamiec">Imam, Jamie</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Therapeutic Science at the Chemistry -  Biology Interface">
+    <class id="SP17-CHEM-227">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="bertozzi">Bertozzi, Carolyn</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Organic Chemistry Seminar">
+    <class id="SP17-CHEM-229">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="bertozzi">Bertozzi, Carolyn</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Organic Chemistry Seminar Presentation">
+    <class id="SP17-CHEM-231">
+      <section category="Practicum" id="01">
+        <instructors>
+          <instructor sunetid="yanx">Xia, Yan</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Social and Economic Networks">
+    <class id="SP17-ECON-291">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="jacksonm">Jackson, Matthew O.</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Wired for Wellness: Exploring the Technology of Flourishing">
+    <class id="SP17-WELLNESS-260">
+      <section category="Activity" id="01">
+        <instructors>
+          <instructor sunetid="mikeys">Siegel, Mikey Steven</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Philosophy of Public Policy">
+    <class id="SP17-PHIL-75">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="jbidadan">Bidadanure, Juliana</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Principles of Computer Systems">
+    <class id="SP17-CS-110">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="poohbear">Cain, Jerry</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="02">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="07">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="08">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="09">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="06">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="03">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="04">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="05">
+        <instructors/>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Ethical Issues in Engineering">
+    <class id="SP17-ENGR-131">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="spolcz">Polcz, Sarah</instructor>
+          <instructor sunetid="mcginn">McGinn, Robert</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Mindfulness and Stress Management">
+    <class id="SP17-WELLNESS-301">
+      <section category="Activity" id="01">
+        <instructors>
+          <instructor sunetid="aschima">Chima, Aneel Singh</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="CS + Social Good: Implementing Social Impact Projects">
+    <class id="SP17-CS-52">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="poohbear">Cain, Jerry</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Inorganic Chemistry II">
+    <class id="SP17-CHEM-153">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="solomone">Solomon, Edward I</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Physical Chemistry I">
+    <class id="SP17-CHEM-171">
+      <section category="Discussion" id="02">
+        <instructors>
+          <instructor sunetid="hannahw1">Wayment-Steele, Hannah Katherine</instructor>
+          <instructor sunetid="wcp">Pfalzgraff, William Clayton</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="03">
+        <instructors>
+          <instructor sunetid="hannahw1">Wayment-Steele, Hannah Katherine</instructor>
+          <instructor sunetid="wcp">Pfalzgraff, William Clayton</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="04">
+        <instructors>
+          <instructor sunetid="hannahw1">Wayment-Steele, Hannah Katherine</instructor>
+          <instructor sunetid="wcp">Pfalzgraff, William Clayton</instructor>
+        </instructors>
+      </section>
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="bcui">Cui, Bianxiao</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="The Social &amp; Economic Impact of Artificial Intelligence">
+    <class id="SP17-CS-22A">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="kaplanj">Kaplan, Jerry</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Symmetry and Quantum Information">
+    <class id="SP17-PHYSICS-491">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="waltemic">Walter, Michael</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="INTERACTIVE MEDIA AND GAMES">
+    <class id="SP17-BIOE-196">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="ingmar">Riedel-Kruse, Ingmar H., PhD</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-BIOPHYS-196">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="ingmar">Riedel-Kruse, Ingmar H., PhD</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="I, Biologist: Diversity Improves the Science of Biology">
+    <class id="SP17-CSRE-52H">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="hadly">Hadly, Elizabeth</instructor>
+          <instructor sunetid="stearns">Stearns, Tim</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-BIO-52">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="hadly">Hadly, Elizabeth</instructor>
+          <instructor sunetid="stearns">Stearns, Tim</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Introduction to Problem Solving in Biology">
+    <class id="SP17-BIO-60">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="mudgett">Mudgett, Mary Beth</instructor>
+          <instructor sunetid="wkhalfan">Khalfan, Waheeda</instructor>
+          <instructor sunetid="hbfraser">Fraser, Hunter B.</instructor>
+          <instructor sunetid="mcyert">Cyert, Martha S.</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="02">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="03">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="04">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="05">
+        <instructors>
+          <instructor sunetid="alindq">Lindqwister, Alex Le</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="06">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="07">
+        <instructors>
+          <instructor sunetid="kaitlinc">Ching, Kaitlin</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="08">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="09">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="10">
+        <instructors>
+          <instructor sunetid="ebel">Ebel, Emily Rose</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="11">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="12">
+        <instructors>
+          <instructor sunetid="regrew">Grewelle, Richard Ernest, IV</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Ending Poverty with Technology: A Practicum.">
+    <class id="SP17-SOC-158">
+      <section category="Practicum" id="01">
+        <instructors>
+          <instructor sunetid="mfyoung">Young, Maddy Faith</instructor>
+          <instructor sunetid="eshac">Chatterjee, Esha</instructor>
+          <instructor sunetid="grusky">Grusky, David B</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-PUBLPOL-148">
+      <section category="Practicum" id="01">
+        <instructors>
+          <instructor sunetid="mfyoung">Young, Maddy Faith</instructor>
+          <instructor sunetid="eshac">Chatterjee, Esha</instructor>
+          <instructor sunetid="grusky">Grusky, David B</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Introduction to Research in Ecology and Evolutionary Biology">
+    <class id="SP17-BIO-47">
+      <section category="Laboratory" id="03">
+        <instructors>
+          <instructor sunetid="nnova">Nova, Nicole</instructor>
+          <instructor sunetid="fukamit">Fukami, Tadashi</instructor>
+          <instructor sunetid="smalladi">Malladi, Shyamala D.</instructor>
+        </instructors>
+      </section>
+      <section category="Laboratory" id="04">
+        <instructors>
+          <instructor sunetid="dariahs">Hekmat-Scafe, Daria</instructor>
+          <instructor sunetid="paulus">Paulus, Lizzie</instructor>
+          <instructor sunetid="fukamit">Fukami, Tadashi</instructor>
+          <instructor sunetid="smalladi">Malladi, Shyamala D.</instructor>
+        </instructors>
+      </section>
+      <section category="Laboratory" id="05">
+        <instructors>
+          <instructor sunetid="jrcoyle">Coyle, Jessica R</instructor>
+          <instructor sunetid="suchana">Costa, Suchana</instructor>
+          <instructor sunetid="fukamit">Fukami, Tadashi</instructor>
+          <instructor sunetid="smalladi">Malladi, Shyamala D.</instructor>
+        </instructors>
+      </section>
+      <section category="Laboratory" id="06">
+        <instructors>
+          <instructor sunetid="dariahs">Hekmat-Scafe, Daria</instructor>
+          <instructor sunetid="mkmwong">Wong, Ka Man</instructor>
+          <instructor sunetid="fukamit">Fukami, Tadashi</instructor>
+          <instructor sunetid="smalladi">Malladi, Shyamala D.</instructor>
+        </instructors>
+      </section>
+      <section category="LabSection" id="08">
+        <instructors>
+          <instructor sunetid="jrcoyle">Coyle, Jessica R</instructor>
+          <instructor sunetid="ejmfield">Mansfield, Betsy Jane</instructor>
+          <instructor sunetid="fukamit">Fukami, Tadashi</instructor>
+          <instructor sunetid="smalladi">Malladi, Shyamala D.</instructor>
+        </instructors>
+      </section>
+      <section category="LabSection" id="09">
+        <instructors>
+          <instructor sunetid="nnova">Nova, Nicole</instructor>
+          <instructor sunetid="fukamit">Fukami, Tadashi</instructor>
+          <instructor sunetid="smalladi">Malladi, Shyamala D.</instructor>
+        </instructors>
+      </section>
+      <section category="LabSection" id="10">
+        <instructors>
+          <instructor sunetid="dariahs">Hekmat-Scafe, Daria</instructor>
+          <instructor sunetid="paulus">Paulus, Lizzie</instructor>
+          <instructor sunetid="fukamit">Fukami, Tadashi</instructor>
+          <instructor sunetid="smalladi">Malladi, Shyamala D.</instructor>
+        </instructors>
+      </section>
+      <section category="LabSection" id="11">
+        <instructors>
+          <instructor sunetid="jrcoyle">Coyle, Jessica R</instructor>
+          <instructor sunetid="suchana">Costa, Suchana</instructor>
+          <instructor sunetid="fukamit">Fukami, Tadashi</instructor>
+          <instructor sunetid="smalladi">Malladi, Shyamala D.</instructor>
+        </instructors>
+      </section>
+      <section category="LabSection" id="12">
+        <instructors>
+          <instructor sunetid="dariahs">Hekmat-Scafe, Daria</instructor>
+          <instructor sunetid="mkmwong">Wong, Ka Man</instructor>
+          <instructor sunetid="fukamit">Fukami, Tadashi</instructor>
+          <instructor sunetid="smalladi">Malladi, Shyamala D.</instructor>
+        </instructors>
+      </section>
+      <section category="Laboratory" id="01">
+        <instructors>
+          <instructor sunetid="jrcoyle">Coyle, Jessica R</instructor>
+          <instructor sunetid="ejmfield">Mansfield, Betsy Jane</instructor>
+          <instructor sunetid="fukamit">Fukami, Tadashi</instructor>
+          <instructor sunetid="smalladi">Malladi, Shyamala D.</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Immigration Crisis? Policy Dilemmas in the US and Europe">
+    <class id="SP17-POLISCI-43Q">
+      <section category="IntrSemSo" id="01">
+        <instructors>
+          <instructor sunetid="pmohanty">Mohanty, Peter Cushner</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Data Science 101">
+    <class id="SP17-STATS-101">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="sabatti">Sabatti, Chiara</instructor>
+          <instructor sunetid="johndrow">Johndrow, James</instructor>
+          <instructor sunetid="dyl">Greaves, Dylan</instructor>
+          <instructor sunetid="epatters">Patterson, Evan James</instructor>
+          <instructor sunetid="zren">Ren, Zhimei</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Air Quality Management">
+    <class id="SP17-CEE-172">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="royalk">Kopperud, Royal</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Department Colloquium">
+    <class id="SP17-CHEM-300">
+      <section category="Colloquium" id="01">
+        <instructors>
+          <instructor sunetid="bertozzi">Bertozzi, Carolyn</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Introduction to Scientific Python">
+    <class id="SP17-CME-193">
+      <section category="Workshop" id="01">
+        <instructors>
+          <instructor sunetid="bmj">Jennings, Blake</instructor>
+          <instructor sunetid="jacobp2">Perricone, Jacob Elias</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Ecology and Evolution of Animal Behavior">
+    <class id="SP17-BIO-145">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="dmgordon">Gordon, Deborah M</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-BIO-245">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="dmgordon">Gordon, Deborah M</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Reflections, Research, and Advances in Patient Care">
+    <class id="SP17-INDE-297">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="ashafer">Shafer, Audrey</instructor>
+          <instructor sunetid="larso">Osterberg, Lars</instructor>
+          <instructor sunetid="cprober">Prober, Charles G.</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Peer Counseling on Comprehensive Sexual Health">
+    <class id="SP17-WELLNESS-207">
+      <section category="Activity" id="01">
+        <instructors>
+          <instructor sunetid="smshige">Murphy-Shigematsu, Stephen</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Analytical Chemistry Laboratory">
+    <class id="SP17-CHEM-134">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="ctcox">Cox, Charlie</instructor>
+          <instructor sunetid="hdai1">Dai, Hongjie</instructor>
+        </instructors>
+      </section>
+      <section category="LabSection" id="02">
+        <instructors>
+          <instructor sunetid="sroget">Roget, Sean Anthony</instructor>
+        </instructors>
+      </section>
+      <section category="LabSection" id="03">
+        <instructors>
+          <instructor sunetid="jmeiser">Meiser, Jana Luise</instructor>
+        </instructors>
+      </section>
+      <section category="LabSection" id="04">
+        <instructors>
+          <instructor sunetid="khilsabe">Hilsabeck, Kallie Ilene</instructor>
+        </instructors>
+      </section>
+      <section category="LabSection" id="05">
+        <instructors>
+          <instructor sunetid="kcarr2">Carr, Katherine Anne</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Intergroup Communication">
+    <class id="SP17-PSYCH-103">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="dereca">Blackmon, Dereca Lynn</instructor>
+          <instructor sunetid="jlbrown">Brown, Joseph Lamont</instructor>
+          <instructor sunetid="gnagle">Nagle-Alverio, Gabriela Esther</instructor>
+          <instructor sunetid="hazelm">Markus, Hazel</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="08">
+        <instructors>
+          <instructor sunetid="rcduncan">Duncan, Ryan Christian</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="05">
+        <instructors>
+          <instructor sunetid="nilesw">Wilson, Niles</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="02">
+        <instructors>
+          <instructor sunetid="nanselmo">Anselmo, Noah Sage</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="03">
+        <instructors>
+          <instructor sunetid="esteban8">Ochoa, Esteban</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="04">
+        <instructors>
+          <instructor sunetid="sosifeso">Osifeso, Sydney</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="06">
+        <instructors>
+          <instructor sunetid="ahuynh14">Huynh, Audrey Thu Van</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="07">
+        <instructors>
+          <instructor sunetid="ahuynh14">Huynh, Audrey Thu Van</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-CSRE-103">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="dereca">Blackmon, Dereca Lynn</instructor>
+          <instructor sunetid="jlbrown">Brown, Joseph Lamont</instructor>
+          <instructor sunetid="gnagle">Nagle-Alverio, Gabriela Esther</instructor>
+          <instructor sunetid="hazelm">Markus, Hazel</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Structure and Reactivity of Organic Molecules">
+    <class id="SP17-CHEM-33">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="brennanm">Brennan, Megan Kathleen</instructor>
+          <instructor sunetid="stack">Stack, Daniel</instructor>
+        </instructors>
+      </section>
+      <section category="Lecture" id="02">
+        <instructors>
+          <instructor sunetid="brennanm">Brennan, Megan Kathleen</instructor>
+          <instructor sunetid="stack">Stack, Daniel</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="03">
+        <instructors>
+          <instructor sunetid="sebschn">Schneider, Sebastian Alexander</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="04">
+        <instructors>
+          <instructor sunetid="fgreene">Greene, Frank X</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="05">
+        <instructors>
+          <instructor sunetid="kliu94">Liu, Katie</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="06">
+        <instructors>
+          <instructor sunetid="jjshen">Shen, Jeff</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="07">
+        <instructors>
+          <instructor sunetid="sebschn">Schneider, Sebastian Alexander</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="08">
+        <instructors>
+          <instructor sunetid="kipouros">Kipouros, Ioannis</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="09">
+        <instructors>
+          <instructor sunetid="kliu94">Liu, Katie</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="10">
+        <instructors>
+          <instructor sunetid="kcarmstr">Armstrong, Keith</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="11">
+        <instructors>
+          <instructor sunetid="kcarmstr">Armstrong, Keith</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="12">
+        <instructors>
+          <instructor sunetid="nwolf">Wolf, Nate Robert</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="13">
+        <instructors>
+          <instructor sunetid="gzzhu">Zhu, Guanzhou</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="14">
+        <instructors>
+          <instructor sunetid="kliu94">Liu, Katie</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="15">
+        <instructors>
+          <instructor sunetid="kcarmstr">Armstrong, Keith</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="16">
+        <instructors>
+          <instructor sunetid="nwolf">Wolf, Nate Robert</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="17">
+        <instructors>
+          <instructor sunetid="gzzhu">Zhu, Guanzhou</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="18">
+        <instructors>
+          <instructor sunetid="fgreene">Greene, Frank X</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="19">
+        <instructors>
+          <instructor sunetid="jjshen">Shen, Jeff</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="20">
+        <instructors>
+          <instructor sunetid="allikeys">Keys, Alli Michelle</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="21">
+        <instructors>
+          <instructor sunetid="kipouros">Kipouros, Ioannis</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="22">
+        <instructors>
+          <instructor sunetid="bbos">Boswell, Ben Ross</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="23">
+        <instructors>
+          <instructor sunetid="fgreene">Greene, Frank X</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="24">
+        <instructors>
+          <instructor sunetid="allikeys">Keys, Alli Michelle</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="25">
+        <instructors>
+          <instructor sunetid="kipouros">Kipouros, Ioannis</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="26">
+        <instructors>
+          <instructor sunetid="bbos">Boswell, Ben Ross</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="27">
+        <instructors>
+          <instructor sunetid="gzzhu">Zhu, Guanzhou</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="28">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="29">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="30">
+        <instructors>
+          <instructor sunetid="nwolf">Wolf, Nate Robert</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="31">
+        <instructors>
+          <instructor sunetid="sebschn">Schneider, Sebastian Alexander</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="32">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="33">
+        <instructors>
+          <instructor sunetid="jjshen">Shen, Jeff</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="34">
+        <instructors/>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Organic Chemistry of Bioactive Molecules">
+    <class id="SP17-CHEM-35">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="mkanan">Kanan, Matthew W.</instructor>
+          <instructor sunetid="hrvsnarr">Vollmer-Snarr, Heidi R</instructor>
+        </instructors>
+      </section>
+      <section category="Lecture" id="02">
+        <instructors>
+          <instructor sunetid="mkanan">Kanan, Matthew W.</instructor>
+          <instructor sunetid="hrvsnarr">Vollmer-Snarr, Heidi R</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="03">
+        <instructors>
+          <instructor sunetid="jhtyler">Tyler, Jefferson Hoy</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="04">
+        <instructors>
+          <instructor sunetid="kbetz">Betz, Kerry Nicole</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="05">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="06">
+        <instructors>
+          <instructor sunetid="zhaorui">Huang, Zhaorui</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="07">
+        <instructors>
+          <instructor sunetid="kbetz">Betz, Kerry Nicole</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="08">
+        <instructors>
+          <instructor sunetid="kplindqu">Lindquist, Kurt</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="09">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="10">
+        <instructors/>
+      </section>
+      <section category="Discussion" id="11">
+        <instructors>
+          <instructor sunetid="kplindqu">Lindquist, Kurt</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="12">
+        <instructors>
+          <instructor sunetid="jhtyler">Tyler, Jefferson Hoy</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="13">
+        <instructors>
+          <instructor sunetid="zhaorui">Huang, Zhaorui</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="14">
+        <instructors/>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Exploring Neural Circuits">
+    <class id="SP17-BIO-222">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="lluo">Luo, Liqun</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Seminar in Population Genetics">
+    <class id="SP17-BIO-383">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="mfeldman">Feldman, Marcus W</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Senior Writing Project: The Personal Essay in Biology">
+    <class id="SP17-BIO-197WA">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="todhuntr">Todhunter, Andrew</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Forgiveness Practice and Meditation">
+    <class id="SP17-WELLNESS-234">
+      <section category="Activity" id="01">
+        <instructors>
+          <instructor sunetid="fredl">Luskin, Frederic Michael</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Critical Issues in Child Health">
+    <class id="SP17-HUMBIO-121">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="madam">Adam, Maya</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="02">
+        <instructors>
+          <instructor sunetid="amyranso">Ransohoff, Amy Karen</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="03">
+        <instructors>
+          <instructor sunetid="amyranso">Ransohoff, Amy Karen</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="04">
+        <instructors>
+          <instructor sunetid="amyranso">Ransohoff, Amy Karen</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="05">
+        <instructors>
+          <instructor sunetid="amyranso">Ransohoff, Amy Karen</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Conservation Biology: A Latin American Perspective">
+    <class id="SP17-HUMBIO-112">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="tomcfad">McFadden, Tom Owen</instructor>
+          <instructor sunetid="rdirzo">Dirzo, Rodolfo</instructor>
+          <instructor sunetid="charlid">Davis, Charli Nicole</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-BIO-144">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="tomcfad">McFadden, Tom Owen</instructor>
+          <instructor sunetid="rdirzo">Dirzo, Rodolfo</instructor>
+          <instructor sunetid="charlid">Davis, Charli Nicole</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-BIO-234">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="tomcfad">McFadden, Tom Owen</instructor>
+          <instructor sunetid="rdirzo">Dirzo, Rodolfo</instructor>
+          <instructor sunetid="charlid">Davis, Charli Nicole</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Calculus">
+    <class id="SP17-MATH-21">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="skimport">Kimport, Susie</instructor>
+        </instructors>
+      </section>
+      <section category="Lecture" id="02">
+        <instructors>
+          <instructor sunetid="skimport">Kimport, Susie</instructor>
+        </instructors>
+      </section>
+      <section category="Lecture" id="03">
+        <instructors>
+          <instructor sunetid="jaa4">Acosta, Jorge</instructor>
+        </instructors>
+      </section>
+      <section category="Lecture" id="04">
+        <instructors>
+          <instructor sunetid="jaa4">Acosta, Jorge</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="05">
+        <instructors>
+          <instructor sunetid="jung2">Gao, Jun</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="06">
+        <instructors>
+          <instructor sunetid="amasullo">Masullo, Alessandro Maria</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="07">
+        <instructors>
+          <instructor sunetid="jung2">Gao, Jun</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="08">
+        <instructors>
+          <instructor sunetid="amasullo">Masullo, Alessandro Maria</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="09">
+        <instructors>
+          <instructor sunetid="westonu">Ungemach, Weston Joseph</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="10">
+        <instructors>
+          <instructor sunetid="benlim">Lim, Ben Benjamin Weixuan</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="11">
+        <instructors>
+          <instructor sunetid="westonu">Ungemach, Weston Joseph</instructor>
+        </instructors>
+      </section>
+      <section category="Discussion" id="12">
+        <instructors>
+          <instructor sunetid="benlim">Lim, Ben Benjamin Weixuan</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Plant Microbe Interaction">
+    <class id="SP17-BIO-177">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="srl">Long, Sharon</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-BIO-277">
+      <section category="Seminar" id="01">
+        <instructors>
+          <instructor sunetid="srl">Long, Sharon</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Statistical and Machine Learning Methods for Genomics">
+    <class id="SP17-GENE-245">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="pritch">Pritchard, Jonathan</instructor>
+          <instructor sunetid="huatang">Tang, Hua</instructor>
+          <instructor sunetid="akundaje">Kundaje, Anshul Bharat</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-STATS-345">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="pritch">Pritchard, Jonathan</instructor>
+          <instructor sunetid="huatang">Tang, Hua</instructor>
+          <instructor sunetid="akundaje">Kundaje, Anshul Bharat</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-CS-373">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="pritch">Pritchard, Jonathan</instructor>
+          <instructor sunetid="huatang">Tang, Hua</instructor>
+          <instructor sunetid="akundaje">Kundaje, Anshul Bharat</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-BIOMEDIN-245">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="pritch">Pritchard, Jonathan</instructor>
+          <instructor sunetid="huatang">Tang, Hua</instructor>
+          <instructor sunetid="akundaje">Kundaje, Anshul Bharat</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-BIO-268">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="pritch">Pritchard, Jonathan</instructor>
+          <instructor sunetid="huatang">Tang, Hua</instructor>
+          <instructor sunetid="akundaje">Kundaje, Anshul Bharat</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Information Retrieval and Web Search">
+    <class id="SP17-CS-276">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="ppnayak">Nayak, P Pandurang</instructor>
+          <instructor sunetid="manning">Manning, Christopher D.</instructor>
+        </instructors>
+      </section>
+    </class>
+    <class id="SP17-LINGUIST-286">
+      <section category="Lecture" id="01">
+        <instructors>
+          <instructor sunetid="ppnayak">Nayak, P Pandurang</instructor>
+          <instructor sunetid="manning">Manning, Christopher D.</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+  <courseclass term="Spring 2017" title="Advanced Cardiac Life Support">
+    <class id="SP17-MED-295">
+      <section category="Practicum" id="01">
+        <instructors>
+          <instructor sunetid="giacomin">Giacomini, John C</instructor>
+        </instructors>
+      </section>
+    </class>
+  </courseclass>
+</response>
