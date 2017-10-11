@@ -13,5 +13,5 @@ out/
 **/*.iml
 .idea/
 **/target/*
-lib/
+lib/*
 !lib/.keep

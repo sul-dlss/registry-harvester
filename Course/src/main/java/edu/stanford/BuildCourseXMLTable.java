@@ -58,6 +58,11 @@ public class BuildCourseXMLTable {
 
     log.info("Processing terms: " + Arrays.toString(quarter));
 
+    if (CourseDBService.dbConnection == null) {
+      CourseDBService.openConnection();
+      CourseDBService.dbConnection.setAutoCommit(false);
+    }
+
     for (String aQuarter : quarter) {
 
       String termCode;
@@ -158,7 +163,7 @@ public class BuildCourseXMLTable {
               + "<!DOCTYPE CourseClass SYSTEM \"http://registry.stanford.edu/xml/courseclass/1.0/CourseClass.dtd\">"
               + "<RegData>" + lookup + "</RegData>";
     } catch (NullPointerException e) {
-      log.warn("Lookup course returned " + e.getMessage());
+      log.warn("Lookup course for " + termCode + " returned " + e.getMessage());
     }
 
     return regData;
