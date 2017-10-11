@@ -119,7 +119,7 @@ public class BuildCourseXMLTable {
     return null;
   }
 
-  private static Document getClassCourse(String lineNew) throws JDOMException, IOException {
+  static Document getClassCourse(String lineNew) throws JDOMException, IOException {
     DocType dtype = new DocType("CourseClass");
     dtype.setPublicID("http://registry.stanford.edu/xml/courseclass/1.0/CourseClass.dtd");
     InputSource is = new InputSource();
