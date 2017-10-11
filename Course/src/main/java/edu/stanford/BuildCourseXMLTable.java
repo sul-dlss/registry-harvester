@@ -54,6 +54,7 @@ public class BuildCourseXMLTable {
     }
   }
 
+  @CoverageIgnore
   private static void processQuarters(String [] quarter) throws Exception {
 
     log.info("Processing terms: " + Arrays.toString(quarter));
