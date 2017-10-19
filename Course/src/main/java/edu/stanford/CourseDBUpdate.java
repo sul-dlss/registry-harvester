@@ -1,12 +1,16 @@
 package edu.stanford;
 
 import java.sql.*;
+import java.util.Calendar;
 
 class CourseDBUpdate {
 
     static void updateCourse(String course_id, String xml) {
 
-        String sql = "update courses set xml = ? where course_class_id = ?";
+        String sql = "update courses set xml = ?, date_changed = ? where course_class_id = ?";
+
+        Calendar calendar = Calendar.getInstance();
+        java.sql.Date today = new java.sql.Date(calendar.getTime().getTime());
 
         PreparedStatement ps;
 
@@ -17,7 +21,8 @@ class CourseDBUpdate {
 
             ps = CourseDBService.dbConnection.prepareStatement(sql);
             ps.setClob(1, clob);
-            ps.setString(2, course_id);
+            ps.setDate(2, today);
+            ps.setString(3, course_id);
 
             ps.execute();
 
