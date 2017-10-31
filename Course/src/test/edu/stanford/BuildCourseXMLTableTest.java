@@ -6,11 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.InputSource;
 
-import java.io.File;
-import java.io.StringReader;
+import java.io.*;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
@@ -65,9 +65,14 @@ public class BuildCourseXMLTableTest {
 
     @Test
     public void getClassCourse() throws Exception {
-        assertNotNull(course_class_doc.getDocument());
-        assertNotNull(course_class_doc.getDocType());
-        assertTrue(0 < course_class_doc.getContentSize());
+        InputStream file = ClassLoader.getSystemResourceAsStream("oneCourseClass.xml");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(file));
+        String course = reader.lines().collect(Collectors.joining("\n"));
+        Document courseDoc = BuildCourseXMLTable.getClassCourse(course);
+
+        assertNotNull(courseDoc.getDocument());
+        assertNotNull(courseDoc.getDocType());
+        assertTrue(0 < courseDoc.getContentSize());
     }
 
     @Test

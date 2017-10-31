@@ -54,9 +54,15 @@ public class BuildCourseXMLTable {
     }
   }
 
+  @CoverageIgnore
   private static void processQuarters(String [] quarter) throws Exception {
 
     log.info("Processing terms: " + Arrays.toString(quarter));
+
+    if (CourseDBService.dbConnection == null) {
+      CourseDBService.openConnection();
+      CourseDBService.dbConnection.setAutoCommit(false);
+    }
 
     for (String aQuarter : quarter) {
 
@@ -113,7 +119,7 @@ public class BuildCourseXMLTable {
     return null;
   }
 
-  private static Document getClassCourse(String lineNew) throws JDOMException, IOException {
+  static Document getClassCourse(String lineNew) throws JDOMException, IOException {
     DocType dtype = new DocType("CourseClass");
     dtype.setPublicID("http://registry.stanford.edu/xml/courseclass/1.0/CourseClass.dtd");
     InputSource is = new InputSource();
@@ -158,7 +164,7 @@ public class BuildCourseXMLTable {
               + "<!DOCTYPE CourseClass SYSTEM \"http://registry.stanford.edu/xml/courseclass/1.0/CourseClass.dtd\">"
               + "<RegData>" + lookup + "</RegData>";
     } catch (NullPointerException e) {
-      log.warn("Lookup course returned " + e.getMessage());
+      log.warn("Lookup course for " + termCode + " returned " + e.getMessage());
     }
 
     return regData;

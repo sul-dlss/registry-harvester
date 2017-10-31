@@ -16,7 +16,7 @@ class CourseDBLookup {
         return queryCourse(sql);
     }
 
-    static String queryCourse(String sql) {
+    private static String queryCourse(String sql) {
         StringBuilder result = new StringBuilder();
 
         try {
