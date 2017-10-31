@@ -1,11 +1,15 @@
 package edu.stanford;
 
 import java.sql.*;
+import java.util.Calendar;
 
 class CourseDBInsert {
     static void insertCourse(String course_id, String xml) {
 
-        String sql = "insert into courses (course_class_id, xml) values (?, ?)";
+        String sql = "insert into courses (course_class_id, xml) values (?, ?, ?)";
+
+        Calendar calendar = Calendar.getInstance();
+        java.sql.Date today = new java.sql.Date(calendar.getTime().getTime());
 
         PreparedStatement ps;
 
@@ -16,6 +20,7 @@ class CourseDBInsert {
             ps = CourseDBService.dbConnection.prepareStatement(sql);
             ps.setString(1, course_id);
             ps.setClob(2, clob);
+            ps.setDate(3, today);
 
             ps.execute();
 
