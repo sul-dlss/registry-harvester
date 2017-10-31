@@ -8,14 +8,11 @@ before_install:
   - source .travis/maven_settings.sh
   - mvn compile
 script:
-  - mvn verify &&  mvn cobertura:cobertura coveralls:report
+  - mvn cobertura:cobertura coveralls:report
 deploy:
   provider: releases
   api_key:
     secure: vfeXfn7G8VquyH/1DFkufeEkOAwbpgieztjJGIKUNCaP1ll3GVZbOMFJNiHHZASaxRsp/3fFBCe2vYlNmHMidjW/55yeDfBfWxHHDr6Wh5vTwlWA6kFWtK4eh3MqPhvIVKnf2RGlEzL2cJnR1QFETwV8b7cyAIOCvvbvRIbJe6OYEF4ej+u6Zyxrr5sfey0QQ2PoDM//P09sfeJ2hQydYsA8PmboHqRXsfQP2Eq7x3HsTtbXnfBkNWxky3vjLclZ3eAc1YPy9UTAYRziNflFRXBLa4xEPyuX/uYR+r/5nVvi3Ocy4d7yJRSvhwJ3e7CK6Pl0/a4jZ4KKFJI/s31WbFwWbg/UKBtP/Op0EngxSpWUFJDQ8+1vYy6Zspl0sxvzLX4bPUcsBzbrVpXDhL/C5KVucXJgoAWLA202QEJ12wqf0VFGuxuD3vlUP0NRwhiCWM4PfWkotzQu2LYPF+zkR+dvl1+QRgrejGSJGdzL7T0Ih1EhPBSXUjsMeZWAczxfbohxlz+455al+AblZ1inCBvZM5OAdx9kQD8uHvs5yoCBXdxG65cZxOhY0lZ5+/zOwjtBbvZFYvkrHc0iDb/Ag3cy2FY9p2ObMi1fdg0MoOxlNXeA0dHSUAvmEzY5k6Wec16xQ6i561rYccbkhUgHIDqFrCACqiCfyv3OXA8HHOA=
-  file:
-    - 'lib/Course-jar-with-dependencies.jar'
-    - 'lib/Person-jar-with-dependencies.jar'
   on:
     repo: sul-dlss/registry-harvester
     branch: master
