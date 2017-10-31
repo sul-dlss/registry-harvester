@@ -193,3 +193,13 @@ are needed by the Course Reserves App (the current term and the next upcoming te
 From the Harvester root directory `/s/SUL/Bin/Harvester` do `tail log/course_build.log` which will show you the last few courses processed. `grep "Processing" log/course_build.log` will show you the course_harvest.out files that were processed. To see the actual process information this command is useful: `ps aux --sort -rss | less`
 
 The BuildCourseXML java process will most likely be at the very top. You can also see the courseXML files and the registry term xml saved files being built by listing the `course_files/` directory.
+
+## Deploying the project to a server
+
+Deploys are done using Capistrano. You can deploy the project to the development server with `cap dev deploy deploy:jars` 
+and to the production server with `cap prod deploy deploy:jars`. The project will be copied to the `/s/SUL/Harvester` directory 
+on those machines. The dev and prod hostnames are defined in `config/deploy/dev.rb` and `config/deploy/prod.rb`. You will 
+also need to get the oracle connection details from "shared_configs" and follow the instructions to copy the details to the 
+deployed shared directory. Make sure that you install the packages (with Maven as described above) either locally or on 
+the server before trying to run any of the modules. The deployment with `deploy:jars` task will upload the JAR files to the 
+`lib/` directory on the server.
