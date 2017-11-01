@@ -54,9 +54,14 @@ fi
 
 cd $HOME
 
-echo "Running: java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar $OUTFile"
+#echo "Running: java -jar -Xms${JVM1} -Xmx${JVM2} Course-jar-with-dependencies.jar $OUTFile"
 
 java -jar -Xms${JVM1} -Xmx${JVM2} lib/Course-jar-with-dependencies.jar $OUTFile
+
+UPDATED=`grep " updated$" $LOG/course_build.err | awk '{print $6}' | sort | uniq | wc -l`
+INSERTED=`grep " inserted$" $LOG/course_build.err | awk '{print $6}' | sort | uniq | wc -l`
+
+echo "$UPDATED course records updated. $INSERTED new course records added."
 
 echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
 cp $HOME/course_files/courseXML_*.xml $DATA/
