@@ -60,8 +60,13 @@ java -jar -Xms${JVM1} -Xmx${JVM2} lib/Course-jar-with-dependencies.jar $OUTFile
 
 UPDATED=`grep " updated$" $LOG/course_build.err | awk '{print $6}' | sort | uniq | wc -l`
 INSERTED=`grep " inserted$" $LOG/course_build.err | awk '{print $6}' | sort | uniq | wc -l`
+ERRORS=`grep "Exception:" $LOG/course_build.err`
 
-echo "$UPDATED course records updated. $INSERTED new course records added."
+echo "$UPDATED course records updated. $INSERTED new course records added." >> $LOG/course_build.log
+
+if [ -n $ERRORS ]; then
+    echo "Errors: $ERRORS" >> $LOG/course_build.log
+fi
 
 echo "Copied courseXML files to /s/SUL/Dataload/CourseReserves" >> $LOG/course_build.log
 cp $HOME/course_files/courseXML_*.xml $DATA/
