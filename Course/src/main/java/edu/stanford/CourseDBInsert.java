@@ -6,7 +6,7 @@ import java.util.Calendar;
 class CourseDBInsert {
     static void insertCourse(String course_id, String xml) {
 
-        String sql = "insert into courses (course_class_id, xml) values (?, ?, ?)";
+        String sql = "insert into courses (course_class_id, xml, date_changed) values (?, ?, ?)";
 
         Calendar calendar = Calendar.getInstance();
         java.sql.Date today = new java.sql.Date(calendar.getTime().getTime());

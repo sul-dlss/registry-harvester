@@ -1,17 +1,17 @@
 !.gitignore
 
-certs/
 !certs/.keep
-course_files/
+certs/
 !course_files/.keep
-etc/
+course_files/
 !etc/.keep
-log/
+etc/
 !log/.keep
-out/
+log/
 !out/.keep
+out/
 **/*.iml
 .idea/
 **/target/*
-lib/*
 !lib/.keep
+lib/*

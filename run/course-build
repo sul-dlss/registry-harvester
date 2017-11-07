@@ -18,23 +18,23 @@ if [[ -z $COURSE_TERMS ]]; then
     export COURSE_TERMS=`cat $HOME/Course/src/main/resources/terms.conf`
 fi
 
-if [ -z $JVM1 ]
+if [[ -z $JVM1 ]]
 then
   JVM1="2G"
 fi
 
-if [ -z $JVM2 ]
+if [[ -z $JVM2 ]]
 then
   JVM2="10G"
 fi
 
-if [ "$OUTFile" == "latest" ]
+if [[ "$OUTFile" == "latest" ]]
 then
   for F in `ls $OUT/course_harvest.out.* | tail -1`
   do
     OUTFile="$F"
   done
-elif [ -z $OUTFile ]
+elif [[ -z $OUTFile ]]
 then
   for F in `ls $OUT/course_harvest.out.*`
   do
@@ -64,7 +64,7 @@ ERRORS=`grep "Exception:" $LOG/course_build.err`
 
 echo "$UPDATED course records updated. $INSERTED new course records added." >> $LOG/course_build.log
 
-if [ -n $ERRORS ]; then
+if [[ -n $ERRORS ]]; then
     echo "Errors: $ERRORS" >> $LOG/course_build.log
 fi
 
