@@ -11,8 +11,8 @@ JVM2=$2
 OUTFile=$3
 DATE=`date +%Y%m%d%H%M`
 
-/usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/remove_old_course_harvests.rb >> $LOG/course_build.log
-/usr/local/rvm/wrappers/ruby-2.2.4/ruby $HOME/run/update_terms_conf.rb >> $LOG/course_build.log
+ruby $HOME/run/remove_old_course_harvests.rb >> $LOG/course_build.log
+ruby $HOME/run/update_terms_conf.rb >> $LOG/course_build.log
 
 if [[ -z $COURSE_TERMS ]]; then
     export COURSE_TERMS=`cat $HOME/Course/src/main/resources/terms.conf`
