@@ -12,9 +12,9 @@ class   BuildTermString {
         break;
         case 4: result = "W";
         break;
-        case 6: result = "SP";
+        case 6: result = "Sp";
         break;
-        case 8: result = "SU";
+        case 8: result = "Su";
         break;
         default: result = "";
         break;

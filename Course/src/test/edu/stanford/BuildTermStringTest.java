@@ -28,10 +28,10 @@ public class BuildTermStringTest {
         assertEquals("W", termString);
 
         termString = BuildTermString.getTerm("1186");
-        assertEquals("SP", termString);
+        assertEquals("Sp", termString);
 
         termString = BuildTermString.getTerm("1188");
-        assertEquals("SU", termString);
+        assertEquals("Su", termString);
 
         try {
             BuildTermString.getTerm("118");

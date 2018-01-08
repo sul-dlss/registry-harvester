@@ -78,7 +78,7 @@ public class BuildCourseXMLTableTest {
     @Test
     public void saveCourseClass() throws Exception {
         BuildCourseXMLTable.saveCourseClass(course_doc, "1176");
-        File file = new File(System.getProperty("user.dir") + "/course_files/courseXML_SP17.xml");
+        File file = new File(System.getProperty("user.dir") + "/course_files/courseXML_Sp17.xml");
         assertTrue(file.exists());
     }
 
