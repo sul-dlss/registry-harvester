@@ -3,7 +3,6 @@
 . /s/SUL/Config/sirsi.env
 
 HOME=/s/SUL/Harvester/current
-REM_CR=/s/SUL/Bin/TextUtil/remove_cr.pl
 LOG=$HOME/log
 OUT=$HOME/out
 DATE=$1
@@ -23,7 +22,7 @@ illiad_date=`/s/sirsi/Unicorn/Bin/transdate -d-1`
 echo "Updating/Inserting keys from /s/SUL/Batchlog/userload.keys.$illiad_date into ILLiad" >> $LOG/harvest.log
 $HOME/run/pop2illiad $illiad_date
 
-cat $LOG/harvest.log | $REM_CR | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
+cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
 
 mv $LOG/harvest.log $LOG/harvest.log.$DATE
 mv $OUT/harvest.out $OUT/harvest.out.$DATE

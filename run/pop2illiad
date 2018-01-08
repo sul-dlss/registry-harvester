@@ -1,6 +1,7 @@
 #!/bin/bash
 
 HOME=/s/SUL/Harvester/current
+REM_CR=/s/SUL/Bin/TextUtil/remove_cr.pl
 LOG=$HOME/log
 DATE=$1
 
@@ -44,5 +45,5 @@ then
     echo "$VALUES rows inserted into ILLiad Users Table" >> $LOG/illiad.log
 fi
 
-cat $LOG/illiad.log | mailx -s 'ILLiad User Export Log' sul-unicorn-devs@lists.stanford.edu
+cat $LOG/illiad.log | $REM_CR | mailx -s 'ILLiad User Export Log' sul-unicorn-devs@lists.stanford.edu
 rm $KEY_DIR/userload.keys.*_uniq
