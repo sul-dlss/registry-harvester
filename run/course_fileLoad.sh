@@ -1,6 +1,6 @@
 #!/bin/sh
 
-APP_HOME=/s/SUL/Harvester
+APP_HOME=/s/SUL/Harvester/current
 CONF_HOME=$APP_HOME/Course/src/main/resources
 JAVA_HOME=/usr
 LOAD_FILE=$1
