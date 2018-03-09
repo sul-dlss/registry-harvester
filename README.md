@@ -154,15 +154,15 @@ Then use the file as the first argument of the do-course-harvest-file script:
 
 With a file of Symphony user keys or a file of sunet ids you can populate the ILLiad Users table with one the following commands:
 ```
-cd /s/SUL/Harvester/current/lib
+cd /s/SUL/Harvester/current
 ```
 With user keys:
 ```
-java -jar Person-jar-with-dependencies.jar /path/to/userkey/file
+java -jar lib/Person-jar-with-dependencies.jar /path/to/userkey/file keyfile
 ```
 With sunet ids:
 ```
-java -jar Person-jar-with-dependencies.jar /path/to/sunetid/file sunet
+java -jar lib/Person-jar-with-dependencies.jar /path/to/sunetid/file sunet
 ```
 #### Run the Course Build
 
