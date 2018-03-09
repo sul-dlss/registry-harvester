@@ -88,49 +88,53 @@ public class Pop2ILLiad {
 
                 result = IOUtils.toString(p2.getInputStream(), "UTF-8");
 
-                String sunetid; //0 x
-                String last; //1 D
-                String first; //1 D
-                String barcode; //2 B
-                String profile; //3 p
-                String email; //4 X.9007.
-                String phone; //5 X.9036.
-                String department; //6 X.9032.
-                String nvtgc; //7 Y.9032.
-                String expiration; //8 e
+                String sunetid = ""; //0 x
+                String last = ""; //1 D
+                String first = ""; //1 D
+                String barcode = ""; //2 B
+                String profile = ""; //3 p
+                String email = ""; //4 X.9007.
+                String phone = ""; //5 X.9036.
+                String department = ""; //6 X.9032.
+                String nvtgc = ""; //7 Y.9032.
+                String expiration = ""; //8 e
 
-                String NVTGC;
-                String organization;
-                String fullName;
-                String firstName;
+                String NVTGC = "";
+                String organization = "";
+                String fullName = "";
+                String firstName = "";
                 String status = "";
 
                 int firstIndex;
 
-                String [] userFields = result.split("\\|");
-                sunetid = userFields[0];
+                try {
+                    String[] userFields = result.split("\\|");
+                    sunetid = userFields[0];
 
-                fullName = userFields[1].replace("'", "''");
+                    fullName = userFields[1].replace("'", "''");
 
-                String [] splitname = fullName.split(",");
-                last = splitname[0].trim();
-                first = splitname[1].trim();
+                    String[] splitname = fullName.split(",");
+                    last = splitname[0].trim();
+                    first = splitname[1].trim();
 
-                if (first.indexOf(" ") > 0){
-                    firstIndex = first.indexOf(" ");
+                    if (first.indexOf(" ") > 0) {
+                        firstIndex = first.indexOf(" ");
+                    } else {
+                        firstIndex = first.length();
+                    }
+                    firstName = first.substring(0, firstIndex);
+
+                    barcode = userFields[2];
+                    profile = userFields[3];
+                    email = userFields[4];
+                    phone = userFields[5];
+                    department = userFields[6];
+                    nvtgc = userFields[7];
+                    expiration = userFields[8];
+
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.err.println("Pop2ILLiad: " + e.getMessage());
                 }
-                else {
-                    firstIndex = first.length();
-                }
-                firstName = first.substring(0, firstIndex);
-
-                barcode = userFields[2];
-                profile = userFields[3];
-                email = userFields[4];
-                phone = userFields[5];
-                department = userFields[6];
-                nvtgc = userFields[7];
-                expiration = userFields[8];
 
                 if (nvtgc.indexOf("gsb") > 0) {
                   NVTGC = "S7Z";
