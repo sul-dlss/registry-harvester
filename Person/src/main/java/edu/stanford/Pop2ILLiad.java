@@ -153,9 +153,13 @@ public class Pop2ILLiad {
                   organization = "SUL";
                 }
 
-                if (expiration.equals("0")) {
+                if (expiration.length() == 0) {
+                    expiration = sdf.format(today);
+                }
+                else if (expiration.equals("0")) {
                   expiration = "99990101";
                 }
+
                 expiry = sdf.parse(expiration);
 
                 //Get the patron Status based on the GetProfiles map
