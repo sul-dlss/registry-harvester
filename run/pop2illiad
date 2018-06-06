@@ -13,7 +13,7 @@ then
   cd $KEY_DIR
   split -a 1 -l 5000 $KEY_FILE "userload.keys.$DATE."
 
-  cd $HOME/lib
+  cd $HOME
 
   for FILE in `find $KEY_FILE.*`
   do
@@ -21,7 +21,7 @@ then
     echo "" >> $LOG/illiad.log
     cat $FILE | sort | uniq > ${FILE}_uniq
 
-    java -jar Person-jar-with-dependencies.jar ${FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
+    java -jar lib/Person-jar-with-dependencies.jar ${FILE}_uniq keyfile >> $LOG/illiad.log  2>&1
   done
 else
   cd $HOME
