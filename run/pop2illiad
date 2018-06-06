@@ -14,10 +14,11 @@ then
   split -a 1 -l 5000 $KEY_FILE "userload.keys.$DATE."
 
   cd $HOME
+  echo "" > $LOG/illiad.log
 
   for FILE in `find $KEY_FILE.*`
   do
-    echo "Processing $FILE for ILLiad" > $LOG/illiad.log
+    echo "Processing $FILE for ILLiad" >> $LOG/illiad.log
     echo "" >> $LOG/illiad.log
     cat $FILE | sort | uniq > ${FILE}_uniq
 
