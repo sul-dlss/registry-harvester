@@ -47,4 +47,5 @@ then
 fi
 
 cat $LOG/illiad.log | $REM_CR | mailx -s 'ILLiad User Export Log' sul-unicorn-devs@lists.stanford.edu
+cat $LOG/illiad.log | $REM_CR | grep 'no email address in registry' | mailx -s 'Rejected ILLiad Users Log' stfborrowing@stanford.edu
 rm $KEY_DIR/userload.keys.*_uniq
