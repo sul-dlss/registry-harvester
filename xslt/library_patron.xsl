@@ -328,11 +328,21 @@
 		</xsl:variable>
 
 		<!--****************-->
-		<!-- AFFILIATION - puts primary affiliation in user extended info field AFFIL1-->
+		<!-- AFFILIATION -->
+		<!--****************-->
+		<!-- puts primary affiliation in user extended info field AFFIL1 -->
 		<!--****************-->
 		<xsl:variable name="AFFIL1">
 			<xsl:if test="affiliation[@affnum = '1']">
-				<xsl:value-of select="affiliation/@type"/>
+				<xsl:value-of select="affiliation[@affnum = '1']/@type"/>
+			</xsl:if>
+		</xsl:variable>
+		<!--****************-->
+		<!-- puts secondary affiliation in user extended info field AFFIL2 -->
+		<!--****************-->
+		<xsl:variable name="AFFIL2">
+			<xsl:if test="affiliation[@affnum = '2']">
+				<xsl:value-of select="affiliation[@affnum = '2']/@type"/>
 			</xsl:if>
 		</xsl:variable>
 
@@ -374,6 +384,9 @@
 		<xsl:if test="string($AFFIL1)">
 			<xsl:text>.USER_XINFO_BEGIN.</xsl:text><xsl:text>&#10;</xsl:text>
 			<xsl:value-of select="concat('.AFFIL1.', $SPACER, $AFFIL1)"/><xsl:text>&#10;</xsl:text>
+			<xsl:if test="string($AFFIL2)">
+				<xsl:value-of select="concat('.AFFIL2.', $SPACER, $AFFIL2)"/><xsl:text>&#10;</xsl:text>
+			</xsl:if>
 			<xsl:text>.USER_XINFO_END.</xsl:text><xsl:text>&#10;</xsl:text>
 		</xsl:if>
 	</xsl:template>
