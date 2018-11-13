@@ -99,6 +99,11 @@ public class Pop2ILLiad {
                 String nvtgc = ""; //7 Y.9032.
                 String expiration = ""; //8 e
 
+                // NOTE: "nvtgc" is the code for the user's ILLiad instance that comes out of the registry userload
+                // and writen into the symphony user record in a custom user field as "gsb", "law", or "medicine" based
+                // on the user's privgroup statuses (see <xsl:template match="privgroup"> in xslt/library_patron.xsl).
+                // "NVTGC" is the code that gets set in the ILLiad user record via ILLData.put below...
+
                 String NVTGC = "";
                 String organization = "";
                 String fullName = "";
@@ -173,6 +178,10 @@ public class Pop2ILLiad {
 
                 if (status.length() == 0) {
                   status = "Affiliate";
+                }
+
+                if (organization.equals("MED")) {
+                    status = "MED " + status;
                 }
 
                 if (department.length() > 0) {
