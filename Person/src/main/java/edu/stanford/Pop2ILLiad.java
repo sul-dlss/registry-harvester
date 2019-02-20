@@ -176,7 +176,7 @@ public class Pop2ILLiad {
                     }
                 }
 
-                if (status.length() == 0) {
+                if (status == null || status.length() == 0) {
                   status = "Affiliate";
                 }
 
