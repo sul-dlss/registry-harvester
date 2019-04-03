@@ -65,7 +65,7 @@
 		<!--****************-->
 		<xsl:variable name="USER_NAME">
 			<xsl:choose>
-				<xsl:when test="name[@type='registered']">
+				<xsl:when test="name[@type='display']">
 					<xsl:value-of select="name/last"/>
 					<xsl:text>, </xsl:text>
 					<xsl:value-of select="name/first"/>
@@ -79,21 +79,21 @@
 		</xsl:variable>
 		<xsl:variable name="USER_FIRST_NAME">
 			<xsl:choose>
-				<xsl:when test="name[@type='registered']">
+				<xsl:when test="name[@type='display']">
 					<xsl:value-of select="name/first"/>
 				</xsl:when>
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:variable name="USER_MIDDLE_NAME">
 			<xsl:choose>
-				<xsl:when test="name[@type='registered']">
+				<xsl:when test="name[@type='display']">
 					<xsl:value-of select="name/middle"/>
 				</xsl:when>
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:variable name="USER_LAST_NAME">
 			<xsl:choose>
-				<xsl:when test="name[@type='registered']">
+				<xsl:when test="name[@type='display']">
 					<xsl:value-of select="name/last"/>
 				</xsl:when>
 			</xsl:choose>
