@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. /s/SUL/Config/sirsi.env
+
 HOME=/s/SUL/Harvester/current
 REM_CR=/s/SUL/Bin/TextUtil/remove_cr.pl
 LOG=$HOME/log
