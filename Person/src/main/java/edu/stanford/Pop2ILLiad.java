@@ -245,7 +245,7 @@ public class Pop2ILLiad {
                     illData.put("PasswordHint", "NULL"); //
                     illData.put("SCountry", "NULL"); //
                     illData.put("RSSID", "NULL");
-                    illData.put("AuthType", "'ILLiad'");
+                    illData.put("AuthType", "'RemoteAuth'");
                     illData.put("UserInfo1", "NULL"); //
                     illData.put("UserInfo2", "NULL"); //
                     illData.put("UserInfo3", "NULL"); //
