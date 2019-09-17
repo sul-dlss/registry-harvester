@@ -81,7 +81,7 @@ public class Pop2ILLiad {
                 Process p1 = Runtime.getRuntime().exec(new String[] { "echo", userkey });
                 InputStream input = p1.getInputStream();
 
-                Process p2 = Runtime.getRuntime().exec(new String[] { "seluser", "-i" + selFlag, "-oxDBpX.9007.X.9036.X.9032.Y.9032.e" });
+                Process p2 = Runtime.getRuntime().exec(new String[] { "seluser", "-i" + selFlag, "-oxDBpX.9007.Z.9007.X.9036.X.9032.Y.9032.e" });
                 OutputStream output = p2.getOutputStream();
 
                 IOUtils.copy(input, output);
@@ -95,10 +95,11 @@ public class Pop2ILLiad {
                 String barcode = ""; //2 B
                 String profile = ""; //3 p
                 String email = ""; //4 X.9007.
-                String phone = ""; //5 X.9036.
-                String department = ""; //6 X.9032.
-                String nvtgc = ""; //7 Y.9032.
-                String expiration = ""; //8 e
+                String email_alt = ""; //5 Z.9007.
+                String phone = ""; //6 X.9036.
+                String department = ""; //7 X.9032.
+                String nvtgc = ""; //8 Y.9032.
+                String expiration = ""; //9 e
 
                 // NOTE: "nvtgc" is the code for the user's ILLiad instance that comes out of the registry userload
                 // and writen into the symphony user record in a custom user field as "gsb", "law", or "medicine" based
@@ -110,6 +111,8 @@ public class Pop2ILLiad {
                 String fullName = "";
                 String firstName = "";
                 String status = "";
+                boolean hasEmail = false;
+                boolean hasAltEmail = false;
 
                 int firstIndex;
 
@@ -133,10 +136,11 @@ public class Pop2ILLiad {
                     barcode = userFields[2];
                     profile = userFields[3];
                     email = userFields[4];
-                    phone = userFields[5];
-                    department = userFields[6];
-                    nvtgc = userFields[7];
-                    expiration = userFields[8];
+                    email_alt = userFields[5];
+                    phone = userFields[6];
+                    department = userFields[7];
+                    nvtgc = userFields[8];
+                    expiration = userFields[9];
 
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.err.println("Pop2ILLiad: " + e.getMessage());
@@ -166,6 +170,13 @@ public class Pop2ILLiad {
                   expiration = "99990101";
                 }
 
+                if (email != null && email.matches(EMAIL_PATTERN)) {
+                    hasEmail = true;
+                }
+                else if (email_alt != null && email_alt.matches(EMAIL_PATTERN)) {
+                    hasAltEmail = true;
+                }
+
                 expiry = sdf.parse(expiration);
 
                 //Get the patron Status based on the GetProfiles map
@@ -190,9 +201,9 @@ public class Pop2ILLiad {
                   department = department.replace("'","''");
                 }
 
-                if (email == null || !email.matches(EMAIL_PATTERN)) {
-										System.out.println("SKIPPING: " + sunetid + " [no email address in registry]");
-								}
+                if ( !hasEmail && !hasAltEmail ) {
+                    System.out.println("SKIPPING: " + sunetid + " [no email address in registry]");
+                }
 
                 if (!expiry.after(today)) {
 										System.out.println("SKIPPING: " + sunetid
@@ -201,7 +212,7 @@ public class Pop2ILLiad {
 								}
 
                 if ((sunetid != null && sunetid.matches("\\w+"))
-                && (email != null && email.matches(EMAIL_PATTERN))
+                && (hasEmail || hasAltEmail)
                 && expiry.after(today)) {
                     illData.clear();
                     illData.put("UserName", "'" + sunetid + "'"); //50 *
@@ -209,7 +220,11 @@ public class Pop2ILLiad {
                     illData.put("FirstName", "'" + firstName + "'"); //40 *
                     illData.put("SSN", "'" + barcode + "'"); //20
                     illData.put("Status", "'" + status + "'"); //15
-                    illData.put("EMailAddress", "'" + email + "'"); //50 *
+                    if (hasEmail) {
+                        illData.put("EMailAddress", "'" + email + "'"); //50 *
+                    } else if (hasAltEmail) {
+                        illData.put("EMailAddress", "'" + email_alt + "'"); //50 *
+                    }
                     illData.put("Phone", "'" + phone + "'"); //15 *
                     illData.put("MobilePhone", "'NULL'"); //15
                     illData.put("Department", "'" + department + "'"); //255
