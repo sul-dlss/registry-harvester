@@ -57,7 +57,7 @@ public class Pop2ILLiad {
 
             Map <String, String> illData = new LinkedHashMap<>();
 
-            String userkey;
+            String userKey;
             String result;
 
             BufferedReader br = new BufferedReader(new FileReader(new File(args[0])));
@@ -76,9 +76,9 @@ public class Pop2ILLiad {
 
             //For each userkey in the userload.keys file
             //
-            while ((userkey = br.readLine()) != null) {
+            while ((userKey = br.readLine()) != null) {
 
-                Process p1 = Runtime.getRuntime().exec(new String[] { "echo", userkey });
+                Process p1 = Runtime.getRuntime().exec(new String[] { "echo", userKey.toLowerCase() });
                 InputStream input = p1.getInputStream();
 
                 Process p2 = Runtime.getRuntime().exec(new String[] { "seluser", "-i" + selFlag, "-oxDBpX.9007.Z.9007.X.9036.X.9032.Y.9032.e" });
