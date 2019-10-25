@@ -61,6 +61,21 @@
 			</xsl:choose>
 		</xsl:variable>
 		<!--****************-->
+		<!-- MOBILE ID and PROXIMITY CHIP ID  -->
+		<!--****************-->
+		<xsl:variable name="ACTIVEID">
+			<xsl:if test="identifier[@type='mobileid'] or identifier[@type='proximity']">
+				<xsl:for-each select="identifier[@type='mobileid']">
+					<xsl:value-of select="."/>
+					<xsl:text>,</xsl:text>
+				</xsl:for-each>
+				<xsl:for-each select="identifier[@type='proximity']">
+					<xsl:value-of select="."/>
+					<xsl:text>,</xsl:text>
+				</xsl:for-each>
+			</xsl:if>
+		</xsl:variable>
+		<!--****************-->
 		<!-- Name - the registered name which is always present. Use display name first, otherwise use name type that takes up three columns. The format is first name, middle initial, first name,-->
 		<!--****************-->
 		<xsl:variable name="USER_NAME">
@@ -381,14 +396,23 @@
 		</xsl:if>
 		<xsl:value-of select="concat('.USER_GROUP_ID.',$SPACER,$USER_GROUP_ID)"/><xsl:text>&#10;</xsl:text>
 		<xsl:value-of select="concat('.USER_WEB_AUTH.',$SPACER,$USER_GROUP_ID)"/><xsl:text>&#10;</xsl:text>
-		<xsl:if test="string($AFFIL1)">
-			<xsl:text>.USER_XINFO_BEGIN.</xsl:text><xsl:text>&#10;</xsl:text>
-			<xsl:value-of select="concat('.AFFIL1.', $SPACER, $AFFIL1)"/><xsl:text>&#10;</xsl:text>
-			<xsl:if test="string($AFFIL2)">
-				<xsl:value-of select="concat('.AFFIL2.', $SPACER, $AFFIL2)"/><xsl:text>&#10;</xsl:text>
+		<xsl:text>.USER_XINFO_BEGIN.</xsl:text><xsl:text>&#10;</xsl:text>
+			<xsl:choose>
+				<xsl:when test="string($ACTIVEID)">
+					<xsl:variable name="active_id_no_end_comma" select="substring($ACTIVEID,1,(string-length($ACTIVEID) - 1))"/>
+					<xsl:value-of select="concat('.ACTIVEID.', $SPACER, $active_id_no_end_comma)"/><xsl:text>&#10;</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="concat('.ACTIVEID.', $SPACER, '')"/><xsl:text>&#10;</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+			<xsl:if test="string($AFFIL1)">
+				<xsl:value-of select="concat('.AFFIL1.', $SPACER, $AFFIL1)"/><xsl:text>&#10;</xsl:text>
+				<xsl:if test="string($AFFIL2)">
+					<xsl:value-of select="concat('.AFFIL2.', $SPACER, $AFFIL2)"/><xsl:text>&#10;</xsl:text>
+				</xsl:if>
 			</xsl:if>
-			<xsl:text>.USER_XINFO_END.</xsl:text><xsl:text>&#10;</xsl:text>
-		</xsl:if>
+		<xsl:text>.USER_XINFO_END.</xsl:text><xsl:text>&#10;</xsl:text>
 	</xsl:template>
 	<!-- ***************************************************************************************************************************************************** -->
 	<!-- Templates -->
