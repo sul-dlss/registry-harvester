@@ -1,0 +1,31 @@
+.REC.
+*** DOCUMENT BOUNDARY ***
+FORM=LDUSER
+.USER_ID.   |a2551234567
+.USER_ALT_ID.   |a000000000
+.USER_NAME.   |aLastname, Firstname Y
+.USER_FIRST_NAME.   |aFirstname
+.USER_MIDDLE_NAME.   |aY
+.USER_LAST_NAME.   |aLastname
+.USER_ADDR1_BEGIN.
+.LINE1.   |aDLSS Lathrop 3rd Floor 557 Escondido Mall
+.LINE2.   |aMail Code 6069
+.LINE3.   |aStanford, CA 94305-6069
+.EMAIL.   |ame@example.com
+.PHONE.   |a(111) 111-1111
+.DEPT.   |aHello World Services
+.USER_ADDR1_END.
+.USER_ADDR2_BEGIN.
+.PHONE.   |a
+.DEPT.   |a
+.USER_ADDR2_END.
+.USER_DEPARTMENT.   |aHELLO
+.USER_PROFILE.   |aCNS
+.USER_PRIV_GRANTED.   |aTODAYSDATE
+.USER_PRIV_EXPIRES.   |aNEVER
+.USER_GROUP_ID.   |amysunet
+.USER_WEB_AUTH.   |amysunet
+.USER_XINFO_BEGIN.
+.ACTIVEID.   |a012345,1234567
+.AFFIL1.   |astaff
+.USER_XINFO_END.
