@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE Person SYSTEM "http://registry.stanford.edu/xml/person/1.2/Person.dtd">
+
+<Person card="806092551234567" listing="stanford" name="Lastname, Firstname" regid="12345" relationship="staff" source="registry" sunetid="mysunet" univid="000000000">IT Services, Application Administrator / Software Developer
+    <name type="registered" visibility="none">Lastname, Firstname Y
+        <first nval="firstname">Firstname</first>
+        <middle nval="y">Y</middle>
+        <last nval="lastname">Lastname</last>
+    </name>
+    <name type="display" visibility="stanford">Lastname, Firstname
+        <first nval="firstname">Firstname</first>
+        <last nval="lastname">Lastname</last>
+    </name>
+    <email type="primary" visibility="stanford">me@example.com
+        <user>me</user>
+        <host>example.com</host>
+    </email>
+    <place type="work">
+        <telephone type="work" visibility="stanford">(111) 111-1111
+            <icc>1</icc>
+            <area>111</area>
+            <number>111-1111</number>
+        </telephone>
+        <address type="work" visibility="stanford">DLSS Lathrop 3rd Floor, 557 Escondido Mall, Mail Code 6069, Stanford, California 94305-6069
+            <line>DLSS Lathrop 3rd Floor</line>
+            <line>557 Escondido Mall</line>
+            <line>Mail Code 6069</line>
+            <city>Stanford</city>
+            <state code="CA">California</state>
+            <postalcode>94305-6069</postalcode>
+            <country alpha2="US" alpha3="USA" numeric="840">United States</country>
+        </address>
+    </place>
+    <affiliation affnum="1" effective="2018-10-01" organization="stanford" type="staff" visibility="stanford">Staff
+        <department affnum="1">Hello World Services
+            <organization adminid="HELLO" regid="12345">Hello World Services</organization>
+        </department>
+        <description affnum="1">Application Administrator / Software Developer</description>
+        <affdata affnum="1" type="academic_council">NON-MEMBER</affdata>
+        <affdata affnum="1" code="4822" type="job">Software Dvlpr 2</affdata>
+        <affdata affnum="1" type="stdhrs">40</affdata>
+        <affdata affnum="1" type="refid">0</affdata>
+        <affdata affnum="1" type="jobtitle">Application Administrator / Software Developer</affdata>
+        <place affnum="1" type="office">
+            <address affnum="1" type="office" visibility="stanford">DLSS Lathrop 3rd Floor, 557 Escondido Mall, Mail Code 6069, Stanford, California 94305-6069
+                <line>DLSS Lathrop 3rd Floor</line>
+                <line>557 Escondido Mall</line>
+                <line>Mail Code 6069</line>
+                <city>Stanford</city>
+                <state code="CA">California</state>
+                <postalcode>94305-6069</postalcode>
+                <country alpha2="US" alpha3="USA" numeric="840">United States</country>
+            </address>
+            <telephone affnum="1" type="office" visibility="stanford">(111) 111-1111
+                <icc>1</icc>
+                <area>111</area>
+                <number>111-1111</number>
+            </telephone>
+        </place>
+    </affiliation>
+    <identifier nval="000000000" type="univid" visibility="none">000000000</identifier>
+    <identifier nval="campuscard/000000000" type="refid" visibility="none">campuscard/000000000</identifier>
+    <identifier nval="806092551234567" type="card" visibility="none">806092551234567</identifier>
+    <identifier nval="mysunet" type="sunetid" visibility="stanford">mysunet</identifier>
+    <privgroup>organization:sulair</privgroup>
+</Person>
