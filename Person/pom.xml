@@ -81,6 +81,14 @@
                 <directory>Person/src/main/resources</directory>
             </resource>
         </resources>
+        <testResources>
+            <testResource>
+                <directory>../xslt</directory>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
     </build>
 
     <dependencies>
