@@ -77,11 +77,21 @@
 		</xsl:variable>
 		<!--****************-->
 		<!-- Name - the display name comes from the preferred name in stanfordyou. Preferred name defaults as registered name. -->
-		<!-- First and middle can be blank but last cannot in stanfordyou, so we should grab registered first just in case. -->
+		<!-- If display name has first name, grab middle and last from display name node, otherwise use registered name node. -->
 		<!--****************-->
-		<xsl:variable name="USER_FIRST_NAME">
+		<xsl:variable name="display_name">
 			<xsl:choose>
 				<xsl:when test="name[@type='display']/first">
+					<xsl:text>true</xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>false</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:variable name="USER_FIRST_NAME">
+			<xsl:choose>
+				<xsl:when test="$display_name = 'true'">
 					<xsl:value-of select="name[@type='display']/first"/>
 				</xsl:when>
 				<xsl:otherwise>
@@ -91,14 +101,17 @@
 		</xsl:variable>
 		<xsl:variable name="USER_MIDDLE_NAME">
 			<xsl:choose>
-				<xsl:when test="name[@type='display']/middle">
+				<xsl:when test="$display_name = 'true'">
 					<xsl:value-of select="name[@type='display']/middle"/>
 				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="name[@type='registered']/middle"/>
+				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:variable name="USER_LAST_NAME">
 			<xsl:choose>
-				<xsl:when test="name[@type='display']/last">
+				<xsl:when test="$display_name = 'true'">
 					<xsl:value-of select="name[@type='display']/last"/>
 				</xsl:when>
 				<xsl:otherwise>
@@ -465,6 +478,7 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
+
 	<!--**********************************************************-->
 	<!-- Address - Outputs the first and second line of the address element, city, state, and postal code-->
 	<!--**********************************************************-->
