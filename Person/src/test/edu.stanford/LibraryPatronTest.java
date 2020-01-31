@@ -17,7 +17,7 @@ public class LibraryPatronTest {
         String symphony_user_rec = symphonyUserRecord(new File(this.getClass().getResource("/patron_one.xml").getFile()));
         File fixture_record = new File(this.getClass().getResource("/symph_user_one").getFile());
         String filePath = fixture_record.getPath();
-        assertEquals(symphony_user_rec, fileToString(filePath));
+        assertEquals(fileToString(filePath), symphony_user_rec);
     }
 
     @Test
@@ -25,7 +25,7 @@ public class LibraryPatronTest {
         String symphony_user_rec = symphonyUserRecord(new File(this.getClass().getResource("/patron_two.xml").getFile()));
         File fixture_record = new File(this.getClass().getResource("/symph_user_two").getFile());
         String filePath = fixture_record.getPath();
-        assertEquals(symphony_user_rec, fileToString(filePath));
+        assertEquals(fileToString(filePath), symphony_user_rec);
     }
 
     @Test
@@ -33,7 +33,23 @@ public class LibraryPatronTest {
         String symphony_user_rec = symphonyUserRecord(new File(this.getClass().getResource("/patron_three.xml").getFile()));
         File fixture_record = new File(this.getClass().getResource("/symph_user_three").getFile());
         String filePath = fixture_record.getPath();
-        assertEquals(symphony_user_rec, fileToString(filePath));
+        assertEquals(fileToString(filePath), symphony_user_rec);
+    }
+
+    @Test
+    public void usesRegisteredFirstName() throws Exception {
+        String symphony_user_rec = symphonyUserRecord(new File(this.getClass().getResource("/patron_four.xml").getFile()));
+        File fixture_record = new File(this.getClass().getResource("/symph_user_four").getFile());
+        String filePath = fixture_record.getPath();
+        assertEquals(fileToString(filePath), symphony_user_rec);
+    }
+
+    @Test
+    public void noNameNodes() throws Exception {
+        String symphony_user_rec = symphonyUserRecord(new File(this.getClass().getResource("/patron_five.xml").getFile()));
+        File fixture_record = new File(this.getClass().getResource("/symph_user_five").getFile());
+        String filePath = fixture_record.getPath();
+        assertEquals(fileToString(filePath), symphony_user_rec);
     }
 
     public Transformer libraryPatronTransformer(File xslt_file) {

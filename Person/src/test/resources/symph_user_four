@@ -3,9 +3,9 @@
 FORM=LDUSER
 .USER_ID.   |a2551234567
 .USER_ALT_ID.   |a001234567
-.USER_NAME.   |aLastname, Displayname
-.USER_FIRST_NAME.   |aDisplayname
-.USER_MIDDLE_NAME.   |a
+.USER_NAME.   |aLastname, Registeredname Y
+.USER_FIRST_NAME.   |aRegisteredname
+.USER_MIDDLE_NAME.   |aY
 .USER_LAST_NAME.   |aLastname
 .USER_ADDR1_BEGIN.
 .LINE1.   |aDLSS Lathrop 3rd Floor 557 Escondido Mall
