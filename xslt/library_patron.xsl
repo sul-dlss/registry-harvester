@@ -17,15 +17,16 @@
 	<!--Person - Decides if we should process this person -->
 	<!--**********************************************************-->
 	<xsl:template match="Person">
+		<xsl:call-template name="main"/>
 		<!-- only process this person if they have a library card id.-->
-		<xsl:choose>
-			<xsl:when test="@card">
-				<xsl:call-template name="main"/>
-			</xsl:when>
-			<xsl:when test="identifier[@type='card']">
-				<xsl:call-template name="main"/>
-			</xsl:when>
-		</xsl:choose>
+		<!--<xsl:choose>-->
+			<!--<xsl:when test="@card">-->
+				<!--<xsl:call-template name="main"/>-->
+			<!--</xsl:when>-->
+			<!--<xsl:when test="identifier[@type='card']">-->
+				<!--<xsl:call-template name="main"/>-->
+			<!--</xsl:when>-->
+		<!--</xsl:choose>-->
 	</xsl:template>
 	<!--**********************************************************-->
 	<!--Main - The main template that drives everything else -->
