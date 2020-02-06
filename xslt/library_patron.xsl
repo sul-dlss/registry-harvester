@@ -17,6 +17,7 @@
 	<!--Person - Decides if we should process this person -->
 	<!--**********************************************************-->
 	<xsl:template match="Person">
+		<!-- process all persons -->
 		<xsl:call-template name="main"/>
 		<!-- only process this person if they have a library card id.-->
 		<!--<xsl:choose>-->
