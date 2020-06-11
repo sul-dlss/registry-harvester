@@ -262,6 +262,7 @@
 				<xsl:when test="affiliation[position()=1 and @type='faculty:otherteaching']">MXF</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='faculty']">CNF</xsl:when>
 				<xsl:when test="affiliation[position()=1 and @type='student:mla']">REG</xsl:when>
+				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:coterminal'">REG</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:phd'">RED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:postdoc'">RED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:doctoral'">RED</xsl:when>

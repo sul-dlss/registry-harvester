@@ -52,6 +52,14 @@ public class LibraryPatronTest {
         assertEquals(fileToString(filePath), symphony_user_rec);
     }
 
+    @Test
+    public void coterminalStudent() throws Exception {
+        String symphony_user_rec = symphonyUserRecord(new File(this.getClass().getResource("/patron_six.xml").getFile()));
+        File fixture_record = new File(this.getClass().getResource("/symph_user_six").getFile());
+        String filePath = fixture_record.getPath();
+        assertEquals(fileToString(filePath), symphony_user_rec);
+    }
+
     public Transformer libraryPatronTransformer(File xslt_file) {
         TransformerFactory factory = TransformerFactory.newInstance();
 
