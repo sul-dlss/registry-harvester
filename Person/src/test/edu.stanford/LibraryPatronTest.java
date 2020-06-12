@@ -1,66 +1,81 @@
 package edu.stanford;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.*;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static org.junit.Assert.assertEquals;
 
 public class LibraryPatronTest {
-    public File xslt_file = new File(getClass().getClassLoader().getResource("library_patron.xsl").getFile());
+    private File xslt_file;
+    
+    @Before
+    public void init() {
+        xslt_file = new File(getClass().getClassLoader().getResource("library_patron.xsl").getFile());
+    }
 
     @Test
     public void hasActiveIDs() throws Exception {
-        String symphony_user_rec = symphonyUserRecord(new File(this.getClass().getResource("/patron_one.xml").getFile()));
-        File fixture_record = new File(this.getClass().getResource("/symph_user_one").getFile());
-        String filePath = fixture_record.getPath();
-        assertEquals(fileToString(filePath), symphony_user_rec);
+        String symphony_user_record = symphUser("symph_user_one");
+        String flat_user_record = transformedUserRecord("patron_one.xml");
+        assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void hasBlankActiveIDs() throws Exception {
-        String symphony_user_rec = symphonyUserRecord(new File(this.getClass().getResource("/patron_two.xml").getFile()));
-        File fixture_record = new File(this.getClass().getResource("/symph_user_two").getFile());
-        String filePath = fixture_record.getPath();
-        assertEquals(fileToString(filePath), symphony_user_rec);
+        String symphony_user_record = symphUser("symph_user_two");
+        String flat_user_record = transformedUserRecord("patron_two.xml");
+        assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void hasDisplayName() throws Exception {
-        String symphony_user_rec = symphonyUserRecord(new File(this.getClass().getResource("/patron_three.xml").getFile()));
-        File fixture_record = new File(this.getClass().getResource("/symph_user_three").getFile());
-        String filePath = fixture_record.getPath();
-        assertEquals(fileToString(filePath), symphony_user_rec);
+        String symphony_user_record = symphUser("symph_user_three");
+        String flat_user_record = transformedUserRecord("patron_three.xml");
+        assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void usesRegisteredFirstName() throws Exception {
-        String symphony_user_rec = symphonyUserRecord(new File(this.getClass().getResource("/patron_four.xml").getFile()));
-        File fixture_record = new File(this.getClass().getResource("/symph_user_four").getFile());
-        String filePath = fixture_record.getPath();
-        assertEquals(fileToString(filePath), symphony_user_rec);
+        String symphony_user_record = symphUser("symph_user_four");
+        String flat_user_record = transformedUserRecord("patron_four.xml");
+        assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void noNameNodes() throws Exception {
-        String symphony_user_rec = symphonyUserRecord(new File(this.getClass().getResource("/patron_five.xml").getFile()));
-        File fixture_record = new File(this.getClass().getResource("/symph_user_five").getFile());
-        String filePath = fixture_record.getPath();
-        assertEquals(fileToString(filePath), symphony_user_rec);
+        String symphony_user_record = symphUser("symph_user_five");
+        String flat_user_record = transformedUserRecord("patron_five.xml");
+        assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void coterminalStudent() throws Exception {
-        String symphony_user_rec = symphonyUserRecord(new File(this.getClass().getResource("/patron_six.xml").getFile()));
-        File fixture_record = new File(this.getClass().getResource("/symph_user_six").getFile());
-        String filePath = fixture_record.getPath();
-        assertEquals(fileToString(filePath), symphony_user_rec);
+        String symphony_user_record = symphUser("symph_user_six");
+        String flat_user_record = transformedUserRecord("patron_six.xml");
+        assertEquals(flat_user_record, symphony_user_record);
     }
 
-    public Transformer libraryPatronTransformer(File xslt_file) {
+    private String symphUser(String resourceName) throws URISyntaxException, IOException {
+        return new String(Files.readAllBytes(Paths.get(getClass().getClassLoader().getResource(resourceName).toURI())));
+    }
+
+    private String transformedUserRecord(String filename) throws IOException, TransformerException {
+        Source text = new StreamSource(getClass().getClassLoader().getResourceAsStream(filename));
+        StringWriter outWriter = new StringWriter();
+        libraryPatronTransformer(xslt_file).transform(text, new StreamResult(outWriter));
+        StringBuffer sb = outWriter.getBuffer();
+        return sb.toString();
+    }
+
+    private Transformer libraryPatronTransformer(File xslt_file) {
         TransformerFactory factory = TransformerFactory.newInstance();
 
         Source xslt = new StreamSource(xslt_file);
@@ -72,27 +87,4 @@ public class LibraryPatronTest {
         }
         return transformer;
     }
-
-    public String symphonyUserRecord(File personXmlFile) throws IOException, TransformerException {
-        Source text = new StreamSource(personXmlFile);
-        StringWriter outWriter = new StringWriter();
-        libraryPatronTransformer(xslt_file).transform(text, new StreamResult(outWriter));
-        StringBuffer sb = outWriter.getBuffer();
-        return sb.toString();
-    }
-
-    public String fileToString(String filePath) throws IOException {
-        StringBuilder contentBuilder = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String sCurrentLine;
-            while ((sCurrentLine = br.readLine()) != null) {
-                contentBuilder.append(sCurrentLine).append("\n");
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        return contentBuilder.toString();
-    }
-
 }
