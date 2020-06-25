@@ -1,0 +1,22 @@
+.REC.
+*** DOCUMENT BOUNDARY ***
+FORM=LDUSER
+.USER_ID.   |a2551234567
+.USER_ALT_ID.   |a000000000
+.USER_NAME.   |aLastname, Firstname
+.USER_FIRST_NAME.   |aFirstname
+.USER_MIDDLE_NAME.   |a
+.USER_LAST_NAME.   |aLastname
+.USER_ADDR1_BEGIN.
+.EMAIL.   |ame@example.com
+.PHONE.   |a
+.DEPT.   |a
+.USER_ADDR1_END.
+.USER_DEPARTMENT.   |a
+.USER_PRIV_GRANTED.   |aTODAYSDATE
+.USER_GROUP_ID.   |amysunet
+.USER_WEB_AUTH.   |amysunet
+.USER_XINFO_BEGIN.
+.ACTIVEID.   |a012345,1234567
+.AFFIL1.   |aaffiliate:courtesy
+.USER_XINFO_END.

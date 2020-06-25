@@ -322,15 +322,14 @@
 				<xsl:when test="affiliation[position()=1 and @type='faculty:nonactive']">EXPIRED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='faculty']">NEVER</xsl:when>
 				<xsl:when test="affiliation[position()=1 and @type='staff:nonactive'] or affiliation[position()=1 and @type='staff:retired']">EXPIRED</xsl:when>
-				<!-- uni-29 <xsl:when test="affiliation[position()=1 and @type='staff:temporary']">EXPIRED</xsl:when> -->
+				<xsl:when test="affiliation[position()=1 and @type='staff:temporary'] or affiliation[position()=1 and @type='staff:casual']">KEEP</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,5)='staff' and @type!='staff:student' and @type!='staff:casual']">NEVER</xsl:when>
+				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation[position()=1]/affdata[substring(@code,1,5)='LIBBO']">KEEP</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation[position()=2 and @type='student:recent']">EXPIRED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and @type='student:recent']">EXPIRED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation[position()=2 and @type='staff:retired']">NEVER</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation[position()=2 and @type='affiliate:sponsored']">KEEP</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate' and @type='affiliate:visitscholarvs']">KEEP</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate' and @type='affiliate:fellow']">NEVER</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation[position()=2 and @type='affiliate:visitscholarvs']">KEEP</xsl:when>
 				<xsl:when test="affiliation[position()=1]/@until">
 					<xsl:value-of select="substring(affiliation/@until,1,4)"/>
 					<xsl:value-of select="substring(affiliation/@until,6,2)"/>
