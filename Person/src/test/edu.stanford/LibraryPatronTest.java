@@ -77,6 +77,20 @@ public class LibraryPatronTest {
         assertEquals(flat_user_record, symphony_user_record);
     }
 
+    @Test
+    public void tempStaff() throws Exception {
+        String symphony_user_record = symphUser("symph_user_nine");
+        String flat_user_record = transformedUserRecord("patron_nine.xml");
+        assertEquals(flat_user_record, symphony_user_record);
+    }
+
+    @Test
+    public void casualStaff() throws Exception {
+        String symphony_user_record = symphUser("symph_user_nine");
+        String flat_user_record = transformedUserRecord("patron_nine.xml");
+        assertEquals(flat_user_record, symphony_user_record);
+    }
+
     private String symphUser(String resourceName) throws URISyntaxException, IOException {
         return new String(Files.readAllBytes(Paths.get(getClass().getClassLoader().getResource(resourceName).toURI())));
     }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE Person SYSTEM "http://registry.stanford.edu/xml/person/1.2/Person.dtd">
+
+<Person card="806092551234567" listing="stanford" name="Lastname, Firstname" regid="12345" relationship="staff" source="registry" sunetid="mysunet" univid="000000000" stanfordenddate="2016-11-26">Biochemistry, Casual - Non-Exempt
+    <name type="registered" visibility="none">Lastname, Firstname Y
+        <first nval="firstname">Firstname</first>
+        <middle nval="y">Y</middle>
+        <last nval="lastname">Lastname</last>
+    </name>
+    <name type="display" visibility="stanford">Lastname, Firstname
+        <first nval="firstname">Firstname</first>
+        <last nval="lastname">Lastname</last>
+    </name>
+    <email type="primary" visibility="stanford">me@example.com
+        <user>me</user>
+        <host>example.com</host>
+    </email>
+    <affiliation affnum="1" effective="2020-02-01" organization="stanford" type="staff:casual" visibility="world">Staff
+        <department affnum="1">Biochemistry
+            <organization adminid="VVLW">Biochemistry Operations</organization>
+        </department>
+        <description affnum="1">Casual - Non-Exempt</description>
+        <affdata affnum="1" type="academic_council">NON-MEMBER</affdata>
+        <affdata affnum="1" code="8945" type="job">Casual - Non-Exempt</affdata>
+        <affdata affnum="1" type="stdhrs">2</affdata>
+        <affdata affnum="1" type="refid">0</affdata>
+        <affdata affnum="1" type="jobtitle">Casual - Non-Exempt</affdata>
+        <place affnum="1" type="office">
+            <address affnum="1" type="office" visibility="world">Beckman Center, Department of Biochemistry
+                <line>Beckman Center</line>
+                <line>Department of Biochemistry</line>
+            </address>
+        </place>
+    </affiliation>
+    <affiliation affnum="2" organization="stanford" type="affiliate:sponsored" visibility="world">Affiliate
+        <department affnum="2">Biochemistry
+            <organization adminid="VVLW">Biochemistry Operations</organization>
+        </department>
+    </affiliation>
+    <identifier nval="000000000" type="univid" visibility="none">000000000</identifier>
+    <identifier nval="campuscard/000000000" type="refid" visibility="none">campuscard/000000000</identifier>
+    <identifier nval="012345" type="mobileid" visibility="none">012345</identifier>
+    <identifier nval="806092551234567" type="card" visibility="none">806092551234567</identifier>
+    <identifier nval="1234567" type="proximity" visibility="none">1234567</identifier>
+    <identifier nval="mysunet" type="sunetid" visibility="stanford">mysunet</identifier>
+</Person>
