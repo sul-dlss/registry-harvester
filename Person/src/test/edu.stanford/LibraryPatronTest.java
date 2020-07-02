@@ -23,71 +23,78 @@ public class LibraryPatronTest {
 
     @Test
     public void hasActiveIDs() throws Exception {
-        String symphony_user_record = symphUser("symph_user_one");
-        String flat_user_record = transformedUserRecord("patron_one.xml");
+        String symphony_user_record = symphUser("01_symph_user");
+        String flat_user_record = transformedUserRecord("01_patron.xml");
         assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void hasBlankActiveIDs() throws Exception {
-        String symphony_user_record = symphUser("symph_user_two");
-        String flat_user_record = transformedUserRecord("patron_two.xml");
+        String symphony_user_record = symphUser("02_symph_user");
+        String flat_user_record = transformedUserRecord("02_patron.xml");
         assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void hasDisplayName() throws Exception {
-        String symphony_user_record = symphUser("symph_user_three");
-        String flat_user_record = transformedUserRecord("patron_three.xml");
+        String symphony_user_record = symphUser("03_symph_user");
+        String flat_user_record = transformedUserRecord("03_patron.xml");
         assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void usesRegisteredFirstName() throws Exception {
-        String symphony_user_record = symphUser("symph_user_four");
-        String flat_user_record = transformedUserRecord("patron_four.xml");
+        String symphony_user_record = symphUser("04_symph_user");
+        String flat_user_record = transformedUserRecord("04_patron.xml");
         assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void noNameNodes() throws Exception {
-        String symphony_user_record = symphUser("symph_user_five");
-        String flat_user_record = transformedUserRecord("patron_five.xml");
+        String symphony_user_record = symphUser("05_symph_user");
+        String flat_user_record = transformedUserRecord("05_patron.xml");
         assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void coterminalStudent() throws Exception {
-        String symphony_user_record = symphUser("symph_user_six");
-        String flat_user_record = transformedUserRecord("patron_six.xml");
+        String symphony_user_record = symphUser("06_symph_user");
+        String flat_user_record = transformedUserRecord("06_patron.xml");
         assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void visitingScholar() throws Exception {
-        String symphony_user_record = symphUser("symph_user_seven");
-        String flat_user_record = transformedUserRecord("patron_seven.xml");
+        String symphony_user_record = symphUser("07_symph_user");
+        String flat_user_record = transformedUserRecord("07_patron.xml");
         assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void courtesyCard() throws Exception {
-        String symphony_user_record = symphUser("symph_user_eight");
-        String flat_user_record = transformedUserRecord("patron_eight.xml");
+        String symphony_user_record = symphUser("08_symph_user");
+        String flat_user_record = transformedUserRecord("08_patron.xml");
         assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void tempStaff() throws Exception {
-        String symphony_user_record = symphUser("symph_user_nine");
-        String flat_user_record = transformedUserRecord("patron_nine.xml");
+        String symphony_user_record = symphUser("09_symph_user");
+        String flat_user_record = transformedUserRecord("09_patron.xml");
         assertEquals(flat_user_record, symphony_user_record);
     }
 
     @Test
     public void casualStaff() throws Exception {
-        String symphony_user_record = symphUser("symph_user_nine");
-        String flat_user_record = transformedUserRecord("patron_nine.xml");
+        String symphony_user_record = symphUser("10_symph_user");
+        String flat_user_record = transformedUserRecord("10_patron.xml");
+        assertEquals(flat_user_record, symphony_user_record);
+    }
+
+    @Test
+    public void doctoralStudent() throws Exception {
+        String symphony_user_record = symphUser("11_symph_user");
+        String flat_user_record = transformedUserRecord("11_patron.xml");
         assertEquals(flat_user_record, symphony_user_record);
     }
 
