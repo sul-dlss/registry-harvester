@@ -86,8 +86,15 @@ public class LibraryPatronTest {
 
     @Test
     public void casualStaff() throws Exception {
-        String symphony_user_record = symphUser("symph_user_nine");
-        String flat_user_record = transformedUserRecord("patron_nine.xml");
+        String symphony_user_record = symphUser("symph_user_ten");
+        String flat_user_record = transformedUserRecord("patron_ten.xml");
+        assertEquals(flat_user_record, symphony_user_record);
+    }
+
+    @Test
+    public void doctoralStudent() throws Exception {
+        String symphony_user_record = symphUser("symph_user_eleven");
+        String flat_user_record = transformedUserRecord("patron_eleven.xml");
         assertEquals(flat_user_record, symphony_user_record);
     }
 

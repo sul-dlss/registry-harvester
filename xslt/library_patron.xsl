@@ -262,13 +262,13 @@
 				<xsl:when test="affiliation[position()=1 and @type='faculty:otherteaching']">MXF</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='faculty']">CNF</xsl:when>
 				<xsl:when test="affiliation[position()=1 and @type='student:mla']">REG</xsl:when>
-				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:coterminal'">REG</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:phd'">RED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:postdoc'">RED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:doctoral'">RED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/affdata='Law JSD'">RED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/description='Graduate' and (affiliation/affdata[@affnum = '1' and @code='GRNM1'] or affiliation/affdata[@affnum = '1' and @code='GRNM3'])">REG-SUM</xsl:when> <!-- uni-34 -->
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and substring(affiliation/description,1,8)='Graduate'">REG</xsl:when>
+				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and privgroup='student:coterminal'">REG</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/description='Undergraduate' and (affiliation/affdata[@affnum = '1' and @code='UGNM1'] or affiliation/affdata[@affnum = '1' and @code='UGNM2'] or affiliation/affdata[@affnum = '1' and @code='UGNM3'])">REU-SUM</xsl:when> <!-- uni-34 -->
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,7)='student'] and affiliation/description='Undergraduate'">REU</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation/affdata[@code='LIBBO-SUL']">KEEP</xsl:when>
