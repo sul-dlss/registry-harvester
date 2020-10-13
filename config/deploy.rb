@@ -39,8 +39,8 @@ namespace :deploy do
   task :jars do
     desc 'Copy the JARs only'
       on roles(:app) do
-         %w[ Course Person ].each do |f|
-            upload! "lib/#{f}-jar-with-dependencies.jar" , "#{release_path}/lib"
+         %w[ Course Person ].each do |mod|
+            upload! "#{mod}/target/#{mod}-jar-with-dependencies.jar" , "#{release_path}/lib"
          end
       end
   end

@@ -16,7 +16,6 @@ public class LibraryPatron {
         try
         {
             String line = "";
-            String lineNew = "";
 
             TransformerFactory factory = TransformerFactory.newInstance();
             Source xslt = new StreamSource(new File(args[1]));
@@ -24,23 +23,10 @@ public class LibraryPatron {
 
             BufferedReader br = new BufferedReader(new FileReader(new File(args[0])));
 
-            String declaration = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
-                + "<!DOCTYPE Person SYSTEM \"http://registry.stanford.edu/xml/person/1.2/Person.dtd\">";
-
             while ((line = br.readLine()) != null)
             {
-                if (line.indexOf("<?xml") == 0)
-                {
-                    continue;
-                }
-                else if (line.indexOf("<!--datastore") > -1)
-                {
-                    int idx = line.indexOf("<!--datastore");
-                    lineNew = declaration + line.substring(0, idx);
-
-                    Source text = new StreamSource(new StringReader(lineNew));
-                    transformer.transform(text, new StreamResult(System.out));
-                }
+                Source text = new StreamSource(new StringReader(line));
+                transformer.transform(text, new StreamResult(System.out));
             }
         }
         catch (Exception e)
