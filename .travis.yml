@@ -17,3 +17,4 @@ deploy:
   on:
     repo: sul-dlss/registry-harvester
     branch: master
+
