@@ -20,5 +20,55 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Maven settings directory setup
+      run: |
+        mkdir -p $HOME/.m2
+        export SECURITY_FILE=$HOME/.m2/settings-security.xml
+        export SETTINGS_FILE=$HOME/.m2/settings.xml
+    - name: Maven and Oracle security settings setup
+      run: |
+        MAVEN_MASTER_encpass=$(mvn --encrypt-master-password $MAVEN_MASTER_password)
+        ORACLE_OJDBC_encpass=$(mvn --encrypt-password $ORACLE_OJDBC_password)
+    - name: Create security file
+      run: |
+        cat > $SECURITY_FILE <<SECURITY_XML
+        <settingsSecurity>
+        	<master>$MAVEN_MASTER_encpass</master>
+        </settingsSecurity>
+        SECURITY_XML
+    - name: Create settings file
+      run: |
+        cat > $SETTINGS_FILE <<SETTINGS_XML
+        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+        	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+        	https://maven.apache.org/xsd/settings-1.0.0.xsd">
+        	<servers>
+        	  <server>
+        	    <id>maven.oracle.com</id>
+        	    <username>$ORACLE_OJDBC_username</username>
+        	    <password>$ORACLE_OJDBC_encpass</password>
+        	    <configuration>
+        	      <basicAuthScope>
+        		<host>ANY</host>
+        		<port>ANY</port>
+        		<realm>OAM 11g</realm>
+        	      </basicAuthScope>
+        	      <httpConfiguration>
+        		<all>
+        		  <params>
+        		    <property>
+        		      <name>http.protocol.allow-circular-redirects</name>
+        		      <value>%b,true</value>
+        		    </property>
+        		  </params>
+        		</all>
+        	      </httpConfiguration>
+        	    </configuration>
+        	  </server>
+        	</servers>
+        </settings>
+        SETTINGS_XML
+
     - name: Build with Maven
       run: mvn -B package --file pom.xml
