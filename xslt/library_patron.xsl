@@ -327,6 +327,7 @@
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation[position()=1]/affdata[substring(@code,1,5)='LIBBO']">KEEP</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation[position()=2 and @type='student:recent']">EXPIRED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and @type='student:recent']">EXPIRED</xsl:when>
+				<xsl:when test="affiliation[position()=1 and @type='student:onleave']">EXPIRED</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation[position()=2 and @type='staff:retired']">NEVER</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate'] and affiliation[position()=2 and @type='affiliate:sponsored']">KEEP</xsl:when>
 				<xsl:when test="affiliation[position()=1 and substring(@type,1,9)='affiliate' and @type='affiliate:fellow']">NEVER</xsl:when>
