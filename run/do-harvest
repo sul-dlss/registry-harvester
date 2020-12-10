@@ -26,7 +26,7 @@ sed -i '/^$/d' $OUT/harvest.xml.out
 # TODO: run $OUT/harvest.xml.out through folio_user_load ruby script
 
 # Generate the flat file for Symphony
-java -cp lib/Person-jar-with-dependencies.jar edu.stanford.LibraryPatron $OUT/harvest.xml.out xml $XSLT/library_patron.xsl > $OUT/harvest.out
+java -cp ../lib/Person-jar-with-dependencies.jar edu.stanford.LibraryPatron $OUT/harvest.xml.out xml $XSLT/library_patron.xsl > $OUT/harvest.out
 
 # Fix up the harvest.out files
 $HOME/run/usertrans $DATE
