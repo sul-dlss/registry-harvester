@@ -50,8 +50,8 @@ $HOME/run/pop2illiad $illiad_date
 # Email and move/reset work files
 cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
 
-mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE
-mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
+mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE_STAMP
+mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE_STAMP
 
 touch $LOG/harvest.log
 touch $LOG/illiad.log
