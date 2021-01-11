@@ -5,7 +5,6 @@
 HOME=/s/SUL/Harvester/current
 LOG=$HOME/log
 OUT=$HOME/out
-XSLT=$HOME/xslt
 DATE=$2
 KEYS=$1
 
@@ -17,34 +16,11 @@ fi
 # Run the registry harvest
 $HOME/run/fileLoad.sh $KEYS
 
-# Remove carriage returns from the log
-perl -p -i -e 's/\r//g' $LOG/harvest.log
-
-# Use this when using the LibraryPatron Java xslt transformer instead of the packaged one provided by MaIS
-perl -p -i -e 's/<!DOCTYPE Person SYSTEM "http:\/\/registry.stanford.edu\/xml\/person\/1.2\/Person.dtd">//g' $OUT/harvest.xml.out
-sed -i '/^$/d' $OUT/harvest.xml.out
-
-# TODO: run $OUT/harvest.xml.out through folio_user_load ruby script
-
-# Generate the flat file for Symphony
-java -cp $HOME/lib/Person-jar-with-dependencies.jar edu.stanford.LibraryPatron $OUT/harvest.xml.out $XSLT/library_patron.xsl > $OUT/harvest.out
-
 # Fix up the harvest.out files
 $HOME/run/usertrans $DATE
 
-# Send yesterday's keys to ILLiad
-illiad_date=`/s/sirsi/Unicorn/Bin/transdate -d-1`
-echo "Updating/Inserting keys from /s/SUL/Batchlog/userload.keys.$illiad_date into ILLiad" >> $LOG/harvest.log
-$HOME/run/pop2illiad $illiad_date
-
-cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
-
 mv $LOG/harvest.log $LOG/harvest.file.log.$DATE
 mv $OUT/harvest.out $OUT/harvest.file.out.$DATE
-mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE
-
-touch $LOG/harvest.log
-touch $LOG/illiad.log
 
 usage(){
     echo "Usage: $0 [ File of KEYS ] [ DATE (to append to log and out file when finished) ]"

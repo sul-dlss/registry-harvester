@@ -2,9 +2,12 @@
 # Modifies the xsl output and calls the expect program to ftp file to symphony
 # use: no parameters
 
+DATE=$1
 HOME=/s/SUL/Harvester/current
 LOG=$HOME/log
-DATE=$1
+OUT=$HOME/out
+SOURCE=/s/SUL/Dataload/Registry
+XSLT=$HOME/xslt
 
 if [ -z $DATE ]
 then
@@ -15,7 +18,17 @@ else
     DATE_STAMP=$DATE
 fi
 
-SOURCE=/s/SUL/Dataload/Registry
+# Remove carriage returns from the log
+perl -p -i -e 's/\r//g' $LOG/harvest.log
+
+# Use this when using the LibraryPatron Java xslt transformer instead of the packaged one provided by MaIS
+perl -p -i -e 's/<!DOCTYPE Person SYSTEM "http:\/\/registry.stanford.edu\/xml\/person\/1.2\/Person.dtd">//g' $OUT/harvest.xml.out
+sed -i '/^$/d' $OUT/harvest.xml.out
+
+# TODO: run $OUT/harvest.xml.out through folio_user_load ruby script
+
+# Generate the flat file for Symphony
+java -cp $HOME/lib/Person-jar-with-dependencies.jar edu.stanford.LibraryPatron $OUT/harvest.xml.out $XSLT/library_patron.xsl > $OUT/harvest.out
 
 #remove duplicate records and blank lines and sets TODAYSDATE
 cat $HOME/out/harvest.out | gawk '!x[$0]++==1' RS=".REC." | sed "s/TODAYSDATE/$DATE_FULL/" | sed '/^$/d' > $HOME/out/harvest.out2
@@ -28,3 +41,17 @@ cp $HOME/out/harvest.out2 $SOURCE/harvest.$DATE_STAMP >> $LOG/harvest.log 2>&1
 echo "Copying harvest.done file to \"$SOURCE\"" >> $LOG/harvest.log
 cp   $HOME/out/harvest.done $SOURCE/ >> $LOG/harvest.log 2>&1
 echo "" >> $LOG/harvest.log
+
+# Send yesterday's keys to ILLiad
+illiad_date=`/s/sirsi/Unicorn/Bin/transdate -d-1`
+echo "Updating/Inserting keys from /s/SUL/Batchlog/userload.keys.$illiad_date into ILLiad" >> $LOG/harvest.log
+$HOME/run/pop2illiad $illiad_date
+
+# Email and move/reset work files
+cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
+
+mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE
+mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
+
+touch $LOG/harvest.log
+touch $LOG/illiad.log
