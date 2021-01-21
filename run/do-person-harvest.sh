@@ -49,7 +49,7 @@ cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.ed
 
 mv $LOG/harvest.log $LOG/harvest.log.$DATE
 mv $OUT/harvest.out $OUT/harvest.out.$DATE
-mv $OUT/harvest.xml.out $OUT/harvest.xml.out .$DATE
+mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
 mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE
 
 touch $LOG/harvest.log
