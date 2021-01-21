@@ -1,5 +1,5 @@
 #!/bin/sh
-z
+
 APP_NAME=harvester
 APP_HOME=/s/SUL/Harvester/current
 CONF_HOME=$APP_HOME/Person/src/main/resources
