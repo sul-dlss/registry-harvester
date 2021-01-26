@@ -31,7 +31,8 @@ perl -p -i -e 's/\r//g' $LOG/harvest.log
 perl -p -i -e "s/<!DOCTYPE Person SYSTEM \"http:\/\/registry${UAT}.stanford.edu\/xml\/person\/1.2\/Person.dtd\">//g" $OUT/harvest.xml.out
 sed -i '/^$/d' $OUT/harvest.xml.out
 
-# TODO: run $OUT/harvest.xml.out through folio_user_load ruby script
+# Run harvest.xml.out through folio_user_load ruby script
+# ruby $HOME/folio_user_load/folio_user.rb $OUT/harvest.xml.out > $LOG/folio.log
 
 # Generate the flat file for Symphony
 java -cp $HOME/lib/Person-jar-with-dependencies.jar edu.stanford.LibraryPatron $OUT/harvest.xml.out $XSLT/library_patron.xsl > $OUT/harvest.out
@@ -47,13 +48,15 @@ $HOME/run/pop2illiad.sh $illiad_date
 # Email and move/reset work files
 cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
 
-mv $LOG/harvest.log $LOG/harvest.log.$DATE
+# Save output files
 mv $OUT/harvest.out $OUT/harvest.out.$DATE
 mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
-mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE
 
-touch $LOG/harvest.log
-touch $LOG/illiad.log
+# Save and reset log files
+mv $LOG/harvest.log $LOG/harvest.log.$DATE & touch $LOG/harvest.log
+mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE & touch $LOG/illiad.log
+# mv $LOG/folio.log $LOG/folio.log.$DATE & touch $LOG/folio.log
+
 
 usage(){
     echo "Usage: $0 [ no argument | 'file' ] [ file of user keys (if arg0 == file) ] [ DATE (optional: to append to log and out files) ]"
