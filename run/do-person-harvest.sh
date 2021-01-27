@@ -32,7 +32,7 @@ perl -p -i -e "s/<!DOCTYPE Person SYSTEM \"http:\/\/registry${UAT}.stanford.edu\
 sed -i '/^$/d' $OUT/harvest.xml.out
 
 # Run harvest.xml.out through folio_user_load ruby script
-# ruby $HOME/folio_user_load/folio_user.rb $OUT/harvest.xml.out > $LOG/folio.log
+#ruby $HOME/folio_user_load/folio_user.rb $OUT/harvest.xml.out > $LOG/folio.log
 
 # Generate the flat file for Symphony
 java -cp $HOME/lib/Person-jar-with-dependencies.jar edu.stanford.LibraryPatron $OUT/harvest.xml.out $XSLT/library_patron.xsl > $OUT/harvest.out
@@ -53,10 +53,13 @@ mv $OUT/harvest.out $OUT/harvest.out.$DATE
 mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
 
 # Save and reset log files
-mv $LOG/harvest.log $LOG/harvest.log.$DATE & touch $LOG/harvest.log
-mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE & touch $LOG/illiad.log
-# mv $LOG/folio.log $LOG/folio.log.$DATE & touch $LOG/folio.log
+mv $LOG/harvest.log $LOG/harvest.log.$DATE
+mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE
+#mv $LOG/folio.log $LOG/folio.log.$DATE
 
+touch $LOG/harvest.log
+touch $LOG/illiad.log
+#touch $LOG/folio.log
 
 usage(){
     echo "Usage: $0 [ no argument | 'file' ] [ file of user keys (if arg0 == file) ] [ DATE (optional: to append to log and out files) ]"
