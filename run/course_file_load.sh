@@ -40,6 +40,4 @@ EXIT_CODE=$?
 
 if [ $EXIT_CODE -gt 0 ] ; then
   echo "Processor exited abnormally. Check log file for details"
-else
-  echo "Processor exited successfully"
 fi
