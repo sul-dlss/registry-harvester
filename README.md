@@ -206,7 +206,8 @@ deployed shared directory.
 ### Deploying the compiled java classes
 Run the deployment with the `deploy:jars` task and this will upload the JAR files to the 
 `lib/` directory on the server. For example: `cap prod deploy deploy:jars` will deploy both the project files (including 
-the run scripts) and the compiled java classes.
+the run scripts) and the compiled java classes. Make sure to compile the java classes using `mvn clean install` as needed 
+before using this deploy task. 
 
 ### Deploying the folio_api_client for FOLIO User Loads
 Run the deployment with the `deploy:folio_api_client` task to clone the folio_api_client repository as a subdirectory of 
