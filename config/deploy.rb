@@ -44,4 +44,11 @@ namespace :deploy do
          end
       end
   end
+
+  task :folio do
+    desc 'deploy the folio api client as a submodule'
+      on roles(:app) do
+        'git submodule update --remote'
+      end
+  end
 end
