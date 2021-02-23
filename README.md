@@ -196,10 +196,22 @@ The BuildCourseXML java process will most likely be at the very top. You can als
 
 ## Deploying the project to a server
 
-Deploys are done using Capistrano. You can deploy the project to the development server with `cap dev deploy deploy:jars` 
-and to the production server with `cap prod deploy deploy:jars`. The project will be copied to the `/s/SUL/Harvester` directory 
+### Deploying the project files
+Deploys are done using Capistrano. You can deploy the project to the development server with `cap dev deploy` 
+and to the production server with `cap prod deploy`. The project will be copied to the `/s/SUL/Harvester` directory 
 on those machines. The dev and prod hostnames are defined in `config/deploy/dev.rb` and `config/deploy/prod.rb`. You will 
 also need to get the oracle connection details from "shared_configs" and follow the instructions to copy the details to the 
-deployed shared directory. Make sure that you install the packages (with Maven as described above) either locally or on 
-the server before trying to run any of the modules. The deployment with `deploy:jars` task will upload the JAR files to the 
-`lib/` directory on the server.
+deployed shared directory. 
+
+### Deploying the compiled java classes
+Run the deployment with the `deploy:jars` task and this will upload the JAR files to the 
+`lib/` directory on the server. For example: `cap prod deploy deploy:jars` will deploy both the project files (including 
+the run scripts) and the compiled java classes.
+
+### Deploying the folio_api_client for FOLIO User Loads
+Run the deployment with the `deploy:folio_api_client` task to clone the folio_api_client repository as a subdirectory of 
+within this project repository.
+
+
+### Deploying everything
+E.g. `cap prod deploy deploy:jars deploy:folio_api_client`

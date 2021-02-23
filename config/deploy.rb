@@ -50,7 +50,7 @@ namespace :deploy do
   task :folio_api_client do
     desc 'clone the folio api client repo'
       on roles(:app) do
-        execute :git, :clone, :folio_api_client, release_path
+        execute :git, :clone, fetch(:folio_api_client), "#{release_path}/folio_api_client"
       end
   end
 end
