@@ -1,5 +1,6 @@
 set :application, "registry-harvester"
 set :repo_url, "https://github.com/sul-dlss/registry-harvester.git"
+set :github_token, `git config --get github.token | tr -d '\n'`
 set :user, "sirsi"
 
 # Default branch is :master
@@ -45,10 +46,16 @@ namespace :deploy do
       end
   end
 
-  task :folio do
-    desc 'deploy the folio api client as a submodule'
-      on roles(:app) do
-        'git submodule update --remote'
-      end
-  end
+  # task :folio do
+  #   desc 'deploy the folio api client as a submodule'
+  #   on roles(:all) do
+  #     with fetch(:git_environmental_variables) do
+  #       within repo_path do
+  #         # execute :git, :clone, '-b', fetch(:branch), '--recursive', '.', "#{release_path}/folio_api_client"
+  #         # execute :git, :clone, '--recursive', "https://#{fetch(:github_token)}@github.com/sul-dlss-labs/folio_api_client.git", " #{release_path}"
+  #         execute :git, :
+  #       end
+  #     end
+  #   end
+  # end
 end
