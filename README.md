@@ -209,10 +209,6 @@ Run the deployment with the `deploy:jars` task and this will upload the JAR file
 the run scripts) and the compiled java classes. Make sure to compile the java classes using `mvn clean install` as needed 
 before using this deploy task. 
 
-### Deploying the folio_api_client for FOLIO User Loads
-Run the deployment with the `deploy:folio_api_client` task to clone the folio_api_client repository as a subdirectory of 
-within this project repository.
-
 
 ### Deploying everything
-E.g. `cap prod deploy deploy:jars deploy:folio_api_client`
+E.g. `cap prod deploy deploy:jars`

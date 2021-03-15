@@ -6,6 +6,7 @@ HOME=/s/SUL/Harvester/current
 LOG=$HOME/log
 OUT=$HOME/out
 XSLT=$HOME/xslt
+FOLIO=/s/SUL/Bin/folio_api_client/current/lib
 KEYS=$2
 DATE=$3
 
@@ -32,7 +33,7 @@ perl -p -i -e "s/<!DOCTYPE Person SYSTEM \"http:\/\/registry${UAT}.stanford.edu\
 sed -i '/^$/d' $OUT/harvest.xml.out
 
 # Run harvest.xml.out through folio_api_client ruby script
-/bin/ruby $HOME/folio_api_client/folio_user.rb $OUT/harvest.xml.out > $LOG/folio.log
+# /bin/ruby $FOLIO/folio_user.rb $OUT/harvest.xml.out > $LOG/folio.log
 
 # Generate the flat file for Symphony
 java -cp $HOME/lib/Person-jar-with-dependencies.jar edu.stanford.LibraryPatron $OUT/harvest.xml.out $XSLT/library_patron.xsl > $OUT/harvest.out
