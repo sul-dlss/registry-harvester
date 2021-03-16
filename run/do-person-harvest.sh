@@ -48,6 +48,7 @@ $HOME/run/pop2illiad.sh $illiad_date
 
 # Email and move/reset work files
 cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
+cat $LOG/folio.log | mailx -s 'Folio User Load' sul-unicorn-devs@lists.stanford.edu
 
 # Save output files
 mv $OUT/harvest.out $OUT/harvest.out.$DATE
