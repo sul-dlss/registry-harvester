@@ -1,7 +1,5 @@
 set :application, "registry-harvester"
-set :github_token, `git config --get github.token | tr -d '\n'`
 set :repo_url, "https://github.com/sul-dlss/registry-harvester.git"
-set :folio_api_client, "https://#{fetch(:github_token)}@github.com/sul-dlss-labs/folio_api_client.git"
 set :user, "sirsi"
 
 # Default branch is :master
