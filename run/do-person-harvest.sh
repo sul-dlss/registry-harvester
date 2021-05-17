@@ -50,9 +50,9 @@ cd $FOLIO/lib
 # Split into batches of 5000
 while mapfile -t -n 5000 array && ((${#array[@]}))
 do
-    printf '%s\n' "${array[@]}" > tmp.xml
+    printf '%s\n' "${array[@]}" > $OUT/tmp.xml
     ruby folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>&1
-    rm tmp.xml
+    rm $OUT/tmp.xml
 done < $OUT/harvest.xml.out
 
 # Email and move/reset work files
