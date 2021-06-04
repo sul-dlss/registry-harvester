@@ -57,7 +57,7 @@ done < $OUT/harvest.xml.out
 
 # Email and move/reset work files
 cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
-cat $LOG/folio.log | mailx -s 'Folio User Load' sul-unicorn-devs@lists.stanford.edu
+cat $LOG/folio_summary.log | mailx -s 'Folio User Load' sul-unicorn-devs@lists.stanford.edu
 
 # Save and reset output and log files
 logrotate $HOME/logrotate-person.conf --state /s/SUL/Harvester/shared/logrotate-state
