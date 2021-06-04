@@ -21,10 +21,8 @@ fi
 
 cat $LOG/course_harvest.log | mailx -s 'Course Harvest Log' sul-unicorn-devs@lists.stanford.edu
 
-mv $LOG/course_harvest.log $LOG/course_harvest.log.$DATE
-mv $OUT/course_harvest.out $OUT/course_harvest.out.$DATE
-
-touch $LOG/course_harvest.log
+# Save and reset output and log files
+logrotate $HOME/logrotate-course.conf --state /s/SUL/Harvester/shared/logrotate-state
 
 usage(){
     echo "Usage: $0 [ no argument | 'file' ] [ file of course IDs (if arg0 == file) ] [ DATE (optional: to append to log and out files) ]"

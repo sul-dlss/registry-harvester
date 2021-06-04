@@ -50,8 +50,8 @@ cd $FOLIO/lib
 # Split into batches of 5000
 while mapfile -t -n 5000 array && ((${#array[@]}))
 do
-    printf '%s\n' "${array[@]}" > $OUT/tmp.xml 2>&1
-    ruby folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>&1
+    printf '%s\n' "${array[@]}" > $OUT/tmp.xml 2>> $LOG/folio_summary.log
+    ruby folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>> $LOG/folio_error.log
     rm $OUT/tmp.xml
 done < $OUT/harvest.xml.out
 
@@ -59,18 +59,8 @@ done < $OUT/harvest.xml.out
 cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
 cat $LOG/folio.log | mailx -s 'Folio User Load' sul-unicorn-devs@lists.stanford.edu
 
-# Save output files
-mv $OUT/harvest.out $OUT/harvest.out.$DATE
-mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
-
-# Save and reset log files
-mv $LOG/harvest.log $LOG/harvest.log.$DATE
-mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE
-mv $LOG/folio.log $LOG/folio.log.$DATE
-
-touch $LOG/harvest.log
-touch $LOG/illiad.log
-touch $LOG/folio.log
+# Save and reset output and log files
+logrotate $HOME/logrotate-person.conf --state /s/SUL/Harvester/shared/logrotate-state
 
 usage(){
     echo "Usage: $0 [ no argument | 'file' ] [ file of user keys (if arg0 == file) ] [ DATE (optional: to append to log and out files) ]"
