@@ -60,7 +60,7 @@ cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.ed
 cat $LOG/folio.log | mailx -s 'Folio User Load' sul-unicorn-devs@lists.stanford.edu
 
 # Save and reset output and log files
-logrotate $HOME/logrotate-person.conf --state /s/SUL/Harvester/shared/logrotate-state
+logrotate --verbose $HOME/logrotate-person.conf --state /s/SUL/Harvester/shared/logrotate-state >> $LOG/logrotate.log 2>&1
 
 usage(){
     echo "Usage: $0 [ no argument | 'file' ] [ file of user keys (if arg0 == file) ] [ DATE (optional: to append to log and out files) ]"
