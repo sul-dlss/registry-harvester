@@ -51,13 +51,13 @@ cd $FOLIO/lib
 while mapfile -t -n 5000 array && ((${#array[@]}))
 do
     printf '%s\n' "${array[@]}" > $OUT/tmp.xml 2>&1
-    ruby folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>> $LOG/folio_stderr.log
+    ruby folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>&1
     rm $OUT/tmp.xml
 done < $OUT/harvest.xml.out
 
 # Email and move/reset work files
 cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
-cat $LOG/folio_stderr.log | mailx -s 'Folio User Load' sul-unicorn-devs@lists.stanford.edu
+cat $LOG/folio.log | mailx -s 'Folio User Load' sul-unicorn-devs@lists.stanford.edu
 
 # Save and reset output and log files
 logrotate $HOME/logrotate-person.conf --state /s/SUL/Harvester/shared/logrotate-state
