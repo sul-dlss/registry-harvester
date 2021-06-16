@@ -51,7 +51,7 @@ cd $FOLIO/lib
 while mapfile -t -n 5000 array && ((${#array[@]}))
 do
     printf '%s\n' "${array[@]}" > $OUT/tmp.xml 2>&1
-    ruby folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>&1
+    ruby folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>> $LOG/folio_stderr.log
     rm $OUT/tmp.xml
 done < $OUT/harvest.xml.out
 
