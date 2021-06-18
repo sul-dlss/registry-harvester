@@ -73,6 +73,9 @@ echo "" >> $LOG/course_build.log
 echo "Last Run:" >> $LOG/course_build.log
 ls -lS $HOME/course_files/LastRun/*.xml >> $LOG/course_build.log
 
+echo "Changed files:" >> $LOG/course_build.log
+rsync -vI --dry-run --size-only ./course_files/*.xml ./course_files/LastRun/ >> $LOG/course_build.log
+
 cat $LOG/course_build.log | mailx -s 'Course Build Log' sul-unicorn-devs@lists.stanford.edu
 
 mv $LOG/course_build.log $LOG/course_build.log.$DATE
