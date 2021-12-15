@@ -46,14 +46,14 @@ echo "Updating/Inserting keys from /s/SUL/Batchlog/userload.keys.$illiad_date in
 $HOME/run/pop2illiad.sh $illiad_date
 
 # Run harvest.xml.out through folio_api_client ruby script to load users into FOLIO
-cd $FOLIO
+# cd $FOLIO
 # Split into batches of 5000
-while mapfile -t -n 5000 array && ((${#array[@]}))
-do
-    printf '%s\n' "${array[@]}" > $OUT/tmp.xml
-    ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>&1
-    rm $OUT/tmp.xml
-done < $OUT/harvest.xml.out
+# while mapfile -t -n 5000 array && ((${#array[@]}))
+# do
+#     printf '%s\n' "${array[@]}" > $OUT/tmp.xml
+#     ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>&1
+#     rm $OUT/tmp.xml
+# done < $OUT/harvest.xml.out
 
 # Email and move/reset work files
 cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
