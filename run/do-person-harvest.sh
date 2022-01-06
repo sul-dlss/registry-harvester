@@ -13,14 +13,14 @@ KEYS=$2
 DATE=$3
 
 if [[ ! "$IS_PRODUCTION" ]]; then
-    UAT="-uat"
+  UAT="-uat"
 fi
 
 # Run the registry harvest
 if [[ $1 == 'file' ]]; then
-    $HOME/run/person_file_load.sh $KEYS
+  $HOME/run/person_file_load.sh $KEYS
 else
-    $HOME/run/person_runonce.sh
+  $HOME/run/person_runonce.sh
 fi
 
 if [[ -z $DATE ]]; then
@@ -46,14 +46,16 @@ echo "Updating/Inserting keys from /s/SUL/Batchlog/userload.keys.$illiad_date in
 $HOME/run/pop2illiad.sh $illiad_date
 
 # Run harvest.xml.out through folio_api_client ruby script to load users into FOLIO
-# cd $FOLIO
-# Split into batches of 5000
-# while mapfile -t -n 5000 array && ((${#array[@]}))
-# do
-#     printf '%s\n' "${array[@]}" > $OUT/tmp.xml
-#     ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>&1
-#     rm $OUT/tmp.xml
-# done < $OUT/harvest.xml.out
+if [[ $FOLIO ]]; then
+  cd $FOLIO
+  Split into batches of 5000
+  while mapfile -t -n 5000 array && ((${#array[@]}))
+  do
+      printf '%s\n' "${array[@]}" > $OUT/tmp.xml
+      ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>&1
+      rm $OUT/tmp.xml
+  done < $OUT/harvest.xml.out
+fi
 
 # Email and move/reset work files
 cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
