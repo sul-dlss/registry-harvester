@@ -65,7 +65,7 @@ credentials to maven settings.  Follow maven instructions to encrypt the passwor
           </settings>
 
 See https://maven.apache.org/settings.html for additional information about maven settings.
-    
+
 #### Checkout the project into /s/SUL on the Symphony server:
 
 git clone https://github.com/sul-dlss/registry-harvester.git Harvester
@@ -92,16 +92,16 @@ one time unless you make further configuration changes:
 - `git clone` the https://github.com/sul-dlss/shared_configs.git repo
 - `git fetch`
 - `git checkout registry-harvester-{stage}`
-- `cp -rlf * ../` 
+- `cp -rlf * ../`
 
-The server.conf file contains connection info for the ILLiad user export. 
-It is important to make sure that you have the right server.conf file in place so that 
+The server.conf file contains connection info for the ILLiad user export.
+It is important to make sure that you have the right server.conf file in place so that
 test data does not get exported to production ILLiad and vice versa.
 
-The harvester.properties file contains the registry connection information. 
-It is important that you have the right harvester.properties file in place so that 
-UAT (User Acceptance Testing) data does not get harvested on production Symphony, and that 
-production registry data does not get harvested in test. If that happens you will have to `grep | awk` 
+The harvester.properties file contains the registry connection information.
+It is important that you have the right harvester.properties file in place so that
+UAT (User Acceptance Testing) data does not get harvested on production Symphony, and that
+production registry data does not get harvested in test. If that happens you will have to `grep | awk`
 out the regids from the harvest.log file and run them against the run/do-harvest-file script.
 
 #### Create a LastRun directory for the course xml files
@@ -170,9 +170,9 @@ As mentioned above, you can cron the job by setting the appropriate date on the 
 ```
 10 10 10 10 * /s/SUL/Harvester/current/run/course-build 4G 16G > /s/SUL/Harvester/current/log/course_build.log 2>&1
 ```
-Or simply run that command from the command line with an extra `&` at the end. The arguments represent the java heap size, Xms and Xmx respectively. 
-To run an update using one or more new course_harvest.out files, append the file name(s) as a third argument. 
-If there is no third argument the course-build will rerun on all course_harvest.out* files in the /s/SUL/Harvester/current/out directory, 
+Or simply run that command from the command line with an extra `&` at the end. The arguments represent the java heap size, Xms and Xmx respectively.
+To run an update using one or more new course_harvest.out files, append the file name(s) as a third argument.
+If there is no third argument the course-build will rerun on all course_harvest.out* files in the /s/SUL/Harvester/current/out directory,
 which will take many hours to complete. If you append `latest` as the third argument, it will run the course build on the most recent course_harvest.out file. If you do not supply any arguments, it will run the build on all files with the JVM defaults of -Xms2G -Xmx10G.
 
 Prior to executing the course build, the `course-build` script will move all of the old `course_harvest.out` files to the `OldCourses` directory as specified by the codified term schedule in the `run/remove_old_course_harvests.rb` script.
@@ -184,8 +184,8 @@ You can run the course build for one or more particular terms (fall, winter, spr
 $ export COURSE_TERMS=summer,spring,winter,fall
 ```
 
-<b>Important</b>: The default set of COURSE_TERMS is specified in the /s/SUL/Config/sirsi.env file. 
-During each intersession it helps to make sure you are building courseXML files for the terms that 
+<b>Important</b>: The default set of COURSE_TERMS is specified in the /s/SUL/Config/sirsi.env file.
+During each intersession it helps to make sure you are building courseXML files for the terms that
 are needed by the Course Reserves App (the current term and the next upcoming term).
 
 #### Check on the status of the course build while it is running
@@ -196,10 +196,17 @@ The BuildCourseXML java process will most likely be at the very top. You can als
 
 ## Deploying the project to a server
 
-Deploys are done using Capistrano. You can deploy the project to the development server with `cap dev deploy deploy:jars` 
-and to the production server with `cap prod deploy deploy:jars`. The project will be copied to the `/s/SUL/Harvester` directory 
-on those machines. The dev and prod hostnames are defined in `config/deploy/dev.rb` and `config/deploy/prod.rb`. You will 
-also need to get the oracle connection details from "shared_configs" and follow the instructions to copy the details to the 
-deployed shared directory. Make sure that you install the packages (with Maven as described above) either locally or on 
-the server before trying to run any of the modules. The deployment with `deploy:jars` task will upload the JAR files to the 
+Deploys are done using Capistrano. You can deploy the project to the development server with `cap dev deploy deploy:jars`
+and to the production server with `cap prod deploy deploy:jars`. The project will be copied to the `/s/SUL/Harvester` directory
+on those machines. The dev and prod hostnames are defined in `config/deploy/dev.rb` and `config/deploy/prod.rb`. You will
+also need to get the oracle connection details from "shared_configs" and follow the instructions to copy the details to the
+deployed shared directory. Make sure that you install the packages (with Maven as described above) either locally or on
+the server before trying to run any of the modules. The deployment with `deploy:jars` task will upload the JAR files to the
 `lib/` directory on the server.
+
+## Run the harvest xml output through the FOLIO API to load users into an instance of FOLIO
+
+Call the `do-person-harvest.sh` script with the environment variable `FOLIO` set to `true`, e.g.
+```
+FOLIO=true ./do-person-harvest.sh
+```
