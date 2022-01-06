@@ -212,5 +212,5 @@ For harvest jobs run via cron, the `FOLIO` environmental variable on Symphony is
 
 ```
 # Variables for FOLIO User load
-# export FOLIO=true
+export FOLIO=true
 ```
