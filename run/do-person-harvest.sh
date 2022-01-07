@@ -52,7 +52,7 @@ if [[ $FOLIO ]]; then
   while mapfile -t -n 5000 array && ((${#array[@]}))
   do
       printf '%s\n' "${array[@]}" > $OUT/tmp.xml
-      ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>&1
+      STAGE="${STAGE}" ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>&1
       rm $OUT/tmp.xml
   done < $OUT/harvest.xml.out
 fi
