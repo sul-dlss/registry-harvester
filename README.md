@@ -206,11 +206,11 @@ the server before trying to run any of the modules. The deployment with `deploy:
 
 ## Run the harvest xml output through the FOLIO API to load users into an instance of FOLIO
 
-Call the `do-person-harvest.sh` script with the environment variable `FOLIO` set to `true`.
-For harvest jobs run via cron, the `FOLIO` environmental variable on Symphony is set in the
-`/s/SUL/Config/sirsi.env` file:
+Call the `do-person-harvest.sh` script with the environment variable `FOLIO` set to `true`
+and `STAGE` set to `dev` or `prod`. For harvest jobs run via cron, the `FOLIO` environmental variable on Symphony is set in the `/s/SUL/Config/sirsi.env` file:
 
 ```
 # Variables for FOLIO User load
 export FOLIO=true
+export STAGE=dev
 ```
