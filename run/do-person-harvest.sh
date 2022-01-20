@@ -52,7 +52,7 @@ if [[ $FOLIO ]]; then
   batch=0
   while mapfile -t -n 1000 array && ((${#array[@]}))
   do
-      batch++
+      let batch=batch+1
       printf '%s\n' "${array[@]}" > $OUT/tmp.xml
       echo "----------batch ${batch}----------" >> $LOG/folio.log
       STAGE="${STAGE}" ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2> $LOG/folio_err.log
