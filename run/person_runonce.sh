@@ -47,7 +47,7 @@ done
 # well as the name of its property file be specified as a command-line argument
 # -Dlog4j.configuration=<property file>
 #
-echo "ADDING wlthint3client-12.2.1.jar" >> $HARNESS_LOG
+echo "ADDING wlthint3client jar" >> $HARNESS_LOG
 CLASSPATH="$APP_HOME/WebLogic_lib/wlthint3client-14.1.1.jar":${CLASSPATH}:$CONF_HOME
 
 # This block will allow the harvester to run continuously as a service
