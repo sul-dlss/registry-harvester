@@ -49,9 +49,12 @@ $HOME/run/pop2illiad.sh $illiad_date
 if [[ $FOLIO ]]; then
   cd $FOLIO
   # Split into batches of 1000
+  batch=0
   while mapfile -t -n 1000 array && ((${#array[@]}))
   do
+      batch++
       printf '%s\n' "${array[@]}" > $OUT/tmp.xml
+      echo "----------batch ${batch}----------" >> $LOG/folio.log
       STAGE="${STAGE}" ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2> $LOG/folio_err.log
       rm $OUT/tmp.xml
   done < $OUT/harvest.xml.out
