@@ -48,11 +48,11 @@ $HOME/run/pop2illiad.sh $illiad_date
 # Run harvest.xml.out through folio_api_client ruby script to load users into FOLIO
 if [[ $FOLIO ]]; then
   cd $FOLIO
-  Split into batches of 5000
-  while mapfile -t -n 5000 array && ((${#array[@]}))
+  # Split into batches of 1000
+  while mapfile -t -n 1000 array && ((${#array[@]}))
   do
       printf '%s\n' "${array[@]}" > $OUT/tmp.xml
-      STAGE="${STAGE}" ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>&1
+      STAGE="${STAGE}" ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2> $LOG/folio_err.log
       rm $OUT/tmp.xml
   done < $OUT/harvest.xml.out
 fi
@@ -69,10 +69,12 @@ mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
 mv $LOG/harvest.log $LOG/harvest.log.$DATE
 mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE
 mv $LOG/folio.log $LOG/folio.log.$DATE
+mv $LOG/folio_err.log $LOG/folio_err.log.$DATE
 
 touch $LOG/harvest.log
 touch $LOG/illiad.log
 touch $LOG/folio.log
+touch $LOG/folio_err.log
 
 usage(){
     echo "Usage: $0 [ no argument | 'file' ] [ file of user keys (if arg0 == file) ] [ DATE (optional: to append to log and out files) ]"
