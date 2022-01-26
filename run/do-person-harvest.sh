@@ -12,10 +12,6 @@ FOLIO=/s/SUL/Bin/folio_api_client/current
 KEYS=$2
 DATE=$3
 
-if [[ ! "$IS_PRODUCTION" ]]; then
-  UAT="-uat"
-fi
-
 # Run the registry harvest
 if [[ $1 == 'file' ]]; then
   $HOME/run/person_file_load.sh $KEYS
