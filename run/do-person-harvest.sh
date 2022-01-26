@@ -28,14 +28,11 @@ if [[ -z $DATE ]]; then
 fi
 
 # Remove carriage returns from the log
-perl -p -i -e 's/\r//g' $LOG/harvest.log
+sed -i '/\r/d' $LOG/harvest.log
 
-# Use this when using the LibraryPatron Java xslt transformer instead of the packaged one provided by MaIS
-if [[ head -1 $OUT/harvest.xml.out | grep 'DOCTYPE' ]]; then
-  sed -i '1d' $OUT/harvest.xml.out
-fi
-
+# Use the LibraryPatron Java xslt transformer instead of the packaged one provided by MaIS to get the raw xml lines
 # Generate the flat file for Symphony
+sed -i '/DOCTYPE Person SYSTEM/d' $OUT/harvest.xml.out
 java -cp $HOME/lib/Person-jar-with-dependencies.jar edu.stanford.LibraryPatron $OUT/harvest.xml.out $XSLT/library_patron.xsl > $OUT/harvest.out
 
 # Fix up the harvest.out files
