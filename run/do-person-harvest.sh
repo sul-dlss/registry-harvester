@@ -31,8 +31,9 @@ fi
 perl -p -i -e 's/\r//g' $LOG/harvest.log
 
 # Use this when using the LibraryPatron Java xslt transformer instead of the packaged one provided by MaIS
-perl -p -i -e "s/<!DOCTYPE Person SYSTEM \"http:\/\/registry${UAT}.stanford.edu\/xml\/person\/1.2\/Person.dtd\">//g" $OUT/harvest.xml.out
-sed -i '/^$/d' $OUT/harvest.xml.out
+if [[ head -1 $OUT/harvest.xml.out | grep 'DOCTYPE' ]]; then
+  sed -i '1d' $OUT/harvest.xml.out
+fi
 
 # Generate the flat file for Symphony
 java -cp $HOME/lib/Person-jar-with-dependencies.jar edu.stanford.LibraryPatron $OUT/harvest.xml.out $XSLT/library_patron.xsl > $OUT/harvest.out
