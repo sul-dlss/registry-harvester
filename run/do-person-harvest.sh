@@ -52,6 +52,8 @@ if [[ $FOLIO ]]; then
       STAGE="${STAGE}" ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2> $LOG/folio_err.log
       rm $OUT/tmp.xml
   done < $OUT/harvest.xml.out
+
+  STAGE="${STAGE}" ruby rake deactivate_users >> $LOG/folio_inactive.log
 fi
 
 # Email and move/reset work files
