@@ -53,7 +53,7 @@ if [[ $FOLIO ]]; then
       rm $OUT/tmp.xml
   done < $OUT/harvest.xml.out
 
-  STAGE="${STAGE}" ruby rake deactivate_users >> $LOG/folio_inactive.log
+  STAGE="${STAGE}" ruby rake deactivate_users >> $LOG/folio_inactive.log 2>&1
 fi
 
 # Email and move/reset work files
