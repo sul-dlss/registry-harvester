@@ -69,11 +69,13 @@ mv $LOG/harvest.log $LOG/harvest.log.$DATE
 mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE
 mv $LOG/folio.log $LOG/folio.log.$DATE
 mv $LOG/folio_err.log $LOG/folio_err.log.$DATE
+mv $LOG/folio_inactive.log $LOG/folio_inactive.log.$DATE
 
 touch $LOG/harvest.log
 touch $LOG/illiad.log
 touch $LOG/folio.log
 touch $LOG/folio_err.log
+touch $LOG/folio_inactive.log
 
 usage(){
     echo "Usage: $0 [ no argument | 'file' ] [ file of user keys (if arg0 == file) ] [ DATE (optional: to append to log and out files) ]"
