@@ -62,9 +62,6 @@ CLASSPATH=${CLASSPATH}:$CONF_HOME
 $JAVA_HOME/bin/java -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=harvester.properties -Dhttps.protocols=TLSv1.2 -cp $CLASSPATH edu.stanford.harvester.Harvester $CONF_HOME/harvester.properties $CONF_HOME/processor.properties $LOAD_FILE
 EXIT_CODE=$?
 
-mv $OUT/harvest.out $OUT/harvest.out.$DATE
-mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
-
 # Save output files
 mv $OUT/harvest.out $OUT/harvest.out.$DATE
 mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
