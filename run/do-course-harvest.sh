@@ -14,9 +14,9 @@ then
 fi
 
 if [[ $1 == 'file' ]]; then
-    $HOME/run/course_file_load.sh $COURSE_IDS
+    $HOME/run/course-file-load.sh $COURSE_IDS
 else
-    $HOME/run/course_runonce.sh
+    $HOME/run/course-runonce.sh
 fi
 
 cat $LOG/course_harvest.log | mailx -s 'Course Harvest Log' sul-unicorn-devs@lists.stanford.edu

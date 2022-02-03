@@ -2,21 +2,18 @@
 
 . /s/SUL/Config/sirsi.env
 
-[[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 HOME=/s/SUL/Harvester/current
 LOG=$HOME/log
 OUT=$HOME/out
 XSLT=$HOME/xslt
-FOLIO=/s/SUL/Bin/folio_api_client/current
 KEYS=$2
 DATE=$3
 
 # Run the registry harvest
 if [[ $1 == 'file' ]]; then
-  $HOME/run/person_file_load.sh $KEYS
+  $HOME/run/person-file-load.sh $KEYS
 else
-  $HOME/run/person_runonce.sh
+  $HOME/run/person-runonce.sh
 fi
 
 if [[ -z $DATE ]]; then
@@ -40,25 +37,10 @@ echo "Updating/Inserting keys from /s/SUL/Batchlog/userload.keys.$illiad_date in
 $HOME/run/pop2illiad.sh $illiad_date
 
 # Run harvest.xml.out through folio_api_client ruby script to load users into FOLIO
-if [[ $FOLIO ]]; then
-  cd $FOLIO
-  # Split into batches of 1000
-  batch=0
-  while mapfile -t -n 1000 array && ((${#array[@]}))
-  do
-      let batch=batch+1
-      printf '%s\n' "${array[@]}" > $OUT/tmp.xml
-      echo "----------batch ${batch}: ${#array[@]} records ----------" >> $LOG/folio.log
-      STAGE="${STAGE}" ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2> $LOG/folio_err.log
-      rm $OUT/tmp.xml
-  done < $OUT/harvest.xml.out
-
-  STAGE="${STAGE}" rake deactivate_users >> $LOG/folio_inactive.log 2>&1
-fi
+$HOME/run/folio-userload.sh
 
 # Email and move/reset work files
 cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
-cat $LOG/folio_err.log $LOG/folio.log | mailx -s 'Folio User Load' sul-unicorn-devs@lists.stanford.edu
 
 # Save output files
 mv $OUT/harvest.out $OUT/harvest.out.$DATE
@@ -67,15 +49,9 @@ mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
 # Save and reset log files
 mv $LOG/harvest.log $LOG/harvest.log.$DATE
 mv $LOG/illiad.log $LOG/illiad.log.$illiad_date.$DATE
-mv $LOG/folio.log $LOG/folio.log.$DATE
-mv $LOG/folio_err.log $LOG/folio_err.log.$DATE
-mv $LOG/folio_inactive.log $LOG/folio_inactive.log.$DATE
 
 touch $LOG/harvest.log
 touch $LOG/illiad.log
-touch $LOG/folio.log
-touch $LOG/folio_err.log
-touch $LOG/folio_inactive.log
 
 usage(){
     echo "Usage: $0 [ no argument | 'file' ] [ file of user keys (if arg0 == file) ] [ DATE (optional: to append to log and out files) ]"
