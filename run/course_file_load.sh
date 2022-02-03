@@ -28,7 +28,19 @@ for file in `ls $APP_HOME/jar/` ; do
  esac
 done
 
-
+# Weblogic jar file
+for file in `ls $APP_HOME/WebLogic_lib/` ; do
+ case "$file" in
+  old.*.jar) echo skipping $file >>$HARNESS_LOG;;
+  *.jar|*.zip) echo ADDING $file >> $HARNESS_LOG
+        if [ "$CLASSPATH" != "" ]; then
+           CLASSPATH=${CLASSPATH}:$APP_HOME/WebLogic_lib/$file
+        else
+           CLASSPATH=$APP_HOME/WebLogic_lib/$file
+        fi
+        ;;
+ esac
+done
 #
 # Log4j requires that its property file be specified in the CLASSPATH as
 # well as the name of its property file be specified as a command-line argument
