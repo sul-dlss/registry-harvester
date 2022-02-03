@@ -2,6 +2,8 @@
 
 APP_HOME=/s/SUL/Harvester/current
 CONF_HOME=$APP_HOME/Course/src/main/resources
+LOG=$APP_HOME/log
+OUT=$APP_HOME/out
 JAVA_HOME=/usr
 LOAD_FILE=$1
 
@@ -50,6 +52,11 @@ CLASSPATH=${CLASSPATH}:$CONF_HOME
 
 $JAVA_HOME/bin/java -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=course_harvester.properties -Dhttps.protocols=TLSv1.2 -cp $CLASSPATH edu.stanford.harvester.Harvester $CONF_HOME/course_harvester.properties $CONF_HOME/course_processor.properties $LOAD_FILE
 EXIT_CODE=$?
+
+mv $LOG/course_harvest.log $LOG/course_harvest.log.$DATE
+mv $OUT/course_harvest.out $OUT/course_harvest.out.$DATE
+
+touch $LOG/course_harvest.log
 
 if [ $EXIT_CODE -gt 0 ] ; then
   echo "Processor exited abnormally. Check log file for details"
