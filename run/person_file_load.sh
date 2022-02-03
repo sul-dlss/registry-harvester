@@ -70,7 +70,6 @@ mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
 mv $LOG/harvest.log $LOG/harvest.log.$DATE
 
 touch $LOG/harvest.log
-touch $LOG/illiad.log
 
 if [ $EXIT_CODE -gt 0 ] ; then
   echo "Processor exited abnormally. Check log file for details"
