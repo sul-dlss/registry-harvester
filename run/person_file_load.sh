@@ -7,8 +7,14 @@
 
 APP_HOME=/s/SUL/Harvester/current
 CONF_HOME=$APP_HOME/Person/src/main/resources
+LOG=$APP_HOME/log
+OUT=$APP_HOME/out
 JAVA_HOME=/usr
 LOAD_FILE=$1
+
+if [[ -z $DATE ]]; then
+  DATE=`date +%Y%m%d%H%M`
+fi
 
 cd $APP_HOME/run
 
@@ -55,6 +61,19 @@ CLASSPATH=${CLASSPATH}:$CONF_HOME
 
 $JAVA_HOME/bin/java -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=harvester.properties -Dhttps.protocols=TLSv1.2 -cp $CLASSPATH edu.stanford.harvester.Harvester $CONF_HOME/harvester.properties $CONF_HOME/processor.properties $LOAD_FILE
 EXIT_CODE=$?
+
+mv $OUT/harvest.out $OUT/harvest.out.$DATE
+mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
+
+# Save output files
+mv $OUT/harvest.out $OUT/harvest.out.$DATE
+mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
+
+# Save and reset log files
+mv $LOG/harvest.log $LOG/harvest.log.$DATE
+
+touch $LOG/harvest.log
+touch $LOG/illiad.log
 
 if [ $EXIT_CODE -gt 0 ] ; then
   echo "Processor exited abnormally. Check log file for details"
