@@ -4,7 +4,7 @@ Registry harvester that transforms registry people documents into a flat file fo
 
 ## Using the registry harvester
 
-The person registry harvester is normally run via the cron on libappprod1. The `do-harvest` script makes calls to a few other scripts to do log file preparation and to run the process to update the ILLiad database with data that was previously loaded into Symphony.
+The person registry harvester is normally run via the cron on the Symphony application server. The `do-harvest` script makes calls to a few other scripts to do log file preparation and to run the process to update the ILLiad database with data that was previously loaded into Symphony.
 ```
 15 21 * * * /s/SUL/Harvester/current/run/do-person-harvest.sh  > /s/SUL/Harvester/current/log/harvest.log 2>&1
 ```
