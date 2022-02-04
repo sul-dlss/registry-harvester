@@ -45,19 +45,22 @@ Then use the file as the first argument of the do-course-harvest-file script:
 /s/SUL/Harvester/current/run/course-file-load.sh /path/to/courseid_file
 ```
 
-## Run the harvest xml output through the FOLIO API to load users into an instance of FOLIO
-Call the `do-person-harvest.sh` script with the environment variable `FOLIO` set to `true`
-and `STAGE` set to `dev` or `prod`.
+## Running the harvest xml output through the FOLIO API and loading users into an instance of FOLIO
+The `do-person-harvest.sh` script calls the `folio-userload.sh` script with the environment variable `FOLIO` set to `true`
+and `STAGE` set to either `dev` or `prod`.
+
+# Variables for FOLIO User load
+The `FOLIO` environmental variable on Symphony is automatically set in the `/s/SUL/Config/sirsi.env` file:
+```
+export FOLIO=true
+export STAGE=dev
+```
+
+The stages correspond to the `config/settings/{stage}.yml` files for `registry-harvester-{stage}` in shared_configs.
 
 ## Run the FOLIO userload from a file
 Call the `folio-userload.sh` script with the environment variable `FOLIO` set to `true` and `STAGE` set to `dev` or `prod`.
 
-The `FOLIO` environmental variable on Symphony is automatically set in the `/s/SUL/Config/sirsi.env` file:
-```
-# Variables for FOLIO User load
-export FOLIO=true
-export STAGE=dev
-```
 
 #### Manually populate the ILLiad Users Table
 
