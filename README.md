@@ -1,6 +1,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/sul-dlss/registry-harvester/badge.svg?branch=master)](https://coveralls.io/github/sul-dlss/registry-harvester?branch=master)
 # registry-harvester
-Registry harvester that transforms registry people documents into a flat file format for loading into Symphony. This instance has beeen modified from the delivered MAiS project to further transform end export user records to ILLiad to support the Scan and Deliver service via SearchWorks.
+Registry harvester that transforms registry people documents into a flat file format for loading into Symphony and FOLIO. This instance has beeen modified from the delivered MAiS project to further transform end export user records to ILLiad to support the Scan and Deliver service via SearchWorks.
 
 ## Using the registry harvester
 
