@@ -45,6 +45,20 @@ Then use the file as the first argument of the do-course-harvest-file script:
 /s/SUL/Harvester/current/run/course-file-load.sh /path/to/courseid_file
 ```
 
+## Run the harvest xml output through the FOLIO API to load users into an instance of FOLIO
+Call the `do-person-harvest.sh` script with the environment variable `FOLIO` set to `true`
+and `STAGE` set to `dev` or `prod`.
+
+## Run the FOLIO userload from a file
+Call the `folio-userload.sh` script with the environment variable `FOLIO` set to `true` and `STAGE` set to `dev` or `prod`.
+
+The `FOLIO` environmental variable on Symphony is automatically set in the `/s/SUL/Config/sirsi.env` file:
+```
+# Variables for FOLIO User load
+export FOLIO=true
+export STAGE=dev
+```
+
 #### Manually populate the ILLiad Users Table
 
 With a file of Symphony user keys or a file of sunet ids you can populate the ILLiad Users table with one the following commands:
@@ -98,20 +112,6 @@ also need to get the oracle connection details from "shared_configs" and follow 
 deployed shared directory. Make sure that you install the packages (with Maven as described above) either locally or on
 the server before trying to run any of the modules. The deployment with `deploy:jars` task will upload the JAR files to the
 `lib/` directory on the server.
-
-## Run the harvest xml output through the FOLIO API to load users into an instance of FOLIO
-Call the `do-person-harvest.sh` script with the environment variable `FOLIO` set to `true`
-and `STAGE` set to `dev` or `prod`.
-
-## Run the FOLIO userload from a file
-Call the `folio-userload.sh` script with the environment variable `FOLIO` set to `true` and `STAGE` set to `dev` or `prod`.
-
-The `FOLIO` environmental variable on Symphony is automatically set in the `/s/SUL/Config/sirsi.env` file:
-```
-# Variables for FOLIO User load
-export FOLIO=true
-export STAGE=dev
-```
 
 ## Installation and setup
 
