@@ -12,6 +12,10 @@ OUT=$APP_HOME/out
 JAVA_HOME=/usr
 LOAD_FILE=$1
 
+if [[ -z $PROCESSOR ]]; then
+   $PROCESSOR='processor.properties'
+fi
+
 if [[ -z $DATE ]]; then
   DATE=`date +%Y%m%d%H%M`
 fi
@@ -59,7 +63,7 @@ done
 #
 CLASSPATH=${CLASSPATH}:$CONF_HOME
 
-$JAVA_HOME/bin/java -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=harvester.properties -Dhttps.protocols=TLSv1.2 -cp $CLASSPATH edu.stanford.harvester.Harvester $CONF_HOME/harvester.properties $CONF_HOME/processor.properties $LOAD_FILE
+$JAVA_HOME/bin/java -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=harvester.properties -Dhttps.protocols=TLSv1.2 -cp $CLASSPATH edu.stanford.harvester.Harvester $CONF_HOME/harvester.properties $CONF_HOME/$PROCESSOR $LOAD_FILE
 EXIT_CODE=$?
 
 $HOME/run/folio-userload.sh
