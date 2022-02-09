@@ -67,6 +67,8 @@ CLASSPATH=${CLASSPATH}:$CONF_HOME
 $JAVA_HOME/bin/java -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=harvester.properties -Dhttps.protocols=TLSv1.2 -cp $CLASSPATH edu.stanford.harvester.Harvester $CONF_HOME/harvester.properties $CONF_HOME/$PROCESSOR $LOAD_FILE
 EXIT_CODE=$?
 
+sed -i '/DOCTYPE Person SYSTEM/d' $HARVEST
+
 HARVEST=$HARVEST $APP_HOME/run/folio-userload.sh
 
 # Save output files
