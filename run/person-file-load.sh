@@ -31,9 +31,9 @@ export LD_LIBRARY_PATH
 #echo "building classpath"
 for file in `ls $APP_HOME/jar/` ; do
  case "$file" in
-  old.*.jar) #echo skipping $file
+  old.*.jar)
   ;;
-  *.jar|*.zip) #echo ADDING $file
+  *.jar|*.zip)
         if [ "$CLASSPATH" != "" ]; then
            CLASSPATH=${CLASSPATH}:$APP_HOME/jar/$file
         else
@@ -46,8 +46,9 @@ done
 # Weblogic jar file
 for file in `ls $APP_HOME/WebLogic_lib/` ; do
  case "$file" in
-  old.*.jar) echo skipping $file >>$HARNESS_LOG;;
-  *.jar|*.zip) echo ADDING $file >> $HARNESS_LOG
+  old.*.jar)
+  ;;
+  *.jar|*.zip)
         if [ "$CLASSPATH" != "" ]; then
            CLASSPATH=${CLASSPATH}:$APP_HOME/WebLogic_lib/$file
         else
@@ -66,7 +67,7 @@ CLASSPATH=${CLASSPATH}:$CONF_HOME
 $JAVA_HOME/bin/java -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=harvester.properties -Dhttps.protocols=TLSv1.2 -cp $CLASSPATH edu.stanford.harvester.Harvester $CONF_HOME/harvester.properties $CONF_HOME/$PROCESSOR $LOAD_FILE
 EXIT_CODE=$?
 
-$HOME/run/folio-userload.sh
+$APP_HOME/run/folio-userload.sh
 
 # Save output files
 mv $OUT/harvest.out $OUT/harvest.out.$DATE
