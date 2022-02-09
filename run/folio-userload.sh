@@ -2,7 +2,6 @@
 
 API=/s/SUL/Bin/folio_api_client/current
 DATE=`date +%Y%m%d%H%M`
-HARVEST=$1
 HOME=/s/SUL/Harvester/current
 LOG=$HOME/log
 OUT=$HOME/out
