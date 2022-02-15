@@ -72,8 +72,12 @@ sed -i '/DOCTYPE Person SYSTEM/d' $HARVEST
 HARVEST=$HARVEST $APP_HOME/run/folio-userload.sh
 
 # Save output files
-mv $OUT/harvest.out $OUT/harvest.out.$DATE
-mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
+if [[ -e $HARVEST ]]; then
+   mv $HARVEST $OUT $HARVEST.$DATE
+else
+   mv $OUT/harvest.out $OUT/harvest.out.$DATE
+   mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
+fi
 
 # Save and reset log files
 mv $LOG/harvest.log $LOG/harvest.log.$DATE
