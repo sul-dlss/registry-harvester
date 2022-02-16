@@ -12,6 +12,10 @@ OUT=$APP_HOME/out
 JAVA_HOME=/usr
 LOAD_FILE=$1
 
+if [[ -z $PROCESSOR ]]; then
+   $PROCESSOR='processor.properties'
+fi
+
 if [[ -z $DATE ]]; then
   DATE=`date +%Y%m%d%H%M`
 fi
@@ -27,9 +31,9 @@ export LD_LIBRARY_PATH
 #echo "building classpath"
 for file in `ls $APP_HOME/jar/` ; do
  case "$file" in
-  old.*.jar) #echo skipping $file
+  old.*.jar)
   ;;
-  *.jar|*.zip) #echo ADDING $file
+  *.jar|*.zip)
         if [ "$CLASSPATH" != "" ]; then
            CLASSPATH=${CLASSPATH}:$APP_HOME/jar/$file
         else
@@ -42,8 +46,9 @@ done
 # Weblogic jar file
 for file in `ls $APP_HOME/WebLogic_lib/` ; do
  case "$file" in
-  old.*.jar) echo skipping $file >>$HARNESS_LOG;;
-  *.jar|*.zip) echo ADDING $file >> $HARNESS_LOG
+  old.*.jar)
+  ;;
+  *.jar|*.zip)
         if [ "$CLASSPATH" != "" ]; then
            CLASSPATH=${CLASSPATH}:$APP_HOME/WebLogic_lib/$file
         else
@@ -59,14 +64,20 @@ done
 #
 CLASSPATH=${CLASSPATH}:$CONF_HOME
 
-$JAVA_HOME/bin/java -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=harvester.properties -Dhttps.protocols=TLSv1.2 -cp $CLASSPATH edu.stanford.harvester.Harvester $CONF_HOME/harvester.properties $CONF_HOME/processor.properties $LOAD_FILE
+$JAVA_HOME/bin/java -Djava.security.egd=file:///dev/urandom -Dlog4j.configuration=harvester.properties -Dhttps.protocols=TLSv1.2 -cp $CLASSPATH edu.stanford.harvester.Harvester $CONF_HOME/harvester.properties $CONF_HOME/$PROCESSOR $LOAD_FILE
 EXIT_CODE=$?
 
-$HOME/run/folio-userload.sh
+sed -i '/DOCTYPE Person SYSTEM/d' $HARVEST
+
+HARVEST=$HARVEST $APP_HOME/run/folio-userload.sh
 
 # Save output files
-mv $OUT/harvest.out $OUT/harvest.out.$DATE
-mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
+if [[ -e $HARVEST ]]; then
+   mv $HARVEST $OUT $HARVEST.$DATE
+else
+   mv $OUT/harvest.out $OUT/harvest.out.$DATE
+   mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
+fi
 
 # Save and reset log files
 mv $LOG/harvest.log $LOG/harvest.log.$DATE

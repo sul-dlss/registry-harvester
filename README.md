@@ -35,6 +35,12 @@ Or use the same script with a file of University IDs:
 /s/SUL/Harvester/current/run/person-file-load.sh /path/to/univIds YYYYMMDDHHmm(optional [default is now])
 ```
 
+##### Run a registry harvest for a special load into FOLIO
+
+```
+HARVEST=/s/SUL/Harvester/current/out/folio_harvest.xml.out PROCESSOR=folio.properties run/person-file-load.sh /full/path/to/_uids.txt
+```
+
 <b>Course</b>: If you need to re-run a batch of course IDs you can similarly extract the course IDs for a particular term using the term code as 4 digits: 1 (year 2000) 17 (16-17) 2/4/6/8(fall/winter/spring/summer):
 ```
 cd /s/SUL/Harvester/current/log
