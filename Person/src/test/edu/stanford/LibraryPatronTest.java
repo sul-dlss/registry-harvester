@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 
 public class LibraryPatronTest {
     private File xslt_file;
-    
+
     @Before
     public void init() {
         xslt_file = new File(getClass().getClassLoader().getResource("library_patron.xsl").getFile());
