@@ -60,7 +60,7 @@ public class BuildTermStringTest {
         try {
             BuildTermString.getTermCode("");
         } catch (Exception e) {
-            assertEquals(e.getMessage(), "1");
+            assertEquals(e.getMessage(), "Index 1 out of bounds for length 1");
         }
     }
 
