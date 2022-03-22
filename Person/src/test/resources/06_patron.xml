@@ -14,37 +14,21 @@
         <user>me</user>
         <host>example.com</host>
     </email>
-    <affiliation affnum="1" organization="stanford" type="student" until="2021-01-04" visibility="stanford">Student
-        <department affnum="1">African and African American Studies
-            <organization acadid="AFROAM" adminid="QNFH">African and African American Studies</organization>
+    <affiliation affnum="1" effective="2022-03-16" organization="stanford" type="student" until="2099-01-04" visibility="stanford">Student
+        <department affnum="1">Chemistry
+            <organization acadid="CHEMISTRY" adminid="QCIP">Chemistry</organization>
         </department>
         <description affnum="1">Undergraduate</description>
         <affdata affnum="1" type="admit_term">1162</affdata>
         <affdata affnum="1" code="UG" type="career">Undergraduate</affdata>
     </affiliation>
-    <affiliation affnum="2" organization="stanford" type="student" until="2021-01-04" visibility="stanford">Student
-        <department affnum="2">Chemistry
-            <organization acadid="CHEMISTRY" adminid="QCIP">Chemistry</organization>
-        </department>
-        <description affnum="2">Undergraduate</description>
-        <affdata affnum="2" type="admit_term">1162</affdata>
-        <affdata affnum="2" code="UG" type="career">Undergraduate</affdata>
-    </affiliation>
-    <affiliation affnum="3" organization="stanford" type="student" until="2021-01-04" visibility="stanford">Student
-        <department affnum="3">History Department
-            <organization acadid="HISTORY" adminid="PGSH">History</organization>
-        </department>
-        <description affnum="3">Undergraduate</description>
-        <affdata affnum="3" type="admit_term">1162</affdata>
-        <affdata affnum="3" code="UG" type="career">Undergraduate</affdata>
-    </affiliation>
-    <affiliation affnum="4" organization="stanford" type="student" until="2021-01-04" visibility="stanford">Student
-        <department affnum="4">Earth Systems Program
+    <affiliation affnum="2" effective="2020-03-16" organization="stanford" type="student" until="2099-01-04" visibility="stanford">Student
+        <department affnum="2">Earth Systems Program
             <organization acadid="EARTHSYS" adminid="TDGA">Earth Systems Program</organization>
         </department>
         <description affnum="4">Graduate</description>
-        <affdata affnum="4" type="admit_term">1172</affdata>
-        <affdata affnum="4" code="GR" type="career">Graduate</affdata>
+        <affdata affnum="2" type="admit_term">1172</affdata>
+        <affdata affnum="2" code="GR" type="career">Graduate</affdata>
     </affiliation>
     <identifier nval="000000000" type="univid" visibility="none">000000000</identifier>
     <identifier nval="campuscard/000000000" type="refid" visibility="none">campuscard/000000000</identifier>
@@ -53,11 +37,6 @@
     <identifier nval="1234567" type="proximity" visibility="none">1234567</identifier>
     <identifier nval="mysunet" type="sunetid" visibility="stanford">mysunet</identifier>
     <privgroup>student:coterminal</privgroup>
-    <privgroup>earthsci:cap-comm-all</privgroup>
-    <privgroup>stanford:academic</privgroup>
-    <privgroup>student:cardinalhealth</privgroup>
-    <privgroup>earthsci:mail-all-students</privgroup>
     <privgroup>stanford:student</privgroup>
-    <privgroup>earthsci:drupal-accounts</privgroup>
     <privgroup>earthsci:esys-students-graduate</privgroup>
 </Person>
