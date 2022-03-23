@@ -10,16 +10,16 @@ FORM=LDUSER
 .USER_ADDR1_BEGIN.
 .EMAIL.   |ame@example.com
 .PHONE.   |a
-.DEPT.   |aMaterials Science and Engineering
+.DEPT.   |aCivil and Environmental Engineering
 .USER_ADDR1_END.
-.USER_DEPARTMENT.   |aSOWO
+.USER_DEPARTMENT.   |aRMCA
 .USER_PROFILE.   |aRED
 .USER_PRIV_GRANTED.   |aTODAYSDATE
-.USER_PRIV_EXPIRES.   |a20210104
+.USER_PRIV_EXPIRES.   |a20990926
 .USER_GROUP_ID.   |amysunet
 .USER_WEB_AUTH.   |amysunet
 .USER_XINFO_BEGIN.
 .ACTIVEID.   |a012345,1234567
 .AFFIL1.   |astudent
-.AFFIL2.   |astudent
+.AFFIL2.   |astudent:incoming
 .USER_XINFO_END.
