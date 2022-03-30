@@ -120,12 +120,9 @@ public class BuildCourseXMLTable {
   }
 
   static Document getClassCourse(String lineNew) throws JDOMException, IOException {
-    DocType dtype = new DocType("CourseClass");
-    dtype.setPublicID("http://registry.stanford.edu/xml/courseclass/1.0/CourseClass.dtd");
     InputSource is = new InputSource();
     is.setCharacterStream(new StringReader(lineNew));
     Document classCourse = builder.build(is);
-    classCourse.setDocType(dtype);
     return classCourse;
   }
 
@@ -161,7 +158,6 @@ public class BuildCourseXMLTable {
     try {
       String lookup = CourseDBLookup.lookupCourseXML(termCode);
       regData =  "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
-              + "<!DOCTYPE CourseClass SYSTEM \"http://registry.stanford.edu/xml/courseclass/1.0/CourseClass.dtd\">"
               + "<RegData>" + lookup + "</RegData>";
     } catch (NullPointerException e) {
       log.warn("Lookup course for " + termCode + " returned " + e.getMessage());

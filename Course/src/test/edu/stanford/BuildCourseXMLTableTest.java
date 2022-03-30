@@ -71,7 +71,6 @@ public class BuildCourseXMLTableTest {
         Document courseDoc = BuildCourseXMLTable.getClassCourse(course);
 
         assertNotNull(courseDoc.getDocument());
-        assertNotNull(courseDoc.getDocType());
         assertTrue(0 < courseDoc.getContentSize());
     }
 

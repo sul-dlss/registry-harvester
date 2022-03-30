@@ -74,6 +74,7 @@ echo "Last Run:" >> $LOG/course_build.log
 ls -lS $HOME/course_files/LastRun/*.xml >> $LOG/course_build.log
 
 cat $LOG/course_build.log | mailx -s 'Course Build Log' sul-unicorn-devs@lists.stanford.edu
+tail -15 $LOG/course_build.err | mailx -s 'Course Build Errors' sul-unicorn-devs@lists.stanford.edu
 
 mv $LOG/course_build.log $LOG/course_build.log.$DATE
 mv $LOG/course_build.err $LOG/course_build.err.$DATE
