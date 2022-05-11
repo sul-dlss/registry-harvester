@@ -10,10 +10,10 @@ DATE=$1
 KEY_DIR="/s/SUL/Batchlog"
 KEY_FILE="$KEY_DIR/userload.keys.$DATE"
 
-if [ $(grep -c "^[0-9]\+" $KEY_FILE) -gt 10000 ]
+if [ $(grep -c "^[0-9]\+" $KEY_FILE) -gt 5000 ]
 then
   cd $KEY_DIR
-  split -a 1 -l 5000 $KEY_FILE "userload.keys.$DATE."
+  split -a 1 -l 2000 $KEY_FILE "userload.keys.$DATE."
 
   cd $HOME
   echo "" > $LOG/illiad.log
