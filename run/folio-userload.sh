@@ -1,6 +1,6 @@
 #!/bin/bash
 
-API=/s/SUL/Bin/folio_api_client/current
+API=/s/SUL/Bin/folio-tasks/current
 DATE=`date +%Y%m%d%H%M`
 HOME=/s/SUL/Harvester/current
 LOG=$HOME/log
