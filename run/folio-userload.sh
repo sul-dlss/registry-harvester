@@ -16,9 +16,9 @@ fi
 
 if [[ $FOLIO ]]; then
   cd $API
-  # Split into batches of 1000
+  # Split into batches of 100
   batch=0
-  while mapfile -t -n 1000 array && ((${#array[@]}))
+  while mapfile -t -n 100 array && ((${#array[@]}))
   do
       let batch=batch+1
       printf '%s\n' "${array[@]}" > $OUT/tmp.xml
