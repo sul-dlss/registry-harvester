@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class BuildTermStringTest {
     @Before
@@ -60,7 +61,7 @@ public class BuildTermStringTest {
         try {
             BuildTermString.getTermCode("");
         } catch (Exception e) {
-            assertEquals(e.getMessage(), "1");
+            assertNotNull(e.getMessage());
         }
     }
 
