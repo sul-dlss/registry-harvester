@@ -27,7 +27,7 @@ if [[ $FOLIO ]]; then
       rm $OUT/tmp.xml
   done < $HARVEST
 
-  STAGE="${STAGE}" rake deactivate_users > $LOG/folio_inactive.log 2>&1
+  STAGE="${STAGE}" rake users:deactivate_users > $LOG/folio_inactive.log 2>&1
 fi
 
 cat $LOG/folio_err.log $LOG/folio.log | mailx -s 'Folio User Load' sul-unicorn-devs@lists.stanford.edu
