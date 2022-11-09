@@ -23,7 +23,7 @@ if [[ $FOLIO ]]; then
       let batch=batch+1
       printf '%s\n' "${array[@]}" > $OUT/tmp.xml
       echo "----------batch ${batch}: ${#array[@]} records ----------" >> $LOG/folio.log
-      STAGE="${STAGE}" ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2> $LOG/folio_err.log
+      STAGE="${STAGE}" ruby bin/folio_user.rb $OUT/tmp.xml >> $LOG/folio.log 2>> $LOG/folio_err.log
       rm $OUT/tmp.xml
   done < $HARVEST
 
