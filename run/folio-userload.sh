@@ -30,7 +30,8 @@ if [[ $FOLIO ]]; then
   STAGE="${STAGE}" rake users:deactivate_users > $LOG/folio_inactive.log 2>&1
 fi
 
-cat $LOG/folio_err.log $LOG/folio.log | mailx -s 'Folio User Load' sul-unicorn-devs@lists.stanford.edu
+cat $LOG/folio_err.log | mailx -s 'Folio Userload: Inactive Users' sul-unicorn-devs@lists.stanford.edu
+cat $LOG/folio.log | egrep 'message|createdRecords|updatedRecords|failedRecords|failedUsers|errorMessage|totalRecords' | mailx -s "Folio Userload: Summary for folio.log.$DATE" sul-unicorn-devs@lists.stanford.edu
 
 # Save and reset log files
 mv $LOG/folio.log $LOG/folio.log.$DATE
