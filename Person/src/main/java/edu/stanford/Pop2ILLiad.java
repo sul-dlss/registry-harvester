@@ -81,7 +81,7 @@ public class Pop2ILLiad {
                 Process p1 = Runtime.getRuntime().exec(new String[] { "echo", userKey.toLowerCase() });
                 InputStream input = p1.getInputStream();
 
-                Process p2 = Runtime.getRuntime().exec(new String[] { "seluser", "-i" + selFlag, "-oxDBpX.9007.Z.9007.X.9036.X.9032.Y.9032.e" });
+                Process p2 = Runtime.getRuntime().exec(new String[] { "seluser", "-i" + selFlag, "-oxDBpX.9007.Z.9007.X.9036.X.9032.Y.9032.eE" });
                 OutputStream output = p2.getOutputStream();
 
                 IOUtils.copy(input, output);
@@ -100,6 +100,7 @@ public class Pop2ILLiad {
                 String department = ""; //7 X.9032.
                 String nvtgc = ""; //8 Y.9032.
                 String expiration = ""; //9 e
+                String univid = ""; //10
 
                 // NOTE: "nvtgc" is the code for the user's ILLiad instance that comes out of the registry userload
                 // and writen into the symphony user record in a custom user field as "gsb", "law", or "medicine" based
@@ -141,6 +142,7 @@ public class Pop2ILLiad {
                     department = userFields[7];
                     nvtgc = userFields[8];
                     expiration = userFields[9];
+                    univid = userFields[10];
 
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.err.println("Pop2ILLiad: " + e.getMessage());
@@ -261,7 +263,7 @@ public class Pop2ILLiad {
                     illData.put("SCountry", "NULL"); //
                     illData.put("RSSID", "NULL");
                     illData.put("AuthType", "'RemoteAuth'");
-                    illData.put("UserInfo1", "NULL"); //
+                    illData.put("UserInfo1", "'" + univid + "'"); //
                     illData.put("UserInfo2", "NULL"); //
                     illData.put("UserInfo3", "NULL"); //
                     illData.put("UserInfo4", "NULL"); //
