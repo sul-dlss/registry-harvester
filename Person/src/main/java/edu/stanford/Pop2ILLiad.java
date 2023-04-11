@@ -48,12 +48,12 @@ public class Pop2ILLiad {
             s7z.setPortNumber(1433);
             s7z.setDatabaseName("ILLData");
 
-            SQLServerDataSource rcj = new SQLServerDataSource();
-            rcj.setUser("RCJ" + user);
-            rcj.setPassword("RCJ" + pass);
-            rcj.setServerName(server);
-            rcj.setPortNumber(1433);
-            rcj.setDatabaseName("ILLData");
+            // SQLServerDataSource rcj = new SQLServerDataSource();
+            // rcj.setUser("RCJ" + user);
+            // rcj.setPassword("RCJ" + pass);
+            // rcj.setServerName(server);
+            // rcj.setPortNumber(1433);
+            // rcj.setDatabaseName("ILLData");
 
             Map <String, String> illData = new LinkedHashMap<>();
 
@@ -66,7 +66,7 @@ public class Pop2ILLiad {
 
             StringBuilder sqlST2 = new StringBuilder();
             StringBuilder sqlS7Z = new StringBuilder();
-            StringBuilder sqlRCJ = new StringBuilder();
+            // StringBuilder sqlRCJ = new StringBuilder();
 
             String selFlag = "U";
 
@@ -152,10 +152,10 @@ public class Pop2ILLiad {
                   NVTGC = "S7Z";
                   organization = "GSB";
                 }
-                else if (nvtgc.indexOf("law") > 0) {
-                  NVTGC = "RCJ";
-                  organization = "SLS";
-                }
+                // else if (nvtgc.indexOf("law") > 0) {
+                //   NVTGC = "RCJ";
+                //   organization = "SLS";
+                // }
                 else if (nvtgc.indexOf("medicine") > 0) {
                   NVTGC = "ST2";
                   organization = "MED";
@@ -275,9 +275,9 @@ public class Pop2ILLiad {
                     if (NVTGC.equals("S7Z")){
                       sqlS7Z.append(GetTransactSQL.transactSql(illData, sunetid)).append("\n\r");
                     }
-                    if (NVTGC.equals("RCJ")){
-                      sqlRCJ.append(GetTransactSQL.transactSql(illData, sunetid)).append("\n\r");
-                    }
+                    // if (NVTGC.equals("RCJ")){
+                    //   sqlRCJ.append(GetTransactSQL.transactSql(illData, sunetid)).append("\n\r");
+                    // }
                 }
             }
 
@@ -293,11 +293,11 @@ public class Pop2ILLiad {
             ConnectToILLiad.connect(GetTransactSQL.transactCommit(), s7zConn);
             s7zConn.close();
 
-            Connection rcjConn = rcj.getConnection();
-            ConnectToILLiad.connect(GetTransactSQL.transactBegin(), rcjConn);
-            ConnectToILLiad.connect(sqlRCJ.toString(), rcjConn);
-            ConnectToILLiad.connect(GetTransactSQL.transactCommit(), rcjConn);
-            rcjConn.close();
+            // Connection rcjConn = rcj.getConnection();
+            // ConnectToILLiad.connect(GetTransactSQL.transactBegin(), rcjConn);
+            // ConnectToILLiad.connect(sqlRCJ.toString(), rcjConn);
+            // ConnectToILLiad.connect(GetTransactSQL.transactCommit(), rcjConn);
+            // rcjConn.close();
         }
         catch (Exception e) {
             System.err.println("Pop2ILLiad: " + e.getMessage());
