@@ -28,9 +28,6 @@ sed -i '/\r/d' $LOG/harvest.log
 sed -i '/DOCTYPE Person SYSTEM/d' $OUT/harvest.xml.out
 java -cp $HOME/lib/Person-jar-with-dependencies.jar edu.stanford.LibraryPatron $OUT/harvest.xml.out $XSLT/library_patron.xsl > $OUT/harvest.out
 
-# Fix up the harvest.out files
-$HOME/run/usertrans.sh $DATE
-
 # Send yesterday's keys to ILLiad
 illiad_date=`/s/sirsi/Unicorn/Bin/transdate -d-1`
 echo "Updating/Inserting keys from /s/SUL/Batchlog/userload.keys.$illiad_date into ILLiad" >> $LOG/harvest.log
