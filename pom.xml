@@ -11,7 +11,6 @@
     <name>Registry Harvester for People and Courses</name>
     <modules>
         <module>Person</module>
-        <module>Course</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
