@@ -26,10 +26,6 @@ sed -i '/\r/d' $LOG/harvest.log
 # Use the LibraryPatron Java xslt transformer instead of the packaged one provided by MaIS to get the raw xml lines
 # Generate the flat file for Symphony
 sed -i '/DOCTYPE Person SYSTEM/d' $OUT/harvest.xml.out
-java -cp $HOME/lib/Person-jar-with-dependencies.jar edu.stanford.LibraryPatron $OUT/harvest.xml.out $XSLT/library_patron.xsl > $OUT/harvest.out
-
-# Fix up the harvest.out files
-$HOME/run/usertrans.sh $DATE
 
 # Send yesterday's keys to ILLiad
 illiad_date=`/s/sirsi/Unicorn/Bin/transdate -d-1`
@@ -43,7 +39,6 @@ $HOME/run/folio-userload.sh
 cat $LOG/harvest.log | mailx -s 'Harvest Log' sul-unicorn-devs@lists.stanford.edu
 
 # Save output files
-mv $OUT/harvest.out $OUT/harvest.out.$DATE
 mv $OUT/harvest.xml.out $OUT/harvest.xml.out.$DATE
 
 # Save and reset log files
